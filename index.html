@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre-Emmanuel Boyer - Chef de Projet IT</title>
+    
+    <!-- SEO & Open Graph Tags -->
+    <meta name="description" content="Portfolio de Pierre-Emmanuel Boyer, Chef de Projet Infrastructures IT. 20 ans d'expertise technique, management de projets internationaux, Azure, M365, MDM.">
+    <meta property="og:title" content="Pierre-Emmanuel Boyer - Chef de Projet IT">
+    <meta property="og:description" content="Fort de 20 ans d'expertise en administration des infrastructures systèmes IT, je mène avec succès depuis 8 ans des projets techniques à forte visibilité.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="photo.jpg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #334155;
+            --accent-color: #0ea5e9;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --badge-bg: #f1f5f9;
+            --badge-text: #475569;
+            --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body.dark-mode {
+            --primary-color: #38bdf8;
+            --secondary-color: #7dd3fc;
+            --accent-color: #0ea5e9;
+            --bg-color: #0f172a;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --badge-bg: #334155;
+            --badge-text: #e2e8f0;
+            --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            --nav-bg: rgba(2, 6, 23, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Accessibilité (a11y) : Focus outline */
+        a:focus-visible, button:focus-visible {
+            outline: 2px dashed var(--accent-color);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* Navigation fixe */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover, .nav-links a:focus {
+            color: var(--accent-color);
+        }
+
+        .dark-mode-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 5rem 1.5rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.4);
+            transition: border-bottom 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            border-bottom: 1px solid white;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+        }
+
+        .btn-linkedin {
+            background-color: #0077b5;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+        }
+
+        .btn-linkedin:hover {
+            background-color: #005885;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 119, 181, 0.6);
+        }
+
+        .btn-cv {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-cv:hover {
+            background-color: #0284c7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+        }
+
+        /* KPI Banner */
+        .kpi-banner {
+            max-width: 1100px;
+            margin: -3rem auto 3rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .kpi-item {
+            text-align: center;
+        }
+
+        .kpi-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 6rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h3::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), transparent);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Badges & Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-box h4 {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 0.4rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .badge-accent {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: var(--accent-color);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        /* Timeline Experience */
+        .timeline {
+            position: relative;
+            margin-left: 1rem;
+            padding-left: 2.5rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.15rem;
+            top: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 4px solid var(--bg-color);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Modification : on utilise un div (comme en V8) pour garder le style natif du h4 */
+        .experience-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-header h4 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+            font-weight: 700; /* Assure que le titre est bien en gras */
+        }
+
+        .experience-header .date {
+            color: var(--accent-color);
+            font-weight: 700;
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .company {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.25rem;
+            display: block;
+            font-size: 1.15rem;
+        }
+
+        .location {
+            font-size: 0.9rem;
+            color: #64748b;
+            display: block;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+        
+        .experience-intro {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            padding: 1.25rem;
+            background-color: var(--badge-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Formatage des listes d'expériences */
+        ul {
+            padding-left: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+        
+        /* Sous-listes (Objectifs / Résultats) */
+        li ul {
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+            list-style-type: none;
+        }
+
+        li ul li {
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+        
+        /* Remplacement du tiret "-" par une puce "•" */
+        li ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+            font-size: 1.25rem;
+            line-height: 1.2;
+        }
+        
+        /* Encadré d'environnement (en bas des expériences) */
+        .env-box {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background-color: var(--badge-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .env-box strong {
+            color: var(--primary-color);
+        }
+
+        /* Bouton flottant de contact (FAB) */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.5);
+            text-decoration: none;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fab:hover {
+            transform: scale(1.1) translateY(-5px);
+            background-color: #0284c7;
+        }
+
+        /* Pied de page */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: var(--header-bg);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5rem;
+        }
+        
+        .admin-link {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Style spécifique quand le mode édition est actif */
+        [contenteditable="true"] {
+            outline: 2px dashed var(--accent-color);
+            outline-offset: 10px;
+            background-color: rgba(14, 165, 233, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        /* Adaptabilité Mobile (Responsive) */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            header h1 { font-size: 2.25rem; }
+            .header-buttons { flex-direction: column; width: 100%; }
+            .kpi-banner { margin: -2rem 1rem 3rem; grid-template-columns: 1fr 1fr; padding: 1.5rem; }
+            .timeline { margin-left: 0; padding-left: 1.5rem; }
+            .timeline-item::before { left: -1.9rem; width: 16px; height: 16px; }
+            .experience-card { padding: 1.5rem; }
+            .fab { bottom: 1.5rem; right: 1.5rem; width: 50px; height: 50px; }
+        }
+
+        /* Format d'impression (Ctrl+P) */
+        @media print {
+            body { background: white; color: black; }
+            nav, .fab, .header-buttons, .kpi-banner, .admin-link { display: none; }
+            header { background: white; color: black; padding: 2rem 0; }
+            header h1 { color: black; }
+            .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
+            .timeline { border-left: none; padding-left: 0; margin-left: 0; }
+            .timeline-item::before { display: none; }
+        }
+    </style>
+<style id="widilo-popup-style">.widilo-ext_btn-secondary--grey,.widilo-ext_btn-secondary,.widilo-ext_btn-secondary--color,.widilo-ext_btn-primary--voucher,.widilo-ext_btn-primary--cashback,.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn,.widilo-ext_btn-code{border-width:1px;border-style:solid;text-align:center;font-weight:500;border-radius:8px;width:100%;box-shadow:0px 1px 2px 0px rgba(189,189,189,.18);font-size:15px;padding:12px 24px;line-height:20px;cursor:pointer;white-space:nowrap;text-decoration:none;display:flex;justify-content:center;align-items:center}.widilo-ext_btn-secondary--grey:focus-visible,.widilo-ext_btn-secondary:focus-visible,.widilo-ext_btn-secondary--color:focus-visible,.widilo-ext_btn-primary--voucher:focus-visible,.widilo-ext_btn-primary--cashback:focus-visible,.widilo-ext_btn-primary:focus-visible,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:focus-visible,.widilo-ext_btn-code:focus-visible,.focus.widilo-ext_btn-secondary--grey,.focus.widilo-ext_btn-secondary,.focus.widilo-ext_btn-secondary--color,.focus.widilo-ext_btn-primary--voucher,.focus.widilo-ext_btn-primary--cashback,.focus.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .focus.widilo-ext_btn-code--opened_btn,.focus.widilo-ext_btn-code{box-shadow:0px 0px 0px 4px var(--wd-color-grey-800),0px 1px 2px 0px rgba(189,189,189,.18)}.widilo-ext_btn-secondary--grey:hover,.widilo-ext_btn-secondary:hover,.widilo-ext_btn-secondary--color:hover,.widilo-ext_btn-primary--voucher:hover,.widilo-ext_btn-primary--cashback:hover,.widilo-ext_btn-primary:hover,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:hover,.widilo-ext_btn-code:hover,.hover.widilo-ext_btn-secondary--grey,.hover.widilo-ext_btn-secondary,.hover.widilo-ext_btn-secondary--color,.hover.widilo-ext_btn-primary--voucher,.hover.widilo-ext_btn-primary--cashback,.hover.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .hover.widilo-ext_btn-code--opened_btn,.hover.widilo-ext_btn-code{text-decoration:none}.widilo-ext_btn-secondary--grey:disabled,.widilo-ext_btn-secondary:disabled,.widilo-ext_btn-secondary--color:disabled,.widilo-ext_btn-primary--voucher:disabled,.widilo-ext_btn-primary--cashback:disabled,.widilo-ext_btn-primary:disabled,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:disabled,.widilo-ext_btn-code:disabled,.widilo-ext_btn--disabled.widilo-ext_btn-secondary--grey,.widilo-ext_btn--disabled.widilo-ext_btn-secondary,.widilo-ext_btn--disabled.widilo-ext_btn-secondary--color,.widilo-ext_btn--disabled.widilo-ext_btn-primary--voucher,.widilo-ext_btn--disabled.widilo-ext_btn-primary--cashback,.widilo-ext_btn--disabled.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .widilo-ext_btn--disabled.widilo-ext_btn-code--opened_btn,.widilo-ext_btn--disabled.widilo-ext_btn-code,.widilo-ext_btn--muted.widilo-ext_btn-secondary--grey,.widilo-ext_btn--muted.widilo-ext_btn-secondary,.widilo-ext_btn--muted.widilo-ext_btn-secondary--color,.widilo-ext_btn--muted.widilo-ext_btn-primary--voucher,.widilo-ext_btn--muted.widilo-ext_btn-primary--cashback,.widilo-ext_btn--muted.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .widilo-ext_btn--muted.widilo-ext_btn-code--opened_btn,.widilo-ext_btn--muted.widilo-ext_btn-code{box-shadow:none;pointer-events:none;cursor:default}.widilo-ext_btn_trailing-icon.widilo-ext_btn-secondary--grey>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-secondary>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-secondary--color>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-primary--voucher>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-primary--cashback>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-primary>svg,.widilo-ext_btn-code--opened .widilo-ext_btn_trailing-icon.widilo-ext_btn-code--opened_btn>svg,.widilo-ext_btn_trailing-icon.widilo-ext_btn-code>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-secondary--grey>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-secondary>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-secondary--color>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-primary--voucher>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-primary--cashback>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-primary>svg,.widilo-ext_btn-code--opened .widilo-ext_btn_leading-icon.widilo-ext_btn-code--opened_btn>svg,.widilo-ext_btn_leading-icon.widilo-ext_btn-code>svg{height:20px;width:20px}.widilo-ext_btn-secondary--grey .widilo-ext_btn-primary_separator,.widilo-ext_btn-secondary .widilo-ext_btn-primary_separator,.widilo-ext_btn-secondary--color .widilo-ext_btn-primary_separator,.widilo-ext_btn-primary--voucher .widilo-ext_btn-primary_separator,.widilo-ext_btn-primary--cashback .widilo-ext_btn-primary_separator,.widilo-ext_btn-primary .widilo-ext_btn-primary_separator,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn .widilo-ext_btn-primary_separator,.widilo-ext_btn-code .widilo-ext_btn-primary_separator{margin-right:3px;margin-left:3px}.widilo-ext_btn-primary,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn,.widilo-ext_btn-code{background-color:var(--wd-color-primary-500);border-color:var(--wd-color-primary-500);color:var(--wd-color-grey-800);display:block}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-primary:hover,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:hover,.widilo-ext_btn-code:hover,.widilo-ext_btn-primary:hover:not(:active),.widilo-ext_btn-primary.hover,.widilo-ext_btn-code--opened .hover.widilo-ext_btn-code--opened_btn,.hover.widilo-ext_btn-code,.widilo-ext_btn-primary.hover:not(:active){background:linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),var(--wd-color-primary-500);border-color:rgba(0,0,0,0);color:var(--wd-color-grey-800)}}.widilo-ext_btn-primary:hover,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:hover,.widilo-ext_btn-code:hover,.widilo-ext_btn-primary:focus,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:focus,.widilo-ext_btn-code:focus,.widilo-ext_btn-primary.focus,.widilo-ext_btn-code--opened .focus.widilo-ext_btn-code--opened_btn,.focus.widilo-ext_btn-code,.widilo-ext_btn-primary:focus-visible,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:focus-visible,.widilo-ext_btn-code:focus-visible,.widilo-ext_btn-primary.hover,.widilo-ext_btn-code--opened .hover.widilo-ext_btn-code--opened_btn,.hover.widilo-ext_btn-code{color:var(--wd-color-grey-800);border-color:rgba(0,0,0,0)}.widilo-ext_btn-primary:disabled,.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn:disabled,.widilo-ext_btn-code:disabled,.widilo-ext_btn-primary.widilo-ext_btn--disabled,.widilo-ext_btn-code--opened .widilo-ext_btn--disabled.widilo-ext_btn-code--opened_btn,.widilo-ext_btn--disabled.widilo-ext_btn-code{background-color:var(--wd-color-grey-300);border-color:var(--wd-color-grey-300);color:#fff}.widilo-ext_btn-primary--cashback{background-color:var(--wd-color-secondary-500);border-color:var(--wd-color-secondary-500);color:#fff}.widilo-ext_btn-primary--cashback:hover,.widilo-ext_btn-primary--cashback:focus,.widilo-ext_btn-primary--cashback.focus,.widilo-ext_btn-primary--cashback:focus-visible,.widilo-ext_btn-primary--cashback.hover{color:#fff;border-color:rgba(0,0,0,0)}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-primary--cashback:hover,.widilo-ext_btn-primary--cashback:hover:not(:active),.widilo-ext_btn-primary--cashback.hover,.widilo-ext_btn-primary--cashback.hover:not(:active){background:linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),var(--wd-color-secondary-500);color:#fff;border-color:rgba(0,0,0,0)}}.widilo-ext_btn-primary--cashback:disabled,.widilo-ext_btn-primary--cashback.widilo-ext_btn--disabled{background-color:var(--wd-color-grey-300);border-color:var(--wd-color-grey-300);color:#fff}.widilo-ext_btn-primary--cashback.widilo-ext_btn--muted{background:linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),var(--wd-color-secondary-500)}.widilo-ext_btn-primary--voucher{background-color:var(--wd-color-grey-800);border-color:var(--wd-color-grey-800);color:#fff}.widilo-ext_btn-primary--voucher:hover,.widilo-ext_btn-primary--voucher:focus,.widilo-ext_btn-primary--voucher.focus,.widilo-ext_btn-primary--voucher:focus-visible,.widilo-ext_btn-primary--voucher.hover{color:#fff;border-color:rgba(0,0,0,0)}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-primary--voucher:hover,.widilo-ext_btn-primary--voucher:hover:not(:active),.widilo-ext_btn-primary--voucher.hover,.widilo-ext_btn-primary--voucher.hover:not(:active){background:linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),var(--wd-color-grey-800);color:#fff;border-color:rgba(0,0,0,0)}}.widilo-ext_btn-primary--voucher:disabled,.widilo-ext_btn-primary--voucher.widilo-ext_btn--disabled{background-color:var(--wd-color-grey-300);border-color:var(--wd-color-grey-300);color:#fff}.widilo-ext_btn-primary--voucher.widilo-ext_btn--muted{background:linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),var(--wd-color-grey-800)}.widilo-ext_btn-secondary--grey,.widilo-ext_btn-secondary,.widilo-ext_btn-secondary--color{background-color:#fff;color:var(--wd-color-grey-800)}.widilo-ext_btn-secondary--grey:disabled,.widilo-ext_btn-secondary:disabled,.widilo-ext_btn-secondary--color:disabled,.disabled.widilo-ext_btn-secondary--grey,.disabled.widilo-ext_btn-secondary,.disabled.widilo-ext_btn-secondary--color{opacity:.4}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-secondary--grey:hover,.widilo-ext_btn-secondary:hover,.widilo-ext_btn-secondary--color:hover,.hover.widilo-ext_btn-secondary--grey,.hover.widilo-ext_btn-secondary,.hover.widilo-ext_btn-secondary--color{color:var(--wd-color-grey-800)}}.widilo-ext_btn-secondary,.widilo-ext_btn-secondary--color{border-color:var(--wd-color-primary-500)}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-secondary:hover,.widilo-ext_btn-secondary.hover,.widilo-ext_btn-secondary--color:hover,.widilo-ext_btn-secondary--color.hover{color:var(--wd-color-grey-800);background-color:var(--wd-color-primary-100)}}.widilo-ext_btn-secondary--grey{border-color:var(--wd-color-grey-300)}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-secondary--grey:hover,.widilo-ext_btn-secondary--grey.hover{background-color:var(--wd-color-grey-50)}}.widilo-ext_btn-code{position:relative;z-index:0}.widilo-ext_btn-code:hover>span:first-child::after,.widilo-ext_btn-code.hover>span:first-child::after{transition:clip-path .3s ease;background:linear-gradient(-89deg, #FFD850 100%);clip-path:polygon(21.351% 84.176%, 0% 0%, 51.784% 39.899%, 80.445% 68.543%, 80.445% 68.543%, 80.974% 69.195%, 81.356% 69.927%, 81.593% 70.714%, 81.69% 71.528%, 81.651% 72.344%, 81.477% 73.136%, 81.173% 73.878%, 80.743% 74.544%, 80.189% 75.107%, 79.516% 75.543%, 40.629% 94.79%, 40.629% 94.79%, 38.246% 95.695%, 35.84% 96.095%, 33.459% 96.015%, 31.147% 95.482%, 28.952% 94.519%, 26.921% 93.154%, 25.098% 91.412%, 23.531% 89.318%, 22.267% 86.897%, 21.351% 84.176%)}.widilo-ext_btn-code>span:first-child{font-size:15px}.widilo-ext_btn-code>span:first-child::after{transition:clip-path .3s ease;background:linear-gradient(160deg, #E6C11E, #FFD850 115%);content:"";display:block;height:60px;position:absolute;right:0;top:0;clip-path:polygon(39.134% 86.282%, 0% 0%, 51.784% 39.899%, 93.829% 67.783%, 93.829% 67.783%, 94.513% 68.365%, 95.033% 69.073%, 95.392% 69.874%, 95.591% 70.733%, 95.631% 71.616%, 95.515% 72.491%, 95.242% 73.322%, 94.816% 74.076%, 94.236% 74.719%, 93.506% 75.217%, 57.527% 93.736%, 57.527% 93.736%, 55.44% 94.593%, 53.317% 95.058%, 51.192% 95.143%, 49.1% 94.863%, 47.073% 94.231%, 45.148% 93.261%, 43.357% 91.968%, 41.735% 90.364%, 40.316% 88.464%, 39.134% 86.282%);width:56px;z-index:3}.widilo-ext_btn-code>span:last-child{position:absolute;z-index:2;top:0;right:0;border-radius:7.5px;border-top-left-radius:0;overflow:hidden;width:55.5px;height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:10px}.widilo-ext_btn-code>span:last-child::before{content:var(--code-preview, "");position:absolute;color:var(--wd-color-grey-800);font-weight:700;font-size:15px;right:10px;top:0;width:30px;height:100%;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;z-index:3}.widilo-ext_btn-code>span:last-child::after{right:0;top:0;z-index:2;width:57px;height:100%;position:absolute;content:"";background:#fff;clip-path:polygon(57% 100%, 100% 100%, 100% 0%, 3% 0%)}.widilo-ext_btn-code--opened{width:100%;display:flex;min-height:45px}.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_coupon{flex-grow:1;padding:5px 12px;border-radius:8px 0px 0px 8px;border:1px dashed var(--wd-color-primary-500);font-weight:700;font-size:15px;line-height:20px;text-align:center;display:flex;justify-content:center;align-items:center}.widilo-ext_btn-code--opened .widilo-ext_btn-code--opened_btn{border-radius:0px 8px 8px 0px;padding:5px 15px;line-height:20px;width:auto;display:flex;justify-content:center;align-items:center}.widilo-ext_btn-underlined--grey,.widilo-ext_btn-tertiary--white,.widilo-ext_btn-tertiary--grey,.widilo-ext_btn-tertiary--color{border:none;background:none;color:var(--wd-color-grey-800);font-size:14px;text-align:center;font-weight:500;line-height:20px;cursor:pointer}.widilo-ext_btn-underlined--grey:hover,.widilo-ext_btn-tertiary--white:hover,.widilo-ext_btn-tertiary--grey:hover,.widilo-ext_btn-tertiary--color:hover,.hover.widilo-ext_btn-underlined--grey,.hover.widilo-ext_btn-tertiary--white,.hover.widilo-ext_btn-tertiary--grey,.hover.widilo-ext_btn-tertiary--color{text-decoration:none}.widilo-ext_btn-underlined--grey:disabled,.widilo-ext_btn-tertiary--white:disabled,.widilo-ext_btn-tertiary--grey:disabled,.widilo-ext_btn-tertiary--color:disabled,.widilo-ext_btn--disabled.widilo-ext_btn-underlined--grey,.widilo-ext_btn--disabled.widilo-ext_btn-tertiary--white,.widilo-ext_btn--disabled.widilo-ext_btn-tertiary--grey,.widilo-ext_btn--disabled.widilo-ext_btn-tertiary--color{color:var(--wd-color-grey-300);pointer-events:none}.widilo-ext_btn-underlined--grey:focus-visible,.widilo-ext_btn-tertiary--white:focus-visible,.widilo-ext_btn-tertiary--grey:focus-visible,.widilo-ext_btn-tertiary--color:focus-visible,.focus.widilo-ext_btn-underlined--grey,.focus.widilo-ext_btn-tertiary--white,.focus.widilo-ext_btn-tertiary--grey,.focus.widilo-ext_btn-tertiary--color{border-radius:8px;box-shadow:0px 0px 0px 4px var(--wd-color-grey-800),0px 1px 2px 0px rgba(189,189,189,.18)}.widilo-ext_btn-tertiary--white,.widilo-ext_btn-tertiary--grey,.widilo-ext_btn-tertiary--color{padding:12px 24px;border-radius:8px}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-tertiary--color:hover,.widilo-ext_btn-tertiary--color.hover{background-color:var(--wd-color-primary-100)}}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-tertiary--grey:hover,.widilo-ext_btn-tertiary--grey.hover{background-color:var(--wd-color-grey-50)}}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-tertiary--white:hover,.widilo-ext_btn-tertiary--white.hover{background-color:var(--wd-color-basics-white)}}.widilo-ext_btn-underlined--grey{position:relative;display:inline-block;padding:0px;padding-bottom:2px}.widilo-ext_btn-underlined--grey>span{position:relative;display:inline-block}.widilo-ext_btn-underlined--grey::after{content:"";width:0px;height:2px;border-radius:50px;background-color:var(--wd-color-primary-500);position:absolute;bottom:0px;left:0px;transition:width 300ms ease}.widilo-ext_btn-underlined--grey:has(span){padding-bottom:0px !important}.widilo-ext_btn-underlined--grey:has(span)::before,.widilo-ext_btn-underlined--grey:has(span)::after{content:none !important}.widilo-ext_btn-underlined--grey:has(span)>span{padding-bottom:2px !important}.widilo-ext_btn-underlined--grey:has(span)>span::after{content:"";width:0px;height:2px;border-radius:50px;background-color:var(--wd-color-primary-500);position:absolute;bottom:0px;left:0px;transition:width 300ms ease}@media(hover: hover)and (pointer: fine){.widilo-ext_btn-underlined--grey:hover,.hover.widilo-ext_btn-underlined--grey{color:var(--wd-color-grey-800)}.widilo-ext_btn-underlined--grey:hover::after,.hover.widilo-ext_btn-underlined--grey::after{width:100%}.widilo-ext_btn-underlined--grey:hover:has(span)>span::after,.hover.widilo-ext_btn-underlined--grey:has(span)>span::after{width:100%}}.widilo-ext_btn-underlined--grey:focus,.focus.widilo-ext_btn-underlined--grey{color:var(--wd-color-grey-800)}.widilo-ext_btn-underlined--grey::before{content:"";width:0px;height:2px;border-radius:50px;background-color:var(--wd-color-grey-800);position:absolute;bottom:0px;left:0px;transition:width 300ms ease;width:100%}.widilo-ext_btn-underlined--grey::after{background-color:var(--wd-color-grey-200)}.widilo-ext_btn-underlined--grey:has(span)::before{content:none !important}.widilo-ext_btn-underlined--grey:has(span)>span::before{content:"";width:0px;height:2px;border-radius:50px;background-color:var(--wd-color-grey-800);position:absolute;bottom:0px;left:0px;transition:width 300ms ease;width:100%}.widilo-ext_btn-underlined--grey:has(span)>span::after{background-color:var(--wd-color-grey-200)}.widilo-ext_btn_trailing-icon>svg{margin-left:8px;width:14px;height:14px}.widilo-ext_btn_leading-icon>svg{margin-right:8px;width:14px;height:14px}.widilo-ext_btn-primary--cashback.widilo-ext_btn-primary--cashback--activated{box-shadow:none;border:none;background-color:#fff;color:var(--wd-color-secondary-500);box-shadow:none;pointer-events:none;cursor:default}.widilo-ext_btn-primary--cashback.widilo-ext_btn-primary--cashback--activated>span{animation:widilo_fadeInSlideFromRight .2s ease-in-out}@keyframes widilo_fadeInSlideFromLeft{0%{opacity:0;transform:translateX(-20px)}100%{opacity:1;transform:translateX(0)}}@keyframes widilo_fadeInSlideFromRight{0%{opacity:0;transform:translateX(20px)}100%{opacity:1;transform:translateX(0)}}.widilo-ext_linethrough{text-decoration:line-through}.widilo-ext_bold{font-weight:700}.widilo-dot-primary{position:relative;padding-left:12px}.widilo-dot-primary::before{content:"";position:absolute;top:50%;left:4px;width:7px;height:7px;border-radius:50%;transform:translate(-50%, -50%)}.widilo-dot-primary::before{background-color:var(--wd-color-secondary-500)}input[type=radio]:hover{cursor:pointer}.widilo-popup_radio{display:block;min-height:1.5rem;padding-left:1.5em;margin-bottom:.125rem}.widilo-popup_radio .widilo-popup_radio_input{border-radius:50%;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:solid 1px var(--wd-color-primary-500);margin-top:.25em;vertical-align:top;background-color:#fff;background-repeat:no-repeat;background-position:center;background-size:contain;float:left;margin:0;margin-left:-1.5em;font-size:16px;width:14px;height:14px;margin-top:2px}.widilo-popup_radio .widilo-popup_radio_input:checked,.widilo-popup_radio .widilo-popup_radio_input.checked{border-color:var(--wd-color-primary-500);background-color:#fff;background-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-4%20-4%208%208%27%3E%3Ccircle%20r%3D%272%27%20fill%3D%27%23FFD850%27%2F%3E%3C%2Fsvg%3E)}.widilo-popup_radio .widilo-popup_radio_input:hover,.widilo-popup_radio .widilo-popup_radio_input.hover{background-color:var(--wd-color-primary-100)}.widilo-popup_radio .widilo-popup_radio_input:focus{border-color:var(--wd-color-primary-600);box-shadow:none}.widilo-popup_radio .widilo-popup_radio_input:focus-visible,.widilo-popup_radio .widilo-popup_radio_input.focus{outline:none;box-shadow:0px 0px 0px 4px var(--wd-color-grey-800),0px 1px 2px 0px rgba(189,189,189,.18) !important}.widilo-popup_radio .widilo-popup_radio_input:disabled,.widilo-popup_radio .widilo-popup_radio_input.disabled{background-color:var(--wd-color-grey-100);border-color:var(--wd-color-grey-200);cursor:not-allowed}.widilo-popup_radio .widilo-popup_radio_input:disabled:checked,.widilo-popup_radio .widilo-popup_radio_input:disabled.checked,.widilo-popup_radio .widilo-popup_radio_input.disabled:checked,.widilo-popup_radio .widilo-popup_radio_input.disabled.checked{background-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-4%20-4%208%208%27%3E%3Ccircle%20r%3D%272%27%20fill%3D%27%23ebebeb%27%2F%3E%3C%2Fsvg%3E)}.widilo-popup_radio .widilo-popup_radio_label{font-size:12px;font-weight:400;line-height:normal;text-align:left}.widilo-ext_flag{width:14px;height:auto}.widilo-popup-iframe{--mobile-iframe-move-down-y: 0;--popup-small-height: 341px;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;background-color:#fff;color:var(--wd-color-grey-800);box-shadow:0 4px 6px rgba(0,0,0,.1);width:375px;height:562px;position:fixed;top:20px;right:20px;z-index:2147483647 !important;border-radius:20px;overflow:hidden;border:none}.widilo-popup-iframe.widilo-popup-iframe--small{height:var(--popup-small-height)}.widilo-popup-iframe.widilo-popup-iframe--demo{z-index:2 !important}.widilo-popup-iframe.widilo-popup-iframe--mobile:not(.widilo-popup-iframe--small){height:70vh}.widilo-popup-iframe.widilo-popup-iframe--mobile{top:unset;bottom:0;right:0;border-bottom-left-radius:0px;border-bottom-right-radius:0px;box-shadow:1px -4px 6px rgba(0,0,0,.1);width:100%}.widilo-popup-iframe.widilo-popup-iframe--mobile.widilo-popup-trans--enter-active{animation:widilo_moveUp .2s ease-out forwards}.widilo-popup-iframe.widilo-popup-iframe--mobile.widilo-popup-trans--exit-active{animation:widilo_moveDown .2s ease-out forwards}.widilo-popup-iframe.widilo-popup-trans--enter-active{animation:widilo_moveLeft .2s ease-out forwards}.widilo-popup-iframe.widilo-popup-trans--exit-active{animation:widilo_moveRight .2s ease-out forwards}@keyframes widilo_moveLeft{0%{transform:translateX(100%)}100%{transform:translateX(0)}}@keyframes widilo_moveRight{0%{transform:translateX(0)}100%{transform:translateX(100%)}}@keyframes widilo_moveUp{0%{transform:translateY(100%)}100%{transform:translateY(0)}}@keyframes widilo_moveDown{0%{transform:translateY(var(--mobile-iframe-move-down-y))}100%{transform:translateY(100%)}}.widilo-fab-button-iframe{user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;position:fixed;bottom:20px;right:0px;z-index:2147483647 !important;display:flex;border-bottom-left-radius:50px;border-top-left-radius:50px;box-shadow:0 4px 6px rgba(0,0,0,.1);height:48px;width:43px;transition:width .3s ease;touch-action:none;border:0px}.widilo-fab-button-iframe.widilo-fab-button-iframe--hovered{width:68px}.widilo-fab-button-iframe.widilo-fab-button-iframe--demo{z-index:2 !important}@media print{.widilo-popup-iframe,.widilo-fab-button-iframe{display:none}}</style></head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- NAVIGATION (Haut de page)                  -->
+    <!-- ========================================== -->
+    <nav>
+        <div style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">PEB.</div>
+        <ul class="nav-links">
+            <li><a href="#summary">Profil</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#education">Formations</a></li>
+        </ul>
+        <button class="dark-mode-btn" onclick="toggleDarkMode()" id="darkModeToggle" aria-label="Activer le mode sombre">
+            🌙 Sombre
+        </button>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- EN-TÊTE (Photo et Contacts)                -->
+    <!-- ========================================== -->
+    <header>
+        <img src="photo.jpg" alt="Photo de profil de Pierre-Emmanuel Boyer" class="profile-photo" id="profile-img">
+        <h1 class="reveal active">Pierre-Emmanuel Boyer</h1>
+        <h2 class="reveal active">Chef de Projet Infrastructures IT</h2>
+        <div class="contact-info reveal active">
+            <span>📍 Magny-les-Hameaux, Île-de-France, France</span> &nbsp;|&nbsp;
+            <a href="mailto:pe.boyer@gmail.com">✉️ pe.boyer@gmail.com</a>
+        </div>
+        <div class="header-buttons reveal active">
+            <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">Profil LinkedIn</a>
+            <a href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf" download="" class="btn btn-cv">Télécharger le CV (PDF)</a>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- BANNIÈRE DES CHIFFRES CLÉS                 -->
+    <!-- ========================================== -->
+    <div class="kpi-banner reveal active" data-animated="true">
+        <div class="kpi-item">
+            <div class="kpi-number" data-target="20">20</div>
+            <div class="kpi-label">Années d'expertise</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-number" data-target="22000">22000</div>
+            <div class="kpi-label">Postes Migrés</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-number" data-target="15000">15000</div>
+            <div class="kpi-label">Utilisateurs O365</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-number" data-target="97">97%</div>
+            <div class="kpi-label">% Satisfaction</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONTENU PRINCIPAL                          -->
+    <!-- ========================================== -->
+    <main class="container" id="main-content" contenteditable="false">
+        
+        <!-- SECTION : RÉSUMÉ -->
+        <section id="summary" class="reveal active">
+            <div style="font-size: 1.25rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
+                "Fort de 20 ans d'expertise en administration des infrastructures systèmes IT et en support utilisateur, je mène avec succès depuis 8 ans des projets techniques à forte visibilité en tant que Chef de projet Infrastructure IT en mettant l'humain au cœur de mes réussites."
+            </div>
+        </section>
+
+        <!-- SECTION : COMPÉTENCES -->
+        <section id="skills" class="reveal active">
+            <h3>Compétences &amp; Outils</h3>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h4>🎯 Direction de Projet</h4>
+                    <p style="margin-bottom: 1rem; font-size: 0.95rem;">Encadrement de projets informatiques, Leadership technologique, Planification opérationnelle.</p>
+                    <div class="badge-container">
+                        <span class="badge badge-accent">Agile</span>
+                        <span class="badge badge-accent">Kanban</span>
+                        <span class="badge badge-accent">Scrum</span>
+                        <span class="badge">PMI</span>
+                        <span class="badge">Jira / Confluence</span>
+                        <span class="badge">Miro / Teams</span>
+                        <span class="badge">Sharepoint</span>
+                        <span class="badge">PowerBI</span>
+                    </div>
+                </div>
+
+                <div class="skill-box">
+                    <h4>💻 Infrastructure &amp; Cloud</h4>
+                    <p style="margin-bottom: 1rem; font-size: 0.95rem;">Maîtrise des écosystèmes Microsoft, Device Management, serveurs et administration réseau.</p>
+                    <div class="badge-container">
+                        <span class="badge badge-accent">Microsoft 365</span>
+                        <span class="badge badge-accent">Azure / Entra ID</span>
+                        <span class="badge">Windows Server</span>
+                        <span class="badge">PowerShell</span>
+                        <span class="badge">Intune / AirWatch</span>
+                        <span class="badge">Exchange / Lotus</span>
+                    </div>
+                </div>
+
+                <div class="skill-box">
+                    <h4>🏆 Certifications</h4>
+                    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.6rem;">🏅 <strong>VMware AirWatch</strong> Professional Accreditation: Enterprise Mobility</li>
+                        <li style="margin-bottom: 0.6rem;">🏅 <strong>Exchange 2010</strong> (Installation, config et dépannage)</li>
+                        <li style="margin-bottom: 0.6rem;">🏅 <strong>Windows 2000 server</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : EXPÉRIENCES (TIMELINE) -->
+        <section id="experiences">
+            <h3>Parcours Professionnel</h3>
+            
+            <div class="timeline">
+                
+                <!-- BOURSOBANK -->
+                <div class="timeline-item reveal active">
+                    <!-- Note : retour au format div de la V8 pour assurer la bonne taille du h4 -->
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Référent Chef de Projet Technique IT</h4>
+                                <span class="company">BoursoBank</span>
+                                <span class="location">Boulogne-Billancourt</span>
+                            </div>
+                            <span class="date">Novembre 2025 - Juillet 2026 (9 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Au sein de la Direction « Production IT », mon rôle consistait à être le référent d'une équipe de 7 chefs de projets en charge de piloter les projets d'évolution lié à la MCO et à la sécurité ainsi que des projets émanant des métiers pour répondre aux besoins clients. Mon rôle consistait aussi à planifier et arbitrer chaque mois les ressources techniques avec les managers des services.</p>
+                        
+                        <p class="section-title" style="margin-bottom: 1rem;">Exemple de Projets réalisés :</p>
+                        <ul>
+                            <li><strong>Projet WeRo</strong>
+                                <ul>
+                                    <li>Objectifs : Préparation et déploiement de tous les environnements techniques (serveurs, bases de données, flux réseaux).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Sécurité CRM</strong>
+                                <ul>
+                                    <li>Objectifs : Mise en place de la micro-segmentation pour améliorer la sécurité d'une application critique.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="env-box">
+                            <strong>Environnement :</strong> Office 365, Windows Server 2016-2019 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Linux, Powershell, PKI, MFA, Microsoft Azure, SCCM, Intune, VMWare Vsphere, Jira, Confluence, Device42, IronPort, Netbox.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UBISOFT -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Chef de projet informatique</h4>
+                                <span class="company">Ubisoft</span>
+                                <span class="location">Saint-Mandé</span>
+                            </div>
+                            <span class="date">Octobre 2021 - Octobre 2025 (4 ans 1 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Au sein de la Direction « Enterprise Infrastructure », mon rôle consistait à orchestrer des projets transverses techniques à forte valeurs ayant pour cibles plusieurs milliers d'utilisateurs.</p>
+                        
+                        <p class="section-title" style="margin-bottom: 1rem;">Exemple de Projets réalisés :</p>
+                        <ul>
+                            <li><strong>Audit des serveurs hébergés par une Direction sur un DataCenter à Hong-Kong</strong>
+                                <ul>
+                                    <li>Objectif : Identifier les serveurs, leurs rôles et leurs responsables en cas de blocage par le « Great Firewall of China ».</li>
+                                    <li>Résultats : Grâce à cet audit, migration en urgence des 300 serveurs (virtuels et physiques) suite à une panne majeure.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Amélioration d'un portail applicatif destiné aux utilisateurs de la DSI (2500 personnes)</strong>
+                                <ul>
+                                    <li>Objectif : Refonte de la structure technique de la plateforme d'automatisation des tâches d'administration de la DSI (gestion de comptes AD, groupes, ...) connectée à différentes API (Durée: 1 an).</li>
+                                    <li>Résultats : Modernisation et sécurisation de la plateforme, gain de temps pour les utilisateurs.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Déploiement de Windows Hello for Business sur les 22 000 postes utilisateurs</strong>
+                                <ul>
+                                    <li>Objectifs : Amélioration de la sécurité et facilitation de l'authentification (Durée: 18 mois).</li>
+                                    <li>Résultats : Migration finale réalisée en 6 mois avec un accompagnement dédié par site (Taux de satisfaction utilisateurs : 97%).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p class="section-title">Actions récurrentes :</p>
+                        <ul>
+                            <li>Encadrement du projet de la phase d'étude (Build) jusqu'à sa mise en production (Run) : Collecte des besoins et élaboration du cahier des charges, Analyse des risques et des responsabilités (RACI), Élaboration et suivi du budget, Gestion du product Backlog et de la roadmap selon les priorités et retour des équipes / clients.</li>
+                            <li>Encadrement des équipes projets (équipes multiculturelles : internes et externes) : Animation des réunions et ateliers d'équipes pluridisciplinaires, Présentation et suivi des projets lors des réunions de cycle de vie (Kick-off, SteerCo, Arbitrage, Weekly, Plan d'Achat). Gestion des espaces de communication et de documentation. Création et suivi de KPIs via PowerBI et Excel. Conduite du changement auprès des équipes informatiques sur sites.</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Outils de Gestion de Projet :</strong> Agile, Kanban, Scrum, PMI, Confluence, Jira, Miro, Teams, Athena, Sharepoint, Excel, PowerPoint, PowerBI, Outlook.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOLETANCHE FREYSSINET -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Référent Technique Messagerie et Mobilité</h4>
+                                <span class="company">Soletanche Freyssinet</span>
+                                <span class="location">Rueil-Malmaison</span>
+                            </div>
+                            <span class="date">Mars 2013 - Septembre 2021 (8 ans 7 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Au sein de la DSI Groupe, j'ai piloté la migration stratégique de Lotus Domino vers Office 365 pour uniformiser les outils informatiques. J'ai également assuré l'administration des infrastructures de messageries, la gestion de la flotte mobile, la supervision de la téléphonie sur IP et le support technique de niveau 3.</p>
+                        
+                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de réalisations :</p>
+                        <ul>
+                            <li><strong>Migrations vers Office 365 (Domino to O365, Exchange to Tenant ou Tenant to Tenant)</strong>
+                                <ul>
+                                    <li>Objectifs : Uniformiser les outils de communication et de collaboration, optimiser les coûts et la gestion IT, améliorer la mobilité et la sécurité des données (Durée : 2 ans pour la migration initiale des 15 000 utilisateurs puis à la demande).</li>
+                                    <li>Résultats : Données et comptes utilisateurs migrés avec succès, déploiement de Teams, OneDrive, Outlook, réduction des coûts d'infrastructure et d'administration.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mise en place d'une solution de gestion et de sécurisation de la flotte mobile (iOS et Android)</strong>
+                                <ul>
+                                    <li>Objectifs : Centraliser et sécuriser la gestion de la flotte mobile tout en assurant la conformité interne (Durée : 1 an).</li>
+                                    <li>Résultats : Enrôlement des 800 terminaux mobiles dans AirWatch puis Microsoft Intune, sécurisation des données et des terminaux mobiles, optimisation du cycle de vie et des coûts et amélioration de l'expérience utilisateur.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p class="section-title">Administration et Support :</p>
+                        <ul>
+                            <li>Messagerie (Lotus Domino puis O365 : 15 000 utilisateurs)</li>
+                            <li>MDM (AirWatch puis Intune 800 terminaux)</li>
+                            <li>ToIP (PABX Aastra / Mitel : 21 sites - 1200 utilisateurs)</li>
+                            <li>Gestion des domaines Internet et des certificats SSL</li>
+                            <li>Support N3 et VIP pour la France et l'international</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement :</strong> Office 365, Lotus Domino v8.5-9, Windows Server 2012-2016 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Powershell, PKI, MFA, Global Protect, Microsoft Azure, Airwatch, Microsoft Intune, Mitel (ToIP), Varonis DatAdvantage, ITSM EasyVista, VMWare Vsphere
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUPE CLARSYS -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Responsable de la cellule Messagerie et Mobilité</h4>
+                                <span class="company">Groupe Clarsys</span>
+                                <span class="location">Paris</span>
+                            </div>
+                            <span class="date">Mai 2011 - Février 2013 (1 an 10 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Dans le cadre des missions confiées par une société de services, j'ai assumé la responsabilité du service « Messagerie et Mobilité ». Mon objectif principal était de dynamiser la cellule en développant un portefeuille de nouveaux clients tout en assurant la fidélisation. J'accompagnais également les équipes commerciales en jouant un rôle d'avant-vente technique, et je collaborais étroitement avec nos fournisseurs et partenaires techniques.</p>
+                        
+                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de projet menés :</p>
+                        <ul>
+                            <li>Migrations Echange 5.5/2003/2007 vers 2010</li>
+                            <li>Migrations Lotus Domino v8.5 vers Exchange Online avec Quest Notes Migrator for Exchange</li>
+                            <li>Installations et configurations serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
+                            <li>Installations de plates-formes de gestion de terminaux mobile (iOS/Android/Windows Phone) avec Good Technology, BlackBerry Mobile Fusion et Maas360</li>
+                        </ul>
+                        
+                        <p class="section-title">Actions :</p>
+                        <ul>
+                            <li>Piloter les projets, recueillir et analyser les besoins, organiser et animer les réunions, organiser et planifier les déploiements, rédiger les rapports et compte rendus.</li>
+                            <li>Former les utilisateurs aux nouveaux outils, rédiger les manuels à destination des utilisateurs.</li>
+                            <li>Administrer les environnements techniques de nos clients et assurer le support de niveau 3.</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement technique :</strong> Exchange Server 2003/2007/2010/Online, Zimbra, Google Apps, Lotus Domino v6/v8.5, Blackberry Enterprise Server v4/v5, Windows 2008 Server, Good Technology, Maas360, Quest Notes Migrator for Exchange, BlackBerry Mobile Fusion, PowerShell, VMWare ESX
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITS IBELEM -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Consultant en mobilité</h4>
+                                <span class="company">ITS Ibelem</span>
+                                <span class="location">Nanterre</span>
+                            </div>
+                            <span class="date">Février 2011 - Avril 2011 (3 mois)</span>
+                        </div>
+                        
+                        <p class="section-title">Missions :</p>
+                        <ul>
+                            <li>Migration de plate-forme BES de v4.1 vers v5.0.2 avec l'outil BlackBerry Transporter</li>
+                            <li>Audit d'infrastructures Blackberry</li>
+                            <li>Installation et configuration serveur BES 5.0.2 et BES Express 5.0.2 sur environnement Exchange 2003-2007, Zimbra et Google Apps</li>
+                            <li>Installation serveur Good Technology (équivalent serveur BES pour iOS et Android)</li>
+                            <li>Déploiement d'applications via serveur BES (Google Apps, Bloomberg, ...)</li>
+                            <li>Formation et transfert de compétences aux administrateurs et/ou utilisateurs</li>
+                            <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement technique :</strong> Exchange Server 2003-2010, Lotus Domino v6 - v8.5, Blackberry Enterprise Server v4 - v5, Windows 2000 à 2008 Server, SQL 2005 à 2008
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CETSI -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Administrateur Messagerie et Mobilité</h4>
+                                <span class="company">CetSI</span>
+                                <span class="location">Nanterre</span>
+                            </div>
+                            <span class="date">Janvier 2008 - Janvier 2011 (3 ans 1 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Dans une société de services spécialisée dans l'infogérance, mon rôle au sein du service Messagerie et Mobilité était de : Maintenir les systèmes en condition opérationnelle, répondre aux souhaits d'évolution de nos clients, et solutionner les demandes de support.</p>
+                        
+                        <p class="section-title">Réalisations :</p>
+                        <ul>
+                            <li>Installation et mise à jour de serveurs de messagerie (Lotus Domino / Microsoft Exchange / BlackBerry Enterprise Server)</li>
+                        </ul>
+                        
+                        <p class="section-title">Actions :</p>
+                        <ul>
+                            <li>Administration des serveurs clients (France et international).</li>
+                            <li>Gestion utilisateurs et groupes (création / suppression, renommage, recertification, ...).</li>
+                            <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation clients.</li>
+                            <li>Support utilisateurs (France et International) pour Lotus Notes 7 à 8.5 / Outlook 2003 à 2010 et smartphone BlackBerry, IPhone, IPad.</li>
+                            <li>Gestion des Planning de Projets, rédaction de propositions et compte-rendu.</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnements :</strong> Lotus Domino v6 à v8.5, Exchange Server 2003 à 2010, BlackBerry Enterprise Server v4 à v5 et passerelles Antispam. Windows Server 2000 à 2008, Windows XP / Vista / Seven
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DU PAREIL AU MEME -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Administrateur système informatique</h4>
+                                <span class="company">Du Pareil Au Même</span>
+                                <span class="location">Wissous</span>
+                            </div>
+                            <span class="date">Juillet 2005 - Décembre 2007 (2 ans 6 mois)</span>
+                        </div>
+                        
+                        <p class="experience-intro">Au sein de la DSI, mes rôles étaient les suivants : Administrer, assurer la maintenance et la supervision des serveurs et équipements réseaux. Gérer les sauvegardes. Assister les utilisateurs (siège et magasins). Préparer le matériel et installer les équipements en magasin.</p>
+                        
+                        <p class="section-title">Actions :</p>
+                        <ul>
+                            <li><strong>Administration systèmes et réseaux :</strong> Active Directory (création utilisateurs / groupes, déploiement de GPO, ...), gestion du DHCP, gestion des serveurs d'impression.</li>
+                            <li><strong>Messagerie :</strong> Exchange 2003 (création et gestion des comptes utilisateurs).</li>
+                            <li><strong>Sécurité systèmes et réseaux :</strong> CheckPoint, Connectra, Trend Micro et Mc Afee ePolicy Orchestrator.</li>
+                            <li><strong>Sauvegardes :</strong> Gestion des sauvegardes via HP Data Protector et Veritas Backup Exec.</li>
+                            <li><strong>Maintenance utilisateurs :</strong> intégration, configuration et installation des postes. Dépannage des ordinateurs et imprimantes, formations sur les nouveaux outils (scanners, pocket pc,...) et logiciels. Création des images postes sur serveur RIS.</li>
+                            <li><strong>Supervision et Déploiement :</strong> Maintenance et supervision serveurs avec Nagios, HP Insight Manager et HP Procurve Manager. Utilisation du logiciel Altiris.</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnements :</strong> Réseau de 80 serveurs (HP et Dell) en Windows Serveur 2000 et 2003 ainsi que 3 Backbone HP, Switch et Point d'accès Wifi HP. 200 postes utilisateurs (fixes, portables et PDA) en Windows 2000/XP
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SOPRA STERIA -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Technicien de Support Hotline</h4>
+                                <span class="company">Sopra Steria</span>
+                                <span class="location">Vélizy</span>
+                            </div>
+                            <span class="date">Mai 2005 - Juin 2005 (2 mois)</span>
+                        </div>
+                        
+                        <p class="section-title">Missions :</p>
+                        <ul>
+                            <li>Hotline N1 et N2 de la société Manpower (env. 500 appels/jours).</li>
+                            <li>Réception et relances des appels clients, prise en main à distance (recherche et réparation de pannes, déploiement et installation de logiciels).</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement :</strong> Serveurs et postes clients en Windows NT4.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LFB -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Technicien support (Alternance)</h4>
+                                <span class="company">LFB</span>
+                                <span class="location">Les Ulis</span>
+                            </div>
+                            <span class="date">Janvier 2004 - Février 2005 (1 an 2 mois)</span>
+                        </div>
+                        
+                        <p class="section-title">Missions :</p>
+                        <ul>
+                            <li>Support sur site des utilisateurs.</li>
+                            <li>Dépannages des ordinateurs et imprimantes.</li>
+                            <li>Formations sur PDA et logiciels de l'entreprise.</li>
+                            <li>Gestion des bandes de sauvegardes (BackupExec).</li>
+                            <li>Création et déploiement des images via Norton Ghost.</li>
+                            <li>Gestion des comptes utilisateurs sur Active Directory.</li>
+                            <li>Installation de prises réseaux et téléphoniques.</li>
+                            <li>Administration de l'Autocom Aastra.</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement :</strong> Réseau de 1000 postes utilisateurs (fixes et portables) en Windows 98/2000 et 45 serveurs en Windows 2000 et 2003.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PMS -->
+                <div class="timeline-item reveal active">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h4>Technicien support (Alternance)</h4>
+                                <span class="company">PMS PRESENCE MICRO SYSTEME</span>
+                                <span class="location">Les Ulis</span>
+                            </div>
+                            <span class="date">Novembre 2001 - Septembre 2003 (1 an 11 mois)</span>
+                        </div>
+                        
+                        <p class="section-title">Missions :</p>
+                        <ul>
+                            <li>Installation et configuration de postes clients Windows 98/2000/XP.</li>
+                            <li>Support et formation d'utilisateurs à Windows, à la bureautique et logiciels monétiques.</li>
+                            <li>Réparation de pc et imprimante.</li>
+                            <li>Installation et configuration des points de ventes (Caisses et périphériques) et terminaux de paiement électronique (TPE).</li>
+                        </ul>
+
+                        <div class="env-box">
+                            <strong>Environnement :</strong> Postes clients Windows 98/2000/XP, logiciels monétiques, caisses, périphériques et TPE.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION : FORMATIONS -->
+        <section id="education" class="reveal active">
+            <h3>Formations &amp; Divers</h3>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h4>🎓 Parcours Académique</h4>
+                    <p style="margin-bottom: 0.5rem;"><strong>Cross Institute Paris (2004 - 2005) :</strong> Administration de / administrateur réseaux et systèmes</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>ISCIO (2001 - 2003) :</strong> Sciences informatiques et de l'information et services apparentés</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Unité d'Enseignement du Tourisme (UET) (1999 - 2001) :</strong> Promotion du tourisme</p>
+                    <p><strong>Lycée de l'Essouriau (1997 - 1999) :</strong> Baccalauréat sciences et technologies tertiaires, Commerce international / commerce</p>
+                </div>
+                <div class="skill-box">
+                    <h4>🌍 Langues &amp; Intérêts</h4>
+                    <p style="margin-bottom: 0.5rem;"><strong>Langues :</strong> Français (Native or Bilingual), Anglais (Professional Working).</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Sports :</strong> Crossfit, golf, badminton, course à pieds et randonnées.</p>
+                    <p><strong>Passions :</strong> Grand amateur de gastronomie et adepte de la photographie.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- BOUTONS FLOTTANTS                          -->
+    <!-- ========================================== -->
+    
+    <!-- Bouton Contact Email -->
+    <a href="mailto:pe.boyer@gmail.com" class="fab" title="Me contacter" aria-label="Me contacter par email">
+        ✉️
+    </a>
+
+    <!-- ========================================== -->
+    <!-- PIED DE PAGE & MODE ÉDITION                -->
+    <!-- ========================================== -->
+    <footer>
+        <p>© 2026 Pierre-Emmanuel Boyer. Fait avec passion.</p>
+        <!-- Bouton caché permettant d'éditer le site -->
+        <a onclick="enableEditMode()" class="admin-link" aria-label="Activer le mode d'édition de page">⚙️ Mode Édition</a>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS JAVASCRIPT                         -->
+    <!-- ========================================== -->
+    <script>
+        // ----------------------------------------
+        // 1. Fonctionnalité du Mode Sombre
+        // ----------------------------------------
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('darkModeToggle');
+            const isDark = document.body.classList.contains('dark-mode');
+            btn.innerHTML = isDark ? '☀️ Clair' : '🌙 Sombre';
+            btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
+        }
+
+        // ----------------------------------------
+        // 2. Animations au défilement (Scroll Reveal)
+        // ----------------------------------------
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Lancement de l'animation des nombres uniquement quand la bannière est visible
+                    if (entry.target.classList.contains('kpi-banner') && !entry.target.dataset.animated) {
+                        animateCounters();
+                        entry.target.dataset.animated = "true";
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.kpi-number');
+            const speed = 150; 
+
+            counters.forEach(counter => {
+                const animate = () => {
+                    const value = +counter.getAttribute('data-target');
+                    const data = +counter.innerText.replace('%', '');
+                    const time = value / speed;
+                    
+                    if (data < value) {
+                        counter.innerText = Math.ceil(data + time) + (value === 97 ? '%' : '');
+                        setTimeout(animate, 20);
+                    } else {
+                        counter.innerText = value + (value === 97 ? '%' : '');
+                    }
+                }
+                animate();
+            });
+        }
+
+        // ----------------------------------------
+        // 3. Fonction Éditeur (Modification de texte)
+        // ----------------------------------------
+        function enableEditMode() {
+            // Un mot de passe basique (1234) pour débloquer l'édition des textes
+            const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
+            
+            if (pin === "1234") {
+                // Active l'attribut contentEditable sur le conteneur principal
+                const mainContent = document.getElementById('main-content');
+                if(mainContent) {
+                    mainContent.contentEditable = "true";
+                    alert("Mode édition activé ! Vous pouvez cliquer sur les textes pour les modifier.");
+                    
+                    // Création du bouton de sauvegarde flottant
+                    const saveBtn = document.createElement('button');
+                    saveBtn.innerText = "💾 Télécharger index.html";
+                    saveBtn.className = "fab save-fab";
+                    // Style spécifique pour ce bouton au-dessus de l'autre
+                    saveBtn.style.width = "auto";
+                    saveBtn.style.padding = "0 1.5rem";
+                    saveBtn.style.borderRadius = "30px";
+                    saveBtn.style.bottom = "100px"; 
+                    saveBtn.style.fontSize = "1rem";
+                    saveBtn.style.fontFamily = "Inter, sans-serif";
+                    saveBtn.style.fontWeight = "600";
+                    saveBtn.onclick = saveModifications;
+                    document.body.appendChild(saveBtn);
+                }
+            } else {
+                alert("Code PIN incorrect.");
+            }
+        }
+
+        function saveModifications() {
+            // 1. Désactiver le mode édition pour que le fichier final soit propre
+            const mainContent = document.getElementById('main-content');
+            if(mainContent) {
+                mainContent.contentEditable = "false";
+            }
+            
+            // 2. Retirer le bouton de sauvegarde de l'interface
+            const saveBtn = document.querySelector('.save-fab');
+            if(saveBtn) saveBtn.remove();
+            
+            // -- FIX PHOTO ABSOLUE --
+            // Les navigateurs transforment parfois les URLs relatives (photo.jpg) en absolues (file:///...) 
+            // lors de la récupération de outerHTML. On force la valeur relative avant de sauvegarder.
+            const profileImg = document.getElementById('profile-img');
+            if (profileImg) {
+                profileImg.setAttribute('src', 'photo.jpg');
+            }
+            
+            // 3. Récupérer tout le code HTML actuel de la page
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            
+            // 4. Créer un fichier téléchargeable en mémoire
+            const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
+            const url = URL.createObjectURL(blob);
+            
+            // 5. Simuler un clic pour déclencher le téléchargement
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "index.html";
+            document.body.appendChild(a);
+            a.click();
+            
+            // 6. Nettoyage
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert("Fichier téléchargé avec succès ! Remplacez l'ancien fichier 'index.html' de votre dossier par celui-ci.");
+        }
+    </script>
+
+
+
+<script async="" src="/.netlify/scripts/hud?variant=owner-private" data-nf-variant="owner-private" data-netlify-site-id="9559982d-2e38-4035-9723-1c7e80a35310" data-app-host="app.netlify.com"></script>
+<iframe sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox" id="nl-hud-frame" title="Netlify" srcdoc="&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;style&gt;
+    :root{--nl-vw:2560px;--nl-vh:929px}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:transparent;overflow:hidden}
+    body{display:flex;align-items:flex-end;justify-content:flex-end;height:100vh;
+      padding:8px 18px 18px 8px;
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#f4f9f9;-webkit-font-smoothing:antialiased}
+    .nl-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:10px;width:max-content;max-width:calc(var(--nl-vw,100vw) - 26px)}
+    button{font-family:inherit;cursor:pointer}
+    :focus-visible{outline:2px solid #32e6e2;outline-offset:2px;border-radius:6px}
+    .nl-icon-btn{position:relative;flex:none;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid transparent;background:transparent;color:#d5e3e6;transition:background .15s ease,color .15s ease}
+    .nl-icon-btn:hover{background:rgba(255,255,255,0.08);color:#f4f9f9}
+    .nl-tap::after{content:&quot;&quot;;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:max(100%,44px);height:max(100%,44px)}
+    @keyframes nl-rise{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition:none!important}}
+  
+      .nl-popover{display:none;width:min(320px,calc(var(--nl-vw,100vw) - 26px));max-height:calc(var(--nl-vh,100vh) - 90px);overflow-y:auto;background:linear-gradient(180deg,#132832 0%,#0e1e25 100%);border:1px solid rgba(255,255,255,0.09);border-radius:18px;transform-origin:bottom right;animation:nl-rise .28s cubic-bezier(.34,1.4,.4,1) both}
+      .nl-popover.open{display:block}
+      .nl-popover-head{display:flex;align-items:center;gap:9px;padding:13px 12px 5px 16px}
+      .nl-popover-icon{display:inline-flex;color:#32e6e2}
+      .nl-popover-title{flex:1;font-size:13.5px;font-weight:700;letter-spacing:-0.01em;color:#f4f9f9}
+      .nl-popover-body{padding:0 16px 12px}
+      .nl-task{display:flex;align-items:center;gap:10px;padding:11px 0}
+      .nl-task+.nl-task{border-top:1px solid rgba(255,255,255,0.06)}
+      .nl-task-meta{flex:1;min-width:0}
+      .nl-task-title{font-size:13.5px;font-weight:650;color:#f4f9f9}
+      .nl-task-desc{font-size:11.5px;color:#a9bdc2}
+      .nl-task-run{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:1px solid rgba(50,230,226,0.35);background:transparent;color:#32e6e2;font-size:12px;font-weight:700;border-radius:999px;padding:6px 13px;transition:background .15s ease,transform .15s cubic-bezier(.34,1.4,.4,1)}
+      .nl-task-run:hover{background:rgba(5,189,186,0.12);transform:translateY(-1px)}
+      .nl-bar,.nl-mini{-webkit-user-select:none;user-select:none}
+      .nl-bar{display:flex;align-items:center;gap:2px;white-space:nowrap;border:1px solid rgba(255,255,255,0.09);background:linear-gradient(180deg,#142b34,#0e1e25);border-radius:999px;padding:7px 8px 7px 14px;color:#f4f9f9}
+      .nl-logo{flex:none;margin-right:8px;display:inline-flex}
+      .nl-status{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:0.01em;color:#fbbf24;padding:6px 5px;border-radius:8px;transition:background .15s ease}
+      .nl-status:hover,.nl-status[aria-expanded='true']{background:rgba(251,191,36,0.12)}
+      .nl-tip{display:none;align-self:flex-start;width:min(300px,calc(var(--nl-vw,100vw) - 26px));background:linear-gradient(180deg,#132832 0%,#0e1e25 100%);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:12px 14px;font-size:12px;line-height:1.5;color:#d5e3e6;animation:nl-rise .2s cubic-bezier(.34,1.4,.4,1) both}
+      .nl-tip.open{display:block}
+      .nl-tip a{display:flex;width:fit-content;align-items:center;gap:4px;margin-top:8px;color:#32e6e2;text-decoration:none;font-weight:650}
+      .nl-tip a:hover{text-decoration:underline}
+      .nl-sep{width:1px;height:18px;background:rgba(255,255,255,0.09);margin:0 10px 0 12px;flex:none}
+      .nl-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;border:0;background:transparent;color:#d5e3e6;font-family:inherit;font-size:13px;font-weight:600;padding:8px 12px;border-radius:999px;transition:background .15s ease,color .15s ease}
+      .nl-btn svg{color:#32e6e2}
+      .nl-btn:hover{background:rgba(255,255,255,0.07);color:#f4f9f9}
+      .nl-btn[aria-expanded='true']{background:rgba(255,255,255,0.1);color:#f4f9f9}
+      .nl-publish{display:inline-flex;align-items:center;gap:7px;text-decoration:none;margin-left:6px;background:#05bdba;color:#02191b;font-size:13px;font-weight:700;padding:8px 15px;border-radius:999px;transition:background .15s ease,transform .15s cubic-bezier(.34,1.4,.4,1)}
+      .nl-publish:hover{background:#32e6e2;transform:translateY(-1px)}
+      .nl-min{margin-left:6px}
+
+      /* ——— Minimized ——— */
+      .nl-bar,.nl-mini{min-height:52px}
+      .nl-mini{display:none;align-items:center;gap:2px;border:1px solid rgba(255,255,255,0.09);background:linear-gradient(180deg,#142b34,#0e1e25);border-radius:999px;padding:5px 5px 5px 13px;cursor:pointer}
+      .nl-mini-state .nl-mini{display:flex}
+      .nl-mini-state .nl-bar,.nl-mini-state .nl-popover,.nl-mini-state .nl-tip{display:none}
+      .nl-mini-brand{display:inline-flex;align-items:center;gap:7px;padding-right:8px}
+      .nl-mini-lock{display:inline-flex;color:#fbbf24}
+
+      /* ——— Narrow layout ——— */
+      .nl-narrow .nl-shrinks{position:absolute;width:1px;height:1px;overflow:hidden;
+        clip-path:inset(50%);white-space:nowrap}
+      .nl-narrow .nl-status{gap:0}
+      .nl-narrow .nl-bar{padding:6px 6px 6px 10px}
+      .nl-narrow .nl-logo{margin-right:6px}
+      .nl-narrow .nl-sep{margin:0 6px 0 8px}
+      .nl-narrow .nl-btn{padding:8px 9px}
+      .nl-narrow .nl-publish{margin-left:4px;padding:8px 11px}
+    &lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+      &lt;div class=&quot;nl-wrap&quot;&gt;
+        &lt;section class=&quot;nl-popover&quot; id=&quot;nl-pop&quot; aria-label=&quot;Pre-launch tools&quot;&gt;
+          &lt;div class=&quot;nl-popover-head&quot;&gt;
+            &lt;span class=&quot;nl-popover-icon&quot;&gt;&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M7.98407 9.625L8.58935 11.0952C8.62792 11.1889 8.71922 11.25 8.82053 11.25H9.77587C9.88268 11.25 9.95527 11.1415 9.91454 11.0428L7.3828 4.90468C7.3442 4.81107 7.25294 4.75 7.15169 4.75H6.34295C6.24163 4.75 6.15033 4.81115 6.11177 4.90484L3.58524 11.0429C3.54461 11.1416 3.61719 11.25 3.72395 11.25H4.67399C4.7753 11.25 4.86659 11.1889 4.90516 11.0952L5.51045 9.625H7.98407ZM7.46943 8.375L6.74726 6.62092L6.02508 8.375H7.46943Z&quot;/&gt;&lt;path d=&quot;M10.75 11.25C10.6119 11.25 10.5 11.1381 10.5 11V5C10.5 4.86193 10.6119 4.75 10.75 4.75H11.5C11.6381 4.75 11.75 4.86193 11.75 5V11C11.75 11.1381 11.6381 11.25 11.5 11.25H10.75Z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M0 5.5C0 2.73858 2.23858 0.5 5 0.5H11C13.7614 0.5 16 2.73858 16 5.5V10.5C16 13.2614 13.7614 15.5 11 15.5H5C2.23858 15.5 0 13.2614 0 10.5V5.5ZM5 1.75H11C13.0711 1.75 14.75 3.42893 14.75 5.5V10.5C14.75 12.5711 13.0711 14.25 11 14.25H5C2.92893 14.25 1.25 12.5711 1.25 10.5V5.5C1.25 3.42893 2.92893 1.75 5 1.75Z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+            &lt;span class=&quot;nl-popover-title&quot;&gt;Pre-launch tools&lt;/span&gt;
+            &lt;button type=&quot;button&quot; class=&quot;nl-icon-btn nl-tap&quot; id=&quot;nl-pop-close&quot; aria-label=&quot;Close&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.9&quot; stroke-linecap=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4.5 4.5 11.5 11.5M11.5 4.5 4.5 11.5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;nl-popover-body&quot;&gt;
+            
+      &lt;div class=&quot;nl-task&quot;&gt;
+        &lt;div class=&quot;nl-task-meta&quot;&gt;&lt;div class=&quot;nl-task-title&quot;&gt;SEO / GEO audit&lt;/div&gt;&lt;div class=&quot;nl-task-desc&quot;&gt;Check that Google and AI assistants can find and read your site.&lt;/div&gt;&lt;/div&gt;
+        &lt;a class=&quot;nl-task-run&quot; href=&quot;https://app.netlify.com/projects/9559982d-2e38-4035-9723-1c7e80a35310/overview?promptTemplate=d7bd9353-a6a3-442d-86f0-9b15488f68c3&amp;from_hud=private&amp;hud_action=ar_task&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;svg width=&quot;12&quot; height=&quot;12&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5.68 9.925 4.607 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1zM9.96 9.925 8.886 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M9.005 2.52v1.296h2.657a3.19 3.19 0 0 1 3.191 3.192v3.356a3.19 3.19 0 0 1-3.191 3.191H4.338a3.19 3.19 0 0 1-3.191-3.19V7.007a3.19 3.19 0 0 1 3.191-3.192h2.836V2.52l.229-.245h1.373zM4.338 5.316c-.934 0-1.691.758-1.691 1.692v3.356c0 .934.758 1.691 1.691 1.691h7.324c.933 0 1.69-.757 1.691-1.69V7.007c0-.934-.757-1.692-1.691-1.692z&quot;/&gt;&lt;/svg&gt; Run&lt;/a&gt;
+      &lt;/div&gt;
+            
+      &lt;div class=&quot;nl-task&quot;&gt;
+        &lt;div class=&quot;nl-task-meta&quot;&gt;&lt;div class=&quot;nl-task-title&quot;&gt;Performance check&lt;/div&gt;&lt;div class=&quot;nl-task-desc&quot;&gt;See how fast your pages load, and what is slowing them down.&lt;/div&gt;&lt;/div&gt;
+        &lt;a class=&quot;nl-task-run&quot; href=&quot;https://app.netlify.com/projects/9559982d-2e38-4035-9723-1c7e80a35310/overview?promptTemplate=f8ef80a5-be9b-494d-9fac-a4ac5d5689a4&amp;from_hud=private&amp;hud_action=ar_task&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;svg width=&quot;12&quot; height=&quot;12&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5.68 9.925 4.607 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1zM9.96 9.925 8.886 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M9.005 2.52v1.296h2.657a3.19 3.19 0 0 1 3.191 3.192v3.356a3.19 3.19 0 0 1-3.191 3.191H4.338a3.19 3.19 0 0 1-3.191-3.19V7.007a3.19 3.19 0 0 1 3.191-3.192h2.836V2.52l.229-.245h1.373zM4.338 5.316c-.934 0-1.691.758-1.691 1.692v3.356c0 .934.758 1.691 1.691 1.691h7.324c.933 0 1.69-.757 1.691-1.69V7.007c0-.934-.757-1.692-1.691-1.692z&quot;/&gt;&lt;/svg&gt; Run&lt;/a&gt;
+      &lt;/div&gt;
+            
+      &lt;div class=&quot;nl-task&quot;&gt;
+        &lt;div class=&quot;nl-task-meta&quot;&gt;&lt;div class=&quot;nl-task-title&quot;&gt;Security audit&lt;/div&gt;&lt;div class=&quot;nl-task-desc&quot;&gt;Look for common weak spots, like out-of-date code or open settings.&lt;/div&gt;&lt;/div&gt;
+        &lt;a class=&quot;nl-task-run&quot; href=&quot;https://app.netlify.com/projects/9559982d-2e38-4035-9723-1c7e80a35310/overview?promptTemplate=5f50f746-2ba1-4a3d-8a47-1a515f4420eb&amp;from_hud=private&amp;hud_action=ar_task&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;svg width=&quot;12&quot; height=&quot;12&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M5.68 9.925 4.607 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1zM9.96 9.925 8.886 8.85l-.013-.379 1.1-1.1.38.012 1.075 1.075.012.379-1.1 1.1z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M9.005 2.52v1.296h2.657a3.19 3.19 0 0 1 3.191 3.192v3.356a3.19 3.19 0 0 1-3.191 3.191H4.338a3.19 3.19 0 0 1-3.191-3.19V7.007a3.19 3.19 0 0 1 3.191-3.192h2.836V2.52l.229-.245h1.373zM4.338 5.316c-.934 0-1.691.758-1.691 1.692v3.356c0 .934.758 1.691 1.691 1.691h7.324c.933 0 1.69-.757 1.691-1.69V7.007c0-.934-.757-1.692-1.691-1.692z&quot;/&gt;&lt;/svg&gt; Run&lt;/a&gt;
+      &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;div class=&quot;nl-mini&quot; id=&quot;nl-mini&quot;&gt;
+          &lt;span class=&quot;nl-mini-brand&quot;&gt;&lt;svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 32 32&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill=&quot;#fff&quot; d=&quot;M17.9922 18.3225H14.005L13.6746 17.9921V14.005L14.005 13.6746H17.9922L18.3226 14.005V17.9921L17.9922 18.3225Z&quot;/&gt;
+    &lt;g fill=&quot;#05BDBA&quot;&gt;
+      &lt;path d=&quot;M9.6958 24.3311H9.35705L7.6661 22.6401V22.3041L10.2511 19.7164L12.042 19.7191L12.2808 19.9552V21.7461L9.6958 24.3311Z&quot;/&gt;
+      &lt;path d=&quot;M7.6661 9.69576V9.35701L9.35705 7.66606H9.6958L12.2808 10.2511V12.0392L12.042 12.2808H10.2511L7.6661 9.69576Z&quot;/&gt;
+      &lt;path d=&quot;M10.0457 17.4369H0.205466L0 17.2314V14.7658L0.205466 14.5603H10.0457L10.2511 14.7658V17.2314L10.0457 17.4369Z&quot;/&gt;
+      &lt;path d=&quot;M31.7945 17.4369H21.9544L21.7489 17.2314V14.7658L21.9544 14.5603H31.7945L32 14.7658V17.2314L31.7945 17.4369Z&quot;/&gt;
+      &lt;path d=&quot;M14.5631 10.0456V2.66547L14.7686 2.46001H17.2343L17.4396 2.66547V10.0456L17.2343 10.2511H14.7686L14.5631 10.0456Z&quot;/&gt;
+      &lt;path d=&quot;M14.5631 29.3316V21.9515L14.7686 21.746H17.2343L17.4396 21.9515V29.3316L17.2343 29.5371H14.7686L14.5631 29.3316Z&quot;/&gt;
+    &lt;/g&gt;&lt;/svg&gt;&lt;span class=&quot;nl-mini-lock&quot;&gt;&lt;svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; fill-rule=&quot;evenodd&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M8 1.5A3.5 3.5 0 0 0 4.5 5v2H4A1.5 1.5 0 0 0 2.5 8.5v4A1.5 1.5 0 0 0 4 14h8a1.5 1.5 0 0 0 1.5-1.5v-4A1.5 1.5 0 0 0 12 7h-.5V5A3.5 3.5 0 0 0 8 1.5zm2 5.5V5a2 2 0 1 0-4 0v2h4z&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;
+          &lt;button type=&quot;button&quot; class=&quot;nl-icon-btn nl-tap nl-mini-open&quot; id=&quot;nl-mini-open&quot;
+                  aria-label=&quot;Show Netlify site tools&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 4.5 8.5 8 12 11.5M7.5 4.5 4 8 7.5 11.5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;nl-icon-btn nl-tap nl-mini-hide&quot; id=&quot;nl-mini-hide&quot;
+                  aria-label=&quot;Hide Netlify tools on this site&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.9&quot; stroke-linecap=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4.5 4.5 11.5 11.5M11.5 4.5 4.5 11.5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;section class=&quot;nl-tip&quot; id=&quot;nl-tip&quot; aria-label=&quot;Project visibility&quot;&gt;
+          This project is private - only your team and people you invite can view it.
+          &lt;a href=&quot;https://docs.netlify.com/manage/security/secure-access-to-sites/project-visibility/&quot;
+             target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Learn more &lt;span aria-hidden=&quot;true&quot;&gt;&amp;#8599;&lt;/span&gt;&lt;/a&gt;
+        &lt;/section&gt;
+        &lt;div class=&quot;nl-bar&quot; role=&quot;toolbar&quot; aria-label=&quot;Netlify site tools&quot;&gt;
+          &lt;span class=&quot;nl-logo&quot;&gt;&lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 32 32&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill=&quot;#fff&quot; d=&quot;M17.9922 18.3225H14.005L13.6746 17.9921V14.005L14.005 13.6746H17.9922L18.3226 14.005V17.9921L17.9922 18.3225Z&quot;/&gt;
+    &lt;g fill=&quot;#05BDBA&quot;&gt;
+      &lt;path d=&quot;M9.6958 24.3311H9.35705L7.6661 22.6401V22.3041L10.2511 19.7164L12.042 19.7191L12.2808 19.9552V21.7461L9.6958 24.3311Z&quot;/&gt;
+      &lt;path d=&quot;M7.6661 9.69576V9.35701L9.35705 7.66606H9.6958L12.2808 10.2511V12.0392L12.042 12.2808H10.2511L7.6661 9.69576Z&quot;/&gt;
+      &lt;path d=&quot;M10.0457 17.4369H0.205466L0 17.2314V14.7658L0.205466 14.5603H10.0457L10.2511 14.7658V17.2314L10.0457 17.4369Z&quot;/&gt;
+      &lt;path d=&quot;M31.7945 17.4369H21.9544L21.7489 17.2314V14.7658L21.9544 14.5603H31.7945L32 14.7658V17.2314L31.7945 17.4369Z&quot;/&gt;
+      &lt;path d=&quot;M14.5631 10.0456V2.66547L14.7686 2.46001H17.2343L17.4396 2.66547V10.0456L17.2343 10.2511H14.7686L14.5631 10.0456Z&quot;/&gt;
+      &lt;path d=&quot;M14.5631 29.3316V21.9515L14.7686 21.746H17.2343L17.4396 21.9515V29.3316L17.2343 29.5371H14.7686L14.5631 29.3316Z&quot;/&gt;
+    &lt;/g&gt;&lt;/svg&gt;&lt;/span&gt;
+          &lt;button type=&quot;button&quot; class=&quot;nl-status&quot; id=&quot;nl-status&quot;
+                  aria-expanded=&quot;false&quot; aria-controls=&quot;nl-tip&quot;&gt;&lt;svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; fill-rule=&quot;evenodd&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M8 1.5A3.5 3.5 0 0 0 4.5 5v2H4A1.5 1.5 0 0 0 2.5 8.5v4A1.5 1.5 0 0 0 4 14h8a1.5 1.5 0 0 0 1.5-1.5v-4A1.5 1.5 0 0 0 12 7h-.5V5A3.5 3.5 0 0 0 8 1.5zm2 5.5V5a2 2 0 1 0-4 0v2h4z&quot;/&gt;&lt;/svg&gt;&lt;span class=&quot;nl-shrinks&quot;&gt;Private&lt;/span&gt;&lt;/button&gt;
+          &lt;span class=&quot;nl-sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+          &lt;a class=&quot;nl-btn&quot; href=&quot;https://app.netlify.com/projects/9559982d-2e38-4035-9723-1c7e80a35310/overview?modal=share&amp;from_hud=private&amp;hud_action=share&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M7.5636 8C6.94548 8.31953 6.24382 8.5 5.5 8.5C4.75618 8.5 4.05452 8.31953 3.4364 8H1.5L0.5 9V13L1.5 14H9.5L10.5 13V9L9.5 8H7.5636ZM8.87868 9.5H7.90075C7.16414 9.82186 6.35125 10 5.5 10C4.64875 10 3.83586 9.82186 3.09925 9.5H2.12132L2 9.62132V12.3787L2.12132 12.5H8.87868L9 12.3787V9.62132L8.87868 9.5Z&quot;/&gt;&lt;path d=&quot;M13.9999 10.1213V11.8463L12.2043 11.8481L12.0039 12.0357V13.1606L12.2043 13.3481H13.7955L13.7975 13.3463H14.7024L15.4999 12.5V9.5L14.5001 8.5001L12.2043 8.49976L12.0039 8.68726V9.81225L12.2043 9.99976L13.8786 10L13.9999 10.1213Z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M5.5 7C6.88071 7 8 5.88071 8 4.5C8 3.11929 6.88071 2 5.5 2C4.11929 2 3 3.11929 3 4.5C3 5.88071 4.11929 7 5.5 7ZM5.5 5.5C6.05228 5.5 6.5 5.05228 6.5 4.5C6.5 3.94772 6.05228 3.5 5.5 3.5C4.94772 3.5 4.5 3.94772 4.5 4.5C4.5 5.05228 4.94772 5.5 5.5 5.5Z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M13.7 5.1C13.7 6.25937 12.7594 7.2 11.6 7.2C10.4406 7.2 9.5 6.25937 9.5 5.1C9.5 3.94062 10.4406 3 11.6 3C12.7594 3 13.7 3.94062 13.7 5.1ZM11.6 5.7C11.9309 5.7 12.2 5.43095 12.2 5.1C12.2 4.76905 11.9309 4.5 11.6 4.5C11.2691 4.5 11 4.76905 11 5.1C11 5.43095 11.2691 5.7 11.6 5.7Z&quot;/&gt;&lt;/svg&gt;
+            &lt;span class=&quot;nl-shrinks&quot;&gt;Share&lt;/span&gt;&lt;/a&gt;
+          &lt;button type=&quot;button&quot; class=&quot;nl-btn&quot; id=&quot;nl-tools&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;nl-pop&quot;&gt;&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M7.98407 9.625L8.58935 11.0952C8.62792 11.1889 8.71922 11.25 8.82053 11.25H9.77587C9.88268 11.25 9.95527 11.1415 9.91454 11.0428L7.3828 4.90468C7.3442 4.81107 7.25294 4.75 7.15169 4.75H6.34295C6.24163 4.75 6.15033 4.81115 6.11177 4.90484L3.58524 11.0429C3.54461 11.1416 3.61719 11.25 3.72395 11.25H4.67399C4.7753 11.25 4.86659 11.1889 4.90516 11.0952L5.51045 9.625H7.98407ZM7.46943 8.375L6.74726 6.62092L6.02508 8.375H7.46943Z&quot;/&gt;&lt;path d=&quot;M10.75 11.25C10.6119 11.25 10.5 11.1381 10.5 11V5C10.5 4.86193 10.6119 4.75 10.75 4.75H11.5C11.6381 4.75 11.75 4.86193 11.75 5V11C11.75 11.1381 11.6381 11.25 11.5 11.25H10.75Z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M0 5.5C0 2.73858 2.23858 0.5 5 0.5H11C13.7614 0.5 16 2.73858 16 5.5V10.5C16 13.2614 13.7614 15.5 11 15.5H5C2.23858 15.5 0 13.2614 0 10.5V5.5ZM5 1.75H11C13.0711 1.75 14.75 3.42893 14.75 5.5V10.5C14.75 12.5711 13.0711 14.25 11 14.25H5C2.92893 14.25 1.25 12.5711 1.25 10.5V5.5C1.25 3.42893 2.92893 1.75 5 1.75Z&quot;/&gt;&lt;/svg&gt;
+            &lt;span class=&quot;nl-shrinks&quot;&gt;Pre-launch tools&lt;/span&gt;&lt;/button&gt;
+          &lt;a class=&quot;nl-publish&quot; href=&quot;https://app.netlify.com/projects/9559982d-2e38-4035-9723-1c7e80a35310/overview?modal=go-live&amp;from_hud=private&amp;hud_action=make_public&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M11.072 6C10.8557 5.99995 10.6443 5.93576 10.4644 5.81554C10.2846 5.69533 10.1444 5.52449 10.0617 5.32463C9.97895 5.12477 9.95733 4.90486 9.99956 4.69271C10.0418 4.48056 10.146 4.2857 10.299 4.13276C10.4519 3.97982 10.6468 3.87568 10.859 3.8335C11.0711 3.79132 11.291 3.81299 11.4909 3.89578C11.6907 3.97857 11.8615 4.11876 11.9817 4.29862C12.1019 4.47848 12.166 4.68994 12.166 4.90625C12.1658 5.19633 12.0505 5.47447 11.8454 5.67956C11.6402 5.88464 11.3621 5.9999 11.072 6Z&quot;/&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M3.59279 4.5H6.77473L8.48034 2.74577L10.1619 1L14.4308 1.00686L15 1.59031V6.01763L11.5291 9.61732L11.78 12.4852L11.1608 13.7165L8.58695 15.2986L7.59043 14.7959L7.31674 11.6676L4.624 8.875H1.65598L1.06836 7.92609L2.42011 5.22418L3.59279 4.5ZM8.7673 11.037L8.96573 13.305L10.0122 12.6618L10.2486 12.1917L10.1476 11.037L8.7673 11.037ZM8.43037 10.6616L12.036 6.93056L13.5 5.41225V2.50537L10.7987 2.50103L10.0283 3.30089L5.69627 7.82603L8.43037 10.6616ZM5.27424 7.38834L5.35943 6H4.01862L3.57089 6.27649L3.02131 7.375H5.26138L5.27424 7.38834Z&quot;/&gt;&lt;path d=&quot;M2.05008 10.9935L3.79156 9.6874L4.81429 10.7954L3.17932 12.0216L2.95615 13.1374L4.07201 12.9143L5.28155 11.3016L6.31603 12.4222L5.10008 14.0435L4.64717 14.3289L2.14717 14.8289L1.26465 13.9464L1.76465 11.4464L2.05008 10.9935Z&quot;/&gt;&lt;/svg&gt; Make public&lt;/a&gt;
+          &lt;button type=&quot;button&quot; class=&quot;nl-icon-btn nl-tap nl-min&quot; id=&quot;nl-min&quot;
+                  aria-label=&quot;Minimize Netlify tools&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 4.5 7.5 8 4 11.5M8.5 4.5 12 8 8.5 11.5&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;script&gt;
+        
+    function nlSend(){
+      var wrap=document.querySelector('.nl-wrap'),boxes=[];
+      for(var i=0;i&lt;wrap.children.length;i++){
+        var c=wrap.children[i];
+        if(!c.offsetWidth||!c.offsetHeight)continue;
+        boxes.push({x:c.offsetLeft-wrap.offsetLeft+8,
+                    y:c.offsetTop-wrap.offsetTop+8,
+                    w:c.offsetWidth,h:c.offsetHeight});
+      }
+      parent.postMessage({nlHud:'resize',
+        width:wrap.offsetWidth+26,
+        height:wrap.offsetHeight+26,
+        boxes:boxes},'*');
+    }
+    function nlSendSoon(){requestAnimationFrame(nlSend);}
+    window.addEventListener('load',nlSend);
+    window.addEventListener('message',function(e){
+      if(e.source!==parent||!e.data||e.data.nlHud!=='viewport')return;
+      var s=document.documentElement.style;
+      s.setProperty('--nl-vw',e.data.w+'px');
+      s.setProperty('--nl-vh',e.data.h+'px');
+      document.documentElement.classList.toggle('nl-narrow',e.data.w&lt;600);
+      nlSendSoon();
+    });
+    var nlCoarse=window.matchMedia('(pointer: coarse)').matches;
+    function nlSubmit(form){
+      if(form.requestSubmit)return form.requestSubmit();
+      if(form.checkValidity&amp;&amp;!form.checkValidity())
+        return form.reportValidity&amp;&amp;form.reportValidity();
+      form.submit();
+    }
+  
+        var btn=document.getElementById('nl-tools'),pop=document.getElementById('nl-pop');
+        function setOpen(open){
+          pop.classList.toggle('open',open);
+          btn.setAttribute('aria-expanded',open?'true':'false');
+          nlSendSoon();
+        }
+        btn.addEventListener('click',function(){setOpen(!pop.classList.contains('open'));});
+        document.getElementById('nl-pop-close').addEventListener('click',function(){setOpen(false);btn.focus();});
+
+        var statusBtn=document.getElementById('nl-status'),tip=document.getElementById('nl-tip'),tipTimer=null;
+        function setTip(open){
+          tip.classList.toggle('open',open);
+          statusBtn.setAttribute('aria-expanded',open?'true':'false');
+          nlSendSoon();
+        }
+        function openTip(){clearTimeout(tipTimer);setTip(true);}
+        function closeTipSoon(){clearTimeout(tipTimer);tipTimer=setTimeout(function(){setTip(false);},200);}
+        if(!nlCoarse){
+          statusBtn.addEventListener('mouseenter',openTip);
+          statusBtn.addEventListener('mouseleave',closeTipSoon);
+          tip.addEventListener('mouseenter',openTip);
+          tip.addEventListener('mouseleave',closeTipSoon);
+        }
+        statusBtn.addEventListener('focus',function(){
+          var keyboard;
+          try{keyboard=statusBtn.matches(':focus-visible');}catch(e){keyboard=!nlCoarse;}
+          if(keyboard)openTip();
+        });
+        statusBtn.addEventListener('blur',closeTipSoon);
+        statusBtn.addEventListener('click',function(){
+          clearTimeout(tipTimer);
+          setTip(nlCoarse ? !tip.classList.contains('open') : true);
+        });
+
+        var root=document.documentElement;
+        function setStage(value){
+          root.classList.toggle('nl-mini-state',value==='mini');
+          if(value==='mini'){setOpen(false);setTip(false);}
+          parent.postMessage({nlHud:'state',value:value},'*');
+          nlSendSoon();
+        }
+        document.getElementById('nl-min').addEventListener('click',function(){
+          setStage('mini');
+          document.getElementById('nl-mini-open').focus();
+        });
+        document.getElementById('nl-mini').addEventListener('click',function(e){
+          if(e.target.closest('#nl-mini-hide'))return;
+          setStage('');
+          document.getElementById('nl-min').focus();
+        });
+        document.getElementById('nl-mini-hide').addEventListener('click',function(){
+          parent.postMessage({nlHud:'state',value:'hidden'},'*');
+        });
+        document.addEventListener('keydown',function(e){
+          if(e.key!=='Escape')return;
+          if(tip.classList.contains('open')){setTip(false);statusBtn.focus();return;}
+          if(pop.classList.contains('open')){setOpen(false);btn.focus();}
+        });
+      &lt;/script&gt;
+    &lt;/body&gt;&lt;/html&gt;" style="position: fixed; bottom: 0px; right: 0px; border: 0px; margin: 0px; padding: 0px; background: transparent; z-index: 2147483645; width: 591px; height: 78px; clip-path: path(&quot;M 3 3 H 578 V 65 H 3 Z&quot;);" data-nl-ready="1"></iframe><deepl-input-controller translate="no"></deepl-input-controller></body><div id="widilo-popup-container" data-content-script-id="3ce3748d-4357-4bd4-9b49-a65fc78a943f"></div></html>
