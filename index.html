@@ -390,7 +390,6 @@
             box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
         }
 
-        /* Modification : on utilise un div (comme en V8) pour garder le style natif du h4 */
         .experience-card {
             background: var(--card-bg);
             padding: 2.5rem;
@@ -412,7 +411,7 @@
             font-size: 1.5rem;
             color: var(--primary-color);
             line-height: 1.2;
-            font-weight: 700; /* Assure que le titre est bien en gras */
+            font-weight: 700;
         }
 
         .experience-header .date {
@@ -433,6 +432,17 @@
             margin-bottom: 0.25rem;
             display: block;
             font-size: 1.15rem;
+        }
+
+        /* Style pour les liens vers les sites des entreprises */
+        a.company {
+            text-decoration: none;
+            transition: color 0.2s ease, text-decoration 0.2s ease;
+        }
+        
+        a.company:hover, a.company:focus {
+            color: var(--accent-color);
+            text-decoration: underline;
         }
 
         .location {
@@ -490,7 +500,7 @@
             padding-left: 1.25rem;
         }
         
-        /* Remplacement du tiret "-" par une puce "•" */
+        /* Remplacement du tiret par une puce discrète */
         li ul li::before {
             content: "•";
             color: var(--accent-color);
@@ -574,7 +584,9 @@
             nav { padding: 1rem; }
             .nav-links { display: none; }
             header h1 { font-size: 2.25rem; }
+            header h2 { font-size: 1.25rem; }
             .header-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; justify-content: center; }
             .kpi-banner { margin: -2rem 1rem 3rem; grid-template-columns: 1fr 1fr; padding: 1.5rem; }
             .timeline { margin-left: 0; padding-left: 1.5rem; }
             .timeline-item::before { left: -1.9rem; width: 16px; height: 16px; }
@@ -588,6 +600,10 @@
             nav, .fab, .header-buttons, .kpi-banner, .admin-link { display: none; }
             header { background: white; color: black; padding: 2rem 0; }
             header h1 { color: black; }
+            header h2 { color: #555; }
+            .contact-info a { color: black; border-bottom: none; }
+            .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
+            .container { max-width: 100% !important; margin: 0; padding: 0; }
             .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
             .timeline { border-left: none; padding-left: 0; margin-left: 0; }
             .timeline-item::before { display: none; }
@@ -716,12 +732,11 @@
                 
                 <!-- BOURSOBANK -->
                 <div class="timeline-item reveal">
-                    <!-- Note : retour au format div de la V8 pour assurer la bonne taille du h4 -->
                     <div class="experience-card">
                         <div class="experience-header">
                             <div>
                                 <h4>Référent Chef de Projet Technique IT</h4>
-                                <span class="company">BoursoBank</span>
+                                <a href="https://www.boursobank.com/" target="_blank" rel="noopener noreferrer" class="company">BoursoBank</a>
                                 <span class="location">Boulogne-Billancourt</span>
                             </div>
                             <span class="date">Novembre 2025 - Juillet 2026 (9 mois)</span>
@@ -754,7 +769,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Chef de projet informatique</h4>
-                                <span class="company">Ubisoft</span>
+                                <a href="https://www.ubisoft.com/" target="_blank" rel="noopener noreferrer" class="company">Ubisoft</a>
                                 <span class="location">Saint-Mandé</span>
                             </div>
                             <span class="date">Octobre 2021 - Octobre 2025 (4 ans 1 mois)</span>
@@ -762,7 +777,7 @@
                         
                         <p class="experience-intro">Au sein de la Direction « Enterprise Infrastructure », mon rôle consistait à orchestrer des projets transverses techniques à forte valeurs ayant pour cibles plusieurs milliers d'utilisateurs.</p>
                         
-                        <p class="section-title" style="margin-bottom: 1rem;">Exemple de Projets réalisés :</p>
+                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de Projets réalisés :</p>
                         <ul>
                             <li><strong>Audit des serveurs hébergés par une Direction sur un DataCenter à Hong-Kong</strong>
                                 <ul>
@@ -802,7 +817,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Référent Technique Messagerie et Mobilité</h4>
-                                <span class="company">Soletanche Freyssinet</span>
+                                <a href="https://www.soletanchefreyssinet.com/" target="_blank" rel="noopener noreferrer" class="company">Soletanche Freyssinet</a>
                                 <span class="location">Rueil-Malmaison</span>
                             </div>
                             <span class="date">Mars 2013 - Septembre 2021 (8 ans 7 mois)</span>
@@ -847,7 +862,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Responsable de la cellule Messagerie et Mobilité</h4>
-                                <span class="company">Groupe Clarsys</span>
+                                <a href="https://www.linkedin.com/company/groupe-clarsys/" target="_blank" rel="noopener noreferrer" class="company">Groupe Clarsys</a>
                                 <span class="location">Paris</span>
                             </div>
                             <span class="date">Mai 2011 - Février 2013 (1 an 10 mois)</span>
@@ -882,7 +897,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Consultant en mobilité</h4>
-                                <span class="company">ITS Ibelem</span>
+                                <a href="https://www.ibelem.com/" target="_blank" rel="noopener noreferrer" class="company">ITS Ibelem</a>
                                 <span class="location">Nanterre</span>
                             </div>
                             <span class="date">Février 2011 - Avril 2011 (3 mois)</span>
@@ -911,7 +926,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Administrateur Messagerie et Mobilité</h4>
-                                <span class="company">CetSI</span>
+                                <a href="https://www.cetsi.fr/" target="_blank" rel="noopener noreferrer" class="company">CetSI</a>
                                 <span class="location">Nanterre</span>
                             </div>
                             <span class="date">Janvier 2008 - Janvier 2011 (3 ans 1 mois)</span>
@@ -945,7 +960,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Administrateur système informatique</h4>
-                                <span class="company">Du Pareil Au Même</span>
+                                <a href="https://www.dpam.com/" target="_blank" rel="noopener noreferrer" class="company">Du Pareil Au Même</a>
                                 <span class="location">Wissous</span>
                             </div>
                             <span class="date">Juillet 2005 - Décembre 2007 (2 ans 6 mois)</span>
@@ -975,7 +990,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Technicien de Support Hotline</h4>
-                                <span class="company">Sopra Steria</span>
+                                <a href="https://www.soprasteria.com/" target="_blank" rel="noopener noreferrer" class="company">Sopra Steria</a>
                                 <span class="location">Vélizy</span>
                             </div>
                             <span class="date">Mai 2005 - Juin 2005 (2 mois)</span>
@@ -999,7 +1014,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Technicien support (Alternance)</h4>
-                                <span class="company">LFB</span>
+                                <a href="https://www.groupe-lfb.com/" target="_blank" rel="noopener noreferrer" class="company">LFB</a>
                                 <span class="location">Les Ulis</span>
                             </div>
                             <span class="date">Janvier 2004 - Février 2005 (1 an 2 mois)</span>
@@ -1029,7 +1044,7 @@
                         <div class="experience-header">
                             <div>
                                 <h4>Technicien support (Alternance)</h4>
-                                <span class="company">PMS PRESENCE MICRO SYSTEME</span>
+                                <a href="https://www.linkedin.com/company/presence-micro-systemes/" target="_blank" rel="noopener noreferrer" class="company">PMS PRESENCE MICRO SYSTEME</a>
                                 <span class="location">Les Ulis</span>
                             </div>
                             <span class="date">Novembre 2001 - Septembre 2003 (1 an 11 mois)</span>
@@ -1210,6 +1225,7 @@
             }
             
             // 3. Récupérer tout le code HTML actuel de la page
+            // Utilisation d'un échappement robuste pour ne pas casser le script après sauvegarde
             const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
             
             // 4. Créer un fichier téléchargeable en mémoire
