@@ -1,1249 +1,1850 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pierre-Emmanuel Boyer - Chef de Projet IT</title>
-    
-    <!-- SEO & Open Graph Tags -->
-    <meta name="description" content="Portfolio de Pierre-Emmanuel Boyer, Chef de Projet Infrastructures IT. 20 ans d'expertise technique, management de projets internationaux, Azure, M365, MDM.">
-    <meta property="og:title" content="Pierre-Emmanuel Boyer - Chef de Projet IT">
-    <meta property="og:description" content="Fort de 20 ans d'expertise en administration des infrastructures systèmes IT, je mène avec succès depuis 8 ans des projets techniques à forte visibilité.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="photo.jpg">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #0f172a;
-            --secondary-color: #334155;
-            --accent-color: #0ea5e9;
-            --bg-color: #f8fafc;
-            --text-color: #334155;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-            --badge-bg: #f1f5f9;
-            --badge-text: #475569;
-            --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --nav-bg: rgba(15, 23, 42, 0.95);
-        }
-
-        body.dark-mode {
-            --primary-color: #38bdf8;
-            --secondary-color: #7dd3fc;
-            --accent-color: #0ea5e9;
-            --bg-color: #0f172a;
-            --text-color: #cbd5e1;
-            --card-bg: #1e293b;
-            --border-color: #334155;
-            --badge-bg: #334155;
-            --badge-text: #e2e8f0;
-            --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-            --nav-bg: rgba(2, 6, 23, 0.95);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Accessibilité (a11y) : Focus outline */
-        a:focus-visible, button:focus-visible {
-            outline: 2px dashed var(--accent-color);
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-
-        /* Navigation fixe */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover, .nav-links a:focus {
-            color: var(--accent-color);
-        }
-
-        .dark-mode-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .dark-mode-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        /* Header */
-        header {
-            background: var(--header-bg);
-            color: white;
-            padding: 5rem 1.5rem 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            margin: 0 auto 1.5rem auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .profile-photo:hover {
-            transform: scale(1.05);
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 0.5rem;
-        }
-
-        header h2 {
-            color: var(--accent-color);
-            font-weight: 500;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px dotted rgba(255,255,255,0.4);
-            transition: border-bottom 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            border-bottom: 1px solid white;
-        }
-
-        .header-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            margin-top: 2.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 2rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1rem;
-        }
-
-        .btn-linkedin {
-            background-color: #0077b5;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
-        }
-
-        .btn-linkedin:hover {
-            background-color: #005885;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 119, 181, 0.6);
-        }
-
-        .btn-cv {
-            background-color: var(--accent-color);
-            color: white;
-            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
-        }
-
-        .btn-cv:hover {
-            background-color: #0284c7;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
-        }
-
-        /* KPI Banner */
-        .kpi-banner {
-            max-width: 1100px;
-            margin: -3rem auto 3rem;
-            background: var(--card-bg);
-            border-radius: 16px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            padding: 2.5rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--border-color);
-            position: relative;
-            z-index: 10;
-        }
-
-        .kpi-item {
-            text-align: center;
-        }
-
-        .kpi-number {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-        }
-
-        .kpi-label {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--secondary-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto 2rem;
-            padding: 0 1.5rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-            scroll-margin-top: 6rem;
-        }
-
-        h3 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        h3::after {
-            content: '';
-            flex: 1;
-            height: 3px;
-            background: linear-gradient(to right, var(--accent-color), transparent);
-            border-radius: 2px;
-            opacity: 0.5;
-        }
-
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Badges & Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-box {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-box h4 {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1rem;
-        }
-
-        .badge {
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            padding: 0.4rem 0.85rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-            display: inline-block;
-            transition: all 0.2s ease;
-        }
-
-        .badge-accent {
-            background-color: rgba(14, 165, 233, 0.1);
-            color: var(--accent-color);
-            border-color: rgba(14, 165, 233, 0.2);
-        }
-
-        /* Timeline Experience */
-        .timeline {
-            position: relative;
-            margin-left: 1rem;
-            padding-left: 2.5rem;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.15rem;
-            top: 0;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 4px solid var(--bg-color);
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
-        }
-
-        .experience-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .experience-header h4 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .experience-header .date {
-            color: var(--accent-color);
-            font-weight: 700;
-            background: rgba(14, 165, 233, 0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
-            white-space: nowrap;
-            display: inline-block;
-        }
-
-        .company {
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 0.25rem;
-            display: block;
-            font-size: 1.15rem;
-        }
-
-        /* Style pour les liens vers les sites des entreprises */
-        a.company {
-            text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
-        }
-        
-        a.company:hover, a.company:focus {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-
-        .location {
-            font-size: 0.9rem;
-            color: #64748b;
-            display: block;
-        }
-
-        .section-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-size: 1.05rem;
-        }
-        
-        .experience-intro {
-            font-style: italic;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            padding: 1.25rem;
-            background-color: var(--badge-bg);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        /* Formatage des listes d'expériences */
-        ul {
-            padding-left: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        li::marker {
-            color: var(--accent-color);
-        }
-        
-        /* Sous-listes (Objectifs / Résultats) */
-        li ul {
-            margin-top: 0.5rem;
-            margin-bottom: 0.75rem;
-            padding-left: 0.5rem;
-            list-style-type: none;
-        }
-
-        li ul li {
-            font-size: 0.95rem;
-            margin-bottom: 0.35rem;
-            position: relative;
-            padding-left: 1.25rem;
-        }
-        
-        /* Remplacement du tiret par une puce discrète */
-        li ul li::before {
-            content: "•";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-weight: bold;
-            font-size: 1.25rem;
-            line-height: 1.2;
-        }
-        
-        /* Encadré d'environnement (en bas des expériences) */
-        .env-box {
-            margin-top: 1.5rem;
-            padding: 1.25rem;
-            background-color: var(--badge-bg);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        .env-box strong {
-            color: var(--primary-color);
-        }
-
-        /* Bouton flottant de contact (FAB) */
-        .fab {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.5);
-            text-decoration: none;
-            z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fab:hover {
-            transform: scale(1.1) translateY(-5px);
-            background-color: #0284c7;
-        }
-
-        /* Pied de page */
-        footer {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            background: var(--header-bg);
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 5rem;
-        }
-        
-        .admin-link {
-            color: rgba(255,255,255,0.4);
-            text-decoration: none;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        /* Style spécifique quand le mode édition est actif */
-        [contenteditable="true"] {
-            outline: 2px dashed var(--accent-color);
-            outline-offset: 10px;
-            background-color: rgba(14, 165, 233, 0.05);
-            border-radius: 8px;
-            padding: 10px;
-        }
-
-        /* Adaptabilité Mobile (Responsive) */
-        @media (max-width: 768px) {
-            nav { padding: 1rem; }
-            .nav-links { display: none; }
-            header h1 { font-size: 2.25rem; }
-            header h2 { font-size: 1.25rem; }
-            .header-buttons { flex-direction: column; width: 100%; }
-            .btn { width: 100%; justify-content: center; }
-            .kpi-banner { margin: -2rem 1rem 3rem; grid-template-columns: 1fr 1fr; padding: 1.5rem; }
-            .timeline { margin-left: 0; padding-left: 1.5rem; }
-            .timeline-item::before { left: -1.9rem; width: 16px; height: 16px; }
-            .experience-card { padding: 1.5rem; }
-            .fab { bottom: 1.5rem; right: 1.5rem; width: 50px; height: 50px; }
-        }
-
-        /* Format d'impression (Ctrl+P) */
-        @media print {
-            body { background: white; color: black; }
-            nav, .fab, .header-buttons, .kpi-banner, .admin-link { display: none; }
-            header { background: white; color: black; padding: 2rem 0; }
-            header h1 { color: black; }
-            header h2 { color: #555; }
-            .contact-info a { color: black; border-bottom: none; }
-            .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
-            .container { max-width: 100% !important; margin: 0; padding: 0; }
-            .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
-            .timeline { border-left: none; padding-left: 0; margin-left: 0; }
-            .timeline-item::before { display: none; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ========================================== -->
-    <!-- NAVIGATION (Haut de page)                  -->
-    <!-- ========================================== -->
-    <nav>
-        <div style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">PEB.</div>
-        <ul class="nav-links">
-            <li><a href="#summary">Profil</a></li>
-            <li><a href="#skills">Compétences</a></li>
-            <li><a href="#experiences">Expériences</a></li>
-            <li><a href="#education">Formations</a></li>
-        </ul>
-        <button class="dark-mode-btn" onclick="toggleDarkMode()" id="darkModeToggle" aria-label="Activer le mode sombre">
-            🌙 Sombre
-        </button>
-    </nav>
-
-    <!-- ========================================== -->
-    <!-- EN-TÊTE (Photo et Contacts)                -->
-    <!-- ========================================== -->
-    <header>
-        <img src="photo.jpg" alt="Photo de profil de Pierre-Emmanuel Boyer" class="profile-photo" id="profile-img">
-        <h1 class="reveal">Pierre-Emmanuel Boyer</h1>
-        <h2 class="reveal">Chef de Projet Infrastructures IT</h2>
-        <div class="contact-info reveal">
-            <span>📍 Magny-les-Hameaux, Île-de-France, France</span> &nbsp;|&nbsp;
-            <a href="mailto:pe.boyer@gmail.com">✉️ pe.boyer@gmail.com</a>
-        </div>
-        <div class="header-buttons reveal">
-            <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">Profil LinkedIn</a>
-            <a href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf" download class="btn btn-cv">Télécharger le CV (PDF)</a>
-        </div>
-    </header>
-
-    <!-- ========================================== -->
-    <!-- BANNIÈRE DES CHIFFRES CLÉS                 -->
-    <!-- ========================================== -->
-    <div class="kpi-banner reveal">
-        <div class="kpi-item">
-            <div class="kpi-number" data-target="20">0</div>
-            <div class="kpi-label">Années d'expertise</div>
-        </div>
-        <div class="kpi-item">
-            <div class="kpi-number" data-target="22000">0</div>
-            <div class="kpi-label">Postes Migrés</div>
-        </div>
-        <div class="kpi-item">
-            <div class="kpi-number" data-target="15000">0</div>
-            <div class="kpi-label">Utilisateurs O365</div>
-        </div>
-        <div class="kpi-item">
-            <div class="kpi-number" data-target="97">0</div>
-            <div class="kpi-label">% Satisfaction</div>
-        </div>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- CONTENU PRINCIPAL                          -->
-    <!-- ========================================== -->
-    <main class="container" id="main-content">
-        
-        <!-- SECTION : RÉSUMÉ -->
-        <section id="summary" class="reveal">
-            <div style="font-size: 1.25rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
-                "Fort de 20 ans d'expertise en administration des infrastructures systèmes IT et en support utilisateur, je mène avec succès depuis 8 ans des projets techniques à forte visibilité en tant que Chef de projet Infrastructure IT en mettant l'humain au cœur de mes réussites."
-            </div>
-        </section>
-
-        <!-- SECTION : COMPÉTENCES -->
-        <section id="skills" class="reveal">
-            <h3>Compétences & Outils</h3>
-            <div class="skills-grid">
-                <div class="skill-box">
-                    <h4>🎯 Direction de Projet</h4>
-                    <p style="margin-bottom: 1rem; font-size: 0.95rem;">Encadrement de projets informatiques, Leadership technologique, Planification opérationnelle.</p>
-                    <div class="badge-container">
-                        <span class="badge badge-accent">Agile</span>
-                        <span class="badge badge-accent">Kanban</span>
-                        <span class="badge badge-accent">Scrum</span>
-                        <span class="badge">PMI</span>
-                        <span class="badge">Jira / Confluence</span>
-                        <span class="badge">Miro / Teams</span>
-                        <span class="badge">Sharepoint</span>
-                        <span class="badge">PowerBI</span>
-                    </div>
-                </div>
-
-                <div class="skill-box">
-                    <h4>💻 Infrastructure & Cloud</h4>
-                    <p style="margin-bottom: 1rem; font-size: 0.95rem;">Maîtrise des écosystèmes Microsoft, Device Management, serveurs et administration réseau.</p>
-                    <div class="badge-container">
-                        <span class="badge badge-accent">Microsoft 365</span>
-                        <span class="badge badge-accent">Azure / Entra ID</span>
-                        <span class="badge">Windows Server</span>
-                        <span class="badge">PowerShell</span>
-                        <span class="badge">Intune / AirWatch</span>
-                        <span class="badge">Exchange / Lotus</span>
-                    </div>
-                </div>
-
-                <div class="skill-box">
-                    <h4>🏆 Certifications</h4>
-                    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.6rem;">🏅 <strong>VMware AirWatch</strong> Professional Accreditation: Enterprise Mobility</li>
-                        <li style="margin-bottom: 0.6rem;">🏅 <strong>Exchange 2010</strong> (Installation, config et dépannage)</li>
-                        <li style="margin-bottom: 0.6rem;">🏅 <strong>Windows 2000 server</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION : EXPÉRIENCES (TIMELINE) -->
-        <section id="experiences">
-            <h3>Parcours Professionnel</h3>
-            
-            <div class="timeline">
-                
-                <!-- BOURSOBANK -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Référent Chef de Projet Technique IT</h4>
-                                <a href="https://www.boursobank.com/" target="_blank" rel="noopener noreferrer" class="company">BoursoBank</a>
-                                <span class="location">Boulogne-Billancourt</span>
-                            </div>
-                            <span class="date">Novembre 2025 - Juillet 2026 (9 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Au sein de la Direction « Production IT », mon rôle consistait à être le référent d'une équipe de 7 chefs de projets en charge de piloter les projets d'évolution lié à la MCO et à la sécurité ainsi que des projets émanant des métiers pour répondre aux besoins clients. Mon rôle consistait aussi à planifier et arbitrer chaque mois les ressources techniques avec les managers des services.</p>
-                        
-                        <p class="section-title" style="margin-bottom: 1rem;">Exemple de Projets réalisés :</p>
-                        <ul>
-                            <li><strong>Projet WeRo</strong>
-                                <ul>
-                                    <li>Objectifs : Préparation et déploiement de tous les environnements techniques (serveurs, bases de données, flux réseaux).</li>
-                                </ul>
-                            </li>
-                            <li><strong>Sécurité CRM</strong>
-                                <ul>
-                                    <li>Objectifs : Mise en place de la micro-segmentation pour améliorer la sécurité d'une application critique.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="env-box">
-                            <strong>Environnement :</strong> Office 365, Windows Server 2016-2019 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Linux, Powershell, PKI, MFA, Microsoft Azure, SCCM, Intune, VMWare Vsphere, Jira, Confluence, Device42, IronPort, Netbox.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- UBISOFT -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Chef de projet informatique</h4>
-                                <a href="https://www.ubisoft.com/" target="_blank" rel="noopener noreferrer" class="company">Ubisoft</a>
-                                <span class="location">Saint-Mandé</span>
-                            </div>
-                            <span class="date">Octobre 2021 - Novembre 2025 (4 ans 1 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Au sein de la Direction « Enterprise Infrastructure », mon rôle consistait à orchestrer des projets transverses techniques à forte valeurs ayant pour cibles plusieurs milliers d'utilisateurs.</p>
-                        
-                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de Projets réalisés :</p>
-                        <ul>
-                            <li><strong>Audit des serveurs hébergés par une Direction sur un DataCenter à Hong-Kong</strong>
-                                <ul>
-                                    <li>Objectif : Identifier les serveurs, leurs rôles et leurs responsables en cas de blocage par le « Great Firewall of China ».</li>
-                                    <li>Résultats : Grâce à cet audit, migration en urgence des 300 serveurs (virtuels et physiques) suite à une panne majeure.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Amélioration d'un portail applicatif destiné aux utilisateurs de la DSI (2500 personnes)</strong>
-                                <ul>
-                                    <li>Objectif : Refonte de la structure technique de la plateforme d'automatisation des tâches d'administration de la DSI (gestion de comptes AD, groupes, ...) connectée à différentes API (Durée: 1 an).</li>
-                                    <li>Résultats : Modernisation et sécurisation de la plateforme, gain de temps pour les utilisateurs.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Déploiement de Windows Hello for Business sur les 22 000 postes utilisateurs</strong>
-                                <ul>
-                                    <li>Objectifs : Amélioration de la sécurité et facilitation de l'authentification (Durée: 18 mois).</li>
-                                    <li>Résultats : Migration finale réalisée en 6 mois avec un accompagnement dédié par site (Taux de satisfaction utilisateurs : 97%).</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <p class="section-title">Actions récurrentes :</p>
-                        <ul>
-                            <li>Encadrement du projet de la phase d'étude (Build) jusqu'à sa mise en production (Run) : Collecte des besoins et élaboration du cahier des charges, Analyse des risques et des responsabilités (RACI), Élaboration et suivi du budget, Gestion du product Backlog et de la roadmap selon les priorités et retour des équipes / clients.</li>
-                            <li>Encadrement des équipes projets (équipes multiculturelles : internes et externes) : Animation des réunions et ateliers d'équipes pluridisciplinaires, Présentation et suivi des projets lors des réunions de cycle de vie (Kick-off, SteerCo, Arbitrage, Weekly, Plan d'Achat). Gestion des espaces de communication et de documentation. Création et suivi de KPIs via PowerBI et Excel. Conduite du changement auprès des équipes informatiques sur sites.</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Outils de Gestion de Projet :</strong> Agile, Kanban, Scrum, PMI, Confluence, Jira, Miro, Teams, Athena, Sharepoint, Excel, PowerPoint, PowerBI, Outlook.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOLETANCHE FREYSSINET -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Référent Technique Messagerie et Mobilité</h4>
-                                <a href="https://www.soletanchefreyssinet.com/" target="_blank" rel="noopener noreferrer" class="company">Soletanche Freyssinet</a>
-                                <span class="location">Rueil-Malmaison</span>
-                            </div>
-                            <span class="date">Mars 2013 - Septembre 2021 (8 ans 7 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Au sein de la DSI Groupe, j'ai piloté la migration stratégique de Lotus Domino vers Office 365 pour uniformiser les outils informatiques. J'ai également assuré l'administration des infrastructures de messageries, la gestion de la flotte mobile, la supervision de la téléphonie sur IP et le support technique de niveau 3.</p>
-                        
-                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de réalisations :</p>
-                        <ul>
-                            <li><strong>Migrations vers Office 365 (Domino to O365, Exchange to Tenant ou Tenant to Tenant)</strong>
-                                <ul>
-                                    <li>Objectifs : Uniformiser les outils de communication et de collaboration, optimiser les coûts et la gestion IT, améliorer la mobilité et la sécurité des données (Durée : 2 ans pour la migration initiale des 15 000 utilisateurs puis à la demande).</li>
-                                    <li>Résultats : Données et comptes utilisateurs migrés avec succès, déploiement de Teams, OneDrive, Outlook, réduction des coûts d'infrastructure et d'administration.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Mise en place d'une solution de gestion et de sécurisation de la flotte mobile (iOS et Android)</strong>
-                                <ul>
-                                    <li>Objectifs : Centraliser et sécuriser la gestion de la flotte mobile tout en assurant la conformité interne (Durée : 1 an).</li>
-                                    <li>Résultats : Enrôlement des 800 terminaux mobiles dans AirWatch puis Microsoft Intune, sécurisation des données et des terminaux mobiles, optimisation du cycle de vie et des coûts et amélioration de l'expérience utilisateur.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <p class="section-title">Administration et Support :</p>
-                        <ul>
-                            <li>Messagerie (Lotus Domino puis O365 : 15 000 utilisateurs)</li>
-                            <li>MDM (AirWatch puis Intune 800 terminaux)</li>
-                            <li>ToIP (PABX Aastra / Mitel : 21 sites - 1200 utilisateurs)</li>
-                            <li>Gestion des domaines Internet et des certificats SSL</li>
-                            <li>Support N3 et VIP pour la France et l'international</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement :</strong> Office 365, Lotus Domino v8.5-9, Windows Server 2012-2016 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Powershell, PKI, MFA, Global Protect, Microsoft Azure, Airwatch, Microsoft Intune, Mitel (ToIP), Varonis DatAdvantage, ITSM EasyVista, VMWare Vsphere
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GROUPE CLARSYS -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Responsable de la cellule Messagerie et Mobilité</h4>
-                                <a href="https://www.linkedin.com/company/groupe-clarsys/" target="_blank" rel="noopener noreferrer" class="company">Groupe Clarsys</a>
-                                <span class="location">Paris</span>
-                            </div>
-                            <span class="date">Mai 2011 - Février 2013 (1 an 10 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Dans le cadre des missions confiées par une société de services, j'ai assumé la responsabilité du service « Messagerie et Mobilité ». Mon objectif principal était de dynamiser la cellule en développant un portefeuille de nouveaux clients tout en assurant la fidélisation. J'accompagnais également les équipes commerciales en jouant un rôle d'avant-vente technique, et je collaborais étroitement avec nos fournisseurs et partenaires techniques.</p>
-                        
-                        <p class="section-title" style="margin-bottom: 1rem;">Exemples de projet menés :</p>
-                        <ul>
-                            <li>Migrations Echange 5.5/2003/2007 vers 2010</li>
-                            <li>Migrations Lotus Domino v8.5 vers Exchange Online avec Quest Notes Migrator for Exchange</li>
-                            <li>Installations et configurations serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
-                            <li>Installations de plates-formes de gestion de terminaux mobile (iOS/Android/Windows Phone) avec Good Technology, BlackBerry Mobile Fusion et Maas360</li>
-                        </ul>
-                        
-                        <p class="section-title">Actions :</p>
-                        <ul>
-                            <li>Piloter les projets, recueillir et analyser les besoins, organiser et animer les réunions, organiser et planifier les déploiements, rédiger les rapports et compte rendus.</li>
-                            <li>Former les utilisateurs aux nouveaux outils, rédiger les manuels à destination des utilisateurs.</li>
-                            <li>Administrer les environnements techniques de nos clients et assurer le support de niveau 3.</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement technique :</strong> Exchange Server 2003/2007/2010/Online, Zimbra, Google Apps, Lotus Domino v6/v8.5, Blackberry Enterprise Server v4/v5, Windows 2008 Server, Good Technology, Maas360, Quest Notes Migrator for Exchange, BlackBerry Mobile Fusion, PowerShell, VMWare ESX
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITS IBELEM -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Consultant en mobilité</h4>
-                                <a href="https://www.ibelem.com/" target="_blank" rel="noopener noreferrer" class="company">ITS Ibelem</a>
-                                <span class="location">Nanterre</span>
-                            </div>
-                            <span class="date">Février 2011 - Avril 2011 (3 mois)</span>
-                        </div>
-                        
-                        <p class="section-title">Missions :</p>
-                        <ul>
-                            <li>Migration de plate-forme BES de v4.1 vers v5.0.2 avec l'outil BlackBerry Transporter</li>
-                            <li>Audit d'infrastructures Blackberry</li>
-                            <li>Installation et configuration serveur BES 5.0.2 et BES Express 5.0.2 sur environnement Exchange 2003-2007, Zimbra et Google Apps</li>
-                            <li>Installation serveur Good Technology (équivalent serveur BES pour iOS et Android)</li>
-                            <li>Déploiement d'applications via serveur BES (Google Apps, Bloomberg, ...)</li>
-                            <li>Formation et transfert de compétences aux administrateurs et/ou utilisateurs</li>
-                            <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement technique :</strong> Exchange Server 2003-2010, Lotus Domino v6 - v8.5, Blackberry Enterprise Server v4 - v5, Windows 2000 à 2008 Server, SQL 2005 à 2008
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CETSI -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Administrateur Messagerie et Mobilité</h4>
-                                <a href="https://www.cetsi.fr/" target="_blank" rel="noopener noreferrer" class="company">CetSI</a>
-                                <span class="location">Nanterre</span>
-                            </div>
-                            <span class="date">Janvier 2008 - Janvier 2011 (3 ans 1 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Dans une société de services spécialisée dans l'infogérance, mon rôle au sein du service Messagerie et Mobilité était de : Maintenir les systèmes en condition opérationnelle, répondre aux souhaits d'évolution de nos clients, et solutionner les demandes de support.</p>
-                        
-                        <p class="section-title">Réalisations :</p>
-                        <ul>
-                            <li>Installation et mise à jour de serveurs de messagerie (Lotus Domino / Microsoft Exchange / BlackBerry Enterprise Server)</li>
-                        </ul>
-                        
-                        <p class="section-title">Actions :</p>
-                        <ul>
-                            <li>Administration des serveurs clients (France et international).</li>
-                            <li>Gestion utilisateurs et groupes (création / suppression, renommage, recertification, ...).</li>
-                            <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation clients.</li>
-                            <li>Support utilisateurs (France et International) pour Lotus Notes 7 à 8.5 / Outlook 2003 à 2010 et smartphone BlackBerry, IPhone, IPad.</li>
-                            <li>Gestion des Planning de Projets, rédaction de propositions et compte-rendu.</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnements :</strong> Lotus Domino v6 à v8.5, Exchange Server 2003 à 2010, BlackBerry Enterprise Server v4 à v5 et passerelles Antispam. Windows Server 2000 à 2008, Windows XP / Vista / Seven
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DU PAREIL AU MEME -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Administrateur système informatique</h4>
-                                <a href="https://www.dpam.com/" target="_blank" rel="noopener noreferrer" class="company">Du Pareil Au Même</a>
-                                <span class="location">Wissous</span>
-                            </div>
-                            <span class="date">Juillet 2005 - Décembre 2007 (2 ans 6 mois)</span>
-                        </div>
-                        
-                        <p class="experience-intro">Au sein de la DSI, mes rôles étaient les suivants : Administrer, assurer la maintenance et la supervision des serveurs et équipements réseaux. Gérer les sauvegardes. Assister les utilisateurs (siège et magasins). Préparer le matériel et installer les équipements en magasin.</p>
-                        
-                        <p class="section-title">Actions :</p>
-                        <ul>
-                            <li><strong>Administration systèmes et réseaux :</strong> Active Directory (création utilisateurs / groupes, déploiement de GPO, ...), gestion du DHCP, gestion des serveurs d'impression.</li>
-                            <li><strong>Messagerie :</strong> Exchange 2003 (création et gestion des comptes utilisateurs).</li>
-                            <li><strong>Sécurité systèmes et réseaux :</strong> CheckPoint, Connectra, Trend Micro et Mc Afee ePolicy Orchestrator.</li>
-                            <li><strong>Sauvegardes :</strong> Gestion des sauvegardes via HP Data Protector et Veritas Backup Exec.</li>
-                            <li><strong>Maintenance utilisateurs :</strong> intégration, configuration et installation des postes. Dépannage des ordinateurs et imprimantes, formations sur les nouveaux outils (scanners, pocket pc,...) et logiciels. Création des images postes sur serveur RIS.</li>
-                            <li><strong>Supervision et Déploiement :</strong> Maintenance et supervision serveurs avec Nagios, HP Insight Manager et HP Procurve Manager. Utilisation du logiciel Altiris.</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnements :</strong> Réseau de 80 serveurs (HP et Dell) en Windows Serveur 2000 et 2003 ainsi que 3 Backbone HP, Switch et Point d'accès Wifi HP. 200 postes utilisateurs (fixes, portables et PDA) en Windows 2000/XP
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SOPRA STERIA -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Technicien de Support Hotline</h4>
-                                <a href="https://www.soprasteria.com/" target="_blank" rel="noopener noreferrer" class="company">Sopra Steria</a>
-                                <span class="location">Vélizy</span>
-                            </div>
-                            <span class="date">Mai 2005 - Juin 2005 (2 mois)</span>
-                        </div>
-                        
-                        <p class="section-title">Missions :</p>
-                        <ul>
-                            <li>Hotline N1 et N2 de la société Manpower (env. 500 appels/jours).</li>
-                            <li>Réception et relances des appels clients, prise en main à distance (recherche et réparation de pannes, déploiement et installation de logiciels).</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement :</strong> Serveurs et postes clients en Windows NT4.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LFB -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Technicien support (Alternance)</h4>
-                                <a href="https://www.groupe-lfb.com/" target="_blank" rel="noopener noreferrer" class="company">LFB</a>
-                                <span class="location">Les Ulis</span>
-                            </div>
-                            <span class="date">Janvier 2004 - Février 2005 (1 an 2 mois)</span>
-                        </div>
-                        
-                        <p class="section-title">Missions :</p>
-                        <ul>
-                            <li>Support sur site des utilisateurs.</li>
-                            <li>Dépannages des ordinateurs et imprimantes.</li>
-                            <li>Formations sur PDA et logiciels de l'entreprise.</li>
-                            <li>Gestion des bandes de sauvegardes (BackupExec).</li>
-                            <li>Création et déploiement des images via Norton Ghost.</li>
-                            <li>Gestion des comptes utilisateurs sur Active Directory.</li>
-                            <li>Installation de prises réseaux et téléphoniques.</li>
-                            <li>Administration de l'Autocom Aastra.</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement :</strong> Réseau de 1000 postes utilisateurs (fixes et portables) en Windows 98/2000 et 45 serveurs en Windows 2000 et 2003.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PMS -->
-                <div class="timeline-item reveal">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div>
-                                <h4>Technicien support (Alternance)</h4>
-                                <a href="https://www.linkedin.com/company/presence-micro-systemes/" target="_blank" rel="noopener noreferrer" class="company">PMS PRESENCE MICRO SYSTEME</a>
-                                <span class="location">Les Ulis</span>
-                            </div>
-                            <span class="date">Novembre 2001 - Septembre 2003 (1 an 11 mois)</span>
-                        </div>
-                        
-                        <p class="section-title">Missions :</p>
-                        <ul>
-                            <li>Installation et configuration de postes clients Windows 98/2000/XP.</li>
-                            <li>Support et formation d'utilisateurs à Windows, à la bureautique et logiciels monétiques.</li>
-                            <li>Réparation de pc et imprimante.</li>
-                            <li>Installation et configuration des points de ventes (Caisses et périphériques) et terminaux de paiement électronique (TPE).</li>
-                        </ul>
-
-                        <div class="env-box">
-                            <strong>Environnement :</strong> Postes clients Windows 98/2000/XP, logiciels monétiques, caisses, périphériques et TPE.
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION : FORMATIONS -->
-        <section id="education" class="reveal">
-            <h3>Formations & Divers</h3>
-            <div class="skills-grid">
-                <div class="skill-box">
-                    <h4>🎓 Parcours Académique</h4>
-                    <p style="margin-bottom: 0.5rem;"><strong>Cross Institute Paris (2004 - 2005) :</strong> Administration de / administrateur réseaux et systèmes</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>ISCIO (2001 - 2003) :</strong> Sciences informatiques et de l'information et services apparentés</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Unité d'Enseignement du Tourisme (UET) (1999 - 2001) :</strong> Promotion du tourisme</p>
-                    <p><strong>Lycée de l'Essouriau (1997 - 1999) :</strong> Baccalauréat sciences et technologies tertiaires, Commerce international / commerce</p>
-                </div>
-                <div class="skill-box">
-                    <h4>🌍 Langues & Intérêts</h4>
-                    <p style="margin-bottom: 0.5rem;"><strong>Langues :</strong> Français (Native or Bilingual), Anglais (Professional Working).</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Sports :</strong> Crossfit, golf, badminton, course à pieds et randonnées.</p>
-                    <p><strong>Passions :</strong> Grand amateur de gastronomie et adepte de la photographie.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ========================================== -->
-    <!-- BOUTONS FLOTTANTS                          -->
-    <!-- ========================================== -->
-    
-    <!-- Bouton Contact Email -->
-    <a href="mailto:pe.boyer@gmail.com" class="fab" title="Me contacter" aria-label="Me contacter par email">
-        ✉️
-    </a>
-
-    <!-- ========================================== -->
-    <!-- PIED DE PAGE & MODE ÉDITION                -->
-    <!-- ========================================== -->
-    <footer>
-        <p>&copy; 2026 Pierre-Emmanuel Boyer. Fait avec passion.</p>
-        <!-- Bouton caché permettant d'éditer le site -->
-        <a onclick="enableEditMode()" class="admin-link" aria-label="Activer le mode d'édition de page">⚙️ Mode Édition</a>
-    </footer>
-
-    <!-- ========================================== -->
-    <!-- SCRIPTS JAVASCRIPT                         -->
-    <!-- ========================================== -->
-    <script>
-        // ----------------------------------------
-        // 1. Fonctionnalité du Mode Sombre
-        // ----------------------------------------
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const btn = document.getElementById('darkModeToggle');
-            const isDark = document.body.classList.contains('dark-mode');
-            btn.innerHTML = isDark ? '☀️ Clair' : '🌙 Sombre';
-            btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
-        }
-
-        // ----------------------------------------
-        // 2. Animations au défilement (Scroll Reveal)
-        // ----------------------------------------
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.15
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Lancement de l'animation des nombres uniquement quand la bannière est visible
-                    if (entry.target.classList.contains('kpi-banner') && !entry.target.dataset.animated) {
-                        animateCounters();
-                        entry.target.dataset.animated = "true";
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(element => {
-            revealObserver.observe(element);
-        });
-
-        function animateCounters() {
-            const counters = document.querySelectorAll('.kpi-number');
-            const speed = 150; 
-
-            counters.forEach(counter => {
-                const animate = () => {
-                    const value = +counter.getAttribute('data-target');
-                    const data = +counter.innerText.replace('%', '');
-                    const time = value / speed;
-                    
-                    if (data < value) {
-                        counter.innerText = Math.ceil(data + time) + (value === 97 ? '%' : '');
-                        setTimeout(animate, 20);
-                    } else {
-                        counter.innerText = value + (value === 97 ? '%' : '');
-                    }
-                }
-                animate();
-            });
-        }
-
-        // ----------------------------------------
-        // 3. Fonction Éditeur (Modification de texte)
-        // ----------------------------------------
-        function enableEditMode() {
-            // Un mot de passe basique (1234) pour débloquer l'édition des textes
-            const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
-            
-            if (pin === "OptiPlex") {
-                // Active l'attribut contentEditable sur le conteneur principal
-                const mainContent = document.getElementById('main-content');
-                if(mainContent) {
-                    mainContent.contentEditable = "true";
-                    alert("Mode édition activé ! Vous pouvez cliquer sur les textes pour les modifier.");
-                    
-                    // Création du bouton de sauvegarde flottant
-                    const saveBtn = document.createElement('button');
-                    saveBtn.innerText = "💾 Télécharger index.html";
-                    saveBtn.className = "fab save-fab";
-                    // Style spécifique pour ce bouton au-dessus de l'autre
-                    saveBtn.style.width = "auto";
-                    saveBtn.style.padding = "0 1.5rem";
-                    saveBtn.style.borderRadius = "30px";
-                    saveBtn.style.bottom = "100px"; 
-                    saveBtn.style.fontSize = "1rem";
-                    saveBtn.style.fontFamily = "Inter, sans-serif";
-                    saveBtn.style.fontWeight = "600";
-                    saveBtn.onclick = saveModifications;
-                    document.body.appendChild(saveBtn);
-                }
-            } else {
-                alert("Code PIN incorrect.");
-            }
-        }
-
-        function saveModifications() {
-            // 1. Désactiver le mode édition pour que le fichier final soit propre
-            const mainContent = document.getElementById('main-content');
-            if(mainContent) {
-                mainContent.contentEditable = "false";
-            }
-            
-            // 2. Retirer le bouton de sauvegarde de l'interface
-            const saveBtn = document.querySelector('.save-fab');
-            if(saveBtn) saveBtn.remove();
-            
-            // -- FIX PHOTO ABSOLUE --
-            // Les navigateurs transforment parfois les URLs relatives (photo.jpg) en absolues (file:///...) 
-            // lors de la récupération de outerHTML. On force la valeur relative avant de sauvegarder.
-            const profileImg = document.getElementById('profile-img');
-            if (profileImg) {
-                profileImg.setAttribute('src', 'photo.jpg');
-            }
-            
-            // 3. Récupérer tout le code HTML actuel de la page
-            // Utilisation d'un échappement robuste pour ne pas casser le script après sauvegarde
-            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            
-            // 4. Créer un fichier téléchargeable en mémoire
-            const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
-            const url = URL.createObjectURL(blob);
-            
-            // 5. Simuler un clic pour déclencher le téléchargement
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "index.html";
-            document.body.appendChild(a);
-            a.click();
-            
-            // 6. Nettoyage
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            alert("Fichier téléchargé avec succès ! Remplacez l'ancien fichier 'index.html' de votre dossier par celui-ci.");
-        }
-    </script>
-
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pierre-Emmanuel Boyer - Chef de Projet IT</title>
+
+		<!-- SEO & Open Graph Tags -->
+		<meta
+			name="description"
+			content="Portfolio de Pierre-Emmanuel Boyer, Chef de Projet Infrastructures IT. 20 ans d'expertise technique, management de projets internationaux, Azure, M365, MDM."
+		/>
+		<meta
+			property="og:title"
+			content="Pierre-Emmanuel Boyer - Chef de Projet IT"
+		/>
+		<meta
+			property="og:description"
+			content="Fort de 20 ans d'expertise en administration des infrastructures systèmes IT, je mène avec succès depuis 8 ans des projets techniques à forte visibilité."
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="photo.jpg" />
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			:root {
+			    --primary-color: #0f172a;
+			    --secondary-color: #334155;
+			    --accent-color: #0ea5e9;
+			    --bg-color: #f8fafc;
+			    --text-color: #334155;
+			    --card-bg: #ffffff;
+			    --border-color: #e2e8f0;
+			    --badge-bg: #f1f5f9;
+			    --badge-text: #475569;
+			    --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+			    --nav-bg: rgba(15, 23, 42, 0.95);
+			}
+
+			body.dark-mode {
+			    --primary-color: #38bdf8;
+			    --secondary-color: #7dd3fc;
+			    --accent-color: #0ea5e9;
+			    --bg-color: #0f172a;
+			    --text-color: #cbd5e1;
+			    --card-bg: #1e293b;
+			    --border-color: #334155;
+			    --badge-bg: #334155;
+			    --badge-text: #e2e8f0;
+			    --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+			    --nav-bg: rgba(2, 6, 23, 0.95);
+			}
+
+			* {
+			    box-sizing: border-box;
+			    margin: 0;
+			    padding: 0;
+			}
+
+			html {
+			    scroll-behavior: smooth;
+			}
+
+			body {
+			    font-family: 'Inter', sans-serif;
+			    line-height: 1.6;
+			    color: var(--text-color);
+			    background-color: var(--bg-color);
+			    transition: background-color 0.3s ease, color 0.3s ease;
+			    -webkit-font-smoothing: antialiased;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+			    font-family: 'Poppins', sans-serif;
+			}
+
+			/* Accessibilité (a11y) : Focus outline */
+			a:focus-visible, button:focus-visible {
+			    outline: 2px dashed var(--accent-color);
+			    outline-offset: 4px;
+			    border-radius: 4px;
+			}
+
+			/* Navigation fixe */
+			nav {
+			    position: sticky;
+			    top: 0;
+			    z-index: 1000;
+			    background-color: var(--nav-bg);
+			    backdrop-filter: blur(10px);
+			    padding: 1rem 2rem;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.nav-links {
+			    display: flex;
+			    gap: 2rem;
+			    list-style: none;
+			}
+
+			.nav-links a {
+			    color: #ffffff;
+			    text-decoration: none;
+			    font-weight: 500;
+			    font-size: 0.95rem;
+			    transition: color 0.2s ease;
+			    letter-spacing: 0.5px;
+			}
+
+			.nav-links a:hover, .nav-links a:focus {
+			    color: var(--accent-color);
+			}
+
+			.dark-mode-btn {
+			    background: rgba(255, 255, 255, 0.1);
+			    border: 1px solid rgba(255, 255, 255, 0.2);
+			    color: white;
+			    padding: 0.5rem 1rem;
+			    border-radius: 20px;
+			    cursor: pointer;
+			    font-size: 0.85rem;
+			    font-family: 'Inter', sans-serif;
+			    font-weight: 500;
+			    transition: all 0.3s ease;
+			}
+
+			.dark-mode-btn:hover {
+			    background: rgba(255, 255, 255, 0.2);
+			    transform: scale(1.05);
+			}
+
+			/* Header */
+			header {
+			    background: var(--header-bg);
+			    color: white;
+			    padding: 5rem 1.5rem 6rem;
+			    text-align: center;
+			    position: relative;
+			    overflow: hidden;
+			}
+
+			.profile-photo {
+			    width: 180px;
+			    height: 180px;
+			    border-radius: 50%;
+			    object-fit: cover;
+			    border: 4px solid rgba(255, 255, 255, 0.1);
+			    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+			    margin: 0 auto 1.5rem auto;
+			    display: block;
+			    transition: transform 0.3s ease;
+			}
+
+			.profile-photo:hover {
+			    transform: scale(1.05);
+			}
+
+			header h1 {
+			    font-size: 3.5rem;
+			    font-weight: 700;
+			    letter-spacing: -1px;
+			    margin-bottom: 0.5rem;
+			}
+
+			header h2 {
+			    color: var(--accent-color);
+			    font-weight: 500;
+			    font-size: 1.5rem;
+			    margin-bottom: 1.5rem;
+			}
+
+			.contact-info {
+			    display: flex;
+			    justify-content: center;
+			    flex-wrap: wrap;
+			    gap: 1.5rem;
+			    font-size: 1rem;
+			    opacity: 0.9;
+			}
+
+			.contact-info a {
+			    color: white;
+			    text-decoration: none;
+			    border-bottom: 1px dotted rgba(255,255,255,0.4);
+			    transition: border-bottom 0.3s ease;
+			}
+
+			.contact-info a:hover {
+			    border-bottom: 1px solid white;
+			}
+
+			.header-buttons {
+			    display: flex;
+			    justify-content: center;
+			    gap: 1.25rem;
+			    flex-wrap: wrap;
+			    margin-top: 2.5rem;
+			}
+
+			.btn {
+			    display: inline-flex;
+			    align-items: center;
+			    gap: 0.5rem;
+			    padding: 0.8rem 2rem;
+			    border-radius: 9999px;
+			    text-decoration: none;
+			    font-weight: 600;
+			    font-family: 'Inter', sans-serif;
+			    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			    font-size: 1rem;
+			}
+
+			.btn-linkedin {
+			    background-color: #0077b5;
+			    color: white;
+			    box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+			}
+
+			.btn-linkedin:hover {
+			    background-color: #005885;
+			    transform: translateY(-3px);
+			    box-shadow: 0 6px 20px rgba(0, 119, 181, 0.6);
+			}
+
+			.btn-cv {
+			    background-color: var(--accent-color);
+			    color: white;
+			    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+			}
+
+			.btn-cv:hover {
+			    background-color: #0284c7;
+			    transform: translateY(-3px);
+			    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+			}
+
+			/* KPI Banner */
+			.kpi-banner {
+			    max-width: 1100px;
+			    margin: -3rem auto 3rem;
+			    background: var(--card-bg);
+			    border-radius: 16px;
+			    display: grid;
+			    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			    gap: 1.5rem;
+			    padding: 2.5rem;
+			    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			    border: 1px solid var(--border-color);
+			    position: relative;
+			    z-index: 10;
+			}
+
+			.kpi-item {
+			    text-align: center;
+			}
+
+			.kpi-number {
+			    font-family: 'Poppins', sans-serif;
+			    font-size: 2.5rem;
+			    font-weight: 800;
+			    color: var(--accent-color);
+			    line-height: 1.2;
+			    margin-bottom: 0.25rem;
+			}
+
+			.kpi-label {
+			    font-size: 0.95rem;
+			    font-weight: 500;
+			    color: var(--secondary-color);
+			    text-transform: uppercase;
+			    letter-spacing: 0.5px;
+			}
+
+			/* Container */
+			.container {
+			    max-width: 1000px;
+			    margin: 0 auto 2rem;
+			    padding: 0 1.5rem;
+			}
+
+			section {
+			    margin-bottom: 4rem;
+			    scroll-margin-top: 6rem;
+			}
+
+			h3 {
+			    color: var(--primary-color);
+			    font-size: 2rem;
+			    margin-bottom: 2rem;
+			    display: flex;
+			    align-items: center;
+			    gap: 1rem;
+			}
+
+			h3::after {
+			    content: '';
+			    flex: 1;
+			    height: 3px;
+			    background: linear-gradient(to right, var(--accent-color), transparent);
+			    border-radius: 2px;
+			    opacity: 0.5;
+			}
+
+			/* Scroll Reveal Animation */
+			.reveal {
+			    opacity: 0;
+			    transform: translateY(30px);
+			    transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+			    will-change: opacity, transform;
+			}
+
+			.reveal.active {
+			    opacity: 1;
+			    transform: translateY(0);
+			}
+
+			/* Badges & Skills */
+			.skills-grid {
+			    display: grid;
+			    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			    gap: 1.5rem;
+			}
+
+			.skill-box {
+			    background: var(--card-bg);
+			    padding: 2.5rem;
+			    border-radius: 16px;
+			    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+			    border: 1px solid var(--border-color);
+			    transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.skill-box:hover {
+			    transform: translateY(-5px);
+			    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+			}
+
+			.skill-box h4 {
+			    color: var(--primary-color);
+			    font-size: 1.25rem;
+			    margin-bottom: 1.5rem;
+			}
+
+			.badge-container {
+			    display: flex;
+			    flex-wrap: wrap;
+			    gap: 0.6rem;
+			    margin-top: 1rem;
+			}
+
+			.badge {
+			    background-color: var(--badge-bg);
+			    color: var(--badge-text);
+			    padding: 0.4rem 0.85rem;
+			    border-radius: 8px;
+			    font-size: 0.85rem;
+			    font-weight: 600;
+			    border: 1px solid var(--border-color);
+			    display: inline-block;
+			    transition: all 0.2s ease;
+			}
+
+			.badge-accent {
+			    background-color: rgba(14, 165, 233, 0.1);
+			    color: var(--accent-color);
+			    border-color: rgba(14, 165, 233, 0.2);
+			}
+
+			/* Timeline Experience */
+			.timeline {
+			    position: relative;
+			    margin-left: 1rem;
+			    padding-left: 2.5rem;
+			    border-left: 3px solid var(--accent-color);
+			}
+
+			.timeline-item {
+			    position: relative;
+			    margin-bottom: 3rem;
+			}
+
+			.timeline-item::before {
+			    content: '';
+			    position: absolute;
+			    left: -3.15rem;
+			    top: 0;
+			    width: 22px;
+			    height: 22px;
+			    border-radius: 50%;
+			    background: var(--accent-color);
+			    border: 4px solid var(--bg-color);
+			    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+			}
+
+			.experience-card {
+			    background: var(--card-bg);
+			    padding: 2.5rem;
+			    border-radius: 16px;
+			    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+			    border: 1px solid var(--border-color);
+			}
+
+			.experience-header {
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: flex-start;
+			    margin-bottom: 1.5rem;
+			    flex-wrap: wrap;
+			    gap: 1rem;
+			}
+
+			.experience-header h4 {
+			    font-size: 1.5rem;
+			    color: var(--primary-color);
+			    line-height: 1.2;
+			    font-weight: 700;
+			}
+
+			.experience-header .date {
+			    color: var(--accent-color);
+			    font-weight: 700;
+			    background: rgba(14, 165, 233, 0.1);
+			    padding: 0.4rem 1rem;
+			    border-radius: 9999px;
+			    font-size: 0.9rem;
+			    font-family: 'Poppins', sans-serif;
+			    white-space: nowrap;
+			    display: inline-block;
+			}
+
+			.company {
+			    font-weight: 700;
+			    color: var(--secondary-color);
+			    margin-bottom: 0.25rem;
+			    display: block;
+			    font-size: 1.15rem;
+			}
+
+			/* Style pour les liens vers les sites des entreprises */
+			a.company {
+			    text-decoration: none;
+			    transition: color 0.2s ease, text-decoration 0.2s ease;
+			}
+
+			a.company:hover, a.company:focus {
+			    color: var(--accent-color);
+			    text-decoration: underline;
+			}
+
+			.location {
+			    font-size: 0.9rem;
+			    color: #64748b;
+			    display: block;
+			}
+
+			.section-title {
+			    font-weight: 600;
+			    color: var(--primary-color);
+			    margin-top: 1.5rem;
+			    margin-bottom: 0.75rem;
+			    font-size: 1.05rem;
+			}
+
+			.experience-intro {
+			    font-style: italic;
+			    color: var(--secondary-color);
+			    margin-bottom: 1.5rem;
+			    font-size: 1rem;
+			    padding: 1.25rem;
+			    background-color: var(--badge-bg);
+			    border-radius: 8px;
+			    border-left: 4px solid var(--accent-color);
+			}
+
+			/* Formatage des listes d'expériences */
+			ul {
+			    padding-left: 1.25rem;
+			    margin-bottom: 1.5rem;
+			}
+
+			li {
+			    margin-bottom: 0.5rem;
+			    color: var(--text-color);
+			}
+
+			li::marker {
+			    color: var(--accent-color);
+			}
+
+			/* Sous-listes (Objectifs / Résultats) */
+			li ul {
+			    margin-top: 0.5rem;
+			    margin-bottom: 0.75rem;
+			    padding-left: 0.5rem;
+			    list-style-type: none;
+			}
+
+			li ul li {
+			    font-size: 0.95rem;
+			    margin-bottom: 0.35rem;
+			    position: relative;
+			    padding-left: 1.25rem;
+			}
+
+			/* Remplacement du tiret par une puce discrète */
+			li ul li::before {
+			    content: "•";
+			    color: var(--accent-color);
+			    position: absolute;
+			    left: 0;
+			    top: 0;
+			    font-weight: bold;
+			    font-size: 1.25rem;
+			    line-height: 1.2;
+			}
+
+			/* Encadré d'environnement (en bas des expériences) */
+			.env-box {
+			    margin-top: 1.5rem;
+			    padding: 1.25rem;
+			    background-color: var(--badge-bg);
+			    border-radius: 8px;
+			    border-left: 4px solid var(--accent-color);
+			    font-size: 0.95rem;
+			    line-height: 1.5;
+			}
+
+			.env-box strong {
+			    color: var(--primary-color);
+			}
+
+			/* Bouton flottant de contact (FAB) */
+			.fab {
+			    position: fixed;
+			    bottom: 2rem;
+			    right: 2rem;
+			    width: 60px;
+			    height: 60px;
+			    background-color: var(--accent-color);
+			    color: white;
+			    border-radius: 50%;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    font-size: 1.5rem;
+			    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.5);
+			    text-decoration: none;
+			    z-index: 1000;
+			    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			.fab:hover {
+			    transform: scale(1.1) translateY(-5px);
+			    background-color: #0284c7;
+			}
+
+			/* Pied de page */
+			footer {
+			    text-align: center;
+			    padding: 3rem 1.5rem;
+			    background: var(--header-bg);
+			    color: rgba(255, 255, 255, 0.7);
+			    margin-top: 5rem;
+			}
+
+			.admin-link {
+			    color: rgba(255,255,255,0.4);
+			    text-decoration: none;
+			    font-size: 0.8rem;
+			    cursor: pointer;
+			    margin-top: 10px;
+			    display: inline-block;
+			}
+
+			/* Style spécifique quand le mode édition est actif */
+			[contenteditable="true"] {
+			    outline: 2px dashed var(--accent-color);
+			    outline-offset: 10px;
+			    background-color: rgba(14, 165, 233, 0.05);
+			    border-radius: 8px;
+			    padding: 10px;
+			}
+
+			/* Adaptabilité Mobile (Responsive) */
+			@media (max-width: 768px) {
+			    nav { padding: 1rem; }
+			    .nav-links { display: none; }
+			    header h1 { font-size: 2.25rem; }
+			    header h2 { font-size: 1.25rem; }
+			    .header-buttons { flex-direction: column; width: 100%; }
+			    .btn { width: 100%; justify-content: center; }
+			    .kpi-banner { margin: -2rem 1rem 3rem; grid-template-columns: 1fr 1fr; padding: 1.5rem; }
+			    .timeline { margin-left: 0; padding-left: 1.5rem; }
+			    .timeline-item::before { left: -1.9rem; width: 16px; height: 16px; }
+			    .experience-card { padding: 1.5rem; }
+			    .fab { bottom: 1.5rem; right: 1.5rem; width: 50px; height: 50px; }
+			}
+
+			/* Format d'impression (Ctrl+P) */
+			@media print {
+			    body { background: white; color: black; }
+			    nav, .fab, .header-buttons, .kpi-banner, .admin-link { display: none; }
+			    header { background: white; color: black; padding: 2rem 0; }
+			    header h1 { color: black; }
+			    header h2 { color: #555; }
+			    .contact-info a { color: black; border-bottom: none; }
+			    .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
+			    .container { max-width: 100% !important; margin: 0; padding: 0; }
+			    .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
+			    .timeline { border-left: none; padding-left: 0; margin-left: 0; }
+			    .timeline-item::before { display: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ========================================== -->
+		<!-- NAVIGATION (Haut de page)                  -->
+		<!-- ========================================== -->
+		<nav>
+			<div
+				style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px;"
+			></div>
+			<ul class="nav-links">
+				<li><a href="#summary">Profil</a></li>
+				<li><a href="#skills">Compétences</a></li>
+				<li><a href="#experiences">Expériences</a></li>
+				<li><a href="#education">Formations</a></li>
+			</ul>
+			<button
+				class="dark-mode-btn"
+				onclick="toggleDarkMode()"
+				id="darkModeToggle"
+				aria-label="Activer le mode sombre"
+			>
+				🌙 Sombre
+			</button>
+		</nav>
+
+		<!-- ========================================== -->
+		<!-- EN-TÊTE (Photo et Contacts)                -->
+		<!-- ========================================== -->
+		<header>
+			<img
+				src="photo.jpg"
+				alt="Photo de profil de Pierre-Emmanuel Boyer"
+				class="profile-photo"
+				id="profile-img"
+			/>
+			<h1 class="reveal">Pierre-Emmanuel Boyer</h1>
+			<h2 class="reveal">Chef de Projet Infrastructures IT</h2>
+			<div class="contact-info reveal">
+				<span>📍 Magny-les-Hameaux, Île-de-France, France</span>
+				&nbsp;|&nbsp;
+				<a href="mailto:pe.boyer@gmail.com">✉️ pe.boyer@gmail.com</a>
+			</div>
+			<div class="header-buttons reveal">
+				<a
+					href="https://www.linkedin.com/in/pierre-emmanuel-boyer"
+					target="_blank"
+					class="btn btn-linkedin"
+					>Profil LinkedIn</a
+				>
+				<a
+					href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf"
+					download
+					class="btn btn-cv"
+					>Télécharger le CV (PDF)</a
+				>
+			</div>
+		</header>
+
+		<!-- ========================================== -->
+		<!-- BANNIÈRE DES CHIFFRES CLÉS                 -->
+		<!-- ========================================== -->
+		<div class="kpi-banner reveal">
+			<div class="kpi-item">
+				<div class="kpi-number" data-target="20">0</div>
+				<div class="kpi-label">Années d'expertise</div>
+			</div>
+			<div class="kpi-item">
+				<div class="kpi-number" data-target="22000">0</div>
+				<div class="kpi-label">Postes Migrés</div>
+			</div>
+			<div class="kpi-item">
+				<div class="kpi-number" data-target="15000">0</div>
+				<div class="kpi-label">Utilisateurs O365</div>
+			</div>
+			<div class="kpi-item">
+				<div class="kpi-number" data-target="97">0</div>
+				<div class="kpi-label">% Satisfaction</div>
+			</div>
+		</div>
+
+		<!-- ========================================== -->
+		<!-- CONTENU PRINCIPAL                          -->
+		<!-- ========================================== -->
+		<main class="container" id="main-content">
+			<!-- SECTION : RÉSUMÉ -->
+			<section id="summary" class="reveal">
+				<div
+					style="font-size: 1.25rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;"
+				>
+					"Fort de 20 ans d'expertise en administration des
+					infrastructures systèmes IT et en support utilisateur, je
+					mène avec succès depuis 8 ans des projets techniques à forte
+					visibilité en tant que Chef de projet Infrastructure IT en
+					mettant l'humain au cœur de mes réussites."
+				</div>
+			</section>
+
+			<!-- SECTION : COMPÉTENCES -->
+			<section id="skills" class="reveal">
+				<h3>Compétences & Outils</h3>
+				<div class="skills-grid">
+					<div class="skill-box">
+						<h4>🎯 Direction de Projet</h4>
+						<p style="margin-bottom: 1rem; font-size: 0.95rem;">
+							Encadrement de projets informatiques, Leadership
+							technologique, Planification opérationnelle.
+						</p>
+						<div class="badge-container">
+							<span class="badge badge-accent">Agile</span>
+							<span class="badge badge-accent">Kanban</span>
+							<span class="badge badge-accent">Scrum</span>
+							<span class="badge">PMI</span>
+							<span class="badge">Jira / Confluence</span>
+							<span class="badge">Miro / Teams</span>
+							<span class="badge">Sharepoint</span>
+							<span class="badge">PowerBI</span>
+						</div>
+					</div>
+
+					<div class="skill-box">
+						<h4>💻 Infrastructure & Cloud</h4>
+						<p style="margin-bottom: 1rem; font-size: 0.95rem;">
+							Maîtrise des écosystèmes Microsoft, Device
+							Management, serveurs et administration réseau.
+						</p>
+						<div class="badge-container">
+							<span class="badge badge-accent"
+								>Microsoft 365</span
+							>
+							<span class="badge badge-accent"
+								>Azure / Entra ID</span
+							>
+							<span class="badge">Windows Server</span>
+							<span class="badge">PowerShell</span>
+							<span class="badge">Intune / AirWatch</span>
+							<span class="badge">Exchange / Lotus</span>
+						</div>
+					</div>
+
+					<div class="skill-box">
+						<h4>🏆 Certifications</h4>
+						<ul
+							style="list-style: none; padding-left: 0; font-size: 0.95rem;"
+						>
+							<li style="margin-bottom: 0.6rem;">
+								🏅 <strong>VMware AirWatch</strong> Professional
+								Accreditation: Enterprise Mobility
+							</li>
+							<li style="margin-bottom: 0.6rem;">
+								🏅 <strong>Exchange 2010</strong> (Installation,
+								config et dépannage)
+							</li>
+							<li style="margin-bottom: 0.6rem;">
+								🏅 <strong>Windows 2000 server</strong>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION : EXPÉRIENCES (TIMELINE) -->
+			<section id="experiences">
+				<h3>Parcours Professionnel</h3>
+
+				<div class="timeline">
+					<!-- BOURSOBANK -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>
+										Référent Chef de Projet Technique IT
+									</h4>
+									<a
+										href="https://www.boursobank.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>BoursoBank</a
+									>
+									<span class="location"
+										>Boulogne-Billancourt (92)</span
+									>
+								</div>
+								<span class="date"
+									>Novembre 2025 - Juillet 2026 (9 mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Au sein de la Direction « Production IT », mon
+								rôle consistait à être le référent d'une équipe
+								de 7 chefs de projets en charge de piloter les
+								projets d'évolution lié à la MCO et à la
+								sécurité ainsi que des projets émanant des
+								métiers pour répondre aux besoins clients. Mon
+								rôle consistait aussi à planifier et arbitrer
+								chaque mois les ressources techniques avec les
+								managers des services.
+							</p>
+
+							<p
+								class="section-title"
+								style="margin-bottom: 1rem;"
+							>
+								Exemple de Projets réalisés :
+							</p>
+							<ul>
+								<li>
+									<strong>Projet WeRo</strong>
+									<ul>
+										<li>
+											Objectifs : Préparation et
+											déploiement de tous les
+											environnements techniques (serveurs,
+											bases de données, flux réseaux).
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong>Sécurité CRM</strong>
+									<ul>
+										<li>
+											Objectifs : Mise en place de la
+											micro-segmentation pour améliorer la
+											sécurité d'une application critique.
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<div class="env-box">
+								<strong>Environnement :</strong> Office 365,
+								Windows Server 2016-2019 (Active Directory, GPO,
+								DNS, DHCP, DFS, SSO), Linux, Powershell, PKI,
+								MFA, Microsoft Azure, SCCM, Intune, VMWare
+								Vsphere, Jira, Confluence, Device42, IronPort,
+								Netbox.
+							</div>
+						</div>
+					</div>
+
+					<!-- UBISOFT -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Chef de projet informatique</h4>
+									<a
+										href="https://www.ubisoft.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>Ubisoft</a
+									>
+									<span class="location">Saint-Mandé (94)</span>
+								</div>
+								<span class="date"
+									>Octobre 2021 - Octobre 2025 (4 ans 1
+									mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Au sein de la Direction « Enterprise
+								Infrastructure », mon rôle consistait à
+								orchestrer des projets transverses techniques à
+								forte valeurs ayant pour cibles plusieurs
+								milliers d'utilisateurs.
+							</p>
+
+							<p
+								class="section-title"
+								style="margin-bottom: 1rem;"
+							>
+								Exemples de Projets réalisés :
+							</p>
+							<ul>
+								<li>
+									<strong
+										>Déploiement de Windows Hello for
+										Business sur les 22 000 postes
+										utilisateurs</strong
+									>
+									<ul>
+										<li>
+											Objectifs : Amélioration de la
+											sécurité et facilitation de
+											l'authentification (Durée: 18 mois).
+										</li>
+										<li>
+											Résultats : Migration finale
+											réalisée en 6 mois avec un
+											accompagnement dédié par site (Taux
+											de satisfaction utilisateurs : 97%).
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong
+										>Audit des serveurs hébergés par une
+										Direction sur un DataCenter à
+										Hong-Kong</strong
+									>
+									<ul>
+										<li>
+											Objectif : Identifier les serveurs,
+											leurs rôles et leurs responsables en
+											cas de blocage par le « Great
+											Firewall of China ».
+										</li>
+										<li>
+											Résultats : Grâce à cet audit,
+											migration en urgence des 300
+											serveurs (virtuels et physiques)
+											suite à une panne majeure.
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong
+										>Relocalisation de l’infrastructure de 
+										sauvegarde Dell Isilon pour les
+										Data Centers de Paris et Montréal</strong
+									>
+									<ul>
+										<li>
+											Objectifs : Réduire les coûts d’hébergement
+											et remise à propre des équipements
+										</li>
+										<li>
+											Résultats : Déménagements réalisés 
+											(Montréal puis Paris) en limitant les 
+											délais de coupures pour les Productions
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong
+										>Amélioration d'un portail applicatif
+										destiné aux utilisateurs de la DSI (2500
+										personnes)</strong
+									>
+									<ul>
+										<li>
+											Objectif : Refonte de la structure
+											technique de la plateforme
+											d'automatisation des tâches
+											d'administration de la DSI (gestion
+											de comptes AD, groupes, ...)
+											connectée à différentes API (Durée:
+											1 an).
+										</li>
+										<li>
+											Résultats : Modernisation et
+											sécurisation de la plateforme, gain
+											de temps pour les utilisateurs.
+										</li>
+									</ul>
+								</li>								
+							</ul>
+
+							<p class="section-title">Actions récurrentes :</p>
+							<ul>
+								<li>
+									Encadrement du projet de la phase d'étude
+									(Build) jusqu'à sa mise en production (Run)
+									: Collecte des besoins et élaboration du
+									cahier des charges, Analyse des risques et
+									des responsabilités (RACI), Élaboration et
+									suivi du budget, Gestion du product Backlog
+									et de la roadmap selon les priorités et
+									retour des équipes / clients.
+								</li>
+								<li>
+									Encadrement des équipes projets (équipes
+									multiculturelles : internes et externes) :
+									Animation des réunions et ateliers d'équipes
+									pluridisciplinaires, Présentation et suivi
+									des projets lors des réunions de cycle de
+									vie (Kick-off, SteerCo, Arbitrage, Weekly,
+									Plan d'Achat). Gestion des espaces de
+									communication et de documentation. Création
+									et suivi de KPIs via PowerBI et Excel.
+									Conduite du changement auprès des équipes
+									informatiques sur sites.
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Outils de Gestion de Projet :</strong>
+								Agile, Kanban, Scrum, PMI, Confluence, Jira,
+								Miro, Teams, Athena, Sharepoint, Excel,
+								PowerPoint, PowerBI, Outlook.
+							</div>
+						</div>
+					</div>
+
+					<!-- SOLETANCHE FREYSSINET -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>
+										Référent Technique Messagerie et
+										Mobilité
+									</h4>
+									<a
+										href="https://www.soletanchefreyssinet.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>Soletanche Freyssinet</a
+									>
+									<span class="location"
+										>Rueil-Malmaison (92)</span
+									>
+								</div>
+								<span class="date"
+									>Mars 2013 - Septembre 2021 (8 ans 7
+									mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Au sein de la DSI Groupe, j'ai piloté la
+								migration stratégique de Lotus Domino vers
+								Office 365 pour uniformiser les outils
+								informatiques. J'ai également assuré
+								l'administration des infrastructures de
+								messageries, la gestion de la flotte mobile, la
+								supervision de la téléphonie sur IP et le
+								support technique de niveau 3.
+							</p>
+
+							<p
+								class="section-title"
+								style="margin-bottom: 1rem;"
+							>
+								Exemples de réalisations :
+							</p>
+							<ul>
+								<li>
+									<strong
+										>Migrations vers Office 365 (Domino to
+										O365, Exchange to Tenant ou Tenant to
+										Tenant)</strong
+									>
+									<ul>
+										<li>
+											Objectifs : Uniformiser les outils
+											de communication et de
+											collaboration, optimiser les coûts
+											et la gestion IT, améliorer la
+											mobilité et la sécurité des données
+											(Durée : 2 ans pour la migration
+											initiale des 15 000 utilisateurs
+											puis à la demande).
+										</li>
+										<li>
+											Résultats : Données et comptes
+											utilisateurs migrés avec succès,
+											déploiement de Teams, OneDrive,
+											Outlook, réduction des coûts
+											d'infrastructure et
+											d'administration.
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong
+										>Mise en place d'une solution de gestion
+										et de sécurisation de la flotte mobile
+										(iOS et Android)</strong
+									>
+									<ul>
+										<li>
+											Objectifs : Centraliser et sécuriser
+											la gestion de la flotte mobile tout
+											en assurant la conformité interne
+											(Durée : 1 an).
+										</li>
+										<li>
+											Résultats : Enrôlement des 800
+											terminaux mobiles dans AirWatch puis
+											Microsoft Intune, sécurisation des
+											données et des terminaux mobiles,
+											optimisation du cycle de vie et des
+											coûts et amélioration de
+											l'expérience utilisateur.
+										</li>
+									</ul>
+								</li>
+							</ul>
+
+							<p class="section-title">
+								Administration et Support :
+							</p>
+							<ul>
+								<li>
+									Messagerie (Lotus Domino puis O365 : 15 000
+									utilisateurs)
+								</li>
+								<li>
+									MDM (AirWatch puis Intune 800 terminaux)
+								</li>
+								<li>
+									ToIP (PABX Aastra / Mitel : 21 sites - 1200
+									utilisateurs)
+								</li>
+								<li>
+									Gestion des domaines Internet et des
+									certificats SSL
+								</li>
+								<li>
+									Support N3 et VIP pour la France et
+									l'international
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement :</strong> Office 365,
+								Lotus Domino v8.5-9, Windows Server 2012-2016
+								(Active Directory, GPO, DNS, DHCP, DFS, SSO),
+								Powershell, PKI, MFA, Global Protect, Microsoft
+								Azure, Airwatch, Microsoft Intune, Mitel (ToIP),
+								Varonis DatAdvantage, ITSM EasyVista, VMWare
+								Vsphere
+							</div>
+						</div>
+					</div>
+
+					<!-- GROUPE CLARSYS -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>
+										Responsable de la cellule Messagerie et
+										Mobilité
+									</h4>
+									<a
+										href="https://www.linkedin.com/company/groupe-clarsys/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>Groupe Clarsys</a
+									>
+									<span class="location">Paris (75)</span>
+								</div>
+								<span class="date"
+									>Mai 2011 - Février 2013 (1 an 10
+									mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Dans le cadre des missions confiées par une
+								société de services, j'ai assumé la
+								responsabilité du service « Messagerie et
+								Mobilité ». Mon objectif principal était de
+								dynamiser la cellule en développant un
+								portefeuille de nouveaux clients tout en
+								assurant la fidélisation. J'accompagnais
+								également les équipes commerciales en jouant un
+								rôle d'avant-vente technique, et je collaborais
+								étroitement avec nos fournisseurs et partenaires
+								techniques.
+							</p>
+
+							<p
+								class="section-title"
+								style="margin-bottom: 1rem;"
+							>
+								Exemples de projet menés :
+							</p>
+							<ul>
+								<li>
+									Migrations Echange 5.5/2003/2007 vers 2010
+								</li>
+								<li>
+									Migrations Lotus Domino v8.5 vers Exchange
+									Online avec Quest Notes Migrator for
+									Exchange
+								</li>
+								<li>
+									Installations et configurations serveur
+									BES/BES Express sur environnement Exchange
+									2003-2010, Lotus Domino v8.5, Zimbra et
+									Google Apps
+								</li>
+								<li>
+									Installations de plates-formes de gestion de
+									terminaux mobile (iOS/Android/Windows Phone)
+									avec Good Technology, BlackBerry Mobile
+									Fusion et Maas360
+								</li>
+							</ul>
+
+							<p class="section-title">Actions :</p>
+							<ul>
+								<li>
+									Piloter les projets, recueillir et analyser
+									les besoins, organiser et animer les
+									réunions, organiser et planifier les
+									déploiements, rédiger les rapports et compte
+									rendus.
+								</li>
+								<li>
+									Former les utilisateurs aux nouveaux outils,
+									rédiger les manuels à destination des
+									utilisateurs.
+								</li>
+								<li>
+									Administrer les environnements techniques de
+									nos clients et assurer le support de niveau
+									3.
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement technique :</strong>
+								Exchange Server 2003/2007/2010/Online, Zimbra,
+								Google Apps, Lotus Domino v6/v8.5, Blackberry
+								Enterprise Server v4/v5, Windows 2008 Server,
+								Good Technology, Maas360, Quest Notes Migrator
+								for Exchange, BlackBerry Mobile Fusion,
+								PowerShell, VMWare ESX
+							</div>
+						</div>
+					</div>
+
+					<!-- ITS IBELEM -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Consultant en mobilité</h4>
+									<a
+										href="https://www.ibelem.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>ITS Ibelem</a
+									>
+									<span class="location">Nanterre (92)</span>
+								</div>
+								<span class="date"
+									>Février 2011 - Avril 2011 (3 mois)</span
+								>
+							</div>
+
+							<p class="section-title">Missions :</p>
+							<ul>
+								<li>
+									Migration de plate-forme BES de v4.1 vers
+									v5.0.2 avec l'outil BlackBerry Transporter
+								</li>
+								<li>Audit d'infrastructures Blackberry</li>
+								<li>
+									Installation et configuration serveur BES
+									5.0.2 et BES Express 5.0.2 sur environnement
+									Exchange 2003-2007, Zimbra et Google Apps
+								</li>
+								<li>
+									Installation serveur Good Technology
+									(équivalent serveur BES pour iOS et Android)
+								</li>
+								<li>
+									Déploiement d'applications via serveur BES
+									(Google Apps, Bloomberg, ...)
+								</li>
+								<li>
+									Formation et transfert de compétences aux
+									administrateurs et/ou utilisateurs
+								</li>
+								<li>
+									Rédaction de procédures opérationnelles et
+									de cahiers d'exploitation
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement technique :</strong>
+								Exchange Server 2003-2010, Lotus Domino v6 -
+								v8.5, Blackberry Enterprise Server v4 - v5,
+								Windows 2000 à 2008 Server, SQL 2005 à 2008
+							</div>
+						</div>
+					</div>
+
+					<!-- CETSI -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>
+										Administrateur Messagerie et Mobilité
+									</h4>
+									<a
+										href="https://www.cetsi.fr/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>CetSI</a
+									>
+									<span class="location">Nanterre (92)</span>
+								</div>
+								<span class="date"
+									>Janvier 2008 - Janvier 2011 (3 ans 1
+									mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Dans une société de services spécialisée dans
+								l'infogérance, mon rôle au sein du service
+								Messagerie et Mobilité était de : Maintenir les
+								systèmes en condition opérationnelle, répondre
+								aux souhaits d'évolution de nos clients, et
+								solutionner les demandes de support.
+							</p>
+
+							<p class="section-title">Réalisations :</p>
+							<ul>
+								<li>
+									Installation et mise à jour de serveurs de
+									messagerie (Lotus Domino / Microsoft
+									Exchange / BlackBerry Enterprise Server)
+								</li>
+							</ul>
+
+							<p class="section-title">Actions :</p>
+							<ul>
+								<li>
+									Administration des serveurs clients (France
+									et international).
+								</li>
+								<li>
+									Gestion utilisateurs et groupes (création /
+									suppression, renommage, recertification,
+									...).
+								</li>
+								<li>
+									Rédaction de procédures opérationnelles et
+									de cahiers d'exploitation clients.
+								</li>
+								<li>
+									Support utilisateurs (France et
+									International) pour Lotus Notes 7 à 8.5 /
+									Outlook 2003 à 2010 et smartphone
+									BlackBerry, IPhone, IPad.
+								</li>
+								<li>
+									Gestion des Planning de Projets, rédaction
+									de propositions et compte-rendu.
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnements :</strong> Lotus Domino
+								v6 à v8.5, Exchange Server 2003 à 2010,
+								BlackBerry Enterprise Server v4 à v5 et
+								passerelles Antispam. Windows Server 2000 à
+								2008, Windows XP / Vista / Seven
+							</div>
+						</div>
+					</div>
+
+					<!-- DU PAREIL AU MEME -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Administrateur système informatique</h4>
+									<a
+										href="https://www.dpam.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>Du Pareil Au Même</a
+									>
+									<span class="location">Wissous (91)</span>
+								</div>
+								<span class="date"
+									>Juillet 2005 - Décembre 2007 (2 ans 6
+									mois)</span
+								>
+							</div>
+
+							<p class="experience-intro">
+								Au sein de la DSI, mes rôles étaient les
+								suivants : Administrer, assurer la maintenance
+								et la supervision des serveurs et équipements
+								réseaux. Gérer les sauvegardes. Assister les
+								utilisateurs (siège et magasins). Préparer le
+								matériel et installer les équipements en
+								magasin.
+							</p>
+
+							<p class="section-title">Actions :</p>
+							<ul>
+								<li>
+									<strong
+										>Administration systèmes et réseaux
+										:</strong
+									>
+									Active Directory (création utilisateurs /
+									groupes, déploiement de GPO, ...), gestion
+									du DHCP, gestion des serveurs d'impression.
+								</li>
+								<li>
+									<strong>Messagerie :</strong> Exchange 2003
+									(création et gestion des comptes
+									utilisateurs).
+								</li>
+								<li>
+									<strong
+										>Sécurité systèmes et réseaux :</strong
+									>
+									CheckPoint, Connectra, Trend Micro et Mc
+									Afee ePolicy Orchestrator.
+								</li>
+								<li>
+									<strong>Sauvegardes :</strong> Gestion des
+									sauvegardes via HP Data Protector et Veritas
+									Backup Exec.
+								</li>
+								<li>
+									<strong>Maintenance utilisateurs :</strong>
+									intégration, configuration et installation
+									des postes. Dépannage des ordinateurs et
+									imprimantes, formations sur les nouveaux
+									outils (scanners, pocket pc,...) et
+									logiciels. Création des images postes sur
+									serveur RIS.
+								</li>
+								<li>
+									<strong
+										>Supervision et Déploiement :</strong
+									>
+									Maintenance et supervision serveurs avec
+									Nagios, HP Insight Manager et HP Procurve
+									Manager. Utilisation du logiciel Altiris.
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnements :</strong> Réseau de 80
+								serveurs (HP et Dell) en Windows Serveur 2000 et
+								2003 ainsi que 3 Backbone HP, Switch et Point
+								d'accès Wifi HP. 200 postes utilisateurs (fixes,
+								portables et PDA) en Windows 2000/XP
+							</div>
+						</div>
+					</div>
+
+					<!-- SOPRA STERIA -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Technicien de Support Hotline</h4>
+									<a
+										href="https://www.soprasteria.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>Sopra Steria</a
+									>
+									<span class="location">Vélizy (78)</span>
+								</div>
+								<span class="date"
+									>Mai 2005 - Juin 2005 (2 mois)</span
+								>
+							</div>
+
+							<p class="section-title">Missions :</p>
+							<ul>
+								<li>
+									Hotline N1 et N2 de la société Manpower
+									(env. 500 appels/jours).
+								</li>
+								<li>
+									Réception et relances des appels clients,
+									prise en main à distance (recherche et
+									réparation de pannes, déploiement et
+									installation de logiciels).
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement :</strong> Serveurs et
+								postes clients en Windows NT4.
+							</div>
+						</div>
+					</div>
+
+					<!-- LFB -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Technicien support (Alternance)</h4>
+									<a
+										href="https://www.groupe-lfb.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>LFB</a
+									>
+									<span class="location">Les Ulis (91)</span>
+								</div>
+								<span class="date"
+									>Janvier 2004 - Février 2005 (1 an 2
+									mois)</span
+								>
+							</div>
+
+							<p class="section-title">Missions :</p>
+							<ul>
+								<li>Support sur site des utilisateurs.</li>
+								<li>
+									Dépannages des ordinateurs et imprimantes.
+								</li>
+								<li>
+									Formations sur PDA et logiciels de
+									l'entreprise.
+								</li>
+								<li>
+									Gestion des bandes de sauvegardes
+									(BackupExec).
+								</li>
+								<li>
+									Création et déploiement des images via
+									Norton Ghost.
+								</li>
+								<li>
+									Gestion des comptes utilisateurs sur Active
+									Directory.
+								</li>
+								<li>
+									Installation de prises réseaux et
+									téléphoniques.
+								</li>
+								<li>Administration de l'Autocom Aastra.</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement :</strong> Réseau de 1000
+								postes utilisateurs (fixes et portables) en
+								Windows 98/2000 et 45 serveurs en Windows 2000
+								et 2003.
+							</div>
+						</div>
+					</div>
+
+					<!-- PMS -->
+					<div class="timeline-item reveal">
+						<div class="experience-card">
+							<div class="experience-header">
+								<div>
+									<h4>Technicien support (Alternance)</h4>
+									<a
+										href="https://www.linkedin.com/company/presence-micro-systemes/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="company"
+										>PMS PRESENCE MICRO SYSTEME</a
+									>
+									<span class="location">Les Ulis (91)</span>
+								</div>
+								<span class="date"
+									>Novembre 2001 - Septembre 2003 (1 an 11
+									mois)</span
+								>
+							</div>
+
+							<p class="section-title">Missions :</p>
+							<ul>
+								<li>
+									Installation et configuration de postes
+									clients Windows 98/2000/XP.
+								</li>
+								<li>
+									Support et formation d'utilisateurs à
+									Windows, à la bureautique et logiciels
+									monétiques.
+								</li>
+								<li>Réparation de pc et imprimante.</li>
+								<li>
+									Installation et configuration des points de
+									ventes (Caisses et périphériques) et
+									terminaux de paiement électronique (TPE).
+								</li>
+							</ul>
+
+							<div class="env-box">
+								<strong>Environnement :</strong> Postes clients
+								Windows 98/2000/XP, logiciels monétiques,
+								caisses, périphériques et TPE.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION : FORMATIONS -->
+			<section id="education" class="reveal">
+				<h3>Formations & Divers</h3>
+				<div class="skills-grid">
+					<div class="skill-box">
+						<h4>🎓 Parcours Académique</h4>
+						<p style="margin-bottom: 0.5rem;">
+							<strong
+								>Cross Institute Paris (2004 - 2005) :</strong
+							>
+							Administration de / administrateur réseaux et
+							systèmes
+						</p>
+						<p style="margin-bottom: 0.5rem;">
+							<strong>ISCIO (2001 - 2003) :</strong> Sciences
+							informatiques et de l'information et services
+							apparentés
+						</p>
+						<p style="margin-bottom: 0.5rem;">
+							<strong
+								>Unité d'Enseignement du Tourisme (UET) (1999 -
+								2001) :</strong
+							>
+							Promotion du tourisme
+						</p>
+						<p>
+							<strong
+								>Lycée de l'Essouriau (1997 - 1999) :</strong
+							>
+							Baccalauréat sciences et technologies tertiaires,
+							Commerce international / commerce
+						</p>
+					</div>
+					<div class="skill-box">
+						<h4>🌍 Langues & Intérêts</h4>
+						<p style="margin-bottom: 0.5rem;">
+							<strong>Langues :</strong> Français (Native or
+							Bilingual), Anglais (Professional Working).
+						</p>
+						<p style="margin-bottom: 0.5rem;">
+							<strong>Sports :</strong> Crossfit, golf, badminton,
+							course à pieds et randonnées.
+						</p>
+						<p>
+							<strong>Passions :</strong> Grand amateur de
+							gastronomie et adepte de la photographie.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- ========================================== -->
+		<!-- BOUTONS FLOTTANTS                          -->
+		<!-- ========================================== -->
+
+		<!-- Bouton Contact Email -->
+		<a
+			href="mailto:pe.boyer@gmail.com"
+			class="fab"
+			title="Me contacter"
+			aria-label="Me contacter par email"
+		>
+			✉️
+		</a>
+
+		<!-- ========================================== -->
+		<!-- PIED DE PAGE & MODE ÉDITION                -->
+		<!-- ========================================== -->
+		<footer>
+			<p>&copy; 2026 Pierre-Emmanuel Boyer. Fait avec passion.</p>
+			<!-- Bouton caché permettant d'éditer le site -->
+			<a
+				onclick="enableEditMode()"
+				class="admin-link"
+				aria-label="Activer le mode d'édition de page"
+				>⚙️ Mode Édition</a
+			>
+		</footer>
+
+		<!-- ========================================== -->
+		<!-- SCRIPTS JAVASCRIPT                         -->
+		<!-- ========================================== -->
+		<script>
+			// ----------------------------------------
+			// 1. Fonctionnalité du Mode Sombre
+			// ----------------------------------------
+			function toggleDarkMode() {
+			    document.body.classList.toggle('dark-mode');
+			    const btn = document.getElementById('darkModeToggle');
+			    const isDark = document.body.classList.contains('dark-mode');
+			    btn.innerHTML = isDark ? '☀️ Clair' : '🌙 Sombre';
+			    btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
+			}
+
+			// ----------------------------------------
+			// 2. Animations au défilement (Scroll Reveal)
+			// ----------------------------------------
+			const observerOptions = {
+			    root: null,
+			    rootMargin: '0px 0px -50px 0px',
+			    threshold: 0.15
+			};
+
+			const revealObserver = new IntersectionObserver((entries, observer) => {
+			    entries.forEach(entry => {
+			        if (entry.isIntersecting) {
+			            entry.target.classList.add('active');
+
+			            // Lancement de l'animation des nombres uniquement quand la bannière est visible
+			            if (entry.target.classList.contains('kpi-banner') && !entry.target.dataset.animated) {
+			                animateCounters();
+			                entry.target.dataset.animated = "true";
+			            }
+			            observer.unobserve(entry.target);
+			        }
+			    });
+			}, observerOptions);
+
+			document.querySelectorAll('.reveal').forEach(element => {
+			    revealObserver.observe(element);
+			});
+
+			function animateCounters() {
+			    const counters = document.querySelectorAll('.kpi-number');
+			    const speed = 150;
+
+			    counters.forEach(counter => {
+			        const animate = () => {
+			            const value = +counter.getAttribute('data-target');
+			            const data = +counter.innerText.replace('%', '');
+			            const time = value / speed;
+
+			            if (data < value) {
+			                counter.innerText = Math.ceil(data + time) + (value === 97 ? '%' : '');
+			                setTimeout(animate, 20);
+			            } else {
+			                counter.innerText = value + (value === 97 ? '%' : '');
+			            }
+			        }
+			        animate();
+			    });
+			}
+
+			// ----------------------------------------
+			// 3. Fonction Éditeur (Modification de texte)
+			// ----------------------------------------
+			function enableEditMode() {
+			    // Un mot de passe basique (1234) pour débloquer l'édition des textes
+			    const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
+
+			    if (pin === "1234") {
+			        // Active l'attribut contentEditable sur le conteneur principal
+			        const mainContent = document.getElementById('main-content');
+			        if(mainContent) {
+			            mainContent.contentEditable = "true";
+			            alert("Mode édition activé ! Vous pouvez cliquer sur les textes pour les modifier.");
+
+			            // Création du bouton de sauvegarde flottant
+			            const saveBtn = document.createElement('button');
+			            saveBtn.innerText = "💾 Télécharger index.html";
+			            saveBtn.className = "fab save-fab";
+			            // Style spécifique pour ce bouton au-dessus de l'autre
+			            saveBtn.style.width = "auto";
+			            saveBtn.style.padding = "0 1.5rem";
+			            saveBtn.style.borderRadius = "30px";
+			            saveBtn.style.bottom = "100px";
+			            saveBtn.style.fontSize = "1rem";
+			            saveBtn.style.fontFamily = "Inter, sans-serif";
+			            saveBtn.style.fontWeight = "600";
+			            saveBtn.onclick = saveModifications;
+			            document.body.appendChild(saveBtn);
+			        }
+			    } else {
+			        alert("Code PIN incorrect.");
+			    }
+			}
+
+			function saveModifications() {
+			    // 1. Désactiver le mode édition pour que le fichier final soit propre
+			    const mainContent = document.getElementById('main-content');
+			    if(mainContent) {
+			        mainContent.contentEditable = "false";
+			    }
+
+			    // 2. Retirer le bouton de sauvegarde de l'interface
+			    const saveBtn = document.querySelector('.save-fab');
+			    if(saveBtn) saveBtn.remove();
+
+			    // -- FIX PHOTO ABSOLUE --
+			    // Les navigateurs transforment parfois les URLs relatives (photo.jpg) en absolues (file:///...)
+			    // lors de la récupération de outerHTML. On force la valeur relative avant de sauvegarder.
+			    const profileImg = document.getElementById('profile-img');
+			    if (profileImg) {
+			        profileImg.setAttribute('src', 'photo.jpg');
+			    }
+
+			    // 3. Récupérer tout le code HTML actuel de la page
+			    // Utilisation d'un échappement robuste pour ne pas casser le script après sauvegarde
+			    const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+			    // 4. Créer un fichier téléchargeable en mémoire
+			    const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
+			    const url = URL.createObjectURL(blob);
+
+			    // 5. Simuler un clic pour déclencher le téléchargement
+			    const a = document.createElement('a');
+			    a.href = url;
+			    a.download = "index.html";
+			    document.body.appendChild(a);
+			    a.click();
+
+			    // 6. Nettoyage
+			    document.body.removeChild(a);
+			    URL.revokeObjectURL(url);
+
+			    alert("Fichier téléchargé avec succès ! Remplacez l'ancien fichier 'index.html' de votre dossier par celui-ci.");
+			}
+		</script>
+	</body>
 </html>
