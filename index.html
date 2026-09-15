@@ -166,12 +166,12 @@
         /* Modales */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); align-items: center; justify-content: center;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); overflow-y: auto;
         }
-        .modal.show { display: flex; }
+        .modal.show { display: flex; padding: 1rem; }
         .modal-content {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
-            padding: 2.5rem; width: 90%; max-width: 600px; position: relative; max-height: 90vh; overflow-y: auto;
+            padding: 2.5rem; width: 100%; max-width: 700px; position: relative; margin: auto;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: var(--secondary-color); transition: color 0.2s; }
@@ -310,12 +310,14 @@
         </h2>
         <div class="contact-info reveal">
             <span>📍 Magny-les-Hameaux, Île-de-France, France</span> &nbsp;|&nbsp;
+            <!-- Ouvre le formulaire de contact interne plutôt que mailto direct pour un look plus pro -->
             <a href="javascript:void(0)" onclick="openModal('contactModal')">✉️ pe.boyer@gmail.com</a>
         </div>
         <div class="header-buttons reveal">
             <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">
                 <span class="fr">Profil LinkedIn</span><span class="en">LinkedIn Profile</span>
             </a>
+            <!-- BOUTON CV MODIFIÉ -->
             <a href="javascript:void(0)" onclick="openModal('cvModal')" class="btn btn-cv">
                 <span class="fr">Télécharger le CV (PDF)</span><span class="en">Download Resume (PDF)</span>
             </a>
@@ -398,7 +400,6 @@
 
                 <div class="skill-box">
                     <h4>🏆 Certifications</h4>
-                    <!-- La certification "Présenter avec Impact & Conviction" a été supprimée selon la demande -->
                     <ul class="fr" style="list-style: none; padding-left: 0; font-size: 0.95rem;">
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>VMware AirWatch</strong> Professional Accreditation: Enterprise Mobility</li>
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>Exchange 2010</strong> (Installation, config et dépannage)</li>
@@ -418,6 +419,7 @@
             <h3><span class="fr">Projets Phares</span><span class="en">Key Projects</span></h3>
             <div class="case-grid">
                 
+                <!-- Projet 1 -->
                 <div class="case-card" onclick="openModal('modalWinHello')">
                     <h4>Windows Hello for Business</h4>
                     <p>
@@ -430,6 +432,7 @@
                     <span class="read-more"><span class="fr">Voir le cas pratique</span><span class="en">Read Case Study</span> ➔</span>
                 </div>
                 
+                <!-- Projet 2 -->
                 <div class="case-card" onclick="openModal('modalO365')">
                     <h4>Migration Globale Office 365</h4>
                     <p>
@@ -442,6 +445,7 @@
                     <span class="read-more"><span class="fr">Voir le cas pratique</span><span class="en">Read Case Study</span> ➔</span>
                 </div>
 
+                <!-- Projet 3 -->
                 <div class="case-card" onclick="openModal('modalWeRo')">
                     <h4>Projet Européen WeRo</h4>
                     <p>
@@ -485,98 +489,43 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Au sein de la Direction « Production IT », mon
-                                rôle consistait à être le référent d'une équipe
-                                de 7 chefs de projets en charge de piloter les
-                                projets d'évolution lié à la MCO et à la
-                                sécurité ainsi que des projets émanant des
-                                métiers pour répondre aux besoins clients. Mon
-                                rôle consistait aussi à planifier et arbitrer
-                                chaque mois les ressources techniques avec les
-                                managers des services.
-                            </p>
-
-                            <p class="section-title" style="margin-bottom: 1rem;">
-                                Exemple de Projets réalisés :
-                            </p>
+                            <p class="experience-intro">Au sein de la Direction « Production IT », mon rôle consistait à être le référent d'une équipe de 7 chefs de projets en charge de piloter les projets d'évolution lié à la MCO et à la sécurité ainsi que des projets émanant des métiers pour répondre aux besoins clients. Mon rôle consistait aussi à planifier et arbitrer chaque mois les ressources techniques avec les managers des services.</p>
+                            
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemple de Projets réalisés :</p>
                             <ul>
-                                <li>
-                                    <strong>Projet WeRo</strong>
+                                <li><strong>Projet WeRo</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Préparation et
-                                            déploiement de tous les
-                                            environnements techniques (serveurs,
-                                            bases de données, flux réseaux).
-                                        </li>
-                                        <li>
-                                            Résultats : Mise à disposition des 
-                                            environnements techniques aux équipes 
-                                            de développement en respect avec le 
-                                            planning initial
-                                        </li>
+                                        <li>Objectifs : Préparation et déploiement de tous les environnements techniques (serveurs, bases de données, flux réseaux).</li>
+                                        <li>Résultats : Mise à disposition des environnements techniques aux équipes de développement en respect avec le planning initial</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong>Sécurité CRM</strong>
+                                <li><strong>Sécurité CRM</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Mise en place de la
-                                            micro-segmentation pour améliorer la
-                                            sécurité d'une application critique.
-                                        </li>
-                                        <li>
-                                            Résultats : Audit des flux réseaux
-                                            puis mise en place de la micro-segmentation 
-                                            sur le CRM via le logiciel open source Netbox
-                                            avant la décommission des règles de firewall
-                                        </li>
+                                        <li>Objectifs : Mise en place de la micro-segmentation pour améliorer la sécurité d'une application critique.</li>
+                                        <li>Résultats : Audit des flux réseaux puis mise en place de la micro-segmentation sur le CRM via le logiciel open source Netbox avant la décommission des règles de firewall</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong>Déploiement d’une solution unique de PAM
-                                            (Priviledge Access Management) </strong>
+                                <li><strong>Déploiement d’une solution unique de PAM (Priviledge Access Management)</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : uniformiser les solutions d’accès
-                                            aux serveurs d’administration
-                                        </li>
-                                        <li>
-                                            Résultats : Analyse de l’existant puis mise
-                                            en place d’ateliers techniques amenant à un
-                                            RFP pour appel d’offre partenaire.
-                                        </li>
+                                        <li>Objectifs : uniformiser les solutions d’accès aux serveurs d’administration</li>
+                                        <li>Résultats : Analyse de l’existant puis mise en place d’ateliers techniques amenant à un RFP pour appel d’offre partenaire.</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong>Sécurisation des flux SMTP en SMTPS AUTH
-                                            pour les plateformes techniques internes</strong>
+                                <li><strong>Sécurisation des flux SMTP en SMTPS AUTH pour les plateformes techniques internes</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : répondre aux exigences de sécurité
-                                            demandées par la maison mère (Société Générale)
-                                        </li>
-                                        <li>
-                                            Résultats : Remise à niveau de la sécurité 
-                                            du protocole de communication sur les flux
-                                            SMPTS
-                                        </li>
+                                        <li>Objectifs : répondre aux exigences de sécurité demandées par la maison mère (Société Générale)</li>
+                                        <li>Résultats : Remise à niveau de la sécurité du protocole de communication sur les flux SMPTS</li>
                                     </ul>
                                 </li>
                             </ul>
                             <div class="env-box">
-                                <strong>Environnement :</strong> Office 365,
-                                Windows Server 2016-2019 (Active Directory, GPO,
-                                DNS, DHCP, DFS, SSO), Linux, Powershell, PKI,
-                                MFA, Microsoft Azure, SCCM, Intune, VMWare
-                                Vsphere, Jira, Confluence, Device42, IronPort,
-                                Netbox.
+                                <strong>Environnement :</strong> Office 365, Windows Server 2016-2019 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Linux, Powershell, PKI, MFA, Microsoft Azure, SCCM, Intune, VMWare Vsphere, Jira, Confluence, Device42, IronPort, Netbox.
                             </div>
                         </div>
 
                         <div class="en">
-                            <p class="experience-intro">Within the "IT Production" Department, I acted as the lead for a team of 7 project managers in charge of steering MCO (Maintenance in Operational Condition) and security evolution projects, as well as business-driven projects to meet customer needs. I also planned and arbitrated monthly technical resources with service managers.</p>
+                            <p class="experience-intro">Within the "IT Production" Department, my role was to act as the referent for a team of 7 project managers in charge of steering evolution projects related to MCO and security, as well as business projects to meet customer needs. I was also responsible for planning and arbitrating technical resources monthly with service managers.</p>
+                            
                             <p class="section-title" style="margin-bottom: 1rem;">Examples of completed projects:</p>
                             <ul>
                                 <li><strong>WeRo Project</strong>
@@ -593,13 +542,13 @@
                                 </li>
                                 <li><strong>Deployment of a unified PAM (Privileged Access Management) solution</strong>
                                     <ul>
-                                        <li>Objectives: Standardize access solutions to administration servers.</li>
+                                        <li>Objectives: standardize access solutions to administration servers.</li>
                                         <li>Results: Analysis of the existing setup followed by technical workshops leading to an RFP for partner bidding.</li>
                                     </ul>
                                 </li>
                                 <li><strong>Securing SMTP flows to SMTPS AUTH for internal technical platforms</strong>
                                     <ul>
-                                        <li>Objectives: Meet the security requirements requested by the parent company (Société Générale).</li>
+                                        <li>Objectives: meet the security requirements requested by the parent company (Société Générale).</li>
                                         <li>Results: Security upgrade of the communication protocol on SMPTS flows.</li>
                                     </ul>
                                 </li>
@@ -633,139 +582,50 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Au sein de la Direction « Enterprise
-                                Infrastructure », mon rôle consistait à
-                                orchestrer des projets transverses techniques à
-                                forte valeurs ayant pour cibles plusieurs
-                                milliers d'utilisateurs.
-                            </p>
-
-                            <p class="section-title" style="margin-bottom: 1rem;">
-                                Exemples de Projets réalisés :
-                            </p>
+                            <p class="experience-intro">Au sein de la Direction « Enterprise Infrastructure », mon rôle consistait à orchestrer des projets transverses techniques à forte valeurs ayant pour cibles plusieurs milliers d'utilisateurs.</p>
+                            
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de Projets réalisés :</p>
                             <ul>
-                                <li>
-                                    <strong
-                                        >Déploiement de Windows Hello for
-                                        Business sur les 22 000 postes
-                                        utilisateurs</strong
-                                    >
+                                <li><strong>Déploiement de Windows Hello for Business sur les 22 000 postes utilisateurs</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Amélioration de la
-                                            sécurité et facilitation de
-                                            l'authentification (Durée: 18 mois).
-                                        </li>
-                                        <li>
-                                            Résultats : Migration finale
-                                            réalisée en 6 mois avec un
-                                            accompagnement dédié par site (Taux
-                                            de satisfaction utilisateurs : 97%).
-                                        </li>
+                                        <li>Objectifs : Amélioration de la sécurité et facilitation de l'authentification (Durée: 18 mois).</li>
+                                        <li>Résultats : Migration finale réalisée en 6 mois avec un accompagnement dédié par site (Taux de satisfaction utilisateurs : 97%).</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong
-                                        >Audit des serveurs hébergés par une
-                                        Direction sur un DataCenter à
-                                        Hong-Kong</strong
-                                    >
+                                <li><strong>Audit des serveurs hébergés par une Direction sur un DataCenter à Hong-Kong</strong>
                                     <ul>
-                                        <li>
-                                            Objectif : Identifier les serveurs,
-                                            leurs rôles et leurs responsables en
-                                            cas de blocage par le « Great
-                                            Firewall of China ».
-                                        </li>
-                                        <li>
-                                            Résultats : Grâce à cet audit,
-                                            migration en urgence des 300
-                                            serveurs (virtuels et physiques)
-                                            suite à une panne majeure.
-                                        </li>
+                                        <li>Objectif : Identifier les serveurs, leurs rôles et leurs responsables en cas de blocage par le « Great Firewall of China ».</li>
+                                        <li>Résultats : Grâce à cet audit, migration en urgence des 300 serveurs (virtuels et physiques) suite à une panne majeure.</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong
-                                        >Relocalisation de l’infrastructure de 
-                                        sauvegarde Dell Isilon pour les
-                                        Data Centers de Paris et Montréal</strong
-                                    >
+                                <li><strong>Relocalisation de l’infrastructure de sauvegarde Dell Isilon pour les Data Centers de Paris et Montréal</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Réduire les coûts d’hébergement
-                                            et remise à propre des équipements
-                                        </li>
-                                        <li>
-                                            Résultats : Déménagements réalisés 
-                                            (Montréal puis Paris) en limitant les 
-                                            délais de coupures pour les Productions
-                                        </li>
+                                        <li>Objectifs : Réduire les coûts d’hébergement et remise à propre des équipements</li>
+                                        <li>Résultats : Déménagements réalisés (Montréal puis Paris) en limitant les délais de coupures pour les Productions</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong
-                                        >Amélioration d'un portail applicatif
-                                        destiné aux utilisateurs de la DSI (2500
-                                        personnes)</strong
-                                    >
+                                <li><strong>Amélioration d'un portail applicatif destiné aux utilisateurs de la DSI (2500 personnes)</strong>
                                     <ul>
-                                        <li>
-                                            Objectif : Refonte de la structure
-                                            technique de la plateforme
-                                            d'automatisation des tâches
-                                            d'administration de la DSI (gestion
-                                            de comptes AD, groupes, ...)
-                                            connectée à différentes API (Durée:
-                                            1 an).
-                                        </li>
-                                        <li>
-                                            Résultats : Modernisation et
-                                            sécurisation de la plateforme, gain
-                                            de temps pour les utilisateurs.
-                                        </li>
+                                        <li>Objectif : Refonte de la structure technique de la plateforme d'automatisation des tâches d'administration de la DSI (gestion de comptes AD, groupes, ...) connectée à différentes API (Durée: 1 an).</li>
+                                        <li>Résultats : Modernisation et sécurisation de la plateforme, gain de temps pour les utilisateurs.</li>
                                     </ul>
-                                </li>								
+                                </li>
                             </ul>
-
+                            
                             <p class="section-title">Actions récurrentes :</p>
                             <ul>
-                                <li>
-                                    Encadrement du projet de la phase d'étude
-                                    (Build) jusqu'à sa mise en production (Run)
-                                    : Collecte des besoins et élaboration du
-                                    cahier des charges, Analyse des risques et
-                                    des responsabilités (RACI), Élaboration et
-                                    suivi du budget, Gestion du product Backlog
-                                    et de la roadmap selon les priorités et
-                                    retour des équipes / clients.
-                                </li>
-                                <li>
-                                    Encadrement des équipes projets (équipes
-                                    multiculturelles : internes et externes) :
-                                    Animation des réunions et ateliers d'équipes
-                                    pluridisciplinaires, Présentation et suivi
-                                    des projets lors des réunions de cycle de
-                                    vie (Kick-off, SteerCo, Arbitrage, Weekly,
-                                    Plan d'Achat). Gestion des espaces de
-                                    communication et de documentation. Création
-                                    et suivi de KPIs via PowerBI et Excel.
-                                    Conduite du changement auprès des équipes
-                                    informatiques sur sites.
-                                </li>
+                                <li>Encadrement du projet de la phase d'étude (Build) jusqu'à sa mise en production (Run) : Collecte des besoins et élaboration du cahier des charges, Analyse des risques et des responsabilités (RACI), Élaboration et suivi du budget, Gestion du product Backlog et de la roadmap selon les priorités et retour des équipes / clients.</li>
+                                <li>Encadrement des équipes projets (équipes multiculturelles : internes et externes) : Animation des réunions et ateliers d'équipes pluridisciplinaires, Présentation et suivi des projets lors des réunions de cycle de vie (Kick-off, SteerCo, Arbitrage, Weekly, Plan d'Achat). Gestion des espaces de communication et de documentation. Création et suivi de KPIs via PowerBI et Excel. Conduite du changement auprès des équipes informatiques sur sites.</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Outils de Gestion de Projet :</strong>
-                                Agile, Kanban, Scrum, PMI, Confluence, Jira,
-                                Miro, Teams, Athena, Sharepoint, Excel,
-                                PowerPoint, PowerBI, Outlook.
+                                <strong>Outils de Gestion de Projet :</strong> Agile, Kanban, Scrum, PMI, Confluence, Jira, Miro, Teams, Athena, Sharepoint, Excel, PowerPoint, PowerBI, Outlook.
                             </div>
                         </div>
 
                         <div class="en">
                             <p class="experience-intro">Within the "Enterprise Infrastructure" Department, my role was to orchestrate high-value transverse technical projects targeting several thousand users.</p>
+                            
                             <p class="section-title" style="margin-bottom: 1rem;">Examples of completed projects:</p>
                             <ul>
                                 <li><strong>Deployment of Windows Hello for Business on 22,000 user workstations</strong>
@@ -793,11 +653,13 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                             <p class="section-title">Recurring actions:</p>
                             <ul>
                                 <li>Project management from the study phase (Build) to its production release (Run): Needs gathering and drafting of specifications, Risk and responsibility analysis (RACI), Budget preparation and monitoring, Product Backlog and roadmap management according to priorities and team/client feedback.</li>
                                 <li>Management of project teams (multicultural teams: internal and external): Facilitation of multidisciplinary team meetings and workshops, Project presentation and monitoring during lifecycle meetings (Kick-off, SteerCo, Arbitration, Weekly, Purchasing Plan). Management of communication and documentation spaces. Creation and monitoring of KPIs via PowerBI and Excel. Change management with on-site IT teams.</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Project Management Tools:</strong> Agile, Kanban, Scrum, PMI, Confluence, Jira, Miro, Teams, Athena, Sharepoint, Excel, PowerPoint, PowerBI, Outlook.
                             </div>
@@ -827,112 +689,41 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Au sein de la DSI Groupe, j'ai piloté la
-                                migration stratégique de Lotus Domino vers
-                                Office 365 pour uniformiser les outils
-                                informatiques. J'ai également assuré
-                                l'administration des infrastructures de
-                                messageries, la gestion de la flotte mobile, la
-                                supervision de la téléphonie sur IP et le
-                                support technique de niveau 3.
-                            </p>
-
-                            <p class="section-title" style="margin-bottom: 1rem;">
-                                Exemples de réalisations :
-                            </p>
+                            <p class="experience-intro">Au sein de la DSI Groupe, j'ai piloté la migration stratégique de Lotus Domino vers Office 365 pour uniformiser les outils informatiques. J'ai également assuré l'administration des infrastructures de messageries, la gestion de la flotte mobile, la supervision de la téléphonie sur IP et le support technique de niveau 3.</p>
+                            
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de réalisations :</p>
                             <ul>
-                                <li>
-                                    <strong
-                                        >Migrations vers Office 365 (Domino to
-                                        O365, Exchange to Tenant ou Tenant to
-                                        Tenant)</strong
-                                    >
+                                <li><strong>Migrations vers Office 365 (Domino to O365, Exchange to Tenant ou Tenant to Tenant)</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Uniformiser les outils
-                                            de communication et de
-                                            collaboration, optimiser les coûts
-                                            et la gestion IT, améliorer la
-                                            mobilité et la sécurité des données
-                                            (Durée : 2 ans pour la migration
-                                            initiale des 15 000 utilisateurs
-                                            puis à la demande).
-                                        </li>
-                                        <li>
-                                            Résultats : Données et comptes
-                                            utilisateurs migrés avec succès,
-                                            déploiement de Teams, OneDrive,
-                                            Outlook, réduction des coûts
-                                            d'infrastructure et
-                                            d'administration.
-                                        </li>
+                                        <li>Objectifs : Uniformiser les outils de communication et de collaboration, optimiser les coûts et la gestion IT, améliorer la mobilité et la sécurité des données (Durée : 2 ans pour la migration initiale des 15 000 utilisateurs puis à la demande).</li>
+                                        <li>Résultats : Données et comptes utilisateurs migrés avec succès, déploiement de Teams, OneDrive, Outlook, réduction des coûts d'infrastructure et d'administration.</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <strong
-                                        >Mise en place d'une solution de gestion
-                                        et de sécurisation de la flotte mobile
-                                        (iOS et Android)</strong
-                                    >
+                                <li><strong>Mise en place d'une solution de gestion et de sécurisation de la flotte mobile (iOS et Android)</strong>
                                     <ul>
-                                        <li>
-                                            Objectifs : Centraliser et sécuriser
-                                            la gestion de la flotte mobile tout
-                                            en assurant la conformité interne
-                                            (Durée : 1 an).
-                                        </li>
-                                        <li>
-                                            Résultats : Enrôlement des 800
-                                            terminaux mobiles dans AirWatch puis
-                                            Microsoft Intune, sécurisation des
-                                            données et des terminaux mobiles,
-                                            optimisation du cycle de vie et des
-                                            coûts et amélioration de
-                                            l'expérience utilisateur.
-                                        </li>
+                                        <li>Objectifs : Centraliser et sécuriser la gestion de la flotte mobile tout en assurant la conformité interne (Durée : 1 an).</li>
+                                        <li>Résultats : Enrôlement des 800 terminaux mobiles dans AirWatch puis Microsoft Intune, sécurisation des données et des terminaux mobiles, optimisation du cycle de vie et des coûts et amélioration de l'expérience utilisateur.</li>
                                     </ul>
                                 </li>
                             </ul>
-
-                            <p class="section-title">
-                                Administration et Support :
-                            </p>
+                            
+                            <p class="section-title">Administration et Support :</p>
                             <ul>
-                                <li>
-                                    Messagerie (Lotus Domino puis O365 : 15 000
-                                    utilisateurs)
-                                </li>
-                                <li>
-                                    MDM (AirWatch puis Intune 800 terminaux)
-                                </li>
-                                <li>
-                                    ToIP (PABX Aastra / Mitel : 21 sites - 1200
-                                    utilisateurs)
-                                </li>
-                                <li>
-                                    Gestion des domaines Internet et des
-                                    certificats SSL
-                                </li>
-                                <li>
-                                    Support N3 et VIP pour la France et
-                                    l'international
-                                </li>
+                                <li>Messagerie (Lotus Domino puis O365 : 15 000 utilisateurs)</li>
+                                <li>MDM (AirWatch puis Intune 800 terminaux)</li>
+                                <li>ToIP (PABX Aastra / Mitel : 21 sites - 1200 utilisateurs)</li>
+                                <li>Gestion des domaines Internet et des certificats SSL</li>
+                                <li>Support N3 et VIP pour la France et l'international</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement :</strong> Office 365,
-                                Lotus Domino v8.5-9, Windows Server 2012-2016
-                                (Active Directory, GPO, DNS, DHCP, DFS, SSO),
-                                Powershell, PKI, MFA, Global Protect, Microsoft
-                                Azure, Airwatch, Microsoft Intune, Mitel (ToIP),
-                                Varonis DatAdvantage, ITSM EasyVista, VMWare
-                                Vsphere
+                                <strong>Environnement :</strong> Office 365, Lotus Domino v8.5-9, Windows Server 2012-2016 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Powershell, PKI, MFA, Global Protect, Microsoft Azure, Airwatch, Microsoft Intune, Mitel (ToIP), Varonis DatAdvantage, ITSM EasyVista, VMWare Vsphere
                             </div>
                         </div>
 
                         <div class="en">
                             <p class="experience-intro">Within the Group IT Department, I piloted the strategic migration from Lotus Domino to Office 365 to standardize IT tools. I also ensured the administration of messaging infrastructures, mobile fleet management, IP telephony supervision, and level 3 technical support.</p>
+                            
                             <p class="section-title" style="margin-bottom: 1rem;">Examples of achievements:</p>
                             <ul>
                                 <li><strong>Migrations to Office 365 (Domino to O365, Exchange to Tenant or Tenant to Tenant)</strong>
@@ -948,6 +739,7 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                             <p class="section-title">Administration and Support:</p>
                             <ul>
                                 <li>Messaging (Lotus Domino then O365: 15,000 users)</li>
@@ -956,6 +748,7 @@
                                 <li>Internet domains and SSL certificates management</li>
                                 <li>L3 and VIP support for France and international</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environment:</strong> Office 365, Lotus Domino v8.5-9, Windows Server 2012-2016 (Active Directory, GPO, DNS, DHCP, DFS, SSO), Powershell, PKI, MFA, Global Protect, Microsoft Azure, Airwatch, Microsoft Intune, Mitel (ToIP), Varonis DatAdvantage, ITSM EasyVista, VMWare Vsphere
                             </div>
@@ -985,80 +778,31 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Dans le cadre des missions confiées par une
-                                société de services, j'ai assumé la
-                                responsabilité du service « Messagerie et
-                                Mobilité ». Mon objectif principal était de
-                                dynamiser la cellule en développant un
-                                portefeuille de nouveaux clients tout en
-                                assurant la fidélisation. J'accompagnais
-                                également les équipes commerciales en jouant un
-                                rôle d'avant-vente technique, et je collaborais
-                                étroitement avec nos fournisseurs et partenaires
-                                techniques.
-                            </p>
-
-                            <p class="section-title" style="margin-bottom: 1rem;">
-                                Exemples de projet menés :
-                            </p>
+                            <p class="experience-intro">Dans le cadre des missions confiées par une société de services, j'ai assumé la responsabilité du service « Messagerie et Mobilité ». Mon objectif principal était de dynamiser la cellule en développant un portefeuille de nouveaux clients tout en assurant la fidélisation. J'accompagnais également les équipes commerciales en jouant un rôle d'avant-vente technique, et je collaborais étroitement avec nos fournisseurs et partenaires techniques.</p>
+                            
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de projet menés :</p>
                             <ul>
-                                <li>
-                                    Migrations Echange 5.5/2003/2007 vers 2010
-                                </li>
-                                <li>
-                                    Migrations Lotus Domino v8.5 vers Exchange
-                                    Online avec Quest Notes Migrator for
-                                    Exchange
-                                </li>
-                                <li>
-                                    Installations et configurations serveur
-                                    BES/BES Express sur environnement Exchange
-                                    2003-2010, Lotus Domino v8.5, Zimbra et
-                                    Google Apps
-                                </li>
-                                <li>
-                                    Installations de plates-formes de gestion de
-                                    terminaux mobile (iOS/Android/Windows Phone)
-                                    avec Good Technology, BlackBerry Mobile
-                                    Fusion et Maas360
-                                </li>
+                                <li>Migrations Echange 5.5/2003/2007 vers 2010</li>
+                                <li>Migrations Lotus Domino v8.5 vers Exchange Online avec Quest Notes Migrator for Exchange</li>
+                                <li>Installations et configurations serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
+                                <li>Installations de plates-formes de gestion de terminaux mobile (iOS/Android/Windows Phone) avec Good Technology, BlackBerry Mobile Fusion et Maas360</li>
                             </ul>
-
+                            
                             <p class="section-title">Actions :</p>
                             <ul>
-                                <li>
-                                    Piloter les projets, recueillir et analyser
-                                    les besoins, organiser et animer les
-                                    réunions, organiser et planifier les
-                                    déploiements, rédiger les rapports et compte
-                                    rendus.
-                                </li>
-                                <li>
-                                    Former les utilisateurs aux nouveaux outils,
-                                    rédiger les manuels à destination des
-                                    utilisateurs.
-                                </li>
-                                <li>
-                                    Administrer les environnements techniques de
-                                    nos clients et assurer le support de niveau
-                                    3.
-                                </li>
+                                <li>Piloter les projets, recueillir et analyser les besoins, organiser et animer les réunions, organiser et planifier les déploiements, rédiger les rapports et compte rendus.</li>
+                                <li>Former les utilisateurs aux nouveaux outils, rédiger les manuels à destination des utilisateurs.</li>
+                                <li>Administrer les environnements techniques de nos clients et assurer le support de niveau 3.</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement technique :</strong>
-                                Exchange Server 2003/2007/2010/Online, Zimbra,
-                                Google Apps, Lotus Domino v6/v8.5, Blackberry
-                                Enterprise Server v4/v5, Windows 2008 Server,
-                                Good Technology, Maas360, Quest Notes Migrator
-                                for Exchange, BlackBerry Mobile Fusion,
-                                PowerShell, VMWare ESX
+                                <strong>Environnement technique :</strong> Exchange Server 2003/2007/2010/Online, Zimbra, Google Apps, Lotus Domino v6/v8.5, Blackberry Enterprise Server v4/v5, Windows 2008 Server, Good Technology, Maas360, Quest Notes Migrator for Exchange, BlackBerry Mobile Fusion, PowerShell, VMWare ESX
                             </div>
                         </div>
 
                         <div class="en">
                             <p class="experience-intro">As part of my missions in an IT services company, I took responsibility for the "Messaging and Mobility" department. My main goal was to boost the unit by developing a portfolio of new clients while ensuring customer retention. I also supported the sales teams by acting as a technical pre-sales engineer, and collaborated closely with our suppliers and technical partners.</p>
+                            
                             <p class="section-title" style="margin-bottom: 1rem;">Examples of projects managed:</p>
                             <ul>
                                 <li>Exchange 5.5/2003/2007 to 2010 migrations</li>
@@ -1066,12 +810,14 @@
                                 <li>BES/BES Express server installations and configurations on Exchange 2003-2010, Lotus Domino v8.5, Zimbra and Google Apps environments</li>
                                 <li>Mobile device management platform installations (iOS/Android/Windows Phone) with Good Technology, BlackBerry Mobile Fusion and Maas360</li>
                             </ul>
+                            
                             <p class="section-title">Actions:</p>
                             <ul>
                                 <li>Manage projects, gather and analyze requirements, organize and lead meetings, organize and plan deployments, write reports and minutes.</li>
                                 <li>Train users on new tools, write user manuals.</li>
                                 <li>Administer our clients' technical environments and provide level 3 support.</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Technical Environment:</strong> Exchange Server 2003/2007/2010/Online, Zimbra, Google Apps, Lotus Domino v6/v8.5, Blackberry Enterprise Server v4/v5, Windows 2008 Server, Good Technology, Maas360, Quest Notes Migrator for Exchange, BlackBerry Mobile Fusion, PowerShell, VMWare ESX
                             </div>
@@ -1103,39 +849,17 @@
                         <div class="fr">
                             <p class="section-title">Missions :</p>
                             <ul>
-                                <li>
-                                    Migration de plate-forme BES de v4.1 vers
-                                    v5.0.2 avec l'outil BlackBerry Transporter
-                                </li>
+                                <li>Migration de plate-forme BES de v4.1 vers v5.0.2 avec l'outil BlackBerry Transporter</li>
                                 <li>Audit d'infrastructures Blackberry</li>
-                                <li>
-                                    Installation et configuration serveur BES
-                                    5.0.2 et BES Express 5.0.2 sur environnement
-                                    Exchange 2003-2007, Zimbra et Google Apps
-                                </li>
-                                <li>
-                                    Installation serveur Good Technology
-                                    (équivalent serveur BES pour iOS et Android)
-                                </li>
-                                <li>
-                                    Déploiement d'applications via serveur BES
-                                    (Google Apps, Bloomberg, ...)
-                                </li>
-                                <li>
-                                    Formation et transfert de compétences aux
-                                    administrateurs et/ou utilisateurs
-                                </li>
-                                <li>
-                                    Rédaction de procédures opérationnelles et
-                                    de cahiers d'exploitation
-                                </li>
+                                <li>Installation et configuration serveur BES 5.0.2 et BES Express 5.0.2 sur environnement Exchange 2003-2007, Zimbra et Google Apps</li>
+                                <li>Installation serveur Good Technology (équivalent serveur BES pour iOS et Android)</li>
+                                <li>Déploiement d'applications via serveur BES (Google Apps, Bloomberg, ...)</li>
+                                <li>Formation et transfert de compétences aux administrateurs et/ou utilisateurs</li>
+                                <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement technique :</strong>
-                                Exchange Server 2003-2010, Lotus Domino v6 -
-                                v8.5, Blackberry Enterprise Server v4 - v5,
-                                Windows 2000 à 2008 Server, SQL 2005 à 2008
+                                <strong>Environnement technique :</strong> Exchange Server 2003-2010, Lotus Domino v6 - v8.5, Blackberry Enterprise Server v4 - v5, Windows 2000 à 2008 Server, SQL 2005 à 2008
                             </div>
                         </div>
 
@@ -1150,6 +874,7 @@
                                 <li>Training and skills transfer to administrators and/or users</li>
                                 <li>Drafting of operational procedures and operating manuals</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Technical Environment:</strong> Exchange Server 2003-2010, Lotus Domino v6 - v8.5, Blackberry Enterprise Server v4 - v5, Windows 2000 to 2008 Server, SQL 2005 to 2008
                             </div>
@@ -1179,66 +904,35 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Dans une société de services spécialisée dans
-                                l'infogérance, mon rôle au sein du service
-                                Messagerie et Mobilité était de : Maintenir les
-                                systèmes en condition opérationnelle, répondre
-                                aux souhaits d'évolution de nos clients, et
-                                solutionner les demandes de support.
-                            </p>
-
+                            <p class="experience-intro">Dans une société de services spécialisée dans l'infogérance, mon rôle au sein du service Messagerie et Mobilité était de : Maintenir les systèmes en condition opérationnelle, répondre aux souhaits d'évolution de nos clients, et solutionner les demandes de support.</p>
+                            
                             <p class="section-title">Réalisations :</p>
                             <ul>
-                                <li>
-                                    Installation et mise à jour de serveurs de
-                                    messagerie (Lotus Domino / Microsoft
-                                    Exchange / BlackBerry Enterprise Server)
-                                </li>
+                                <li>Installation et mise à jour de serveurs de messagerie (Lotus Domino / Microsoft Exchange / BlackBerry Enterprise Server)</li>
                             </ul>
-
+                            
                             <p class="section-title">Actions :</p>
                             <ul>
-                                <li>
-                                    Administration des serveurs clients (France
-                                    et international).
-                                </li>
-                                <li>
-                                    Gestion utilisateurs et groupes (création /
-                                    suppression, renommage, recertification,
-                                    ...).
-                                </li>
-                                <li>
-                                    Rédaction de procédures opérationnelles et
-                                    de cahiers d'exploitation clients.
-                                </li>
-                                <li>
-                                    Support utilisateurs (France et
-                                    International) pour Lotus Notes 7 à 8.5 /
-                                    Outlook 2003 à 2010 et smartphone
-                                    BlackBerry, IPhone, IPad.
-                                </li>
-                                <li>
-                                    Gestion des Planning de Projets, rédaction
-                                    de propositions et compte-rendu.
-                                </li>
+                                <li>Administration des serveurs clients (France et international).</li>
+                                <li>Gestion utilisateurs et groupes (création / suppression, renommage, recertification, ...).</li>
+                                <li>Rédaction de procédures opérationnelles et de cahiers d'exploitation clients.</li>
+                                <li>Support utilisateurs (France et International) pour Lotus Notes 7 à 8.5 / Outlook 2003 à 2010 et smartphone BlackBerry, IPhone, IPad.</li>
+                                <li>Gestion des Planning de Projets, rédaction de propositions et compte-rendu.</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnements :</strong> Lotus Domino
-                                v6 à v8.5, Exchange Server 2003 à 2010,
-                                BlackBerry Enterprise Server v4 à v5 et
-                                passerelles Antispam. Windows Server 2000 à
-                                2008, Windows XP / Vista / Seven
+                                <strong>Environnements :</strong> Lotus Domino v6 à v8.5, Exchange Server 2003 à 2010, BlackBerry Enterprise Server v4 à v5 et passerelles Antispam. Windows Server 2000 à 2008, Windows XP / Vista / Seven
                             </div>
                         </div>
 
                         <div class="en">
                             <p class="experience-intro">In an IT services company specializing in managed services, my role within the Messaging and Mobility department was to: Maintain systems in operational condition, respond to our clients' evolution requests, and resolve support requests.</p>
+                            
                             <p class="section-title">Achievements:</p>
                             <ul>
                                 <li>Installation and update of messaging servers (Lotus Domino / Microsoft Exchange / BlackBerry Enterprise Server)</li>
                             </ul>
+                            
                             <p class="section-title">Actions:</p>
                             <ul>
                                 <li>Administration of client servers (France and international).</li>
@@ -1247,6 +941,7 @@
                                 <li>User support (France and International) for Lotus Notes 7 to 8.5 / Outlook 2003 to 2010 and BlackBerry, iPhone, iPad smartphones.</li>
                                 <li>Project Schedule Management, drafting proposals and meeting minutes.</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environments:</strong> Lotus Domino v6 to v8.5, Exchange Server 2003 to 2010, BlackBerry Enterprise Server v4 to v5 and Antispam gateways. Windows Server 2000 to 2008, Windows XP / Vista / Seven
                             </div>
@@ -1276,74 +971,26 @@
                         </div>
                         
                         <div class="fr">
-                            <p class="experience-intro">
-                                Au sein de la DSI, mes rôles étaient les
-                                suivants : Administrer, assurer la maintenance
-                                et la supervision des serveurs et équipements
-                                réseaux. Gérer les sauvegardes. Assister les
-                                utilisateurs (siège et magasins). Préparer le
-                                matériel et installer les équipements en
-                                magasin.
-                            </p>
-
+                            <p class="experience-intro">Au sein de la DSI, mes rôles étaient les suivants : Administrer, assurer la maintenance et la supervision des serveurs et équipements réseaux. Gérer les sauvegardes. Assister les utilisateurs (siège et magasins). Préparer le matériel et installer les équipements en magasin.</p>
+                            
                             <p class="section-title">Actions :</p>
                             <ul>
-                                <li>
-                                    <strong
-                                        >Administration systèmes et réseaux
-                                        :</strong
-                                    >
-                                    Active Directory (création utilisateurs /
-                                    groupes, déploiement de GPO, ...), gestion
-                                    du DHCP, gestion des serveurs d'impression.
-                                </li>
-                                <li>
-                                    <strong>Messagerie :</strong> Exchange 2003
-                                    (création et gestion des comptes
-                                    utilisateurs).
-                                </li>
-                                <li>
-                                    <strong
-                                        >Sécurité systèmes et réseaux :</strong
-                                    >
-                                    CheckPoint, Connectra, Trend Micro et Mc
-                                    Afee ePolicy Orchestrator.
-                                </li>
-                                <li>
-                                    <strong>Sauvegardes :</strong> Gestion des
-                                    sauvegardes via HP Data Protector et Veritas
-                                    Backup Exec.
-                                </li>
-                                <li>
-                                    <strong>Maintenance utilisateurs :</strong>
-                                    intégration, configuration et installation
-                                    des postes. Dépannage des ordinateurs et
-                                    imprimantes, formations sur les nouveaux
-                                    outils (scanners, pocket pc,...) et
-                                    logiciels. Création des images postes sur
-                                    serveur RIS.
-                                </li>
-                                <li>
-                                    <strong
-                                        >Supervision et Déploiement :</strong
-                                    >
-                                    Maintenance et supervision serveurs avec
-                                    Nagios, HP Insight Manager et HP Procurve
-                                    Manager. Utilisation du logiciel Altiris.
-                                </li>
+                                <li><strong>Administration systèmes et réseaux :</strong> Active Directory (création utilisateurs / groupes, déploiement de GPO, ...), gestion du DHCP, gestion des serveurs d'impression.</li>
+                                <li><strong>Messagerie :</strong> Exchange 2003 (création et gestion des comptes utilisateurs).</li>
+                                <li><strong>Sécurité systèmes et réseaux :</strong> CheckPoint, Connectra, Trend Micro et Mc Afee ePolicy Orchestrator.</li>
+                                <li><strong>Sauvegardes :</strong> Gestion des sauvegardes via HP Data Protector et Veritas Backup Exec.</li>
+                                <li><strong>Maintenance utilisateurs :</strong> intégration, configuration et installation des postes. Dépannage des ordinateurs et imprimantes, formations sur les nouveaux outils (scanners, pocket pc,...) et logiciels. Création des images postes sur serveur RIS.</li>
+                                <li><strong>Supervision et Déploiement :</strong> Maintenance et supervision serveurs avec Nagios, HP Insight Manager et HP Procurve Manager. Utilisation du logiciel Altiris.</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnements :</strong> Réseau de 80
-                                serveurs (HP et Dell) en Windows Serveur 2000 et
-                                2003 ainsi que 3 Backbone HP, Switch et Point
-                                d'accès Wifi HP. 200 postes utilisateurs (fixes,
-                                portables et PDA) en Windows 2000/XP
+                                <strong>Environnements :</strong> Réseau de 80 serveurs (HP et Dell) en Windows Serveur 2000 et 2003 ainsi que 3 Backbone HP, Switch et Point d'accès Wifi HP. 200 postes utilisateurs (fixes, portables et PDA) en Windows 2000/XP
                             </div>
                         </div>
 
                         <div class="en">
                             <p class="experience-intro">Within the IT Department, my roles were: Administer, maintain and monitor servers and network equipment. Manage backups. Assist users (headquarters and stores). Prepare hardware and install equipment in stores.</p>
+                            
                             <p class="section-title">Actions:</p>
                             <ul>
                                 <li><strong>Systems and network administration:</strong> Active Directory (user/group creation, GPO deployment, ...), DHCP management, print server management.</li>
@@ -1353,13 +1000,14 @@
                                 <li><strong>User maintenance:</strong> integration, configuration and installation of workstations. Computer and printer troubleshooting, training on new tools (scanners, pocket pcs, ...) and software. Workstation image creation on RIS server.</li>
                                 <li><strong>Monitoring and Deployment:</strong> Server maintenance and monitoring with Nagios, HP Insight Manager and HP Procurve Manager. Use of Altiris software.</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environments:</strong> Network of 80 servers (HP and Dell) on Windows Server 2000 and 2003, 3 HP Backbones, Switches, and HP Wifi Access Points. 200 user workstations (desktops, laptops, and PDAs) on Windows 2000/XP
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- SOPRA STERIA -->
                 <div class="timeline-item reveal">
                     <div class="experience-card">
@@ -1384,21 +1032,12 @@
                         <div class="fr">
                             <p class="section-title">Missions :</p>
                             <ul>
-                                <li>
-                                    Hotline N1 et N2 de la société Manpower
-                                    (env. 500 appels/jours).
-                                </li>
-                                <li>
-                                    Réception et relances des appels clients,
-                                    prise en main à distance (recherche et
-                                    réparation de pannes, déploiement et
-                                    installation de logiciels).
-                                </li>
+                                <li>Hotline N1 et N2 de la société Manpower (env. 500 appels/jours).</li>
+                                <li>Réception et relances des appels clients, prise en main à distance (recherche et réparation de pannes, déploiement et installation de logiciels).</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement :</strong> Serveurs et
-                                postes clients en Windows NT4.
+                                <strong>Environnement :</strong> Serveurs et postes clients en Windows NT4.
                             </div>
                         </div>
 
@@ -1408,6 +1047,7 @@
                                 <li>L1 and L2 hotline for Manpower company (approx. 500 calls/day).</li>
                                 <li>Receiving and following up on client calls, remote takeover (troubleshooting, software deployment and installation).</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environment:</strong> Servers and client workstations on Windows NT4.
                             </div>
@@ -1440,37 +1080,17 @@
                             <p class="section-title">Missions :</p>
                             <ul>
                                 <li>Support sur site des utilisateurs.</li>
-                                <li>
-                                    Dépannages des ordinateurs et imprimantes.
-                                </li>
-                                <li>
-                                    Formations sur PDA et logiciels de
-                                    l'entreprise.
-                                </li>
-                                <li>
-                                    Gestion des bandes de sauvegardes
-                                    (BackupExec).
-                                </li>
-                                <li>
-                                    Création et déploiement des images via
-                                    Norton Ghost.
-                                </li>
-                                <li>
-                                    Gestion des comptes utilisateurs sur Active
-                                    Directory.
-                                </li>
-                                <li>
-                                    Installation de prises réseaux et
-                                    téléphoniques.
-                                </li>
+                                <li>Dépannages des ordinateurs et imprimantes.</li>
+                                <li>Formations sur PDA et logiciels de l'entreprise.</li>
+                                <li>Gestion des bandes de sauvegardes (BackupExec).</li>
+                                <li>Création et déploiement des images via Norton Ghost.</li>
+                                <li>Gestion des comptes utilisateurs sur Active Directory.</li>
+                                <li>Installation de prises réseaux et téléphoniques.</li>
                                 <li>Administration de l'Autocom Aastra.</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement :</strong> Réseau de 1000
-                                postes utilisateurs (fixes et portables) en
-                                Windows 98/2000 et 45 serveurs en Windows 2000
-                                et 2003.
+                                <strong>Environnement :</strong> Réseau de 1000 postes utilisateurs (fixes et portables) en Windows 98/2000 et 45 serveurs en Windows 2000 et 2003.
                             </div>
                         </div>
 
@@ -1486,6 +1106,7 @@
                                 <li>Installation of network and telephone sockets.</li>
                                 <li>Aastra Autocom administration.</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environment:</strong> Network of 1000 user workstations (desktops and laptops) on Windows 98/2000 and 45 servers on Windows 2000 and 2003.
                             </div>
@@ -1517,27 +1138,14 @@
                         <div class="fr">
                             <p class="section-title">Missions :</p>
                             <ul>
-                                <li>
-                                    Installation et configuration de postes
-                                    clients Windows 98/2000/XP.
-                                </li>
-                                <li>
-                                    Support et formation d'utilisateurs à
-                                    Windows, à la bureautique et logiciels
-                                    monétiques.
-                                </li>
+                                <li>Installation et configuration de postes clients Windows 98/2000/XP.</li>
+                                <li>Support et formation d'utilisateurs à Windows, à la bureautique et logiciels monétiques.</li>
                                 <li>Réparation de pc et imprimante.</li>
-                                <li>
-                                    Installation et configuration des points de
-                                    ventes (Caisses et périphériques) et
-                                    terminaux de paiement électronique (TPE).
-                                </li>
+                                <li>Installation et configuration des points de ventes (Caisses et périphériques) et terminaux de paiement électronique (TPE).</li>
                             </ul>
 
                             <div class="env-box">
-                                <strong>Environnement :</strong> Postes clients
-                                Windows 98/2000/XP, logiciels monétiques,
-                                caisses, périphériques et TPE.
+                                <strong>Environnement :</strong> Postes clients Windows 98/2000/XP, logiciels monétiques, caisses, périphériques et TPE.
                             </div>
                         </div>
 
@@ -1549,6 +1157,7 @@
                                 <li>PC and printer repair.</li>
                                 <li>Installation and configuration of points of sale (Registers and peripherals) and Electronic Payment Terminals (EPT).</li>
                             </ul>
+
                             <div class="env-box">
                                 <strong>Environment:</strong> Windows 98/2000/XP client workstations, electronic payment software, registers, peripherals and EPT.
                             </div>
@@ -1594,10 +1203,10 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- BOUTONS FLOTTANTS                          -->
+    <!-- BOUTON FLOTTANT (FAB)                      -->
     <!-- ========================================== -->
 
-    <!-- Bouton Contact Email -->
+    <!-- Bouton Contact -->
     <a
         href="javascript:void(0)"
         onclick="openModal('contactModal')"
@@ -1627,7 +1236,7 @@
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Votre message..." required rows="5"></textarea>
+                    <textarea name="message" class="form-control" placeholder="Votre message... / Your message..." required rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-cv">
                     <span class="fr">Envoyer le message</span><span class="en">Send Message</span>
@@ -1664,6 +1273,110 @@
                     <span class="fr">Accéder au CV</span><span class="en">Access Resume</span>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Modales Projets Phares -->
+    <!-- Modal Projet 1 : Windows Hello -->
+    <div id="modalWinHello" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalWinHello')">&times;</span>
+            <h4>Windows Hello for Business</h4>
+            <div class="modal-section fr">
+                <h5>Contexte</h5>
+                <p>Authentification réseau vieillissante face à de nouvelles menaces de sécurité nécessitant l'adoption globale du MFA (Multi-Factor Authentication).</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Le Défi Technique</h5>
+                <p>Déployer la solution sur 22 000 postes répartis sur 47 sites et 25 pays mondiaux, sans tolérance de coupure pour la production critique d'Ubisoft.</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Architecture & Outils</h5>
+                <p>Microsoft Intune, Azure Active Directory, PKI interne, méthodologie Agile.</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Résultat (ROI)</h5>
+                <p>Migration finale de 15 000 postes achevée en 6 mois chrono. Taux d'adoption et de satisfaction mesuré à 97%, avec une réduction drastique des tickets support liés aux mots de passe.</p>
+            </div>
+            <!-- EN -->
+            <div class="modal-section en">
+                <h5>Context</h5>
+                <p>Aging network authentication facing new security threats, requiring global adoption of MFA.</p>
+            </div>
+            <div class="modal-section en">
+                <h5>Challenge</h5>
+                <p>Deploy the solution across 22,000 endpoints spread over 47 sites globally, with zero downtime tolerance for Ubisoft's production.</p>
+            </div>
+            <div class="modal-section en">
+                <h5>Results</h5>
+                <p>Final migration of 15,000 devices completed in 6 months. 97% user satisfaction and massive reduction in password-related IT tickets.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projet 2 : Office 365 -->
+    <div id="modalO365" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalO365')">&times;</span>
+            <h4>Migration Globale Office 365</h4>
+            <div class="modal-section fr">
+                <h5>Contexte</h5>
+                <p>Écosystème de collaboration hétérogène (Lotus Domino en fin de vie) freinant la mobilité et la communication inter-filiales du groupe VINCI.</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Le Défi Technique</h5>
+                <p>Orchestrer la migration de 15 000 utilisateurs répartis dans 150 filiales à travers le monde, en gérant les parcours "Domino to O365" et "Tenant to Tenant".</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Architecture & Outils</h5>
+                <p>Office 365, Exchange Online, Teams, OneDrive, PowerShell scripts pour l'automatisation.</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Résultat (ROI)</h5>
+                <p>Standardisation des outils de communication à l'échelle mondiale, optimisation drastique des coûts de licences et d'infrastructure IT locale.</p>
+            </div>
+            <!-- EN -->
+            <div class="modal-section en">
+                <h5>Context & Challenge</h5>
+                <p>Heterogeneous collaboration ecosystem (legacy Lotus Domino) hindering global mobility. The challenge was migrating 15,000 users across 150 subsidiaries worldwide.</p>
+            </div>
+            <div class="modal-section en">
+                <h5>Results</h5>
+                <p>Global standardization of communication tools, drastic optimization of licensing and local IT infrastructure costs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projet 3 : WeRo -->
+    <div id="modalWeRo" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalWeRo')">&times;</span>
+            <h4>Projet Européen WeRo</h4>
+            <div class="modal-section fr">
+                <h5>Contexte</h5>
+                <p>Lancement stratégique par BoursoBank de la nouvelle application de paiement européen (WeRo).</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Le Défi Technique</h5>
+                <p>Créer et déployer l'intégralité des environnements techniques "from scratch" sous une contrainte de temps très stricte (6 mois).</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Architecture & Outils</h5>
+                <p>Serveurs Linux/Windows, bases de données dédiées, flux réseaux hautement sécurisés (micro-segmentation).</p>
+            </div>
+            <div class="modal-section fr">
+                <h5>Résultat (ROI)</h5>
+                <p>Mise à disposition anticipée des environnements aux équipes de développement, garantissant le respect du time-to-market critique de l'application bancaire.</p>
+            </div>
+            <!-- EN -->
+            <div class="modal-section en">
+                <h5>Context & Challenge</h5>
+                <p>Strategic launch of the new European payment application (WeRo). The challenge was building and deploying all technical environments from scratch within a strict 6-month timeframe.</p>
+            </div>
+            <div class="modal-section en">
+                <h5>Results</h5>
+                <p>Early provisioning of environments for dev teams, ensuring the critical time-to-market for this core banking application.</p>
+            </div>
         </div>
     </div>
 
@@ -1720,7 +1433,7 @@
         }
 
         // ----------------------------------------
-        // 3. Gestion des Modales (Contact & CV)
+        // 3. Gestion des Modales (Projets, Contact & CV)
         // ----------------------------------------
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('show');
