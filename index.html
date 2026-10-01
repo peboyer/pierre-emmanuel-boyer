@@ -166,12 +166,12 @@
         /* Modales */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); overflow-y: auto;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); align-items: center; justify-content: center;
         }
-        .modal.show { display: flex; padding: 1rem; }
+        .modal.show { display: flex; }
         .modal-content {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
-            padding: 2.5rem; width: 100%; max-width: 700px; position: relative; margin: auto;
+            padding: 2.5rem; width: 90%; max-width: 700px; position: relative; max-height: 90vh; overflow-y: auto;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: var(--secondary-color); transition: color 0.2s; }
@@ -310,14 +310,12 @@
         </h2>
         <div class="contact-info reveal">
             <span>📍 Magny-les-Hameaux, Île-de-France, France</span> &nbsp;|&nbsp;
-            <!-- Ouvre le formulaire de contact interne plutôt que mailto direct pour un look plus pro -->
             <a href="javascript:void(0)" onclick="openModal('contactModal')">✉️ pe.boyer@gmail.com</a>
         </div>
         <div class="header-buttons reveal">
             <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">
                 <span class="fr">Profil LinkedIn</span><span class="en">LinkedIn Profile</span>
             </a>
-            <!-- BOUTON CV MODIFIÉ -->
             <a href="javascript:void(0)" onclick="openModal('cvModal')" class="btn btn-cv">
                 <span class="fr">Télécharger le CV (PDF)</span><span class="en">Download Resume (PDF)</span>
             </a>
@@ -327,27 +325,27 @@
     <!-- KPI BANNER -->
     <div class="kpi-banner reveal">
         <div class="kpi-item">
-            <div class="kpi-number" data-target="20">0</div>
+            <div class="kpi-number" data-target="8">0</div>
             <div class="kpi-label">
-                <span class="fr">Années d'expertise</span><span class="en">Years of Expertise</span>
+                <span class="fr">Années de chefferie de projets</span><span class="en">Years of Project Management</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="22000">0</div>
+            <div class="kpi-number" data-target="13">0</div>
             <div class="kpi-label">
-                <span class="fr">Postes Migrés</span><span class="en">Devices Migrated</span>
+                <span class="fr">Années d'Administration Systèmes et Messagerie</span><span class="en">Years of Systems & Messaging Admin</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="15000">0</div>
+            <div class="kpi-number" data-target="17">0</div>
             <div class="kpi-label">
-                <span class="fr">Utilisateurs O365</span><span class="en">O365 Users</span>
+                <span class="fr">Années de Support utilisateurs</span><span class="en">Years of User Support</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="97">0</div>
+            <div class="kpi-number" data-target="25">0</div>
             <div class="kpi-label">
-                <span class="fr">% Satisfaction</span><span class="en">% Satisfaction</span>
+                <span class="fr">Ans d'expérience IT</span><span class="en">Years of IT Experience</span>
             </div>
         </div>
     </div>
@@ -419,9 +417,11 @@
             <h3><span class="fr">Projets Phares</span><span class="en">Key Projects</span></h3>
             <div class="case-grid">
                 
-                <!-- Projet 1 -->
                 <div class="case-card" onclick="openModal('modalWinHello')">
-                    <h4>Windows Hello for Business</h4>
+                    <h4>
+                        <span class="fr">Windows Hello for Business</span>
+                        <span class="en">Windows Hello for Business</span>
+                    </h4>
                     <p>
                         <span class="fr">Déploiement mondial sécurisé pour 22 000 collaborateurs.</span>
                         <span class="en">Secure global deployment for 22,000 employees.</span>
@@ -432,9 +432,11 @@
                     <span class="read-more"><span class="fr">Voir le cas pratique</span><span class="en">Read Case Study</span> ➔</span>
                 </div>
                 
-                <!-- Projet 2 -->
                 <div class="case-card" onclick="openModal('modalO365')">
-                    <h4>Migration Globale Office 365</h4>
+                    <h4>
+                        <span class="fr">Migration Globale Office 365</span>
+                        <span class="en">Global Office 365 Migration</span>
+                    </h4>
                     <p>
                         <span class="fr">Standardisation des outils (Domino vers O365) pour 15 000 utilisateurs.</span>
                         <span class="en">Tools standardization (Domino to O365) for 15,000 users.</span>
@@ -445,9 +447,11 @@
                     <span class="read-more"><span class="fr">Voir le cas pratique</span><span class="en">Read Case Study</span> ➔</span>
                 </div>
 
-                <!-- Projet 3 -->
                 <div class="case-card" onclick="openModal('modalWeRo')">
-                    <h4>Projet Européen WeRo</h4>
+                    <h4>
+                        <span class="fr">Préparation de l'application WeRo</span>
+                        <span class="en">WeRo Application Preparation</span>
+                    </h4>
                     <p>
                         <span class="fr">Architecture et mise à disposition rapide des environnements de paiement.</span>
                         <span class="en">Architecture and rapid provisioning of payment environments.</span>
@@ -1281,7 +1285,10 @@
     <div id="modalWinHello" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalWinHello')">&times;</span>
-            <h4>Windows Hello for Business</h4>
+            <h4>
+                <span class="fr">Windows Hello for Business</span>
+                <span class="en">Windows Hello for Business</span>
+            </h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Authentification réseau vieillissante face à de nouvelles menaces de sécurité nécessitant l'adoption globale du MFA (Multi-Factor Authentication).</p>
@@ -1318,7 +1325,10 @@
     <div id="modalO365" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalO365')">&times;</span>
-            <h4>Migration Globale Office 365</h4>
+            <h4>
+                <span class="fr">Migration Globale Office 365</span>
+                <span class="en">Global Office 365 Migration</span>
+            </h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Écosystème de collaboration hétérogène (Lotus Domino en fin de vie) freinant la mobilité et la communication inter-filiales du groupe VINCI.</p>
@@ -1351,7 +1361,10 @@
     <div id="modalWeRo" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalWeRo')">&times;</span>
-            <h4>Projet Européen WeRo</h4>
+            <h4>
+                <span class="fr">Préparation de l'application WeRo</span>
+                <span class="en">WeRo Application Preparation</span>
+            </h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Lancement stratégique par BoursoBank de la nouvelle application de paiement européen (WeRo).</p>
@@ -1390,7 +1403,9 @@
             onclick="enableEditMode()"
             class="admin-link"
             aria-label="Activer le mode d'édition de page"
-            >⚙️ Mode Édition</a
+            title="Mode Édition"
+            style="font-size: 1.2rem;"
+            >⚙️</a
         >
     </footer>
 
@@ -1487,14 +1502,14 @@
             counters.forEach(counter => {
                 const animate = () => {
                     const value = +counter.getAttribute('data-target');
-                    const data = +counter.innerText.replace('%', '');
+                    const data = +counter.innerText;
                     const time = value / speed;
 
                     if (data < value) {
-                        counter.innerText = Math.ceil(data + time) + (value === 97 ? '%' : '');
+                        counter.innerText = Math.ceil(data + time);
                         setTimeout(animate, 20);
                     } else {
-                        counter.innerText = value + (value === 97 ? '%' : '');
+                        counter.innerText = value;
                     }
                 }
                 animate();
@@ -1505,9 +1520,9 @@
         // 5. Fonction Éditeur (Modification de texte)
         // ----------------------------------------
         function enableEditMode() {
-            const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
+            const pin = prompt("Entrez le code d'accès :");
 
-            if (pin === "1234") {
+            if (pin === "OptiPlex") {
                 const mainContent = document.getElementById('main-content');
                 if(mainContent) {
                     mainContent.contentEditable = "true";
