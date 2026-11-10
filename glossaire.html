@@ -56,26 +56,13 @@
 
         .container { max-width: 1000px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         
-        /* Search Bar */
-        .search-container {
-            background: var(--card-bg); padding: 1.5rem; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
-        }
+        .search-container { background: var(--card-bg); padding: 1.5rem; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border: 1px solid var(--border-color); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
         .search-icon { font-size: 1.5rem; }
-        .search-input {
-            width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem;
-            background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif;
-        }
+        .search-input { width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; }
         .search-input:focus { outline: 2px solid var(--accent-color); }
 
-        /* Glossary Grid */
         .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-        
-        .term-card {
-            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s;
-            border-left: 4px solid var(--accent-color);
-        }
+        .term-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border-left: 4px solid var(--accent-color); }
         .term-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         .term-title { color: var(--primary-color); font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
         .term-category { font-size: 0.75rem; background: var(--badge-bg); color: var(--badge-text); padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; text-transform: uppercase;}
@@ -90,11 +77,12 @@
 </head>
 <body>
     <nav>
-        <a href="index.html" class="nav-logo">PEB.</a>
+        <a href="index.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-top: -3px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
         <div class="nav-actions">
             <a href="index.html" class="header-btn">⬅️ Portfolio</a>
             <a href="flashcards.html" class="header-btn">🃏 Flashcards</a>
             <a href="quizz.html" class="header-btn">🎯 Quizz</a>
+            <a href="dashboard.html" class="header-btn">📊 Dashboard</a>
             <button class="header-btn" onclick="toggleDarkMode()" id="darkModeToggle">🌙 Sombre</button>
         </div>
     </nav>
@@ -105,80 +93,20 @@
     </header>
 
     <main class="container">
-        <!-- Barre de recherche -->
         <div class="search-container">
             <span class="search-icon">🔍</span>
             <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un terme, un acronyme (ex: PMBOK, MCO...)" onkeyup="filterGlossary()">
         </div>
-
-        <!-- Grille des termes -->
         <div class="glossary-grid" id="glossaryGrid">
-            
-            <div class="term-card">
-                <div class="term-title">MCO <span class="term-category">Infrastructure</span></div>
-                <div class="term-def"><strong>Maintien en Condition Opérationnelle.</strong> Ensemble des mesures (préventives et curatives) prises pour garantir qu'un système informatique ou une application reste disponible et performant pour les utilisateurs.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">PAM <span class="term-category">Sécurité</span></div>
-                <div class="term-def"><strong>Privileged Access Management.</strong> Solution de cybersécurité centralisant et surveillant les accès aux comptes à hauts privilèges (ex: comptes administrateurs de serveurs).</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div>
-                <div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance définissant le rôle de chaque partie prenante pour chaque tâche d'un projet.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">UAT <span class="term-category">Qualité</span></div>
-                <div class="term-def"><strong>User Acceptance Testing.</strong> Phase finale de test (Recette) où les utilisateurs finaux valident que la solution répond bien à leurs besoins métiers avant la mise en production.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">MDM <span class="term-category">Infrastructure</span></div>
-                <div class="term-def"><strong>Mobile Device Management.</strong> Logiciel permettant de sécuriser, surveiller, gérer et supporter les appareils mobiles (smartphones, tablettes) déployés dans l'entreprise (ex: Intune, AirWatch).</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">SLA <span class="term-category">Service (ITIL)</span></div>
-                <div class="term-def"><strong>Service Level Agreement.</strong> Contrat ou accord entre un fournisseur de services IT et un client, définissant le niveau de service attendu (temps de résolution, disponibilité à 99.9%, etc.).</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">PMBOK <span class="term-category">Méthodologie</span></div>
-                <div class="term-def"><strong>Project Management Body of Knowledge.</strong> Guide fondamental édité par le PMI (Project Management Institute) recensant les bonnes pratiques mondiales en gestion de projet prédictive et hybride.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">ITIL <span class="term-category">Méthodologie</span></div>
-                <div class="term-def"><strong>Information Technology Infrastructure Library.</strong> Référentiel mondial des meilleures pratiques pour la gestion des services informatiques (ITSM), axé sur la co-création de valeur.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">SMTPS <span class="term-category">Réseau / Sécurité</span></div>
-                <div class="term-def"><strong>Simple Mail Transfer Protocol Secure.</strong> Protocole de communication standard sécurisé (chiffré via TLS/SSL) utilisé pour le transfert de courriers électroniques entre serveurs.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">PKI <span class="term-category">Sécurité</span></div>
-                <div class="term-def"><strong>Public Key Infrastructure.</strong> Infrastructure à clés publiques. Système permettant de créer, gérer, distribuer et révoquer des certificats numériques pour sécuriser les communications.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">MVP <span class="term-category">Agile</span></div>
-                <div class="term-def"><strong>Minimum Viable Product.</strong> Version d'un produit avec juste assez de fonctionnalités pour être utilisable par les premiers clients, permettant de recueillir des feedbacks rapidement.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">Change Management <span class="term-category">Gestion de Projet</span></div>
-                <div class="term-def">Conduite du changement. Ensemble d'actions visant à accompagner les utilisateurs finaux dans l'adoption d'un nouvel outil ou processus, garantissant ainsi le succès du projet.</div>
-            </div>
-
-            <!-- Message si aucun résultat -->
-            <div id="noResults" class="no-results">
-                Aucun terme ne correspond à votre recherche. 🧐
-            </div>
-
+            <div class="term-card"><div class="term-title">MCO <span class="term-category">Infrastructure</span></div><div class="term-def"><strong>Maintien en Condition Opérationnelle.</strong> Ensemble des mesures (préventives et curatives) prises pour garantir qu'un système reste disponible.</div></div>
+            <div class="term-card"><div class="term-title">PAM <span class="term-category">Sécurité</span></div><div class="term-def"><strong>Privileged Access Management.</strong> Cybersécurité centralisant les accès aux comptes à hauts privilèges.</div></div>
+            <div class="term-card"><div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div><div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance des rôles.</div></div>
+            <div class="term-card"><div class="term-title">UAT <span class="term-category">Qualité</span></div><div class="term-def"><strong>User Acceptance Testing.</strong> Phase de recette où les utilisateurs finaux valident la solution.</div></div>
+            <div class="term-card"><div class="term-title">MDM <span class="term-category">Infrastructure</span></div><div class="term-def"><strong>Mobile Device Management.</strong> Logiciel pour sécuriser et gérer la flotte mobile.</div></div>
+            <div class="term-card"><div class="term-title">SLA <span class="term-category">Service (ITIL)</span></div><div class="term-def"><strong>Service Level Agreement.</strong> Accord définissant le niveau de service attendu.</div></div>
+            <div class="term-card"><div class="term-title">PMBOK <span class="term-category">Méthodologie</span></div><div class="term-def"><strong>Project Management Body of Knowledge.</strong> Guide fondamental édité par le PMI.</div></div>
+            <div class="term-card"><div class="term-title">ITIL <span class="term-category">Méthodologie</span></div><div class="term-def"><strong>Information Technology Infrastructure Library.</strong> Référentiel des meilleures pratiques ITSM.</div></div>
+            <div id="noResults" class="no-results">Aucun terme ne correspond à votre recherche. 🧐</div>
         </div>
     </main>
 
@@ -192,14 +120,12 @@
         function filterGlossary() {
             const input = document.getElementById('searchInput');
             const filter = input.value.toLowerCase();
-            const grid = document.getElementById('glossaryGrid');
-            const cards = grid.getElementsByClassName('term-card');
+            const cards = document.getElementsByClassName('term-card');
             let hasResults = false;
 
             for (let i = 0; i < cards.length; i++) {
-                const title = cards[i].querySelector('.term-title').textContent || cards[i].querySelector('.term-title').innerText;
-                const def = cards[i].querySelector('.term-def').textContent || cards[i].querySelector('.term-def').innerText;
-                
+                const title = cards[i].querySelector('.term-title').innerText;
+                const def = cards[i].querySelector('.term-def').innerText;
                 if (title.toLowerCase().indexOf(filter) > -1 || def.toLowerCase().indexOf(filter) > -1) {
                     cards[i].style.display = "";
                     hasResults = true;
@@ -207,13 +133,7 @@
                     cards[i].style.display = "none";
                 }
             }
-
-            const noResultsMsg = document.getElementById('noResults');
-            if (!hasResults) {
-                noResultsMsg.style.display = "block";
-            } else {
-                noResultsMsg.style.display = "none";
-            }
+            document.getElementById('noResults').style.display = hasResults ? "none" : "block";
         }
     </script>
 </body>

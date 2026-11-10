@@ -272,7 +272,7 @@
         }
         /* Impression */
         @media print {
-            body { background: white; color: black; } nav, .fab, .header-buttons, .kpi-banner, .admin-link, #case-studies, .modal { display: none; }
+            body { background: white; color: black; } nav, .fab, .header-buttons, .kpi-banner, .admin-link, #case-studies { display: none; }
             header { background: white; color: black; padding: 2rem 0; } header h1 { color: black; } header h2 { color: #555; }
             .contact-info a { color: black; border-bottom: none; } .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
             .container { max-width: 100% !important; margin: 0; padding: 0; } .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
@@ -284,13 +284,13 @@
 
     <!-- NAVIGATION -->
     <nav>
-        <div style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">PE BOYER</div>
+        <a href="index.html" style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-top: -4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
         <ul class="nav-links">
-            <li><a href="#summary"><span class="fr">Profil</span><span class="en">Profile</span></a></li>
-            <li><a href="#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
-            <li><a href="#case-studies"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
-            <li><a href="#experiences"><span class="fr">Expériences</span><span class="en">Experience</span></a></li>
-            <li><a href="#education"><span class="fr">Formations</span><span class="en">Education</span></a></li>
+            <li><a href="index.html#summary"><span class="fr">Profil</span><span class="en">Profile</span></a></li>
+            <li><a href="index.html#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
+            <li><a href="index.html#experiences"><span class="fr">Expériences</span><span class="en">Experience</span></a></li>
+            <li><a href="flashcards.html"><span class="fr">Flashcards</span><span class="en">Flashcards</span></a></li>
+            <li><a href="quizz.html"><span class="fr">Quizz IT</span><span class="en">IT Quiz</span></a></li>
         </ul>
         <div class="nav-actions">
             <!-- Bouton Langue -->
@@ -302,8 +302,8 @@
 
     <!-- HEADER -->
     <header>
-        <img src="photo.jpg" alt="Photo de profil de Pierre-Emmanuel BOYER" class="profile-photo" id="profile-img">
-        <h1 class="reveal">Pierre-Emmanuel BOYER</h1>
+        <img src="photo.jpg" alt="Photo de profil de Pierre-Emmanuel Boyer" class="profile-photo" id="profile-img">
+        <h1 class="reveal">Pierre-Emmanuel Boyer</h1>
         <h2 class="reveal">
             <span class="fr">Chef de Projet Infrastructures IT</span>
             <span class="en">IT Infrastructure Project Manager</span>
@@ -316,7 +316,7 @@
             <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">
                 <span class="fr">Profil LinkedIn</span><span class="en">LinkedIn Profile</span>
             </a>
-            <a href="javascript:void(0)" onclick="openModal('cvModal')" class="btn btn-cv">
+            <a href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf" download class="btn btn-cv">
                 <span class="fr">Télécharger le CV (PDF)</span><span class="en">Download Resume (PDF)</span>
             </a>
         </div>
@@ -325,27 +325,27 @@
     <!-- KPI BANNER -->
     <div class="kpi-banner reveal">
         <div class="kpi-item">
-            <div class="kpi-number" data-target="8">0</div>
+            <div class="kpi-number" data-target="20">0</div>
             <div class="kpi-label">
-                <span class="fr">Années de chefferie de projets</span><span class="en">Years of Project Management</span>
+                <span class="fr">Années d'expertise</span><span class="en">Years of Expertise</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="13">0</div>
+            <div class="kpi-number" data-target="22000">0</div>
             <div class="kpi-label">
-                <span class="fr">Années d'Administration Systèmes et Messagerie</span><span class="en">Years of Systems & Messaging Admin</span>
+                <span class="fr">Postes Migrés</span><span class="en">Devices Migrated</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="17">0</div>
+            <div class="kpi-number" data-target="15000">0</div>
             <div class="kpi-label">
-                <span class="fr">Années de Support utilisateurs</span><span class="en">Years of User Support</span>
+                <span class="fr">Utilisateurs O365</span><span class="en">O365 Users</span>
             </div>
         </div>
         <div class="kpi-item">
-            <div class="kpi-number" data-target="25">0</div>
+            <div class="kpi-number" data-target="97">0</div>
             <div class="kpi-label">
-                <span class="fr">Ans d'expérience IT</span><span class="en">Years of IT Experience</span>
+                <span class="fr">% Satisfaction</span><span class="en">% Satisfaction</span>
             </div>
         </div>
     </div>
@@ -402,11 +402,13 @@
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>VMware AirWatch</strong> Professional Accreditation: Enterprise Mobility</li>
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>Exchange 2010</strong> (Installation, config et dépannage)</li>
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>Windows 2000 server</strong></li>
+                        <li style="margin-bottom: 0.6rem;">📜 Présenter avec Impact & Conviction</li>
                     </ul>
                     <ul class="en" style="list-style: none; padding-left: 0; font-size: 0.95rem;">
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>VMware AirWatch</strong> Professional Accreditation: Enterprise Mobility</li>
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>Exchange 2010</strong> (Install, Config & Troubleshooting)</li>
                         <li style="margin-bottom: 0.6rem;">🏅 <strong>Windows 2000 server</strong></li>
+                        <li style="margin-bottom: 0.6rem;">📜 Presenting with Impact & Conviction</li>
                     </ul>
                 </div>
             </div>
@@ -418,10 +420,7 @@
             <div class="case-grid">
                 
                 <div class="case-card" onclick="openModal('modalWinHello')">
-                    <h4>
-                        <span class="fr">Windows Hello for Business</span>
-                        <span class="en">Windows Hello for Business</span>
-                    </h4>
+                    <h4>Windows Hello for Business</h4>
                     <p>
                         <span class="fr">Déploiement mondial sécurisé pour 22 000 collaborateurs.</span>
                         <span class="en">Secure global deployment for 22,000 employees.</span>
@@ -433,10 +432,7 @@
                 </div>
                 
                 <div class="case-card" onclick="openModal('modalO365')">
-                    <h4>
-                        <span class="fr">Migration Globale Office 365</span>
-                        <span class="en">Global Office 365 Migration</span>
-                    </h4>
+                    <h4>Migration Globale Office 365</h4>
                     <p>
                         <span class="fr">Standardisation des outils (Domino vers O365) pour 15 000 utilisateurs.</span>
                         <span class="en">Tools standardization (Domino to O365) for 15,000 users.</span>
@@ -448,10 +444,7 @@
                 </div>
 
                 <div class="case-card" onclick="openModal('modalWeRo')">
-                    <h4>
-                        <span class="fr">Préparation de l'application WeRo</span>
-                        <span class="en">WeRo Application Preparation</span>
-                    </h4>
+                    <h4>Projet Européen WeRo</h4>
                     <p>
                         <span class="fr">Architecture et mise à disposition rapide des environnements de paiement.</span>
                         <span class="en">Architecture and rapid provisioning of payment environments.</span>
@@ -1207,32 +1200,17 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- BOUTON FLOTTANT (FAB)                      -->
+    <!-- MODALES (FORMULAIRE & ETUDES DE CAS)       -->
     <!-- ========================================== -->
-
-    <!-- Bouton Contact -->
-    <a
-        href="javascript:void(0)"
-        onclick="openModal('contactModal')"
-        class="fab"
-        title="Me contacter"
-        aria-label="Ouvrir le formulaire de contact"
-    >
-        ✉️
-    </a>
-
-    <!-- ========================================== -->
-    <!-- MODALES (FORMULAIRES)                      -->
-    <!-- ========================================== -->
-
-    <!-- Modal Contact -->
+    
+    <!-- Modal Contact (Web3Forms) -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('contactModal')">&times;</span>
             <h4><span class="fr">Me contacter</span><span class="en">Contact Me</span></h4>
+            
             <form action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="1ebea79c-c790-458b-8089-9d2670cc134e">
-                <input type="hidden" name="subject" value="Nouveau message depuis le Portfolio">
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Nom / Name" required>
                 </div>
@@ -1240,7 +1218,7 @@
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Votre message... / Your message..." required rows="5"></textarea>
+                    <textarea name="message" class="form-control" placeholder="Message..." required rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-cv">
                     <span class="fr">Envoyer le message</span><span class="en">Send Message</span>
@@ -1249,46 +1227,11 @@
         </div>
     </div>
 
-    <!-- Modal Téléchargement CV -->
-    <div id="cvModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('cvModal')">&times;</span>
-            <h4><span class="fr">Télécharger mon CV</span><span class="en">Download my Resume</span></h4>
-            <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--text-color);">
-                <span class="fr">Pour accéder à mon CV au format PDF, merci de m'indiquer vos coordonnées. Le téléchargement se lancera automatiquement après l'envoi.</span>
-                <span class="en">To access my resume in PDF format, please provide your contact details. The download will start automatically after submission.</span>
-            </p>
-            <form action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="1ebea79c-c790-458b-8089-9d2670cc134e">
-                <!-- Sujet du mail -->
-                <input type="hidden" name="subject" value="Nouvelle demande de CV depuis le Portfolio !">
-                <!-- Redirection automatique vers le PDF -->
-                <input type="hidden" name="redirect" value="https://www.pierre-emmanuel-boyer.fr/Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf">
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Nom et Prénom / Full Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Adresse Email / Email Address" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="company" class="form-control" placeholder="Entreprise / Company (Optionnel)">
-                </div>
-                <button type="submit" class="btn btn-cv">
-                    <span class="fr">Accéder au CV</span><span class="en">Access Resume</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modales Projets Phares -->
     <!-- Modal Projet 1 : Windows Hello -->
     <div id="modalWinHello" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalWinHello')">&times;</span>
-            <h4>
-                <span class="fr">Windows Hello for Business</span>
-                <span class="en">Windows Hello for Business</span>
-            </h4>
+            <h4>Windows Hello for Business</h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Authentification réseau vieillissante face à de nouvelles menaces de sécurité nécessitant l'adoption globale du MFA (Multi-Factor Authentication).</p>
@@ -1305,7 +1248,6 @@
                 <h5>Résultat (ROI)</h5>
                 <p>Migration finale de 15 000 postes achevée en 6 mois chrono. Taux d'adoption et de satisfaction mesuré à 97%, avec une réduction drastique des tickets support liés aux mots de passe.</p>
             </div>
-            <!-- EN -->
             <div class="modal-section en">
                 <h5>Context</h5>
                 <p>Aging network authentication facing new security threats, requiring global adoption of MFA.</p>
@@ -1325,10 +1267,7 @@
     <div id="modalO365" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalO365')">&times;</span>
-            <h4>
-                <span class="fr">Migration Globale Office 365</span>
-                <span class="en">Global Office 365 Migration</span>
-            </h4>
+            <h4>Migration Globale Office 365</h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Écosystème de collaboration hétérogène (Lotus Domino en fin de vie) freinant la mobilité et la communication inter-filiales du groupe VINCI.</p>
@@ -1345,7 +1284,6 @@
                 <h5>Résultat (ROI)</h5>
                 <p>Standardisation des outils de communication à l'échelle mondiale, optimisation drastique des coûts de licences et d'infrastructure IT locale.</p>
             </div>
-            <!-- EN -->
             <div class="modal-section en">
                 <h5>Context & Challenge</h5>
                 <p>Heterogeneous collaboration ecosystem (legacy Lotus Domino) hindering global mobility. The challenge was migrating 15,000 users across 150 subsidiaries worldwide.</p>
@@ -1361,10 +1299,7 @@
     <div id="modalWeRo" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modalWeRo')">&times;</span>
-            <h4>
-                <span class="fr">Préparation de l'application WeRo</span>
-                <span class="en">WeRo Application Preparation</span>
-            </h4>
+            <h4>Projet Européen WeRo</h4>
             <div class="modal-section fr">
                 <h5>Contexte</h5>
                 <p>Lancement stratégique par BoursoBank de la nouvelle application de paiement européen (WeRo).</p>
@@ -1381,7 +1316,6 @@
                 <h5>Résultat (ROI)</h5>
                 <p>Mise à disposition anticipée des environnements aux équipes de développement, garantissant le respect du time-to-market critique de l'application bancaire.</p>
             </div>
-            <!-- EN -->
             <div class="modal-section en">
                 <h5>Context & Challenge</h5>
                 <p>Strategic launch of the new European payment application (WeRo). The challenge was building and deploying all technical environments from scratch within a strict 6-month timeframe.</p>
@@ -1394,28 +1328,25 @@
     </div>
 
     <!-- ========================================== -->
+    <!-- BOUTON FLOTTANT (FAB)                      -->
+    <!-- ========================================== -->
+    <button class="fab" onclick="openModal('contactModal')" title="Me contacter" aria-label="Ouvrir le formulaire de contact">
+        ✉️
+    </button>
+
+    <!-- ========================================== -->
     <!-- PIED DE PAGE & MODE ÉDITION                -->
     <!-- ========================================== -->
     <footer>
-        <p>&copy; 2026 Pierre-Emmanuel Boyer. Fait avec Gemini Pro.</p>
-        <!-- Bouton caché permettant d'éditer le site -->
-        <a
-            onclick="enableEditMode()"
-            class="admin-link"
-            aria-label="Activer le mode d'édition de page"
-            title="Mode Édition"
-            style="font-size: 1.2rem;"
-            >⚙️</a
-        >
+        <p>&copy; 2026 Pierre-Emmanuel Boyer. Fait avec passion.</p>
+        <a onclick="enableEditMode()" class="admin-link" aria-label="Activer le mode d'édition de page">⚙️ Mode Édition</a>
     </footer>
 
     <!-- ========================================== -->
     <!-- SCRIPTS JAVASCRIPT                         -->
     <!-- ========================================== -->
     <script>
-        // ----------------------------------------
-        // 1. Fonctionnalité du Multilinguisme
-        // ----------------------------------------
+        // --- GESTION DU MULTILINGUISME ---
         function toggleLanguage() {
             const htmlTag = document.documentElement;
             const btn = document.getElementById('langToggle');
@@ -1430,9 +1361,7 @@
             }
         }
 
-        // ----------------------------------------
-        // 2. Fonctionnalité du Mode Sombre
-        // ----------------------------------------
+        // --- GESTION DU MODE SOMBRE ---
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('darkModeToggle');
@@ -1447,9 +1376,7 @@
             btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
         }
 
-        // ----------------------------------------
-        // 3. Gestion des Modales (Projets, Contact & CV)
-        // ----------------------------------------
+        // --- GESTION DES MODALES ---
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -1467,21 +1394,12 @@
             }
         }
 
-        // ----------------------------------------
-        // 4. Animations au défilement (Scroll Reveal)
-        // ----------------------------------------
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.15
-        };
-
+        // --- ANIMATIONS AU DÉFILEMENT (IntersectionObserver) ---
+        const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.15 };
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-
-                    // Lancement de l'animation des nombres uniquement quand la bannière est visible
                     if (entry.target.classList.contains('kpi-banner') && !entry.target.dataset.animated) {
                         animateCounters();
                         entry.target.dataset.animated = "true";
@@ -1491,53 +1409,42 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(element => {
-            revealObserver.observe(element);
-        });
+        document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
 
         function animateCounters() {
             const counters = document.querySelectorAll('.kpi-number');
-            const speed = 150;
-
+            const speed = 150; 
             counters.forEach(counter => {
                 const animate = () => {
                     const value = +counter.getAttribute('data-target');
-                    const data = +counter.innerText;
+                    const data = +counter.innerText.replace('%', '');
                     const time = value / speed;
-
                     if (data < value) {
-                        counter.innerText = Math.ceil(data + time);
+                        counter.innerText = Math.ceil(data + time) + (value === 97 ? '%' : '');
                         setTimeout(animate, 20);
                     } else {
-                        counter.innerText = value;
+                        counter.innerText = value + (value === 97 ? '%' : '');
                     }
                 }
                 animate();
             });
         }
 
-        // ----------------------------------------
-        // 5. Fonction Éditeur (Modification de texte)
-        // ----------------------------------------
+        // --- MODE ÉDITEUR ---
         function enableEditMode() {
-            const pin = prompt("Entrez le code d'accès :");
-
-            if (pin === "OptiPlex") {
+            const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
+            if (pin === "1234") {
                 const mainContent = document.getElementById('main-content');
                 if(mainContent) {
                     mainContent.contentEditable = "true";
-                    alert("Mode édition activé ! Vous pouvez cliquer sur les textes pour les modifier.");
-
+                    alert("Mode édition activé ! Note : Les textes cachés (autre langue) peuvent être complexes à éditer. Sauvegardez prudemment.");
+                    
                     const saveBtn = document.createElement('button');
                     saveBtn.innerText = "💾 Télécharger index.html";
                     saveBtn.className = "fab save-fab";
-                    saveBtn.style.width = "auto";
-                    saveBtn.style.padding = "0 1.5rem";
-                    saveBtn.style.borderRadius = "30px";
-                    saveBtn.style.bottom = "100px";
-                    saveBtn.style.fontSize = "1rem";
-                    saveBtn.style.fontFamily = "Inter, sans-serif";
-                    saveBtn.style.fontWeight = "600";
+                    saveBtn.style.width = "auto"; saveBtn.style.padding = "0 1.5rem";
+                    saveBtn.style.borderRadius = "30px"; saveBtn.style.bottom = "100px"; 
+                    saveBtn.style.fontSize = "1rem"; saveBtn.style.fontFamily = "Inter, sans-serif"; saveBtn.style.fontWeight = "600";
                     saveBtn.onclick = saveModifications;
                     document.body.appendChild(saveBtn);
                 }
@@ -1548,33 +1455,26 @@
 
         function saveModifications() {
             const mainContent = document.getElementById('main-content');
-            if(mainContent) {
-                mainContent.contentEditable = "false";
-            }
-
+            if(mainContent) mainContent.contentEditable = "false";
+            
             const saveBtn = document.querySelector('.save-fab');
             if(saveBtn) saveBtn.remove();
-
+            
             const profileImg = document.getElementById('profile-img');
-            if (profileImg) {
-                profileImg.setAttribute('src', 'photo.jpg');
-            }
-
-            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-
+            if (profileImg) profileImg.setAttribute('src', 'photo.jpg');
+            
+            // Correction décisive de la syntaxe JS pour le retour à la ligne (
+)
+            const htmlContent = "<!DOCTYPE html>
+" + document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
-
+            
             const a = document.createElement('a');
-            a.href = url;
-            a.download = "index.html";
-            document.body.appendChild(a);
-            a.click();
-
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            alert("Fichier téléchargé avec succès ! Remplacez l'ancien fichier 'index.html' de votre dossier par celui-ci.");
+            a.href = url; a.download = "index.html"; document.body.appendChild(a); a.click();
+            document.body.removeChild(a); URL.revokeObjectURL(url);
+            
+            alert("Fichier téléchargé avec succès !");
         }
     </script>
 </body>

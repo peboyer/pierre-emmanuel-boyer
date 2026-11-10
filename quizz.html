@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz & Évaluation IT - Pierre-Emmanuel Boyer</title>
-    <meta name="description" content="Évaluation en gestion de projet IT : 100 questions sur Scrum, Cycle en V, PMP, ITIL 4, PRINCE2, Gouvernance et Infra.">
+    <meta name="description" content="Évaluation en gestion de projet IT : Scrum, Cycle en V, PMP, ITIL 4, PRINCE2.">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,20 +45,17 @@
 
         nav { position: sticky; top: 0; z-index: 1000; background-color: var(--nav-bg); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
         .nav-logo { font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none; }
-        .nav-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
         .header-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
         .header-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
         header { background: var(--header-bg); color: white; padding: 4rem 1.5rem 5rem; text-align: center; }
         header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 650px; margin: 0 auto; }
+        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
 
         .container { max-width: 900px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         
         .quiz-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .quiz-header-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 0.75rem; margin-bottom: 1rem; }
-        .quiz-box h2 { color: var(--primary-color); font-size: 1.8rem; }
-        .bank-badge { background: rgba(14, 165, 233, 0.15); color: var(--accent-color); padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+        .quiz-box h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem; margin-bottom: 1rem; font-size: 1.8rem; }
         
         .q-block { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-color); }
         .q-block h5 { font-size: 1.15rem; color: var(--primary-color); margin-bottom: 1rem; }
@@ -86,28 +83,23 @@
 </head>
 <body>
     <nav>
-        <a href="index.html" class="nav-logo">PEB.</a>
+        <a href="index.html" class="nav-logo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-top: -4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
         <div class="nav-actions">
             <a href="index.html" class="header-btn">⬅️ Portfolio</a>
             <a href="flashcards.html" class="header-btn">🃏 Flashcards</a>
-            <a href="glossaire.html" class="header-btn">📖 Glossaire</a>
-            <a href="dashboard.html" class="header-btn">📊 Dashboard</a>
             <button class="header-btn" onclick="toggleDarkMode()" id="darkModeToggle">🌙 Sombre</button>
         </div>
     </nav>
 
     <header>
         <h1>Évaluation Globale IT</h1>
-        <p>Simulateur d'examen aléatoire : 100 questions certifiantes (Scrum, PMP, ITIL 4, PRINCE2, Cycle en V, Infra).</p>
+        <p>Simulateur d'examen aléatoire sur les méthodologies de gestion de projet.</p>
     </header>
 
     <main class="container">
         <div class="quiz-box">
-            <div class="quiz-header-bar">
-                <h2>Testez vos connaissances</h2>
-                <span class="bank-badge" id="bankCounter">Banque : 100 questions</span>
-            </div>
-            <p style="color: var(--secondary-color); margin-bottom: 2rem; font-size: 1.05rem;">Tirage aléatoire intelligent de 10 questions avec système anti-répétition entre deux sessions consécutives.</p>
+            <h2>Testez vos connaissances</h2>
+            <p style="color: var(--secondary-color); margin-bottom: 2rem; font-size: 1.05rem;">Une sélection unique de 10 questions tirées de notre banque de données (Scrum, Cycle en V, PMI, Waterfall, ITIL, PRINCE2).</p>
             
             <form id="globalQuizForm">
                 <div id="quizQuestionsContainer"></div>
@@ -116,9 +108,9 @@
 
             <div id="quizResults" class="quiz-results">
                 <div class="score-display" id="scoreDisplay">0%</div>
-                <h4 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.3rem;">Analyse détaillée de vos réponses :</h4>
+                <h4 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.3rem;">Analyse de vos réponses :</h4>
                 <div id="analysisContainer"></div>
-                <button class="btn-global-quiz" style="margin-top: 2rem;" onclick="resetQuiz()">Nouveau tirage de 10 questions 🔄</button>
+                <button class="btn-global-quiz" style="margin-top: 2rem;" onclick="resetQuiz()">Recommencer un nouveau Quizz</button>
             </div>
         </div>
     </main>
@@ -130,11 +122,8 @@
             btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️ Clair' : '🌙 Sombre';
         }
 
-        // ==========================================
-        // BANQUE DE 100 QUESTIONS CERTIFIANTES
-        // ==========================================
         const questionBank = [
-            // --- AGILE & SCRUM (1 à 20) ---
+            // SCRUM
             {
                 q: "Dans Scrum, qui est responsable de maximiser la valeur du produit et de gérer le Product Backlog ?",
                 opts: { A: "Le Scrum Master", B: "Le Product Owner", C: "Le Project Manager" },
@@ -145,636 +134,164 @@
                 q: "Laquelle de ces propositions fait partie des 3 piliers empiriques de Scrum ?",
                 opts: { A: "Planification", B: "Agilité", C: "Transparence" },
                 ans: "C",
-                exp: "Les 3 piliers de l'empirisme dans Scrum sont : Transparence, Inspection et Adaptation."
+                exp: "Les 3 piliers de l'empirisme dans Scrum sont : Transparence, Inspection, et Adaptation."
             },
             {
                 q: "Quelle est la durée maximale (Timebox) recommandée pour un Sprint ?",
                 opts: { A: "2 semaines", B: "1 mois", C: "Jusqu'à ce que le produit soit fini" },
                 ans: "B",
-                exp: "Un Sprint est une timebox stricte d'un mois calendaire maximum (souvent 2 semaines en pratique) pour maintenir un rythme régulier."
+                exp: "Un Sprint est une timebox stricte d'un mois maximum (souvent 2 semaines en pratique) pour maintenir un rythme régulier et un feedback rapide."
             },
             {
                 q: "Lors du Sprint Planning, qui décide de la manière (le 'Comment') dont le travail sera accompli ?",
                 opts: { A: "Les Développeurs", B: "Le Scrum Master", C: "Le Product Owner" },
                 ans: "A",
-                exp: "Les Développeurs sont auto-gérés : le PO définit le 'Quoi' et le 'Pourquoi', les Développeurs décident du 'Comment'."
+                exp: "Les Développeurs sont auto-organisés. Le PO décide du 'Quoi', les Développeurs décident du 'Comment'."
             },
             {
                 q: "À quel artefact est lié l'engagement de la 'Definition of Done' (DoD) ?",
                 opts: { A: "Le Product Backlog", B: "Le Sprint Backlog", C: "L'Incrément" },
                 ans: "C",
-                exp: "Un élément ne devient partie intégrante de l'Incrément que s'il respecte tous les critères de la Definition of Done."
-            },
-            {
-                q: "Quelles sont les 5 valeurs officielles du framework Scrum ?",
-                opts: { A: "Engagement, Focus, Ouverture, Respect, Courage", B: "Vitesse, Qualité, Budget, Transparence, Agilité", C: "Écoute, Empathie, Code, Test, Livraison" },
-                ans: "A",
-                exp: "L'utilisation réussie de Scrum dépend de la capacité de l'équipe à vivre ces 5 valeurs : Engagement, Focus, Ouverture, Respect et Courage."
-            },
-            {
-                q: "Quelle est la taille recommandée pour une Scrum Team selon le Scrum Guide (2020) ?",
-                opts: { A: "Entre 15 et 25 personnes", B: "10 personnes ou moins", C: "Minimum 12 développeurs" },
-                ans: "B",
-                exp: "Une Scrum Team compte généralement 10 personnes ou moins pour rester suffisamment agile tout en étant assez grande pour livrer un incrément."
-            },
-            {
-                q: "Qui a l'autorité unique pour annuler un Sprint en cours ?",
-                opts: { A: "Le Scrum Master", B: "Le Comité de Direction", C: "Le Product Owner" },
-                ans: "C",
-                exp: "Seul le Product Owner peut annuler un Sprint, et uniquement si le Sprint Goal devient obsolète."
-            },
-            {
-                q: "Quel est l'engagement (commitment) associé à l'artefact Product Backlog ?",
-                opts: { A: "Le Product Goal (Objectif de Produit)", B: "Le Sprint Goal", C: "La Charte Projet" },
-                ans: "A",
-                exp: "Depuis le Scrum Guide 2020, chaque artefact a un engagement : Product Goal pour le Product Backlog, Sprint Goal pour le Sprint Backlog, et DoD pour l'Incrément."
-            },
-            {
-                q: "Quel est l'engagement (commitment) associé au Sprint Backlog ?",
-                opts: { A: "La vélocité cible", B: "Le Sprint Goal (Objectif de Sprint)", C: "Le contrat de service" },
-                ans: "B",
-                exp: "Le Sprint Goal est l'objectif unique du Sprint et représente l'engagement lié au Sprint Backlog."
-            },
-            {
-                q: "Quelle est la durée maximale (Timebox) d'une Sprint Review pour un Sprint d'un mois ?",
-                opts: { A: "4 heures", B: "1 heure", C: "8 heures" },
-                ans: "A",
-                exp: "La Sprint Review est limitée à 4 heures maximum pour un Sprint d'un mois (et généralement plus courte pour des Sprints plus courts)."
-            },
-            {
-                q: "Quelle est la durée maximale d'une Sprint Retrospective pour un Sprint d'un mois ?",
-                opts: { A: "3 heures", B: "15 minutes", C: "1 journée entière" },
-                ans: "A",
-                exp: "La Sprint Retrospective est timeboxée à 3 heures maximum pour un Sprint d'un mois."
-            },
-            {
-                q: "En Agile, que mesure la 'Vélocité' d'une équipe ?",
-                opts: { A: "Le nombre d'heures supplémentaires travaillées", B: "La somme des Story Points (ou unités) terminés par Sprint", C: "La vitesse de frappe des développeurs" },
-                ans: "B",
-                exp: "La vélocité mesure la quantité de travail 'Done' par Sprint (souvent en Story Points), servant d'outil de prévision empirique pour l'équipe."
-            },
-            {
-                q: "Quelle est la différence entre un Burndown Chart et un Burnup Chart ?",
-                opts: { A: "Le Burndown montre le travail restant ; le Burnup montre le travail accompli par rapport au périmètre total", B: "Le Burndown est réservé au budget ; le Burnup au planning", C: "Il n'y a aucune différence" },
-                ans: "A",
-                exp: "Le Burnup permet en plus de visualiser clairement les ajouts ou retraits de périmètre (scope) en cours de route grâce à sa ligne de total."
-            },
-            {
-                q: "À quoi sert la technique du 'Planning Poker' ?",
-                opts: { A: "À choisir qui travaillera le week-end", B: "À estimer de façon collaborative et relative l'effort des User Stories", C: "À définir le budget financier en euros" },
-                ans: "B",
-                exp: "Basé sur une suite type Fibonacci, le Planning Poker permet aux développeurs d'estimer la complexité relative sans biais d'ancrage."
-            },
-            {
-                q: "Quel est l'acronyme utilisé pour vérifier la qualité d'une bonne User Story ?",
-                opts: { A: "SMART", B: "INVEST", C: "ITIL" },
-                ans: "B",
-                exp: "INVEST signifie : Independent, Negotiable, Valuable, Estimable, Small, Testable."
-            },
-            {
-                q: "En méthode Kanban, pourquoi impose-t-on des limites WIP (Work In Progress) ?",
-                opts: { A: "Pour réduire le salaire des équipes", B: "Pour éviter le multitâche, identifier les goulots d'étranglement et fluidifier le flux", C: "Pour interdire les réunions" },
-                ans: "B",
-                exp: "Limiter le travail en cours (WIP) force l'équipe à terminer les tâches commencées avant d'en démarrer de nouvelles ('Stop starting, start finishing')."
-            },
-            {
-                q: "Quelle est la différence entre le 'Lead Time' et le 'Cycle Time' en Kanban ?",
-                opts: { A: "Lead Time = de la demande client à la livraison ; Cycle Time = du début de réalisation à la livraison", B: "Ils désignent exactement la même chose", C: "Lead Time ne concerne que les bugs" },
-                ans: "A",
-                exp: "Le Lead Time mesure l'attente totale perçue par le client, tandis que le Cycle Time mesure le temps de traitement actif par l'équipe."
-            },
-            {
-                q: "Qu'est-ce que le 'Backlog Refinement' (Affinage du Backlog) ?",
-                opts: { A: "Une cérémonie officielle de 8 heures en fin de projet", B: "L'activité continue de découpage, précision et estimation des éléments du Product Backlog", C: "La suppression des tests unitaires" },
-                ans: "B",
-                exp: "Le Refinement permet de préparer les éléments du haut du Backlog pour qu'ils soient prêts ('Ready') pour les prochains Sprints."
-            },
-            {
-                q: "Laquelle de ces valeurs figure dans le Manifeste Agile (2001) ?",
-                opts: { A: "Les processus et les outils plus que les individus", B: "L'adaptation au changement plus que le suivi d'un plan", C: "La négociation contractuelle plus que la collaboration" },
-                ans: "B",
-                exp: "Les 4 valeurs du Manifeste Agile privilégient : les individus/interactions, un logiciel opérationnel, la collaboration client, et l'adaptation au changement."
+                exp: "L'Incrément n'est considéré comme tel que s'il répond scrupuleusement aux critères de qualité définis dans la Definition of Done."
             },
 
-            // --- PMI / PMBOK (21 à 40) ---
+            // PMI / PMBOK
             {
                 q: "Selon le PMBOK, à quel groupe de processus appartient l'élaboration de la Charte de Projet ?",
-                opts: { A: "Planification", B: "Exécution", C: "Démarrage (Initiating)" },
+                opts: { A: "Planification", B: "Exécution", C: "Démarrage" },
                 ans: "C",
-                exp: "La Charte de Projet autorise formellement l'existence du projet et donne au Chef de Projet l'autorité d'utiliser des ressources."
+                exp: "La Charte de Projet est le document qui autorise formellement l'existence du projet. Elle est créée dans le groupe de processus 'Démarrage'."
             },
             {
                 q: "Que représente le 'Triangle de Fer' (Triple Contrainte) en gestion de projet ?",
-                opts: { A: "Coût, Délai, Périmètre (Scope)", B: "Risques, Qualité, Coût", C: "Équipe, Client, Fournisseur" },
+                opts: { A: "Coût, Délai, Périmètre", B: "Risques, Qualité, Coût", C: "Equipe, Client, Fournisseur" },
                 ans: "A",
-                exp: "Le Triangle de Fer illustre l'interdépendance entre le Coût, le Délai et le Périmètre autour de la Qualité."
+                exp: "Le Triangle de Fer illustre que le Coût, le Délai (Temps) et le Périmètre (Scope) sont interdépendants."
             },
             {
-                q: "Dans la gestion des risques (PMI), quelle stratégie consiste à confier l'impact financier d'une menace à un tiers ?",
-                opts: { A: "Atténuation (Mitigation)", B: "Acceptation", C: "Transfert (ex: Assurance, contrat)" },
+                q: "Dans la gestion des risques (PMI), quelle stratégie consiste à transférer le risque à un tiers ?",
+                opts: { A: "Mitigation", B: "Acceptation", C: "Transfert (ex: Assurance)" },
                 ans: "C",
-                exp: "Le transfert déplace la responsabilité financière du risque vers une tierce partie (assurance, caution, sous-traitance)."
+                exp: "Le transfert de risque implique de confier l'impact financier à un tiers, typiquement via la souscription d'une assurance ou l'externalisation."
             },
             {
                 q: "Quel domaine de connaissances du PMBOK gère l'identification et l'engagement des personnes impactées par le projet ?",
-                opts: { A: "Gestion des Ressources", B: "Gestion des Parties Prenantes (Stakeholders)", C: "Gestion des Approvisionnements" },
+                opts: { A: "Gestion des Ressources", B: "Gestion des Parties Prenantes (Stakeholders)", C: "Gestion des Communications" },
                 ans: "B",
-                exp: "La Gestion des Parties Prenantes identifie tous les acteurs impactés et établit des stratégies pour gérer leurs attentes."
+                exp: "La Gestion des Parties Prenantes vise à identifier toute personne touchée par le projet et définir une stratégie pour les engager efficacement."
             },
             {
                 q: "Quelle évolution majeure caractérise le passage du PMBOK v6 au PMBOK v7 ?",
-                opts: { A: "Le passage d'une approche par Processus vers 12 Principes et 8 Domaines de performance", B: "La suppression complète de l'Agilité", C: "L'obligation d'utiliser Waterfall" },
+                opts: { A: "Le passage des Processus vers les Principes", B: "La suppression de l'Agilité", C: "L'ajout de 20 nouveaux processus" },
                 ans: "A",
-                exp: "Le PMBOK v7 adopte une approche systémique orientée sur la livraison de valeur, 12 principes directeurs et 8 domaines de performance."
-            },
-            {
-                q: "Qu'est-ce qu'une WBS (Work Breakdown Structure / SDP) ?",
-                opts: { A: "Une liste des salaires de l'équipe", B: "Une décomposition hiérarchique orientée livrables de tout le périmètre du projet", C: "Un planning horaire des congés" },
-                ans: "B",
-                exp: "La WBS découpe le périmètre total du projet en lots de travaux (Work Packages) gérables selon la règle des 100%."
-            },
-            {
-                q: "Dans la méthode du Chemin Critique (CPM), que signifie une 'Marge Totale' (Total Float) égale à zéro ?",
-                opts: { A: "La tâche est optionnelle", B: "Tout retard sur cette tâche retardera directement la date de fin du projet", C: "La tâche ne coûte rien" },
-                ans: "B",
-                exp: "Le chemin critique est la séquence la plus longue du réseau : les tâches qui le composent ont une marge nulle."
-            },
-            {
-                q: "En gestion de la Valeur Acquise (EVM), que signifie un indice de performance des coûts CPI (EV / AC) égal à 0,80 ?",
-                opts: { A: "Le projet est en avance sur le planning", B: "Le projet est en dépassement budgétaire (seulement 0,80 € de valeur produite par euro dépensé)", C: "Le projet fait 20% d'économies" },
-                ans: "B",
-                exp: "Un CPI < 1 indique un surcoût (Cost Overrun) ; un CPI > 1 indique que le projet dépense moins que prévu."
-            },
-            {
-                q: "En gestion de la Valeur Acquise (EVM), que signifie un indice de performance des délais SPI (EV / PV) égal à 1,15 ?",
-                opts: { A: "Le projet est en avance sur le planning prévu", B: "Le projet est en retard de 15%", C: "Le budget est dépassé" },
-                ans: "A",
-                exp: "Un SPI > 1 indique que le travail progresse plus vite que prévu au planning de référence (Schedule Baseline)."
-            },
-            {
-                q: "Quelle est la différence entre la 'Réserve pour aléas' (Contingency Reserve) et la 'Réserve de gestion' (Management Reserve) ?",
-                opts: { A: "Contingency = risques identifiés ('Known-Unknowns', gérée par le CP) ; Management = imprévus ('Unknown-Unknowns', gérée par le Sponsor)", B: "C'est exactement la même enveloppe", C: "La réserve de gestion sert uniquement aux repas d'équipe" },
-                ans: "A",
-                exp: "La réserve pour aléas fait partie de la Cost Baseline du Chef de Projet, tandis que la réserve de gestion nécessite l'accord du Sponsor."
-            },
-            {
-                q: "Quelles sont les deux techniques principales de compression d'échéancier selon le PMI ?",
-                opts: { A: "Suppression des tests et baisse de qualité", B: "Crashing (ajout de ressources) et Fast Tracking (parallélisation de tâches)", C: "Gel du projet et externalisation" },
-                ans: "B",
-                exp: "Le Crashing augmente généralement les coûts, tandis que le Fast Tracking (chevauchement de phases) augmente les risques de reprise."
-            },
-            {
-                q: "Comment gère-t-on une partie prenante ayant un 'Fort Pouvoir' et un 'Fort Intérêt' sur la matrice Pouvoir/Intérêt ?",
-                opts: { A: "Surveiller avec un effort minimal", B: "Gérer de très près (Manage Closely) et l'impliquer activement", C: "Ignorer ses demandes" },
-                ans: "B",
-                exp: "Les acteurs à fort pouvoir et fort intérêt sont critiques : ils doivent être gérés de très près et associés aux décisions clés."
-            },
-            {
-                q: "Quelle est la formule du nombre de canaux de communication pour N parties prenantes ?",
-                opts: { A: "N × (N - 1) / 2", B: "N + 2", C: "N × 10" },
-                ans: "A",
-                exp: "Avec 10 personnes, il y a 10 × 9 / 2 = 45 canaux de communication ! D'où l'importance d'un plan de communication structuré."
-            },
-            {
-                q: "Dans le modèle de Tuckman, quelles sont les 5 étapes de développement d'une équipe ?",
-                opts: { A: "Forming, Storming, Norming, Performing, Adjourning", B: "Planning, Coding, Testing, Deploying, Closing", C: "Junior, Medior, Senior, Lead, Manager" },
-                ans: "A",
-                exp: "Formation (Forming), Turbulence (Storming), Normalisation (Norming), Performance (Performing) et Dissolution (Adjourning)."
-            },
-            {
-                q: "Quel type de contrat fait porter le risque financier maximal au FOURNISSEUR (vendeur) ?",
-                opts: { A: "Contrat en régie (Time & Materials)", B: "Contrat à prix forfaitaire ferme (Firm Fixed Price - FFP)", C: "Contrat à coûts remboursables (Cost Plus)" },
-                ans: "B",
-                exp: "Dans un contrat au forfait (FFP), le prix est fixe : si le fournisseur dépasse ses coûts de production, il absorbe la perte."
-            },
-            {
-                q: "Selon le PMI, quelles sont les 4 stratégies de réponse à une OPPORTUNITÉ (risque positif) ?",
-                opts: { A: "Éviter, Transférer, Atténuer, Accepter", B: "Exploiter, Partager, Améliorer (Enhance), Accepter", C: "Ignorer, Facturer, Clôturer, Auditer" },
-                ans: "B",
-                exp: "Contrairement aux menaces, on cherche à Exploiter (garantir l'opportunité), Améliorer (augmenter sa probabilité), Partager ou Accepter."
-            },
-            {
-                q: "Qu'est-ce que le 'Gold Plating' en gestion de projet ?",
-                opts: { A: "Livrer un projet en avance", B: "Ajouter des fonctionnalités non demandées par le client sans passer par la gestion des changements", C: "Obtenir une certification PMP" },
-                ans: "B",
-                exp: "Le Gold Plating est une mauvaise pratique selon le PMI car il consomme du budget et introduit des risques sans valeur validée."
-            },
-            {
-                q: "Quel organe a l'autorité d'approuver ou rejeter formellement les demandes de changement (Change Requests) impactant les Baselines ?",
-                opts: { A: "Le Change Control Board (CCB / Comité de contrôle des changements)", B: "Un développeur junior seul", C: "Le service comptabilité" },
-                ans: "A",
-                exp: "Toute modification d'une Baseline (Périmètre, Temps, Coût) doit passer par le processus de contrôle intégré des changements et le CCB."
-            },
-            {
-                q: "Quelle est la différence entre 'Assurance Qualité' (QA) et 'Contrôle Qualité' (QC) ?",
-                opts: { A: "QA est orientée processus (prévenir les défauts) ; QC est orienté livrables (détecter les défauts par l'inspection)", B: "QA intervient après QC uniquement", C: "Aucune différence" },
-                ans: "A",
-                exp: "L'Assurance Qualité vérifie qu'on suit les bons processus (Exécution), tandis que le Contrôle Qualité inspecte le produit fini (Surveillance et Maîtrise)."
-            },
-            {
-                q: "Quand le registre des leçons apprises (Lessons Learned Register) doit-il être alimenté ?",
-                opts: { A: "Uniquement le dernier jour du projet", B: "Tout au long du cycle de vie du projet", C: "Uniquement en cas d'échec total du projet" },
-                ans: "B",
-                exp: "Capitaliser les leçons apprises en continu évite de perdre des informations précieuses et permet d'améliorer le projet en cours."
+                exp: "Le PMBOK v7 a abandonné l'approche rigide par processus pour se concentrer sur 12 principes directeurs et la livraison de valeur."
             },
 
-            // --- ITIL 4 & ITSM (41 à 60) ---
-            {
-                q: "Quel est le but ultime de la gestion des services selon ITIL 4 ?",
-                opts: { A: "Livrer un service sans bug", B: "La co-création de Valeur avec les parties prenantes", C: "Respecter uniquement les SLA techniques internes" },
-                ans: "B",
-                exp: "ITIL 4 insiste sur le fait que la valeur est co-créée par une collaboration active entre le fournisseur et le consommateur du service."
-            },
-            {
-                q: "Lequel de ces éléments NE FAIT PAS partie des 4 Dimensions d'ITIL 4 ?",
-                opts: { A: "Partenaires et Fournisseurs", B: "Informations et Technologies", C: "Budget et Dividendes" },
-                ans: "C",
-                exp: "Les 4 dimensions sont : Organisations & Personnes, Informations & Technologies, Partenaires & Fournisseurs, Flux de valeur & Processus."
-            },
-            {
-                q: "Dans la Service Value Chain d'ITIL 4, quelle activité assure la transparence et les bonnes relations avec les parties prenantes ?",
-                opts: { A: "Engager (Engage)", B: "Planifier (Plan)", C: "Obtenir/Construire (Obtain/Build)" },
-                ans: "A",
-                exp: "L'activité 'Engager' gère les interactions externes, la compréhension des besoins des utilisateurs et la transparence."
-            },
-            {
-                q: "Quel principe directeur d'ITIL 4 recommande d'observer l'existant avant de tout reconstruire ?",
-                opts: { A: "Privilégier la valeur", B: "Commencer là où on est (Start where you are)", C: "Optimiser et automatiser" },
-                ans: "B",
-                exp: "'Commencer là où on est' évite de gaspiller des ressources en réutilisant ce qui fonctionne déjà dans l'organisation."
-            },
-            {
-                q: "Selon ITIL 4, quelle est la différence entre 'Utilité' (Utility) et 'Garantie' (Warranty) ?",
-                opts: { A: "Utilité = ce que fait le service (Fit for purpose) ; Garantie = comment il fonctionne en termes de dispo/sécu/capacité (Fit for use)", B: "Utilité = le prix ; Garantie = le contrat SAV", C: "C'est la même chose" },
-                ans: "A",
-                exp: "Un service doit avoir à la fois l'Utilité (fonctionnalités adaptées au besoin) et la Garantie (disponibilité, capacité, continuité, sécurité) pour créer de la valeur."
-            },
-            {
-                q: "Dans ITIL 4, quelle est la différence entre un 'Résultat' (Outcome) et une 'Sortie' (Output) ?",
-                opts: { A: "Output = livrable tangible ou intangible d'une activité ; Outcome = résultat concret permis pour une partie prenante", B: "Outcome est un rapport PDF ; Output est le chiffre d'affaires", C: "Aucune différence" },
-                ans: "A",
-                exp: "Exemple : un ticket résolu est un Output, mais le fait que l'employé puisse à nouveau travailler et servir ses clients est l'Outcome."
-            },
-            {
-                q: "Quelle est la différence fondamentale entre la 'Gestion des Incidents' et la 'Gestion des Problèmes' ?",
-                opts: { A: "Incident = rétablir le service au plus vite ; Problème = identifier et supprimer la cause racine (Root Cause)", B: "Un problème est simplement un gros incident", C: "Les incidents ne concernent que le réseau" },
-                ans: "A",
-                exp: "La Gestion des Incidents vise la rapidité de rétablissement (Workaround), tandis que la Gestion des Problèmes analyse les causes profondes pour éviter la récurrence."
-            },
-            {
-                q: "Qu'est-ce qu'une 'Erreur Connue' (Known Error) dans ITIL 4 ?",
-                opts: { A: "Une faute de frappe d'un utilisateur", B: "Un problème dont la cause racine a été analysée et qui n'est pas encore définitivement résolu", C: "Un bug ignoré volontairement" },
-                ans: "B",
-                exp: "Une Erreur Connue est documentée dans la KEDB (Known Error Database), souvent accompagnée d'une solution de contournement (Workaround)."
-            },
-            {
-                q: "Quels sont les 3 types de changements définis dans la pratique 'Habilitation du Changement' (Change Enablement) ?",
-                opts: { A: "Standard, Normal, Urgent (Emergency)", B: "Petit, Moyen, Grand", C: "Serveur, Réseau, Poste de travail" },
-                ans: "A",
-                exp: "Standard (pré-autorisé, faible risque), Normal (nécessite évaluation et autorisation), Urgent (à résoudre au plus vite suite à un incident critique)."
-            },
-            {
-                q: "Dans le modèle d'Amélioration Continue (Continual Improvement Model) d'ITIL 4, quelle est la toute première étape ?",
-                opts: { A: "Agir (Take action)", B: "Quelle est la vision ? (What is the vision?)", C: "Avons-nous atteint notre but ?" },
-                ans: "B",
-                exp: "Le modèle commence toujours par 'Quelle est la vision ?', suivi de 'Où en sommes-nous ?' et 'Où voulons-nous être ?'."
-            },
-            {
-                q: "Quel est le rôle de la pratique 'Service Desk' (Centre de services) dans ITIL 4 ?",
-                opts: { A: "Coder les applications métiers", B: "Être le point de contact unique (SPOC) pour les utilisateurs concernant les demandes et incidents", C: "Négocier les contrats fournisseurs" },
-                ans: "B",
-                exp: "Le Service Desk capture la demande de résolution d'incidents et les demandes de services en agissant comme point d'entrée unique."
-            },
-            {
-                q: "Que contient une CMDB (Configuration Management Database) ?",
-                opts: { A: "Le code source de tous les logiciels", B: "Les éléments de configuration (CI - serveurs, apps, réseaux) et les relations qui les lient", C: "Les fiches de paie de la DSI" },
-                ans: "B",
-                exp: "La CMDB permet d'analyser l'impact d'une panne ou d'un changement en visualisant les liens entre les composants (CI)."
-            },
-            {
-                q: "Quelle est la différence entre un SLA, un OLA et un UC (Underpinning Contract) ?",
-                opts: { A: "SLA = accord avec le client ; OLA = accord interne entre équipes IT ; UC = contrat avec un fournisseur externe", B: "OLA est réservé au Cloud public", C: "SLA ne concerne que les développeurs" },
-                ans: "A",
-                exp: "Pour tenir un SLA envers le client, la DSI s'appuie sur des OLA (Operational Level Agreements) entre ses équipes internes et des contrats externes."
-            },
-            {
-                q: "Que traite la pratique 'Gestion des Demandes de Service' (Service Request Management) ?",
-                opts: { A: "Les pannes critiques de serveurs", B: "Les demandes prédéfinies et courantes des utilisateurs (accès, matériel, info)", C: "Les audits financiers" },
-                ans: "B",
-                exp: "Les demandes de service font partie du fonctionnement normal (ex: demande de licence O365, réinitialisation MFA) et suivent des workflows standardisés."
-            },
-            {
-                q: "Dans ITIL 4, pourquoi dit-on 'Optimiser et Automatiser' (et non l'inverse) dans les 7 principes directeurs ?",
-                opts: { A: "Parce qu'automatiser un processus inefficace ne fait qu'accélérer la génération d'erreurs", B: "Parce que l'automatisation est gratuite", C: "Pour des raisons alphabétiques" },
-                ans: "A",
-                exp: "Il faut toujours simplifier et optimiser un flux humain avant de l'automatiser par la technologie."
-            },
-            {
-                q: "Quelle est la différence entre la 'Gestion des Mises en Production' (Release Management) et la 'Gestion des Déploiements' ?",
-                opts: { A: "Déploiement = déplacer le composant vers l'environnement cible ; Release = rendre les fonctionnalités disponibles aux utilisateurs", B: "C'est strictement identique", C: "Release Management ne concerne que le matériel réseau" },
-                ans: "A",
-                exp: "En DevOps/ITIL 4, on peut déployer du code en production de manière invisible (Dark Launch) et activer la Release plus tard (Feature Toggle)."
-            },
-            {
-                q: "Quels sont les 3 piliers de la sécurité de l'information (Triade CIA / DIC) ?",
-                opts: { A: "Coût, Impact, Audit", B: "Confidentialité, Intégrité, Disponibilité", C: "Cloud, Infrastructure, Application" },
-                ans: "B",
-                exp: "Confidentialité (accès autorisé), Intégrité (données exactes et non altérées) et Disponibilité (accès quand nécessaire)."
-            },
-            {
-                q: "Qu'est-ce que l'Effet Pastèque (Watermelon SLA Effect) en gestion des niveaux de service ?",
-                opts: { A: "Un SLA vert en apparence sur les métriques techniques, mais rouge à l'intérieur côté satisfaction utilisateur", B: "Une panne estivale de climatisation datacenter", C: "Un projet très rentable" },
-                ans: "A",
-                exp: "ITIL 4 met en garde contre les SLA purement techniques qui affichent 99,9% de réussite alors que l'expérience métier ressentie par l'utilisateur est mauvaise."
-            },
-            {
-                q: "Combien de pratiques de gestion le référentiel ITIL 4 comprend-il au total ?",
-                opts: { A: "34 pratiques", B: "12 pratiques", C: "7 pratiques" },
-                ans: "A",
-                exp: "ITIL 4 regroupe 34 pratiques réparties en : 14 pratiques de gestion générale, 17 pratiques de gestion des services et 3 pratiques de gestion technique."
-            },
-            {
-                q: "Dans quelle catégorie de pratiques ITIL 4 se trouve la 'Gestion de l'Infrastructure et des Plateformes' ?",
-                opts: { A: "Pratiques de gestion technique", B: "Pratiques de gestion commerciale", C: "Gouvernance financière" },
-                ans: "A",
-                exp: "Les 3 pratiques de gestion technique sont : Gestion des déploiements, Gestion de l'infrastructure et des plateformes, et Développement et gestion de logiciels."
-            },
-
-            // --- CYCLE EN V & WATERFALL (61 à 75) ---
+            // CYCLE EN V
             {
                 q: "Dans le Cycle en V, quelle phase de tests correspond symétriquement à l'Expression des besoins ?",
                 opts: { A: "Les Tests Unitaires", B: "Les Tests d'Intégration", C: "La Recette Utilisateur (UAT)" },
                 ans: "C",
-                exp: "La Recette Utilisateur (UAT) valide face au client que le produit livré répond bien à son expression de besoin initiale."
+                exp: "La Recette (UAT - User Acceptance Testing) vérifie que le système final correspond bien à l'expression des besoins initiale du client."
             },
             {
-                q: "Pourquoi le Cycle en V est-il représenté par la lettre 'V' ?",
-                opts: { A: "Pour symboliser la Victoire", B: "Pour associer chaque phase de conception descendante à sa phase de validation ascendante", C: "Pour illustrer la Vitesse de codage" },
+                q: "Pourquoi le Cycle en V est-il représenté par un 'V' ?",
+                opts: { A: "Pour symboliser la Victoire", B: "Pour lier chaque phase de conception à sa phase de test", C: "Pour illustrer la Vitesse de livraison" },
                 ans: "B",
-                exp: "Chaque étape de conception prépare en parallèle le plan de test de l'étape de validation qui lui fait face."
+                exp: "La branche descendante (Conception) est symétrique à la branche ascendante (Validation). On prépare les tests de la phase de validation dès la phase de conception associée."
             },
             {
-                q: "Quelle phase de conception décrit l'algorithmique interne d'un module juste avant son codage ?",
+                q: "Quelle phase de conception décrit l'algorithmique interne d'un module juste avant qu'il ne soit codé ?",
                 opts: { A: "Conception Détaillée", B: "Conception Architecturale", C: "Spécifications Fonctionnelles" },
                 ans: "A",
-                exp: "La Conception Détaillée définit la logique interne des composants et est validée par les Tests Unitaires."
+                exp: "La Conception Détaillée traduit l'architecture en instructions précises (algorithmes, modèles de données) avant le développement."
             },
             {
                 q: "Dans le Cycle en V, les Tests d'Intégration ont pour but de valider...",
-                opts: { A: "Le code d'une fonction isolée", B: "La Conception Architecturale (interfaces et communication entre modules)", C: "Le contrat commercial" },
+                opts: { A: "Le code d'un développeur isolé", B: "La Conception Architecturale (communication entre les modules)", C: "Les spécifications métier" },
                 ans: "B",
-                exp: "Les Tests d'Intégration vérifient que les différents briques logicielles et matérielles interagissent conformément à l'architecture."
-            },
-            {
-                q: "Quel est le principe absolu d'enchaînement dans la méthode en Cascade (Waterfall) ?",
-                opts: { A: "On livre un incrément toutes les 2 semaines", B: "Une phase doit être terminée et validée (Sign-off) pour démarrer la suivante", C: "Il n'y a aucune documentation" },
-                ans: "B",
-                exp: "L'approche séquentielle exige la clôture formelle d'une étape avant de passer à la suivante."
-            },
-            {
-                q: "Comment appelle-t-on le risque majeur lié à l'absence de visibilité du client pendant la réalisation en Waterfall ?",
-                opts: { A: "L'Effet Tunnel", B: "Le Sprint Goal", C: "Le Refactoring" },
-                ans: "A",
-                exp: "Pendant l'Effet Tunnel, l'équipe travaille en vase clos et le client ne découvre le produit qu'en fin de parcours."
-            },
-            {
-                q: "Pour quel type de projet le Cycle en V ou Waterfall reste-t-il particulièrement pertinent ?",
-                opts: { A: "Une application mobile grand public aux besoins flous", B: "Les systèmes critiques ou matériels à fortes contraintes réglementaires et périmètre stable", C: "Un prototype exploratoire d'IA" },
-                ans: "B",
-                exp: "Lorsque le coût d'une modification physique est très élevé (déploiement datacenter lourd, santé, nucléaire, aéronautique) et le besoin stable, le prédictif excelle."
-            },
-            {
-                q: "Que valide la 'Recette Technique' (VABF - Vérification d'Aptitude au Bon Fonctionnement) en infrastructure ?",
-                opts: { A: "L'ergonomie graphique du site web", B: "La conformité technique, la haute disponibilité, les sauvegardes et l'exploitabilité de l'infrastructure", C: "Le budget marketing" },
-                ans: "B",
-                exp: "La VABF teste les performances, le PRA/PCA, la sécurité et le monitoring avant la mise en production."
-            },
-            {
-                q: "Qu'est-ce que la VSR (Vérification de Service Régulier) ?",
-                opts: { A: "Une période d'observation en production réelle avant l'acceptation définitive du système", B: "Une réunion de lancement (Kick-off)", C: "Un test unitaire de développeur" },
-                ans: "A",
-                exp: "La VSR permet de vérifier que le système tient la charge en conditions réelles d'exploitation sur une durée définie (ex: 1 à 3 mois) avant la clôture."
-            },
-            {
-                q: "Dans le Cycle en V, à quel moment rédige-t-on le cahier de Recette Utilisateur (UAT) ?",
-                opts: { A: "Pendant la phase d'Expression des Besoins / Spécifications", B: "Après la mise en production", C: "Jamais" },
-                ans: "A",
-                exp: "C'est tout l'intérêt du Cycle en V : rédiger les cas de tests dès la phase de spécification permet de détecter immédiatement les ambiguïtés du besoin."
-            },
-            {
-                q: "Qu'est-ce qu'une 'Matrice de Traçabilité des Exigences' (RTM) ?",
-                opts: { A: "Un tableau qui relie chaque exigence initiale à sa conception et au cas de test qui la valide", B: "Un organigramme RH", C: "Une facture fournisseur" },
-                ans: "A",
-                exp: "La matrice de traçabilité garantit qu'aucune exigence du cahier des charges n'a été oubliée et que chacune est couverte par un test."
-            },
-            {
-                q: "Quel est le rôle des 'Tests de Non-Régression' (TNR) lors d'une mise à jour ?",
-                opts: { A: "Vérifier que les nouvelles modifications n'ont pas cassé des fonctionnalités existantes qui marchaient auparavant", B: "Tester uniquement les nouvelles fonctionnalités", C: "Supprimer les anciennes bases de données" },
-                ans: "A",
-                exp: "Les TNR sécurisent les mises en production en vérifiant la stabilité du socle existant."
-            },
-            {
-                q: "Qui a publié en 1970 l'article fondateur décrivant le modèle Waterfall ?",
-                opts: { A: "Winston W. Royce", B: "Ken Schwaber", C: "Linus Torvalds" },
-                ans: "A",
-                exp: "Winston Royce a décrit ce modèle séquentiel en 1970, tout en soulignant déjà la nécessité de boucles de rétroaction."
-            },
-            {
-                q: "Que signifie un jalon 'Go / No-Go' avant une bascule en production ?",
-                opts: { A: "Un vote informel à la machine à café", B: "Une instance formelle de décision validant que tous les prérequis et le plan de retour arrière (Rollback) sont prêts", C: "L'annulation définitive de l'entreprise" },
-                ans: "B",
-                exp: "Le Go/No-Go réunit les responsables techniques et métiers pour autoriser ou reporter le déploiement selon l'état des risques."
-            },
-            {
-                q: "Pourquoi un 'Plan de Rollback' (Retour arrière) est-il indispensable avant une migration critique en production ?",
-                opts: { A: "Pour pouvoir restaurer l'état fonctionnel précédent dans un temps imparti si la bascule échoue", B: "Pour facturer deux fois le client", C: "Pour éviter de faire des sauvegardes" },
-                ans: "A",
-                exp: "En production IT, aucune opération critique ne doit être lancée sans savoir exactement comment revenir à l'état stable initial."
+                exp: "L'intégration consiste à assembler les modules. Ces tests valident que l'architecture globale (Conception Architecturale) a été respectée."
             },
 
-            // --- PRINCE2 (76 à 90) ---
+            // WATERFALL
             {
-                q: "Que signifie l'acronyme PRINCE2 ?",
-                opts: { A: "PRojects IN Controlled Environments", B: "PRocesses IN Corporate Enterprises", C: "PRogramme IN Cloud Environments" },
-                ans: "A",
-                exp: "PRINCE2 signifie 'PRojects IN Controlled Environments' (Projets dans des environnements contrôlés)."
-            },
-            {
-                q: "Quel principe de PRINCE2 permet au Chef de Projet d'agir de manière autonome tant qu'il ne dépasse pas certaines limites ?",
-                opts: { A: "Focalisation sur le produit", B: "Management par exception (avec tolérances)", C: "Leçons tirées de l'expérience" },
+                q: "Quel est le principe absolu de la méthode en Cascade (Waterfall) ?",
+                opts: { A: "On peut revenir en arrière à tout moment", B: "Une phase doit être terminée et validée pour commencer la suivante", C: "On livre le produit par petits morceaux" },
                 ans: "B",
-                exp: "Le Management par exception fixe 6 types de tolérances (Temps, Coût, Qualité, Périmètre, Risques, Bénéfices). Au-delà, on remonte une exception."
+                exp: "C'est l'essence de l'approche séquentielle stricte. Sans validation formelle (Sign-off) de la phase A, la phase B ne démarre pas."
             },
             {
-                q: "Quel document PRINCE2 justifie la viabilité et le retour sur investissement du projet tout au long de sa vie ?",
-                opts: { A: "Le Business Case (Cas d'Affaire)", B: "Le journal quotidien", C: "Le CV du Chef de Projet" },
+                q: "Comment appelle-t-on le risque majeur lié à l'absence de visibilité du client pendant les développements en Waterfall ?",
+                opts: { A: "L'Effet Tunnel", B: "Le Scope Creep", C: "Le Blackout" },
                 ans: "A",
-                exp: "La 'Justification commerciale continue' est le 1er principe de PRINCE2, matérialisé par le Business Case."
+                exp: "L'Effet Tunnel désigne cette longue période entre la définition du besoin et la livraison finale, où le client ne voit rien du produit."
             },
             {
-                q: "Dans PRINCE2, qui détient l'autorité ultime pour diriger le projet et approuver les séquences ?",
-                opts: { A: "Le Chef de Projet", B: "Le Comité de Pilotage (Project Board)", C: "Le Chef d'Équipe" },
+                q: "Pour quel type de projet la méthode Waterfall est-elle historiquement la mieux adaptée ?",
+                opts: { A: "Les startups qui cherchent leur produit", B: "La construction (BTP) ou les projets au périmètre figé", C: "La création de sites web vitrines" },
                 ans: "B",
-                exp: "Le Project Board dirige (Directing a Project), tandis que le Chef de Projet gère le quotidien d'une séquence."
-            },
-            {
-                q: "Quels sont les 3 rôles représentés au sein d'un Comité de Pilotage (Project Board) PRINCE2 ?",
-                opts: { A: "Développeur, Testeur, Graphiste", B: "Exécutif (Business), Utilisateur Principal (Senior User), Fournisseur Principal (Senior Supplier)", C: "PDG, DRH, Comptable" },
-                ans: "B",
-                exp: "Ces 3 rôles incarnent les 3 intérêts fondamentaux d'un projet : la rentabilité business, le besoin des utilisateurs et la faisabilité technique."
-            },
-            {
-                q: "Parmi les 3 membres du Comité de Pilotage PRINCE2, qui a le dernier mot en cas de désaccord ?",
-                opts: { A: "L'Exécutif (Executive)", B: "Le Fournisseur Principal", C: "Le Chef de Projet" },
-                ans: "A",
-                exp: "Le Comité de Pilotage n'est pas une démocratie : l'Exécutif est l'unique responsable (Accountable) du succès du projet et du Business Case."
-            },
-            {
-                q: "Combien y a-t-il de Principes, de Thèmes et de Processus dans la structure classique de PRINCE2 ?",
-                opts: { A: "3 Principes, 3 Thèmes, 3 Processus", B: "7 Principes, 7 Thèmes, 7 Processus", C: "10 Principes, 5 Thèmes, 49 Processus" },
-                ans: "B",
-                exp: "PRINCE2 s'articule de manière symétrique autour de 7 Principes obligatoires, 7 Thèmes (aspects continus) et 7 Processus chronologiques."
-            },
-            {
-                q: "Qu'est-ce que le PID (Project Initiation Documentation) dans PRINCE2 ?",
-                opts: { A: "Un simple ticket d'incident", B: "Le document de référence complet qui rassemble le Business Case, le plan projet, la gouvernance et les stratégies", C: "Une facture d'achat matériel" },
-                ans: "B",
-                exp: "Le PID est créé lors du processus 'Initialiser le projet' et sert de contrat de référence entre le Chef de Projet et le Comité de Pilotage."
-            },
-            {
-                q: "Que doit faire le Chef de Projet PRINCE2 s'il prévoit qu'une tolérance de séquence va être dépassée ?",
-                opts: { A: "Cacher l'information jusqu'à la fin de l'année", B: "Rédiger un Rapport d'Exception et l'escalader immédiatement au Comité de Pilotage", C: "Modifier lui-même le budget global" },
-                ans: "B",
-                exp: "Dès qu'une tolérance est menacée, l'exception est remontée au niveau supérieur qui demandera éventuellement un Plan d'Exception."
-            },
-            {
-                q: "Qu'est-ce qu'une 'Structure de Décomposition du Produit' (PBS - Product Breakdown Structure) dans PRINCE2 ?",
-                opts: { A: "Une hiérarchie de tous les produits (livrables) qui doivent être créés par le projet", B: "Une liste des tâches horaires", C: "Un catalogue des prix fournisseurs" },
-                ans: "A",
-                exp: "Fidèle au principe de 'Focalisation sur les produits', PRINCE2 commence sa planification en identifiant les produits à livrer avant les activités."
-            },
-            {
-                q: "À quel moment intervient le processus PRINCE2 'Gérer une limite de séquence' (Managing a Stage Boundary) ?",
-                opts: { A: "Vers la fin de chaque séquence de management pour préparer la suivante et mettre à jour le Business Case", B: "Dix ans après la fin du projet", C: "Uniquement le premier jour" },
-                ans: "A",
-                exp: "Ce processus permet au Comité de Pilotage d'évaluer le bilan de la séquence écoulée et d'autoriser (ou non) la séquence suivante."
-            },
-            {
-                q: "Quel est le minimum de séquences de management (Management Stages) requis dans un projet PRINCE2 ?",
-                opts: { A: "Au moins 2 séquences (la séquence d'initialisation + au moins une séquence de livraison)", B: "1 seule séquence globale", C: "Minimum 12 séquences" },
-                ans: "A",
-                exp: "Un projet PRINCE2 comporte obligatoirement au moins 2 séquences : la phase d'initialisation et au moins une phase de réalisation."
-            },
-            {
-                q: "Dans PRINCE2, quel rôle est chargé de vérifier indépendamment que le projet est bien géré (Audit/Qualité) ?",
-                opts: { A: "L'Assurance Projet (Project Assurance)", B: "Le Support Projet (PMO)", C: "Le stagiaire" },
-                ans: "A",
-                exp: "L'Assurance Projet relève de la responsabilité du Comité de Pilotage pour vérifier que les intérêts Business, Utilisateur et Fournisseur sont respectés."
-            },
-            {
-                q: "Pourquoi le principe 'Adapter à l'environnement du projet' (Tailoring) est-il fondamental dans PRINCE2 ?",
-                opts: { A: "Pour éviter une bureaucratie excessive en ajustant la méthode à la taille, la complexité et aux risques du projet", B: "Pour supprimer le Business Case", C: "Pour ne plus faire aucun rapport" },
-                ans: "A",
-                exp: "Appliquer PRINCE2 de façon robotique sur un petit projet serait contre-productif : le Tailoring adapte la lourdeur documentaire au contexte."
-            },
-            {
-                q: "Quel thème PRINCE2 répond à la question 'Et si les choses ne se passent pas comme prévu ?'",
-                opts: { A: "Le thème Risque (Risk)", B: "Le thème Organisation", C: "Le thème Qualité" },
-                ans: "A",
-                exp: "Le thème Risque identifie, évalue et contrôle les incertitudes (menaces comme opportunités) qui pourraient affecter les objectifs."
+                exp: "Waterfall excelle quand le cahier des charges est parfaitement connu, immuable, et où le coût d'une erreur de fondation est critique (ex: BTP)."
             },
 
-            // --- GOUVERNANCE & INFRASTRUCTURE IT (91 à 100) ---
+            // ITIL 4
             {
-                q: "Dans une matrice RACI, quelle est la règle d'or concernant la lettre 'A' (Accountable / Approbateur) ?",
-                opts: { A: "Il peut y avoir 10 'A' par tâche", B: "Il doit y avoir un et un seul 'A' par activité pour éviter toute dilution de responsabilité", C: "La lettre 'A' est optionnelle" },
+                q: "Quel est le but ultime de la gestion des services selon ITIL 4 ?",
+                opts: { A: "Livrer un service sans bug", B: "La co-création de Valeur", C: "Respecter les SLA techniques" },
                 ans: "B",
-                exp: "Si plusieurs personnes sont 'Accountable', plus personne ne l'est vraiment. Il faut un unique 'A' par ligne, mais il peut y avoir plusieurs 'R' (Responsible)."
+                exp: "ITIL 4 insiste sur le fait que la valeur n'est pas 'livrée' mais 'co-créée' avec le consommateur du service."
             },
             {
-                q: "Lors d'un appel d'offres IT, quelle est la différence entre un RFI et un RFP ?",
-                opts: { A: "RFI (Request For Information) sonde le marché ; RFP (Request For Proposal) demande une proposition technique et financière engageante", B: "RFP vient toujours avant RFI", C: "RFI est un contrat signé" },
+                q: "Lequel de ces éléments NE FAIT PAS partie des 4 Dimensions d'ITIL 4 ?",
+                opts: { A: "Partenaires et Fournisseurs", B: "Informations et Technologies", C: "Budget et Financement" },
+                ans: "C",
+                exp: "Les 4 dimensions sont : Organisations & Personnes, Infos & Tech, Partenaires & Fournisseurs, Flux de valeur & Processus."
+            },
+            {
+                q: "Dans la Service Value Chain d'ITIL, quelle activité s'assure que les parties prenantes sont comprises et impliquées ?",
+                opts: { A: "Engager (Engage)", B: "Planifier (Plan)", C: "Livrer (Deliver)" },
                 ans: "A",
-                exp: "On utilise un RFI pour découvrir les solutions existantes sur le marché, puis un RFP (avec cahier des charges) pour mettre les éditeurs/intégrateurs en concurrence."
+                exp: "L'activité 'Engager' est le point de contact garantissant la bonne compréhension des besoins et la transparence."
             },
             {
-                q: "En continuité d'activité (PRA/PCA), quelle est la différence entre le RPO et le RTO ?",
-                opts: { A: "RPO = perte maximale de données tolérée (âge du dernier backup) ; RTO = durée maximale d'interruption de service tolérée", B: "RPO mesure la vitesse réseau ; RTO la taille du disque", C: "C'est le même indicateur" },
-                ans: "A",
-                exp: "Un RPO de 1h signifie qu'on accepte de perdre au maximum 1h de données ; un RTO de 4h signifie que l'application doit être rétablie en moins de 4h."
-            },
-            {
-                q: "En cybersécurité et infrastructure réseau, quel est le principe de la 'Micro-segmentation' ?",
-                opts: { A: "Ouvrir tous les ports du firewall interne", B: "Isoler finement les environnements et applications pour bloquer les mouvements latéraux en cas d'intrusion", C: "Couper les câbles Ethernet en petits morceaux" },
+                q: "Quel principe directeur d'ITIL 4 recommande de ne pas tout réinventer ?",
+                opts: { A: "Privilégier la valeur", B: "Commencer là où on est", C: "Optimiser et automatiser" },
                 ans: "B",
-                exp: "Pilier de l'architecture Zero Trust, la micro-segmentation restreint les flux réseau au strict nécessaire entre chaque brique applicative."
+                exp: "'Commencer là où on est' incite à évaluer ce qui existe et fonctionne déjà avant de construire du neuf."
             },
+
+            // PRINCE2
             {
-                q: "À quoi sert une solution de PAM (Privileged Access Management) au sein d'une Production IT ?",
-                opts: { A: "À sécuriser, tracer, gérer les coffres-forts de mots de passe et enregistrer les sessions des comptes à hauts privilèges (Admin)", B: "À gérer les congés payés", C: "À compresser les fichiers PDF" },
+                q: "Que signifie le 'P' et le 'R' dans PRINCE2 ?",
+                opts: { A: "PRojects", B: "PRocesses", C: "PRogrammes" },
                 ans: "A",
-                exp: "Le PAM protège les comptes d'administration critiques (Active Directory, serveurs, bases de données) contre la compromission."
+                exp: "PRINCE2 signifie : PRojects IN Controlled Environments."
             },
             {
-                q: "Dans un projet de migration Cloud ou d'infrastructure, que signifie le 'TCO' (Total Cost of Ownership) ?",
-                opts: { A: "Uniquement le prix d'achat initial des licences", B: "Le coût total de possession incluant l'investissement initial (CAPEX) et tous les coûts d'exploitation, maintenance et support (OPEX)", C: "La taxe carbone annuelle" },
+                q: "Quel principe de PRINCE2 permet au Chef de Projet de ne pas consulter le Comité de Pilotage pour chaque micro-décision ?",
+                opts: { A: "Focalisation sur le produit", B: "Management par exception", C: "Justification commerciale continue" },
                 ans: "B",
-                exp: "Calculer le TCO sur 3 à 5 ans est indispensable dans un Business Case pour comparer objectivement une solution On-Premise et une solution Cloud."
+                exp: "Le Management par exception définit des 'Tolérances'. Si le Chef de Projet reste dans ces limites, il est autonome."
             },
             {
-                q: "Quelle est la différence comptable entre CAPEX et OPEX dans le budget d'un Chef de Projet IT ?",
-                opts: { A: "CAPEX = dépenses d'investissement amortissables (ex: achat serveurs) ; OPEX = dépenses d'exploitation courantes (ex: abonnements SaaS/Cloud)", B: "OPEX concerne uniquement l'achat de bâtiments", C: "Il n'y a aucune différence fiscale" },
-                ans: "A",
-                exp: "Le passage des infrastructures physiques vers le Cloud transforme souvent des budgets CAPEX en budgets OPEX récurrents."
-            },
-            {
-                q: "Lors d'une migration massive (ex: 15 000 boîtes mail vers M365), pourquoi privilégie-t-on un déploiement par 'Lots' (Lotissement / Phased Rollout) plutôt qu'un 'Big Bang' ?",
-                opts: { A: "Pour maîtriser les risques, valider le processus sur un lot pilote et ne pas saturer le support IT", B: "Parce que le Big Bang est interdit par la loi", C: "Pour augmenter volontairement les coûts" },
-                ans: "A",
-                exp: "Un lot pilote puis des vagues progressives permettent d'ajuster la conduite du changement et d'absorber la charge au niveau du Service Desk."
-            },
-            {
-                q: "Quel est l'objectif principal d'un Comité de Pilotage (COPIL / SteerCo) ?",
-                opts: { A: "Débugger le code PowerShell en direct", B: "Présenter l'avancement macro, les KPIs (météo, budget, planning) et faire arbitrer les décisions stratégiques par les décideurs", C: "Former les utilisateurs finaux" },
+                q: "Quel document PRINCE2, justifiant la rentabilité du projet, doit être mis à jour à chaque phase ?",
+                opts: { A: "Le registre des risques", B: "Le Business Case (Cas d'Affaire)", C: "Le planning de qualité" },
                 ans: "B",
-                exp: "Le COPIL est une instance décisionnelle stratégique, distincte du Comité de Projet (COPROJ) qui traite du suivi opérationnel hebdomadaire."
+                exp: "Le Business Case pilote le projet. Si le projet n'est plus rentable en cours de route, il doit être arrêté."
             },
             {
-                q: "En Conduite du Changement (modèle ADKAR), quelles sont les 5 étapes pour accompagner un utilisateur ?",
-                opts: { A: "Awareness (Conscience), Desire (Désir), Knowledge (Savoir), Ability (Capacité), Reinforcement (Ancrage)", B: "Audit, Design, Kanban, Agile, Release", C: "Acheter, Déployer, Klaxonner, Archiver, Recommencer" },
-                ans: "A",
-                exp: "Un projet technique (comme le déploiement de Windows Hello ou Teams) ne réussit que si les utilisateurs comprennent le 'pourquoi' (Awareness) et sont accompagnés jusqu'à l'ancrage."
+                q: "Dans PRINCE2, qui détient l'autorité ultime pour diriger le projet ?",
+                opts: { A: "Le Chef de Projet", B: "Le Comité de Pilotage (Project Board)", C: "Le Scrum Master" },
+                ans: "B",
+                exp: "C'est le Comité de Pilotage (comprenant l'Exécutif, l'Utilisateur Principal et le Fournisseur Principal) qui dirige le projet, le Chef de Projet ne fait que le gérer au quotidien."
             }
         ];
 
         let currentQuizSelection = [];
-        let lastQuizIndices = []; // Mémoire anti-répétition
-
-        // Algorithme de mélange parfait de Fisher-Yates
-        function shuffleArray(array) {
-            const arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
 
         function openGlobalQuiz() {
-            document.getElementById('bankCounter').innerText = `Banque : ${questionBank.length} questions`;
-
-            // 1. Filtrer les questions déjà posées au tirage précédent pour éviter toute répétition immédiate
-            let availableIndices = questionBank.map((_, idx) => idx).filter(idx => !lastQuizIndices.includes(idx));
-            if (availableIndices.length < 10) {
-                availableIndices = questionBank.map((_, idx) => idx);
-            }
-
-            // 2. Mélanger avec Fisher-Yates et prendre 10 questions
-            const shuffledIndices = shuffleArray(availableIndices).slice(0, 10);
-            lastQuizIndices = shuffledIndices;
-            currentQuizSelection = shuffledIndices.map(idx => questionBank[idx]);
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            currentQuizSelection = shuffled.slice(0, 10);
             
-            // 3. Construire le HTML
             const container = document.getElementById('quizQuestionsContainer');
             let html = '';
             
@@ -803,7 +320,7 @@
                 if (!form['q'+i].value) allAnswered = false;
             }
             if(!allAnswered) {
-                alert("Veuillez répondre aux 10 questions avant de soumettre !");
+                alert("Veuillez répondre à toutes les questions avant de soumettre !");
                 return;
             }
 
@@ -819,15 +336,13 @@
                     analysisHTML += `
                         <div class="analysis-block analysis-correct">
                             <strong>Question ${i} : ✅ Excellente réponse !</strong>
-                            <em>${data.q}</em><br>
                             ${data.exp}
                         </div>`;
                 } else {
                     analysisHTML += `
                         <div class="analysis-block analysis-incorrect">
                             <strong>Question ${i} : ❌ Incorrect.</strong>
-                            <em>${data.q}</em><br>
-                            <strong>Bonne réponse : ${data.ans} (${data.opts[data.ans]})</strong><br>
+                            <em>La bonne réponse était la ${data.ans} (${data.opts[data.ans]}).</em><br>
                             ${data.exp}
                         </div>`;
                 }
