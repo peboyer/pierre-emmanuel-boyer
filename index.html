@@ -78,18 +78,23 @@
             padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-logo {
+            font-weight: 700; color: white; font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center;
+        }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
         .nav-links a {
             color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem;
-            transition: color 0.2s ease; letter-spacing: 0.5px;
+            transition: all 0.2s ease; letter-spacing: 0.5px; white-space: nowrap;
         }
         .nav-links a:hover, .nav-links a:focus { color: var(--accent-color); }
-        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+        .nav-actions { display: flex; gap: 0.75rem; align-items: center; }
 
         .header-btn {
             background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
             color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;
             font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.3s ease;
+            white-space: nowrap;
         }
         .header-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
@@ -107,7 +112,7 @@
         header h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; }
         header h2 { color: var(--accent-color); font-weight: 500; font-size: 1.5rem; margin-bottom: 1.5rem; }
 
-        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; font-size: 1rem; opacity: 0.9; }
+        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; font-size: 1rem; opacity: 0.9; }
         .contact-info a { color: white; text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,0.4); transition: border-bottom 0.3s ease; }
         .contact-info a:hover { border-bottom: 1px solid white; }
 
@@ -133,7 +138,7 @@
         .kpi-label { font-size: 0.9rem; font-weight: 500; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .container { max-width: 1000px; margin: 0 auto 2rem; padding: 0 1.5rem; }
-        section { margin-bottom: 4rem; scroll-margin-top: 6rem; }
+        section { margin-bottom: 4rem; scroll-margin-top: 8rem; }
         h3 { color: var(--primary-color); font-size: 2rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
         h3::after { content: ''; flex: 1; height: 3px; background: linear-gradient(to right, var(--accent-color), transparent); border-radius: 2px; opacity: 0.5; }
 
@@ -146,7 +151,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Etudes de cas (Projets Phares) */
-        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .case-card {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: all 0.3s ease; cursor: pointer; position: relative;
@@ -191,7 +196,7 @@
         .form-control:focus { outline: 2px solid var(--accent-color); border-color: transparent; }
 
         /* Badges & Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .skill-box {
             background: var(--card-bg); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -261,15 +266,81 @@
         .admin-link { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; cursor: pointer; margin-top: 10px; display: inline-block; }
         [contenteditable="true"] { outline: 2px dashed var(--accent-color); outline-offset: 10px; background-color: rgba(14, 165, 233, 0.05); border-radius: 8px; padding: 10px; }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            nav { padding: 1rem; } .nav-links { display: none; }
-            header h1 { font-size: 2.25rem; } header h2 { font-size: 1.25rem; }
-            .header-buttons { flex-direction: column; width: 100%; } .btn { width: 100%; justify-content: center; }
-            .kpi-banner { margin: -2rem 1rem 3rem; grid-template-columns: 1fr 1fr; padding: 1.5rem; }
-            .timeline { margin-left: 0; padding-left: 1.5rem; } .timeline-item::before { left: -1.9rem; width: 16px; height: 16px; }
-            .experience-card { padding: 1.5rem; } .fab { bottom: 1.5rem; right: 1.5rem; width: 55px; height: 55px; }
+        /* ========================================== */
+        /* OPTIMISATION MOBILE & TABLETTE             */
+        /* ========================================== */
+        @media (max-width: 900px) {
+            nav {
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+            }
+            /* Ligne 2 sur mobile : Barre de raccourcis scrollable au doigt */
+            .nav-links {
+                display: flex;
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                gap: 0.5rem;
+                padding: 0.5rem 0 0.15rem 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.12);
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex-shrink: 0; }
+            .nav-links a {
+                display: inline-block;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                padding: 0.35rem 0.85rem;
+                border-radius: 9999px;
+                font-size: 0.82rem;
+            }
+            .nav-links a:active {
+                background: var(--accent-color);
+                border-color: var(--accent-color);
+                color: white;
+            }
+            .header-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
         }
+
+        @media (max-width: 768px) {
+            header { padding: 3.5rem 1rem 4.5rem; }
+            .profile-photo { width: 140px; height: 140px; }
+            header h1 { font-size: 2.2rem; }
+            header h2 { font-size: 1.2rem; }
+            .contact-info { flex-direction: column; gap: 0.4rem; font-size: 0.95rem; }
+            .contact-info .sep { display: none; }
+            .header-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 1.75rem auto 0; gap: 0.85rem; }
+            .btn { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; }
+            
+            /* Grille des 5 KPIs équilibrée sur 2 colonnes + 1 pleine largeur */
+            .kpi-banner {
+                margin: -2.5rem 1rem 2.5rem;
+                grid-template-columns: 1fr 1fr;
+                padding: 1.25rem;
+                gap: 1rem;
+            }
+            .kpi-item:last-child {
+                grid-column: 1 / -1;
+                padding-top: 0.75rem;
+                border-top: 1px solid var(--border-color);
+            }
+            .kpi-number { font-size: 1.75rem; }
+            .kpi-label { font-size: 0.78rem; }
+
+            h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+            .skill-box, .case-card { padding: 1.5rem; }
+            .timeline { margin-left: 0.25rem; padding-left: 1.25rem; }
+            .timeline-item::before { left: -1.75rem; width: 14px; height: 14px; top: 4px; }
+            .experience-card { padding: 1.35rem; }
+            .experience-header h4 { font-size: 1.25rem; }
+            .experience-header .date { font-size: 0.8rem; padding: 0.3rem 0.75rem; white-space: normal; }
+            .modal-content { padding: 1.5rem; width: 94%; }
+            .fab { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
+        }
+
         /* Impression */
         @media print {
             body { background: white; color: black; } nav, .fab, .header-buttons, .kpi-banner, .admin-link, #case-studies { display: none; }
@@ -284,8 +355,8 @@
 
     <!-- NAVIGATION -->
     <nav>
-        <a href="index.html" style="font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none;" aria-label="Accueil">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-top: -3px;">
+        <a href="index.html" class="nav-logo" aria-label="Accueil">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
@@ -293,11 +364,12 @@
         <ul class="nav-links">
             <li><a href="index.html#summary"><span class="fr">Profil</span><span class="en">Profile</span></a></li>
             <li><a href="index.html#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
+            <li><a href="index.html#case-studies"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
             <li><a href="index.html#experiences"><span class="fr">Expériences</span><span class="en">Experience</span></a></li>
-            <li><a href="flashcards.html"><span class="fr">Flashcards</span><span class="en">Flashcards</span></a></li>
-            <li><a href="quizz.html"><span class="fr">Quizz IT</span><span class="en">IT Quiz</span></a></li>
-            <li><a href="glossaire.html"><span class="fr">Glossaire</span><span class="en">Glossary</span></a></li>
-            <li><a href="dashboard.html"><span class="fr">Dashboard</span><span class="en">Dashboard</span></a></li>
+            <li><a href="flashcards.html">🃏 <span class="fr">Flashcards</span><span class="en">Flashcards</span></a></li>
+            <li><a href="quizz.html">🎯 <span class="fr">Quizz IT</span><span class="en">IT Quiz</span></a></li>
+            <li><a href="glossaire.html">📖 <span class="fr">Glossaire</span><span class="en">Glossary</span></a></li>
+            <li><a href="dashboard.html">📊 <span class="fr">Dashboard</span><span class="en">Dashboard</span></a></li>
         </ul>
         <div class="nav-actions">
             <!-- Bouton Langue -->
@@ -316,7 +388,8 @@
             <span class="en">IT Infrastructure Project Manager</span>
         </h2>
         <div class="contact-info reveal">
-            <span>📍 Magny-les-Hameaux, Île-de-France, France</span> &nbsp;|&nbsp;
+            <span>📍 Magny-les-Hameaux, Île-de-France, France</span>
+            <span class="sep">&nbsp;|&nbsp;</span>
             <a href="javascript:void(0)" onclick="openModal('contactModal')">✉️ pe.boyer@gmail.com</a>
         </div>
         <div class="header-buttons reveal">
@@ -367,10 +440,10 @@
         
         <!-- SECTION : RÉSUMÉ -->
         <section id="summary" class="reveal">
-            <div class="fr" style="font-size: 1.25rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
+            <div class="fr" style="font-size: 1.2rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
                 "Fort de 25 ans d'expertise en administration des infrastructures systèmes IT et en support utilisateur, je mène avec succès depuis 7 ans des projets techniques à forte visibilité en tant que Chef de projet Infrastructure IT en mettant l'humain au cœur de mes réussites."
             </div>
-            <div class="en" style="font-size: 1.25rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
+            <div class="en" style="font-size: 1.2rem; text-align: center; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">
                 "With 25 years of expertise in IT systems infrastructure administration and user support, I have successfully led highly visible technical projects for 7 years as an IT Infrastructure Project Manager, always placing people at the heart of my achievements."
             </div>
         </section>
