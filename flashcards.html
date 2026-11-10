@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards & Évaluation IT - Pierre-Emmanuel Boyer</title>
+    
+    <!-- SEO & Analytics -->
+    <meta name="description" content="Portail de révision et d'évaluation en gestion de projet IT : Scrum, Cycle en V, PMP, ITIL 4, Waterfall, PRINCE2.">
+    <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #334155;
+            --accent-color: #0ea5e9;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --badge-bg: #f1f5f9;
+            --badge-text: #475569;
+            --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --success-color: #22c55e;
+            --error-color: #ef4444;
+        }
+
+        body.dark-mode {
+            --primary-color: #38bdf8;
+            --secondary-color: #7dd3fc;
+            --accent-color: #0ea5e9;
+            --bg-color: #0f172a;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --badge-bg: #334155;
+            --badge-text: #e2e8f0;
+            --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            --nav-bg: rgba(2, 6, 23, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px dashed var(--accent-color); outline-offset: 4px; border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; z-index: 1000;
+            background-color: var(--nav-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-logo { font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none; }
+        
+        .header-btn {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;
+            font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.3s ease;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .header-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
+
+        /* Header */
+        header {
+            background: var(--header-bg); color: white; padding: 4rem 1.5rem 5rem;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        header h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        /* Container & Grid */
+        .container { max-width: 1200px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+        
+        /* Command Bar (Quiz Mode + Global Quiz) */
+        .command-bar {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            background: var(--card-bg); padding: 1.5rem; border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+        
+        .quiz-mode-wrapper { display: flex; align-items: center; gap: 1rem; }
+        .mode-label { font-weight: 600; color: var(--primary-color); font-size: 1.1rem; }
+        
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--secondary-color); transition: .4s; }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .btn-global-quiz {
+            background-color: var(--accent-color); color: white; border: none; padding: 0.8rem 1.5rem;
+            border-radius: 9999px; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        .btn-global-quiz:hover { background-color: #0284c7; transform: translateY(-2px); }
+
+        .category-title {
+            grid-column: 1 / -1; font-size: 1.6rem; color: var(--primary-color); margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-color); display: flex; align-items: center; gap: 0.75rem;
+        }
+
+        .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+
+        /* 3D Flashcard Effect */
+        .flashcard { background-color: transparent; perspective: 1000px; height: 480px; cursor: pointer; }
+        .flashcard-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d;
+        }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color); padding: 2rem; display: flex; flex-direction: column;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .flashcard.known .flashcard-front, .flashcard.known .flashcard-back { border-color: var(--success-color); box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+        .flashcard.review .flashcard-front, .flashcard.review .flashcard-back { border-color: var(--error-color); box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+
+        .flashcard-front { background-color: var(--card-bg); align-items: center; justify-content: center; }
+        .flashcard-front h3 { font-size: 1.6rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .quiz-question { font-size: 1.3rem; color: var(--primary-color); line-height: 1.4; font-weight: 600; display: none; }
+
+        .svg-container { width: 120px; height: 120px; margin-bottom: 1.5rem; color: var(--accent-color); }
+        .svg-container svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        
+        .tap-hint { font-size: 0.85rem; color: var(--secondary-color); opacity: 0.7; margin-top: auto; display: flex; align-items: center; gap: 0.5rem; background: var(--badge-bg); padding: 0.4rem 1rem; border-radius: 20px; }
+
+        .flashcard-back { background-color: var(--card-bg); transform: rotateY(180deg); text-align: left; overflow-y: auto; }
+        .flashcard-back h4 { color: var(--accent-color); font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--badge-bg); }
+        .flashcard-back p { font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.5; }
+        .flashcard-back ul { padding-left: 1.2rem; margin-bottom: 1rem; flex-grow: 1; }
+        .flashcard-back li { font-size: 0.9rem; margin-bottom: 0.4rem; }
+        .flashcard-back li::marker { color: var(--accent-color); }
+
+        .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .tag { background-color: var(--badge-bg); color: var(--badge-text); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem;
+            border-radius: 8px; text-decoration: none; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            transition: all 0.2s; cursor: pointer; border: none; width: 100%; margin-top: auto;
+        }
+        .btn-cv { background-color: var(--accent-color); color: white; }
+        .btn-cv:hover { background-color: #0284c7; }
+        
+        .quiz-actions { display: none; gap: 0.5rem; margin-top: auto; }
+        .btn-known { background-color: var(--success-color); color: white; }
+        .btn-review { background-color: var(--error-color); color: white; }
+        .btn-known:hover { filter: brightness(0.9); }
+        .btn-review:hover { filter: brightness(0.9); }
+
+        /* Modales */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); overflow-y: auto; padding: 2rem 1rem;
+        }
+        .modal.show { display: flex; align-items: flex-start; justify-content: center; }
+        .modal-content {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 3rem; width: 100%; max-width: 900px; position: relative; margin: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2.5rem; cursor: pointer; color: var(--secondary-color); transition: color 0.2s; line-height: 1; }
+        .close:hover { color: var(--accent-color); }
+        .modal-content h4 { font-size: 2rem; color: var(--primary-color); margin-bottom: 2rem; border-bottom: 3px solid var(--accent-color); padding-bottom: 0.5rem; display: inline-block; }
+        
+        /* Styles Chapitres Détaillés */
+        .chapter { margin-bottom: 2.5rem; background: var(--bg-color); padding: 2rem; border-radius: 12px; border-left: 5px solid var(--accent-color); }
+        .chapter h5 { color: var(--accent-color); font-size: 1.3rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Poppins', sans-serif;}
+        .chapter p { font-size: 1rem; margin-bottom: 1rem; color: var(--text-color); line-height: 1.7; }
+        .chapter ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .chapter li { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-color); line-height: 1.6; }
+        .chapter li::marker { color: var(--primary-color); font-weight: bold; }
+        .chapter strong { color: var(--primary-color); }
+
+        /* Styles Global Quiz */
+        .q-block { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-color); }
+        .q-block h5 { font-size: 1.15rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .options-group { display: flex; flex-direction: column; gap: 0.8rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.8rem; padding: 1rem; border: 1px solid var(--border-color);
+            border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 1rem; color: var(--text-color);
+        }
+        .option-label:hover { background: var(--bg-color); border-color: var(--accent-color); }
+        .option-label input[type="radio"] { transform: scale(1.2); cursor: pointer; accent-color: var(--accent-color); }
+        
+        .quiz-results { margin-top: 2rem; padding: 2rem; background: var(--bg-color); border-radius: 12px; display: none; }
+        .score-display { font-size: 2.5rem; font-weight: 800; color: var(--accent-color); text-align: center; margin-bottom: 2rem; font-family: 'Poppins', sans-serif;}
+        .analysis-block { margin-bottom: 1.5rem; padding: 1.5rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; color: var(--text-color); }
+        .analysis-correct { background-color: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--success-color); }
+        .analysis-incorrect { background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--error-color); }
+        .analysis-block strong { display: block; margin-bottom: 0.5rem; font-size: 1.05rem; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .flashcard { height: 500px; }
+            .modal-content { padding: 1.5rem; }
+            .chapter { padding: 1.2rem; }
+            .command-bar { flex-direction: column; padding: 1rem; align-items: stretch; }
+            .quiz-mode-wrapper { justify-content: space-between; }
+            .btn-global-quiz { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="nav-logo">PEB.</a>
+        <div class="nav-actions">
+            <a href="index.html" class="header-btn">⬅️ Portfolio</a>
+            <a href="flashcards.html" class="header-btn">🃏 Flashcards</a>
+            <a href="quizz.html" class="header-btn">🎯 Quizz</a>
+            <button class="header-btn" onclick="toggleDarkMode()" id="darkModeToggle" aria-label="Activer le mode sombre">🌙 Sombre</button>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Méthodologies IT</h1>
+        <p>Flashcards & Chapitres de révision : Concepts clés, Frameworks et Bonnes Pratiques en gestion de projet.</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- COMMAND BAR -->
+        <div class="command-bar">
+            <div class="quiz-mode-wrapper">
+                <span class="mode-label">📖 Révision</span>
+                <label class="switch">
+                    <input type="checkbox" id="quizToggle" onchange="toggleMode()">
+                    <span class="slider round"></span>
+                </label>
+                <span class="mode-label">🎯 Flash Quiz</span>
+            </div>
+            
+            <a href="quizz.html" class="btn-global-quiz" style="text-decoration: none;">🧠 Lancer l\'Évaluation Globale</a>
+        </div>
+
+        <div class="flashcard-grid">
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : AGILE SCRUM        -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><circle cx="12" cy="12" r="3"/></svg>
+                Agile Scrum
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3>Scrum : Les Rôles</h3>
+                        </div>
+                        <h3 class="quiz-question">Quels sont les 3 rôles officiels (accountabilities) définis par le framework Scrum ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les 3 Rôles Scrum</h4>
+                        <p>Il n'y a pas de hiérarchie au sein d'une équipe Scrum. Elle se compose de :</p>
+                        <ul>
+                            <li><strong>Product Owner (PO) :</strong> Gère le Backlog et maximise la valeur.</li>
+                            <li><strong>Scrum Master (SM) :</strong> Leader-serviteur, garant de la méthode.</li>
+                            <li><strong>Développeurs :</strong> Équipe auto-organisée qui crée l'incrément.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Rôles</span><span class="tag">Auto-organisation</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-scrum')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <h3>Scrum : Cérémonies</h3>
+                        </div>
+                        <h3 class="quiz-question">Quels sont les 4 événements officiels qui rythment un Sprint Scrum ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les Événements Scrum</h4>
+                        <p>Tout se déroule au sein d'un <strong>Sprint</strong> (Timeboxé), qui contient :</p>
+                        <ul>
+                            <li><strong>Sprint Planning :</strong> Définition de l'objectif et du Sprint Backlog.</li>
+                            <li><strong>Daily Scrum :</strong> Point de 15 minutes de synchro.</li>
+                            <li><strong>Sprint Review :</strong> Démo de l'incrément et feedback.</li>
+                            <li><strong>Sprint Retrospective :</strong> Amélioration continue de l'équipe.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Timebox</span><span class="tag">Cérémonies</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-scrum')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <h3>Scrum : Artefacts</h3>
+                        </div>
+                        <h3 class="quiz-question">Quels sont les 3 artefacts produits dans le framework Scrum ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les 3 Artefacts Scrum</h4>
+                        <p>Ce sont les éléments tangibles représentant le travail ou la valeur :</p>
+                        <ul>
+                            <li><strong>Product Backlog :</strong> Liste priorisée de tout ce qui est requis pour le produit.</li>
+                            <li><strong>Sprint Backlog :</strong> Liste des éléments sélectionnés pour le sprint en cours.</li>
+                            <li><strong>L'Incrément :</strong> Somme des éléments "Terminés" à la fin du sprint.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Artefacts</span><span class="tag">Valeur</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-scrum')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : PMP / PMBOK        -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Méthodologie PMI (PMP / PMBOK)
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            </div>
+                            <h3>PMI : Les Processus</h3>
+                        </div>
+                        <h3 class="quiz-question">Quels sont les 5 groupes de processus fondamentaux du PMBOK ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les 5 Groupes de Processus</h4>
+                        <p>Ces phases structurent la vie du projet :</p>
+                        <ul>
+                            <li><strong>Démarrage :</strong> Autorisation (Charte).</li>
+                            <li><strong>Planification :</strong> Définition des objectifs.</li>
+                            <li><strong>Exécution :</strong> Réalisation du travail.</li>
+                            <li><strong>Contrôle & Maîtrise :</strong> Suivi des écarts.</li>
+                            <li><strong>Clôture :</strong> Fin formelle du projet.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">PMBOK</span><span class="tag">Processus</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-pmp')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <h3>PMI : Connaissances</h3>
+                        </div>
+                        <h3 class="quiz-question">Citez au moins 5 des 10 domaines de connaissances couverts par le PMI.</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les Domaines de Connaissances</h4>
+                        <p>Le chef de projet doit maîtriser 10 aspects cruciaux :</p>
+                        <ul>
+                            <li>1. Intégration &nbsp;|&nbsp; 2. Périmètre (Scope)</li>
+                            <li>3. Échéancier (Temps) &nbsp;|&nbsp; 4. Coûts</li>
+                            <li>5. Qualité &nbsp;|&nbsp; 6. Ressources</li>
+                            <li>7. Communications &nbsp;|&nbsp; 8. Risques</li>
+                            <li>9. Approvisionnements &nbsp;|&nbsp; 10. Parties Prenantes</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Connaissances</span><span class="tag">Global</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-pmp')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                            </div>
+                            <h3>PMI : Triple Contrainte</h3>
+                        </div>
+                        <h3 class="quiz-question">Qu'est-ce que la "Triple Contrainte" (ou Triangle de Fer) en gestion de projet ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Le Triangle de Fer</h4>
+                        <p>Il représente l'équilibre fondamental de tout projet. Si l'on modifie un élément, les autres sont impactés :</p>
+                        <ul>
+                            <li><strong>Le Coût (Budget)</strong></li>
+                            <li><strong>Le Délai (Temps)</strong></li>
+                            <li><strong>Le Périmètre (Scope / Qualité)</strong></li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Fondamentaux</span><span class="tag">Équilibre</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-pmp')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : CYCLE EN V         -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l6 14 3-7 6-7"/><path d="M9 17h12" stroke-dasharray="2 2" opacity="0.5"/></svg>
+                Cycle en V
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M4 4l8 16 8-16"/></svg>
+                            </div>
+                            <h3>Cycle en V : Principe</h3>
+                        </div>
+                        <h3 class="quiz-question">Quel est le principe fondamental du Cycle en V liant la conception et les tests ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>La validation symétrique</h4>
+                        <p>Le principe est que <strong>toute phase de conception (branche descendante) est associée à une phase de validation (branche ascendante)</strong> de niveau équivalent.</p>
+                        <p>On prépare les scénarios de tests dès l'écriture des spécifications.</p>
+                        <div class="tag-list"><span class="tag">Symétrie</span><span class="tag">Validation</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-vmodel')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                            </div>
+                            <h3>Cycle en V : Descente</h3>
+                        </div>
+                        <h3 class="quiz-question">Citez, dans l'ordre, les étapes de la phase de conception (branche descendante).</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>La Phase Descendante</h4>
+                        <p>Du plus global au plus technique :</p>
+                        <ul>
+                            <li><strong>1. Expression des besoins :</strong> (Cahier des charges)</li>
+                            <li><strong>2. Spécifications :</strong> (Fonctionnalités)</li>
+                            <li><strong>3. Conception Architecturale :</strong> (Composants)</li>
+                            <li><strong>4. Conception Détaillée :</strong> (Algorithmique locale)</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Conception</span><span class="tag">Build</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-vmodel')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                            </div>
+                            <h3>Cycle en V : Montée</h3>
+                        </div>
+                        <h3 class="quiz-question">À quelle étape de la conception correspondent les "Tests d'Intégration" lors de la remontée ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les Tests d'Intégration</h4>
+                        <p>Ils vérifient que les modules communiquent entre eux. Ils valident donc la <strong>Conception Architecturale</strong>.</p>
+                        <ul>
+                            <li>Unitaires ➔ Conception détaillée</li>
+                            <li><strong>Intégration ➔ Architecture</strong></li>
+                            <li>Système (Validation) ➔ Spécifications</li>
+                            <li>Recette (UAT) ➔ Besoins</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Tests</span><span class="tag">Intégration</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-vmodel')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : ITIL 4             -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                ITIL 4 (ITSM)
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                            </div>
+                            <h3>ITIL : Le SVS</h3>
+                        </div>
+                        <h3 class="quiz-question">Que signifie SVS dans ITIL 4 et quel est son rôle principal ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Le Service Value System</h4>
+                        <p>SVS signifie <strong>Système de Valeur des Services</strong>.</p>
+                        <p>Il montre comment les composantes de l'organisation fonctionnent ensemble. Il prend en entrée une <strong>Opportunité/Demande</strong> et la transforme en <strong>Valeur</strong>.</p>
+                        <div class="tag-list"><span class="tag">Valeur</span><span class="tag">SVS</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-itil')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            </div>
+                            <h3>ITIL : Les 4 Dimensions</h3>
+                        </div>
+                        <h3 class="quiz-question">Quelles sont les 4 dimensions de la gestion des services selon ITIL 4 ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les 4 Dimensions</h4>
+                        <p>Pour fournir un service efficace, il faut équilibrer :</p>
+                        <ul>
+                            <li><strong>1. Organisations et Personnes</strong></li>
+                            <li><strong>2. Informations et Technologies</strong></li>
+                            <li><strong>3. Partenaires et Fournisseurs</strong></li>
+                            <li><strong>4. Flux de valeur et Processus</strong></li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Holistique</span><span class="tag">Équilibre</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-itil')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+                            </div>
+                            <h3>ITIL : Principes Directeurs</h3>
+                        </div>
+                        <h3 class="quiz-question">Citez au moins 3 des 7 principes directeurs (Guiding Principles) d'ITIL 4.</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les Principes Directeurs</h4>
+                        <p>Ce sont les recommandations universelles de conduite :</p>
+                        <ul>
+                            <li><strong>Privilégier la valeur</strong></li>
+                            <li>Commencer là où on est</li>
+                            <li>Progresser itérativement avec feedback</li>
+                            <li>Collaborer et promouvoir la visibilité</li>
+                            <li>Penser et travailler de façon holistique</li>
+                            <li>Rester simple et pratique</li>
+                            <li>Optimiser et automatiser</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Mindset</span><span class="tag">Guides</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-itil')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : WATERFALL          -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4v4h4v4h4v4h4"/></svg>
+                Waterfall (Méthode en Cascade)
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h4v4h4v4h4v4h4"/></svg>
+                            </div>
+                            <h3>Waterfall : Concept</h3>
+                        </div>
+                        <h3 class="quiz-question">Quelle est la règle d'or d'enchaînement des tâches dans la méthode Waterfall ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Le Séquentiel Strict</h4>
+                        <p>Dans la méthode en cascade, <strong>une phase ne peut commencer que lorsque la phase précédente est totalement achevée et validée</strong>.</p>
+                        <p>Il n'y a (théoriquement) aucun chevauchement ni retour en arrière possible sans procédure complexe de gestion du changement.</p>
+                        <div class="tag-list"><span class="tag">Séquentiel</span><span class="tag">Rigide</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-waterfall')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M12 2v20 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <h3>Waterfall : Les 5 Phases</h3>
+                        </div>
+                        <h3 class="quiz-question">Quelles sont les 5 phases canoniques de la méthode Waterfall ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les 5 phases Waterfall</h4>
+                        <p>Les étapes fondatrices (selon le modèle original de Royce) :</p>
+                        <ul>
+                            <li><strong>1. Requirements :</strong> Fixer les exigences.</li>
+                            <li><strong>2. Design :</strong> Conception technique.</li>
+                            <li><strong>3. Implementation :</strong> Développement/Codage.</li>
+                            <li><strong>4. Verification :</strong> Tests.</li>
+                            <li><strong>5. Maintenance :</strong> Déploiement et suivi.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Étapes</span><span class="tag">Classique</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-waterfall')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </div>
+                            <h3>Waterfall : Limites</h3>
+                        </div>
+                        <h3 class="quiz-question">Quel est le principal défaut de la méthode Waterfall face aux méthodes Agiles ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>L'Effet Tunnel</h4>
+                        <p>Le principal défaut est le <strong>manque de flexibilité et l'effet tunnel</strong>.</p>
+                        <p>Le client ne voit le logiciel fonctionnel qu'à la toute fin du projet. Si le besoin a changé entre-temps, il est extrêmement coûteux de faire un retour en arrière.</p>
+                        <div class="tag-list"><span class="tag">Effet Tunnel</span><span class="tag">Risque Client</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-waterfall')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================== -->
+            <!-- CATEGORIE : PRINCE2            -->
+            <!-- ============================== -->
+            <h2 class="category-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20 M5 20l2-12 3 4 2-6 2 6 3-4 2 12"/></svg>
+                Méthodologie PRINCE2
+            </h2>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M2 20h20 M5 20l2-12 3 4 2-6 2 6 3-4 2 12"/></svg>
+                            </div>
+                            <h3>PRINCE2 : Concept</h3>
+                        </div>
+                        <h3 class="quiz-question">Que signifie l'acronyme PRINCE2 ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>PRojects IN Controlled Environments</h4>
+                        <p>C'est une méthode de gestion de projet structurée qui se concentre sur l'organisation, la gestion et le contrôle du projet.</p>
+                        <p>Contrairement aux méthodes Agiles (centrées sur l'équipe) ou PMI (centrées sur le chef de projet), PRINCE2 définit un environnement hautement structuré où la direction (Board) prend les décisions majeures.</p>
+                        <div class="tag-list"><span class="tag">Contrôlé</span><span class="tag">Gouvernance</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-prince2')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </div>
+                            <h3>PRINCE2 : Focus</h3>
+                        </div>
+                        <h3 class="quiz-question">Sur quel document de justification PRINCE2 met-il un focus constant du début à la fin du projet ?</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Le Business Case</h4>
+                        <p>PRINCE2 exige une <strong>Justification Commerciale Continue</strong>.</p>
+                        <p>Le Business Case (pourquoi on fait le projet, ses coûts et bénéfices) n'est pas seulement créé au début : il est mis à jour et vérifié à chaque fin de phase. Si le projet n'est plus viable, il doit être arrêté.</p>
+                        <div class="tag-list"><span class="tag">Business Case</span><span class="tag">Viabilité</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-prince2')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="front-default">
+                            <div class="svg-container">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                            </div>
+                            <h3>PRINCE2 : Principes</h3>
+                        </div>
+                        <h3 class="quiz-question">Citez 3 des 7 principes directeurs obligatoires pour qu'un projet soit certifié PRINCE2.</h3>
+                        <div class="tap-hint">👆 Taper pour retourner</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <h4>Les Principes PRINCE2</h4>
+                        <p>Ils sont obligatoires :</p>
+                        <ul>
+                            <li>Justification commerciale continue.</li>
+                            <li>Leçons tirées de l'expérience.</li>
+                            <li>Rôles et responsabilités définis.</li>
+                            <li>Management par séquences.</li>
+                            <li><strong>Management par exception</strong> (délégation avec des tolérances).</li>
+                            <li>Focalisation sur le produit.</li>
+                            <li>Adaptation à l'environnement du projet.</li>
+                        </ul>
+                        <div class="tag-list"><span class="tag">Principes</span><span class="tag">Exception</span></div>
+                        <button class="btn btn-cv btn-details" onclick="event.stopPropagation(); openModal('details-prince2')">📖 Chapitres détaillés</button>
+                        <div class="quiz-actions">
+                            <button class="btn btn-known" onclick="markCard(event, this, 'known')">✅ Su</button>
+                            <button class="btn btn-review" onclick="markCard(event, this, 'review')">❌ À revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODALES DES CHAPITRES DÉTAILLÉS (ENRICHIS) -->
+    <!-- ========================================== -->
+
+    <!-- Modale Scrum -->
+    <div id="details-scrum" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-scrum')">&times;</span>
+            <h4>Cours Détaillé : Agile Scrum</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : Philosophie, Piliers et Valeurs</h5>
+                <p>Scrum n'est pas une méthode mais un "framework" léger. Il repose sur l'<strong>empirisme</strong> (la connaissance vient de l'expérience et des décisions basées sur des faits observés) et sur le Lean thinking (réduire le gaspillage).</p>
+                <p><strong>Les 3 piliers empiriques :</strong></p>
+                <ul>
+                    <li><strong>Transparence :</strong> Le travail émergent et le processus doivent être visibles (ex: Backlog accessible à tous).</li>
+                    <li><strong>Inspection :</strong> Les utilisateurs Scrum doivent fréquemment inspecter les artefacts pour détecter les variances indésirables.</li>
+                    <li><strong>Adaptation :</strong> Si un aspect dévie, le processus ou les éléments produits doivent être ajustés au plus vite.</li>
+                </ul>
+                <p><strong>Les 5 valeurs Scrum :</strong> Pour que Scrum fonctionne, l'équipe doit incarner l'Engagement, le Focus, l'Ouverture, le Respect et le Courage.</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : Les Rôles (Accountabilities)</h5>
+                <p>L'équipe Scrum (généralement 10 personnes ou moins) ne possède pas de hiérarchie interne. Elle inclut :</p>
+                <ul>
+                    <li><strong>Le Product Owner (PO) :</strong> Unique responsable de maximiser la valeur du produit. Il gère le Product Backlog, définit les priorités et s'assure que l'équipe comprend les items. Il est la voix du client.</li>
+                    <li><strong>Le Scrum Master (SM) :</strong> Garant de la compréhension de Scrum. C'est un véritable "leader-serviteur" qui aide l'équipe à s'améliorer et élimine les obstacles (impediments) externes.</li>
+                    <li><strong>Les Développeurs :</strong> Professionnels qui réalisent le travail pour créer un incrément utilisable à chaque Sprint. Ils sont pluridisciplinaires et s'auto-organisent pour accomplir le Sprint Goal.</li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : Les Événements et Artefacts</h5>
+                <p><strong>Les 3 Artefacts et leurs engagements :</strong></p>
+                <ul>
+                    <li><strong>Product Backlog :</strong> Engagé par le <em>Product Goal</em> (objectif à long terme).</li>
+                    <li><strong>Sprint Backlog :</strong> Engagé par le <em>Sprint Goal</em> (pourquoi le sprint est précieux).</li>
+                    <li><strong>Incrément :</strong> Engagé par la <em>Definition of Done (DoD)</em> (critères qualité requis pour que l'incrément soit utilisable).</li>
+                </ul>
+                <p><strong>Les Cérémonies au sein du Sprint :</strong> Le Sprint Planning (Que faire et Comment?), le Daily Scrum (Inspection quotidienne de 15 min), la Sprint Review (Démonstration aux parties prenantes) et la Sprint Retrospective (Amélioration des processus de l'équipe).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Cycle en V -->
+    <div id="details-vmodel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-vmodel')">&times;</span>
+            <h4>Cours Détaillé : Le Cycle en V</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : Origines et Fondements</h5>
+                <p>Le Cycle en V (V-Model) est né dans les années 80 en réponse aux lacunes du modèle en Cascade (Waterfall). Le problème de la Cascade était que les tests n'étaient préparés et exécutés qu'à la toute fin, provoquant des retards massifs en cas de bug de conception.</p>
+                <p>Le principe fondamental du Cycle en V est la <strong>symétrie de validation</strong> : pour chaque étape de conception (branche descendante gauche), il existe une étape de validation correspondante (branche ascendante droite). Les scénarios de tests sont écrits <em>pendant</em> la phase de conception associée.</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : La Branche Descendante (Le "Build")</h5>
+                <p>Le projet se décompose du besoin le plus abstrait vers le code le plus concret :</p>
+                <ul>
+                    <li><strong>Expression des besoins :</strong> Dialogue avec le métier. Traduit ce que l'utilisateur veut accomplir (Cahier des charges).</li>
+                    <li><strong>Spécifications fonctionnelles :</strong> Traduit le besoin en fonctionnalités système (Comment le logiciel répond au besoin).</li>
+                    <li><strong>Conception Architecturale :</strong> Définition des grands modules matériels/logiciels et de leurs interfaces.</li>
+                    <li><strong>Conception Détaillée :</strong> Explication du fonctionnement interne de chaque sous-module ou algorithme. C'est l'étape juste avant de coder.</li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : La Branche Ascendante (Les Tests)</h5>
+                <p>Une fois le code (Implémentation) terminé au fond du "V", on remonte la pente pour vérifier chaque niveau :</p>
+                <ul>
+                    <li><strong>Tests Unitaires :</strong> (Liés à la conception détaillée) Le développeur teste ses propres lignes de code isolément.</li>
+                    <li><strong>Tests d'Intégration :</strong> (Liés à l'architecture) On connecte les modules entre eux pour voir si les interfaces (API, flux) fonctionnent.</li>
+                    <li><strong>Tests de Validation :</strong> (Liés aux spécifications) L'équipe QA vérifie que le logiciel fait bien ce qui était demandé techniquement.</li>
+                    <li><strong>Recette (UAT) :</strong> (Liée à l'expression des besoins) Le client final manipule le produit pour confirmer qu'il répond à son problème initial.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale PMP -->
+    <div id="details-pmp" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-pmp')">&times;</span>
+            <h4>Cours Détaillé : Méthodologie PMI (PMBOK)</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : Philosophie du PMI et Évolution</h5>
+                <p>Le Project Management Institute (PMI) édite le PMBOK (Project Management Body of Knowledge), qui est un recueil de bonnes pratiques universelles. Le PMBOK n'est pas une méthode à suivre aveuglément : c'est une boîte à outils dans laquelle le Chef de Projet pioche ce dont il a besoin (concept de <em>Tailoring</em> ou adaptation).</p>
+                <p>À noter : Depuis la 7ème édition, le PMBOK est passé d'une approche strictement basée sur des processus vers une approche basée sur 12 principes directeurs et des domaines de performance (orientée livraison de valeur et intégration de l'Agilité).</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : La Matrice Processus / Connaissances (Approche v6)</h5>
+                <p>Historiquement, le chef de projet (le PMP) navigue dans une matrice complexe comprenant <strong>49 processus</strong> répartis entre :</p>
+                <ul>
+                    <li><strong>5 Groupes de Processus :</strong> Démarrage (Initiating), Planification (Planning), Exécution (Executing), Contrôle & Maîtrise (Monitoring & Controlling), Clôture (Closing).</li>
+                    <li><strong>10 Domaines de Connaissances :</strong> Intégration, Périmètre (Scope), Échéancier (Schedule), Coûts, Qualité, Ressources, Communications, Risques, Approvisionnements (Procurement), Parties Prenantes (Stakeholders).</li>
+                </ul>
+                <p>Par exemple, le processus "Estimer les coûts" fait partie du groupe <em>Planification</em> et du domaine <em>Coûts</em>.</p>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : La Triple Contrainte (Le Triangle de Fer)</h5>
+                <p>C'est le concept central de la gestion de projet prédictive. Le succès d'un projet repose sur l'équilibre entre trois piliers :</p>
+                <ul>
+                    <li><strong>Périmètre (Scope) :</strong> Ce qui doit être fait (et la Qualité associée).</li>
+                    <li><strong>Coût :</strong> Le budget financier et les ressources allouées.</li>
+                    <li><strong>Délai :</strong> Le planning et les dates de livraison.</li>
+                </ul>
+                <p>Le rôle du Chef de Projet est de maintenir cet équilibre. <em>Exemple :</em> Si le client demande d'ajouter une fonctionnalité (hausse du périmètre), le chef de projet doit obligatoirement demander une hausse du budget ou un allongement du délai. On ne peut pas modifier un côté du triangle sans impacter les autres.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Waterfall -->
+    <div id="details-waterfall" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-waterfall')">&times;</span>
+            <h4>Cours Détaillé : Waterfall (Cascade)</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : Les Origines de la Cascade</h5>
+                <p>La méthode Waterfall est issue des industries de l'ingénierie lourde et de la construction (où il est impossible de couler les fondations si les plans du toit ne sont pas validés). Elle a été formellement décrite pour le développement logiciel par Winston W. Royce en 1970 (qui, ironiquement, notait déjà que l'utiliser de manière strictement linéaire était risqué !).</p>
+                <p>Le principe est simple : <strong>L'avancement coule vers le bas</strong> (comme une cascade), d'une phase à l'autre. Une phase ne commence que lorsque la précédente est formellement signée (Sign-off).</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : Les Phases Séquentielles</h5>
+                <p>Le projet se découpe en phases massives qui concentrent tout le travail du projet à un instant T :</p>
+                <ul>
+                    <li><strong>Exigences (Requirements) :</strong> Documentation massive (Cahier des charges) pour capturer 100% du besoin client.</li>
+                    <li><strong>Conception (Design) :</strong> Choix des architectures techniques, bases de données, modèles de données.</li>
+                    <li><strong>Réalisation (Implementation) :</strong> Les développeurs codent l'intégralité du logiciel sans le montrer au client.</li>
+                    <li><strong>Tests (Verification) :</strong> C'est la phase d'intégration du "Big Bang". On assemble tout et on teste. C'est ici que les problèmes majeurs d'architecture sont souvent découverts.</li>
+                    <li><strong>Déploiement / Maintenance :</strong> Mise en production et corrections de bugs.</li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : Avantages et Risque d'Effet Tunnel</h5>
+                <p><strong>Avantages :</strong> Méthode rassurante pour le management, car le budget, les jalons (milestones) et la documentation finale sont clairs et fixés dès le départ. Très utile si le besoin est parfaitement connu, figé, et le risque de changement nul (ex: logiciel embarqué d'un satellite).</p>
+                <p><strong>L'Effet Tunnel :</strong> C'est son pire défaut. Le client exprime son besoin au mois 1, et ne voit le logiciel fonctionner qu'au mois 10. Si le besoin était mal compris, ou si le marché a changé, le logiciel livré sera obsolète ou inutile, et la procédure de changement (Change Request) coûtera très cher.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale ITIL -->
+    <div id="details-itil" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-itil')">&times;</span>
+            <h4>Cours Détaillé : ITIL 4</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : Philosophie ITIL 4 et Valeur</h5>
+                <p>ITIL (Information Technology Infrastructure Library) 4 est une évolution massive par rapport à la version 3. Le passage s'est fait de "la livraison d'un service IT" vers la <strong>Co-création de valeur</strong>. Un service IT n'a de sens que s'il génère de la valeur pour le client, et cette valeur est définie par la perception du client, pas par les métriques techniques du fournisseur IT.</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : Les 4 Dimensions de la gestion des services</h5>
+                <p>ITIL 4 insiste sur une approche holistique. Pour éviter de se concentrer uniquement sur les outils techniques, il faut équilibrer 4 dimensions :</p>
+                <ul>
+                    <li><strong>Organisations et personnes :</strong> Culture, rôles, compétences (le facteur humain).</li>
+                    <li><strong>Informations et technologies :</strong> Les outils de gestion, les bases de données (ex: ServiceNow, Jira).</li>
+                    <li><strong>Partenaires et fournisseurs :</strong> Les contrats, accords de niveau de service (SLA), outsourcing.</li>
+                    <li><strong>Flux de valeur et processus :</strong> La façon dont le travail circule pour aboutir au résultat.</li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : La Service Value Chain (Chaîne de valeur)</h5>
+                <p>Au cœur du Système de Valeur des Services (SVS) se trouve la Chaîne de Valeur, un modèle opératoire flexible (PIEDOD) :</p>
+                <ul>
+                    <li><strong>Planifier (Plan) :</strong> Compréhension partagée de la vision et de la direction.</li>
+                    <li><strong>Améliorer (Improve) :</strong> Amélioration continue des produits.</li>
+                    <li><strong>Engager (Engage) :</strong> Compréhension des besoins des parties prenantes (Point de contact).</li>
+                    <li><strong>Concevoir et Transitionner (Design & Transition) :</strong> S'assurer que les services répondent aux attentes en termes de qualité, coût, délai.</li>
+                    <li><strong>Obtenir / Construire (Obtain/Build) :</strong> Acquérir des composants ou les coder.</li>
+                    <li><strong>Livrer et Soutenir (Deliver & Support) :</strong> Fournir le service et en assurer le support (ex: Helpdesk).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale PRINCE2 -->
+    <div id="details-prince2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('details-prince2')">&times;</span>
+            <h4>Cours Détaillé : Méthodologie PRINCE2</h4>
+            
+            <div class="chapter">
+                <h5>Chapitre 1 : L'approche Produit et le Business Case</h5>
+                <p>PRINCE2 (PRojects IN Controlled Environments) est la norme de fait du gouvernement britannique, largement utilisée en Europe. C'est une méthode de gouvernance très structurée.</p>
+                <p>Elle se distingue par sa focalisation sur le <strong>Produit</strong> (Qu'est-ce qu'on doit livrer concrètement, avec quels critères de qualité ?) et sur le <strong>Business Case</strong> (Cas d'Affaire). Dans PRINCE2, un projet n'a de sens que s'il est rentable ou justifié d'un point de vue business. Ce Business Case est réévalué à la fin de chaque séquence : s'il n'est plus valide, le comité de pilotage ferme le projet prématurément.</p>
+            </div>
+            
+            <div class="chapter">
+                <h5>Chapitre 2 : Le Management par Exception</h5>
+                <p>C'est l'un des 7 principes fondamentaux de PRINCE2. Le projet est découpé en niveaux de management (Direction, Chef de Projet, Chef d'Équipe).</p>
+                <p>Pour éviter la micro-gestion, le niveau supérieur accorde au niveau inférieur des <strong>Tolérances</strong> (en termes de temps, coût, qualité, périmètre, bénéfice, risque). Tant que le Chef de Projet navigue dans ces tolérances, il ne dérange pas la Direction. S'il prévoit de dépasser une tolérance (une "exception"), il doit immédiatement remonter un "Rapport d'Exception" au Comité de Pilotage pour qu'il prenne une décision.</p>
+            </div>
+
+            <div class="chapter">
+                <h5>Chapitre 3 : L'Environnement (Thèmes et Processus)</h5>
+                <p>PRINCE2 s'articule autour de 7 Thèmes (qui répondent aux questions Pourquoi, Qui, Quoi, Comment, Et Si, Quel impact, Où en est-on) et 7 Processus qui tracent la vie du projet :</p>
+                <ul>
+                    <li>1. Élaborer le projet (S'assurer que l'idée de base a du sens).</li>
+                    <li>2. Diriger le projet (Rôle exclusif du Comité de Pilotage).</li>
+                    <li>3. Initialiser le projet (Planification détaillée).</li>
+                    <li>4. Contrôler une séquence (Travail quotidien du chef de projet).</li>
+                    <li>5. Gérer la livraison des produits (Travail des équipes de réalisation).</li>
+                    <li>6. Gérer une limite de séquence (Faire le bilan et demander l'autorisation de continuer).</li>
+                    <li>7. Clore le projet (Démobilisation et évaluation finale).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <script>
+        // --- GESTION DU MODE SOMBRE ---
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('darkModeToggle');
+            const isDark = document.body.classList.contains('dark-mode');
+            btn.innerHTML = isDark ? '☀️ Clair' : '🌙 Sombre';
+        }
+
+        // --- GESTION DES MODALES CHAPITRES ---
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // --- GESTION DU MODE QUIZ (GAMIFICATION DES CARTES) ---
+        function toggleMode() {
+            const isQuizMode = document.getElementById('quizToggle').checked;
+            const cards = document.querySelectorAll('.flashcard');
+
+            cards.forEach(card => {
+                const defaultFront = card.querySelector('.front-default');
+                const quizFront = card.querySelector('.quiz-question');
+                const btnDetails = card.querySelector('.btn-details');
+                const quizActions = card.querySelector('.quiz-actions');
+
+                if (isQuizMode) {
+                    defaultFront.style.display = 'none';
+                    quizFront.style.display = 'block';
+                    btnDetails.style.display = 'none';
+                    quizActions.style.display = 'flex';
+                    card.classList.remove('known', 'review');
+                } else {
+                    defaultFront.style.display = 'block';
+                    quizFront.style.display = 'none';
+                    btnDetails.style.display = 'flex';
+                    quizActions.style.display = 'none';
+                    card.classList.remove('known', 'review');
+                }
+                card.classList.remove('flipped');
+            });
+        }
+
+        function markCard(event, button, status) {
+            event.stopPropagation();
+            const card = button.closest('.flashcard');
+            card.classList.remove('known', 'review');
+            card.classList.add(status);
+            setTimeout(() => { card.classList.remove('flipped'); }, 600);
+        }
+
+        // --- BASE DE DONNÉES DES QUESTIONS (30 Questions Premium) ---
+        const questionBank = [
+            // SCRUM
+            {
+                q: "Dans Scrum, qui est responsable de maximiser la valeur du produit et de gérer le Product Backlog ?",
+                opts: { A: "Le Scrum Master", B: "Le Product Owner", C: "Le Project Manager" },
+                ans: "B",
+                exp: "Le Product Owner est l'unique responsable du Product Backlog et de la maximisation de la valeur. Il n'y a pas de 'Project Manager' en Scrum."
+            },
+            {
+                q: "Laquelle de ces propositions fait partie des 3 piliers empiriques de Scrum ?",
+                opts: { A: "Planification", B: "Agilité", C: "Transparence" },
+                ans: "C",
+                exp: "Les 3 piliers de l'empirisme dans Scrum sont : Transparence, Inspection, et Adaptation."
+            },
+            {
+                q: "Quelle est la durée maximale (Timebox) recommandée pour un Sprint ?",
+                opts: { A: "2 semaines", B: "1 mois", C: "Jusqu'à ce que le produit soit fini" },
+                ans: "B",
+                exp: "Un Sprint est une timebox stricte d'un mois maximum (souvent 2 semaines en pratique) pour maintenir un rythme régulier et un feedback rapide."
+            },
+            {
+                q: "Lors du Sprint Planning, qui décide de la manière (le 'Comment') dont le travail sera accompli ?",
+                opts: { A: "Les Développeurs", B: "Le Scrum Master", C: "Le Product Owner" },
+                ans: "A",
+                exp: "Les Développeurs sont auto-organisés. Le PO décide du 'Quoi', les Développeurs décident du 'Comment'."
+            },
+            {
+                q: "À quel artefact est lié l'engagement de la 'Definition of Done' (DoD) ?",
+                opts: { A: "Le Product Backlog", B: "Le Sprint Backlog", C: "L'Incrément" },
+                ans: "C",
+                exp: "L'Incrément n'est considéré comme tel que s'il répond scrupuleusement aux critères de qualité définis dans la Definition of Done."
+            },
+
+            // PMI / PMBOK
+            {
+                q: "Selon le PMBOK, à quel groupe de processus appartient l'élaboration de la Charte de Projet ?",
+                opts: { A: "Planification", B: "Exécution", C: "Démarrage" },
+                ans: "C",
+                exp: "La Charte de Projet est le document qui autorise formellement l'existence du projet. Elle est créée dans le groupe de processus 'Démarrage'."
+            },
+            {
+                q: "Que représente le 'Triangle de Fer' (Triple Contrainte) en gestion de projet ?",
+                opts: { A: "Coût, Délai, Périmètre", B: "Risques, Qualité, Coût", C: "Equipe, Client, Fournisseur" },
+                ans: "A",
+                exp: "Le Triangle de Fer illustre que le Coût, le Délai (Temps) et le Périmètre (Scope) sont interdépendants."
+            },
+            {
+                q: "Dans la gestion des risques (PMI), quelle stratégie consiste à transférer le risque à un tiers ?",
+                opts: { A: "Mitigation", B: "Acceptation", C: "Transfert (ex: Assurance)" },
+                ans: "C",
+                exp: "Le transfert de risque implique de confier l'impact financier à un tiers, typiquement via la souscription d'une assurance ou l'externalisation."
+            },
+            {
+                q: "Quel domaine de connaissances du PMBOK gère l'identification et l'engagement des personnes impactées par le projet ?",
+                opts: { A: "Gestion des Ressources", B: "Gestion des Parties Prenantes (Stakeholders)", C: "Gestion des Communications" },
+                ans: "B",
+                exp: "La Gestion des Parties Prenantes vise à identifier toute personne touchée par le projet et définir une stratégie pour les engager efficacement."
+            },
+            {
+                q: "Quelle évolution majeure caractérise le passage du PMBOK v6 au PMBOK v7 ?",
+                opts: { A: "Le passage des Processus vers les Principes", B: "La suppression de l'Agilité", C: "L'ajout de 20 nouveaux processus" },
+                ans: "A",
+                exp: "Le PMBOK v7 a abandonné l'approche rigide par processus pour se concentrer sur 12 principes directeurs et la livraison de valeur."
+            },
+
+            // CYCLE EN V
+            {
+                q: "Dans le Cycle en V, quelle phase de tests correspond symétriquement à l'Expression des besoins ?",
+                opts: { A: "Les Tests Unitaires", B: "Les Tests d'Intégration", C: "La Recette Utilisateur (UAT)" },
+                ans: "C",
+                exp: "La Recette (UAT - User Acceptance Testing) vérifie que le système final correspond bien à l'expression des besoins initiale du client."
+            },
+            {
+                q: "Pourquoi le Cycle en V est-il représenté par un 'V' ?",
+                opts: { A: "Pour symboliser la Victoire", B: "Pour lier chaque phase de conception à sa phase de test", C: "Pour illustrer la Vitesse de livraison" },
+                ans: "B",
+                exp: "La branche descendante (Conception) est symétrique à la branche ascendante (Validation). On prépare les tests de la phase de validation dès la phase de conception associée."
+            },
+            {
+                q: "Quelle phase de conception décrit l'algorithmique interne d'un module juste avant qu'il ne soit codé ?",
+                opts: { A: "Conception Détaillée", B: "Conception Architecturale", C: "Spécifications Fonctionnelles" },
+                ans: "A",
+                exp: "La Conception Détaillée traduit l'architecture en instructions précises (algorithmes, modèles de données) avant le développement."
+            },
+            {
+                q: "Dans le Cycle en V, les Tests d'Intégration ont pour but de valider...",
+                opts: { A: "Le code d'un développeur isolé", B: "La Conception Architecturale (communication entre les modules)", C: "Les spécifications métier" },
+                ans: "B",
+                exp: "L'intégration consiste à assembler les modules. Ces tests valident que l'architecture globale (Conception Architecturale) a été respectée."
+            },
+
+            // WATERFALL
+            {
+                q: "Quel est le principe absolu de la méthode en Cascade (Waterfall) ?",
+                opts: { A: "On peut revenir en arrière à tout moment", B: "Une phase doit être terminée et validée pour commencer la suivante", C: "On livre le produit par petits morceaux" },
+                ans: "B",
+                exp: "C'est l'essence de l'approche séquentielle stricte. Sans validation formelle (Sign-off) de la phase A, la phase B ne démarre pas."
+            },
+            {
+                q: "Comment appelle-t-on le risque majeur lié à l'absence de visibilité du client pendant les développements en Waterfall ?",
+                opts: { A: "L'Effet Tunnel", B: "Le Scope Creep", C: "Le Blackout" },
+                ans: "A",
+                exp: "L'Effet Tunnel désigne cette longue période entre la définition du besoin et la livraison finale, où le client ne voit rien du produit."
+            },
+            {
+                q: "Pour quel type de projet la méthode Waterfall est-elle historiquement la mieux adaptée ?",
+                opts: { A: "Les startups qui cherchent leur produit", B: "La construction (BTP) ou les projets au périmètre figé", C: "La création de sites web vitrines" },
+                ans: "B",
+                exp: "Waterfall excelle quand le cahier des charges est parfaitement connu, immuable, et où le coût d'une erreur de fondation est critique (ex: BTP)."
+            },
+
+            // ITIL 4
+            {
+                q: "Quel est le but ultime de la gestion des services selon ITIL 4 ?",
+                opts: { A: "Livrer un service sans bug", B: "La co-création de Valeur", C: "Respecter les SLA techniques" },
+                ans: "B",
+                exp: "ITIL 4 insiste sur le fait que la valeur n'est pas 'livrée' mais 'co-créée' avec le consommateur du service."
+            },
+            {
+                q: "Lequel de ces éléments NE FAIT PAS partie des 4 Dimensions d'ITIL 4 ?",
+                opts: { A: "Partenaires et Fournisseurs", B: "Informations et Technologies", C: "Budget et Financement" },
+                ans: "C",
+                exp: "Les 4 dimensions sont : Organisations & Personnes, Infos & Tech, Partenaires & Fournisseurs, Flux de valeur & Processus."
+            },
+            {
+                q: "Dans la Service Value Chain d'ITIL, quelle activité s'assure que les parties prenantes sont comprises et impliquées ?",
+                opts: { A: "Engager (Engage)", B: "Planifier (Plan)", C: "Livrer (Deliver)" },
+                ans: "A",
+                exp: "L'activité 'Engager' est le point de contact garantissant la bonne compréhension des besoins et la transparence."
+            },
+            {
+                q: "Quel principe directeur d'ITIL 4 recommande de ne pas tout réinventer ?",
+                opts: { A: "Privilégier la valeur", B: "Commencer là où on est", C: "Optimiser et automatiser" },
+                ans: "B",
+                exp: "'Commencer là où on est' incite à évaluer ce qui existe et fonctionne déjà avant de construire du neuf."
+            },
+
+            // PRINCE2
+            {
+                q: "Que signifie le 'P' et le 'R' dans PRINCE2 ?",
+                opts: { A: "PRojects", B: "PRocesses", C: "PRogrammes" },
+                ans: "A",
+                exp: "PRINCE2 signifie : PRojects IN Controlled Environments."
+            },
+            {
+                q: "Quel principe de PRINCE2 permet au Chef de Projet de ne pas consulter le Comité de Pilotage pour chaque micro-décision ?",
+                opts: { A: "Focalisation sur le produit", B: "Management par exception", C: "Justification commerciale continue" },
+                ans: "B",
+                exp: "Le Management par exception définit des 'Tolérances'. Si le Chef de Projet reste dans ces limites, il est autonome."
+            },
+            {
+                q: "Quel document PRINCE2, justifiant la rentabilité du projet, doit être mis à jour à chaque phase ?",
+                opts: { A: "Le registre des risques", B: "Le Business Case (Cas d'Affaire)", C: "Le planning de qualité" },
+                ans: "B",
+                exp: "Le Business Case pilote le projet. Si le projet n'est plus rentable en cours de route, il doit être arrêté."
+            },
+            {
+                q: "Dans PRINCE2, qui détient l'autorité ultime pour diriger le projet ?",
+                opts: { A: "Le Chef de Projet", B: "Le Comité de Pilotage (Project Board)", C: "Le Scrum Master" },
+                ans: "B",
+                exp: "C'est le Comité de Pilotage (comprenant l'Exécutif, l'Utilisateur Principal et le Fournisseur Principal) qui dirige le projet, le Chef de Projet ne fait que le gérer au quotidien."
+            }
+        ];
+
+        let currentQuizSelection = [];
+
+        function openGlobalQuiz() {
+            // 1. Sélectionner 10 questions aléatoires parmi la banque
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            currentQuizSelection = shuffled.slice(0, 10);
+            
+            // 2. Construire le HTML
+            const container = document.getElementById('quizQuestionsContainer');
+            let html = '';
+            
+            currentQuizSelection.forEach((item, index) => {
+                const qNum = index + 1;
+                html += `
+                <div class="q-block" ${qNum === 10 ? 'style="border-bottom: none;"' : ''}>
+                    <h5>${qNum}. ${item.q}</h5>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="A" required> ${item.opts.A}</label>
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="B"> ${item.opts.B}</label>
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="C"> ${item.opts.C}</label>
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+            
+            // 3. Ouvrir la modale
+            document.getElementById('globalQuizForm').style.display = 'block';
+            document.getElementById('quizResults').style.display = 'none';
+            openModal('globalQuizModal');
+        }
+
+        function calculateGlobalScore() {
+            const form = document.getElementById('globalQuizForm');
+            
+            // Vérification que tout est répondu
+            let allAnswered = true;
+            for (let i = 1; i <= 10; i++) {
+                if (!form['q'+i].value) allAnswered = false;
+            }
+            if(!allAnswered) {
+                alert("Veuillez répondre à toutes les questions avant de soumettre !");
+                return;
+            }
+
+            // Calcul
+            const resultsDiv = document.getElementById('quizResults');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const analysisContainer = document.getElementById('analysisContainer');
+            
+            let score = 0;
+            let analysisHTML = '';
+
+            for (let i = 1; i <= 10; i++) {
+                const userAnswer = form['q'+i].value;
+                const data = currentQuizSelection[i-1];
+                
+                if (userAnswer === data.ans) {
+                    score++;
+                    analysisHTML += `
+                        <div class="analysis-block analysis-correct">
+                            <strong>Question ${i} : ✅ Excellente réponse !</strong>
+                            ${data.exp}
+                        </div>`;
+                } else {
+                    analysisHTML += `
+                        <div class="analysis-block analysis-incorrect">
+                            <strong>Question ${i} : ❌ Incorrect.</strong>
+                            <em>La bonne réponse était la ${data.ans} (${data.opts[data.ans]}).</em><br>
+                            ${data.exp}
+                        </div>`;
+                }
+            }
+
+            // Affichage
+            const percentage = Math.round((score / 10) * 100);
+            scoreDisplay.innerHTML = `Score : ${percentage}% (${score}/10)`;
+            if(percentage >= 80) scoreDisplay.style.color = 'var(--success-color)';
+            else if(percentage < 50) scoreDisplay.style.color = 'var(--error-color)';
+            else scoreDisplay.style.color = 'var(--accent-color)';
+
+            analysisContainer.innerHTML = analysisHTML;
+            form.style.display = 'none';
+            resultsDiv.style.display = 'block';
+            
+            // Scroll en haut des résultats
+            document.getElementById('globalQuizModal').scrollTop = 0;
+        }
+
+        function resetQuiz() {
+            // Relancer une nouvelle sélection de questions
+            openGlobalQuiz();
+        }
+    
+</script>
+</body>
+</html>

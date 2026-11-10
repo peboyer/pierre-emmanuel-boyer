@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz & Évaluation IT - Pierre-Emmanuel Boyer</title>
+    <meta name="description" content="Évaluation en gestion de projet IT : Scrum, Cycle en V, PMP, ITIL 4, PRINCE2.">
+    <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #334155;
+            --accent-color: #0ea5e9;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #22c55e;
+            --error-color: #ef4444;
+            --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body.dark-mode {
+            --primary-color: #38bdf8;
+            --secondary-color: #7dd3fc;
+            --accent-color: #0ea5e9;
+            --bg-color: #0f172a;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            --nav-bg: rgba(2, 6, 23, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); transition: background-color 0.3s ease, color 0.3s ease; }
+        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
+
+        nav { position: sticky; top: 0; z-index: 1000; background-color: var(--nav-bg); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+        .nav-logo { font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none; }
+        .header-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .header-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
+
+        header { background: var(--header-bg); color: white; padding: 4rem 1.5rem 5rem; text-align: center; }
+        header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        .container { max-width: 900px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+        
+        .quiz-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .quiz-box h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem; margin-bottom: 1rem; font-size: 1.8rem; }
+        
+        .q-block { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-color); }
+        .q-block h5 { font-size: 1.15rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .options-group { display: flex; flex-direction: column; gap: 0.8rem; }
+        .option-label { display: flex; align-items: center; gap: 0.8rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 1rem; color: var(--text-color); }
+        .option-label:hover { background: var(--bg-color); border-color: var(--accent-color); }
+        .option-label input[type="radio"] { transform: scale(1.2); cursor: pointer; accent-color: var(--accent-color); }
+        
+        .btn-global-quiz { background-color: var(--accent-color); color: white; border: none; padding: 1.2rem; border-radius: 8px; font-weight: 600; font-family: 'Inter', sans-serif; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; width: 100%; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4); margin-top: 1rem;}
+        .btn-global-quiz:hover { background-color: #0284c7; transform: translateY(-2px); }
+
+        .quiz-results { margin-top: 1rem; display: none; }
+        .score-display { font-size: 2.5rem; font-weight: 800; color: var(--accent-color); text-align: center; margin-bottom: 2rem; font-family: 'Poppins', sans-serif;}
+        .analysis-block { margin-bottom: 1.5rem; padding: 1.5rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; color: var(--text-color); }
+        .analysis-correct { background-color: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--success-color); }
+        .analysis-incorrect { background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--error-color); }
+        .analysis-block strong { display: block; margin-bottom: 0.5rem; font-size: 1.05rem; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .quiz-box { padding: 1.5rem; }
+            .nav-actions .header-btn:not(#darkModeToggle) { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">PEB.</a>
+        <div class="nav-actions">
+            <a href="index.html" class="header-btn">⬅️ Portfolio</a>
+            <a href="flashcards.html" class="header-btn">🃏 Flashcards</a>
+            <button class="header-btn" onclick="toggleDarkMode()" id="darkModeToggle">🌙 Sombre</button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Évaluation Globale IT</h1>
+        <p>Simulateur d'examen aléatoire sur les méthodologies de gestion de projet.</p>
+    </header>
+
+    <main class="container">
+        <div class="quiz-box">
+            <h2>Testez vos connaissances</h2>
+            <p style="color: var(--secondary-color); margin-bottom: 2rem; font-size: 1.05rem;">Une sélection unique de 10 questions tirées de notre banque de données (Scrum, Cycle en V, PMI, Waterfall, ITIL, PRINCE2).</p>
+            
+            <form id="globalQuizForm">
+                <div id="quizQuestionsContainer"></div>
+                <button type="button" class="btn-global-quiz" onclick="calculateGlobalScore()">Soumettre mon Quizz</button>
+            </form>
+
+            <div id="quizResults" class="quiz-results">
+                <div class="score-display" id="scoreDisplay">0%</div>
+                <h4 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.3rem;">Analyse de vos réponses :</h4>
+                <div id="analysisContainer"></div>
+                <button class="btn-global-quiz" style="margin-top: 2rem;" onclick="resetQuiz()">Recommencer un nouveau Quizz</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('darkModeToggle');
+            btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️ Clair' : '🌙 Sombre';
+        }
+
+        const questionBank = [
+            // SCRUM
+            {
+                q: "Dans Scrum, qui est responsable de maximiser la valeur du produit et de gérer le Product Backlog ?",
+                opts: { A: "Le Scrum Master", B: "Le Product Owner", C: "Le Project Manager" },
+                ans: "B",
+                exp: "Le Product Owner est l'unique responsable du Product Backlog et de la maximisation de la valeur. Il n'y a pas de 'Project Manager' en Scrum."
+            },
+            {
+                q: "Laquelle de ces propositions fait partie des 3 piliers empiriques de Scrum ?",
+                opts: { A: "Planification", B: "Agilité", C: "Transparence" },
+                ans: "C",
+                exp: "Les 3 piliers de l'empirisme dans Scrum sont : Transparence, Inspection, et Adaptation."
+            },
+            {
+                q: "Quelle est la durée maximale (Timebox) recommandée pour un Sprint ?",
+                opts: { A: "2 semaines", B: "1 mois", C: "Jusqu'à ce que le produit soit fini" },
+                ans: "B",
+                exp: "Un Sprint est une timebox stricte d'un mois maximum (souvent 2 semaines en pratique) pour maintenir un rythme régulier et un feedback rapide."
+            },
+            {
+                q: "Lors du Sprint Planning, qui décide de la manière (le 'Comment') dont le travail sera accompli ?",
+                opts: { A: "Les Développeurs", B: "Le Scrum Master", C: "Le Product Owner" },
+                ans: "A",
+                exp: "Les Développeurs sont auto-organisés. Le PO décide du 'Quoi', les Développeurs décident du 'Comment'."
+            },
+            {
+                q: "À quel artefact est lié l'engagement de la 'Definition of Done' (DoD) ?",
+                opts: { A: "Le Product Backlog", B: "Le Sprint Backlog", C: "L'Incrément" },
+                ans: "C",
+                exp: "L'Incrément n'est considéré comme tel que s'il répond scrupuleusement aux critères de qualité définis dans la Definition of Done."
+            },
+
+            // PMI / PMBOK
+            {
+                q: "Selon le PMBOK, à quel groupe de processus appartient l'élaboration de la Charte de Projet ?",
+                opts: { A: "Planification", B: "Exécution", C: "Démarrage" },
+                ans: "C",
+                exp: "La Charte de Projet est le document qui autorise formellement l'existence du projet. Elle est créée dans le groupe de processus 'Démarrage'."
+            },
+            {
+                q: "Que représente le 'Triangle de Fer' (Triple Contrainte) en gestion de projet ?",
+                opts: { A: "Coût, Délai, Périmètre", B: "Risques, Qualité, Coût", C: "Equipe, Client, Fournisseur" },
+                ans: "A",
+                exp: "Le Triangle de Fer illustre que le Coût, le Délai (Temps) et le Périmètre (Scope) sont interdépendants."
+            },
+            {
+                q: "Dans la gestion des risques (PMI), quelle stratégie consiste à transférer le risque à un tiers ?",
+                opts: { A: "Mitigation", B: "Acceptation", C: "Transfert (ex: Assurance)" },
+                ans: "C",
+                exp: "Le transfert de risque implique de confier l'impact financier à un tiers, typiquement via la souscription d'une assurance ou l'externalisation."
+            },
+            {
+                q: "Quel domaine de connaissances du PMBOK gère l'identification et l'engagement des personnes impactées par le projet ?",
+                opts: { A: "Gestion des Ressources", B: "Gestion des Parties Prenantes (Stakeholders)", C: "Gestion des Communications" },
+                ans: "B",
+                exp: "La Gestion des Parties Prenantes vise à identifier toute personne touchée par le projet et définir une stratégie pour les engager efficacement."
+            },
+            {
+                q: "Quelle évolution majeure caractérise le passage du PMBOK v6 au PMBOK v7 ?",
+                opts: { A: "Le passage des Processus vers les Principes", B: "La suppression de l'Agilité", C: "L'ajout de 20 nouveaux processus" },
+                ans: "A",
+                exp: "Le PMBOK v7 a abandonné l'approche rigide par processus pour se concentrer sur 12 principes directeurs et la livraison de valeur."
+            },
+
+            // CYCLE EN V
+            {
+                q: "Dans le Cycle en V, quelle phase de tests correspond symétriquement à l'Expression des besoins ?",
+                opts: { A: "Les Tests Unitaires", B: "Les Tests d'Intégration", C: "La Recette Utilisateur (UAT)" },
+                ans: "C",
+                exp: "La Recette (UAT - User Acceptance Testing) vérifie que le système final correspond bien à l'expression des besoins initiale du client."
+            },
+            {
+                q: "Pourquoi le Cycle en V est-il représenté par un 'V' ?",
+                opts: { A: "Pour symboliser la Victoire", B: "Pour lier chaque phase de conception à sa phase de test", C: "Pour illustrer la Vitesse de livraison" },
+                ans: "B",
+                exp: "La branche descendante (Conception) est symétrique à la branche ascendante (Validation). On prépare les tests de la phase de validation dès la phase de conception associée."
+            },
+            {
+                q: "Quelle phase de conception décrit l'algorithmique interne d'un module juste avant qu'il ne soit codé ?",
+                opts: { A: "Conception Détaillée", B: "Conception Architecturale", C: "Spécifications Fonctionnelles" },
+                ans: "A",
+                exp: "La Conception Détaillée traduit l'architecture en instructions précises (algorithmes, modèles de données) avant le développement."
+            },
+            {
+                q: "Dans le Cycle en V, les Tests d'Intégration ont pour but de valider...",
+                opts: { A: "Le code d'un développeur isolé", B: "La Conception Architecturale (communication entre les modules)", C: "Les spécifications métier" },
+                ans: "B",
+                exp: "L'intégration consiste à assembler les modules. Ces tests valident que l'architecture globale (Conception Architecturale) a été respectée."
+            },
+
+            // WATERFALL
+            {
+                q: "Quel est le principe absolu de la méthode en Cascade (Waterfall) ?",
+                opts: { A: "On peut revenir en arrière à tout moment", B: "Une phase doit être terminée et validée pour commencer la suivante", C: "On livre le produit par petits morceaux" },
+                ans: "B",
+                exp: "C'est l'essence de l'approche séquentielle stricte. Sans validation formelle (Sign-off) de la phase A, la phase B ne démarre pas."
+            },
+            {
+                q: "Comment appelle-t-on le risque majeur lié à l'absence de visibilité du client pendant les développements en Waterfall ?",
+                opts: { A: "L'Effet Tunnel", B: "Le Scope Creep", C: "Le Blackout" },
+                ans: "A",
+                exp: "L'Effet Tunnel désigne cette longue période entre la définition du besoin et la livraison finale, où le client ne voit rien du produit."
+            },
+            {
+                q: "Pour quel type de projet la méthode Waterfall est-elle historiquement la mieux adaptée ?",
+                opts: { A: "Les startups qui cherchent leur produit", B: "La construction (BTP) ou les projets au périmètre figé", C: "La création de sites web vitrines" },
+                ans: "B",
+                exp: "Waterfall excelle quand le cahier des charges est parfaitement connu, immuable, et où le coût d'une erreur de fondation est critique (ex: BTP)."
+            },
+
+            // ITIL 4
+            {
+                q: "Quel est le but ultime de la gestion des services selon ITIL 4 ?",
+                opts: { A: "Livrer un service sans bug", B: "La co-création de Valeur", C: "Respecter les SLA techniques" },
+                ans: "B",
+                exp: "ITIL 4 insiste sur le fait que la valeur n'est pas 'livrée' mais 'co-créée' avec le consommateur du service."
+            },
+            {
+                q: "Lequel de ces éléments NE FAIT PAS partie des 4 Dimensions d'ITIL 4 ?",
+                opts: { A: "Partenaires et Fournisseurs", B: "Informations et Technologies", C: "Budget et Financement" },
+                ans: "C",
+                exp: "Les 4 dimensions sont : Organisations & Personnes, Infos & Tech, Partenaires & Fournisseurs, Flux de valeur & Processus."
+            },
+            {
+                q: "Dans la Service Value Chain d'ITIL, quelle activité s'assure que les parties prenantes sont comprises et impliquées ?",
+                opts: { A: "Engager (Engage)", B: "Planifier (Plan)", C: "Livrer (Deliver)" },
+                ans: "A",
+                exp: "L'activité 'Engager' est le point de contact garantissant la bonne compréhension des besoins et la transparence."
+            },
+            {
+                q: "Quel principe directeur d'ITIL 4 recommande de ne pas tout réinventer ?",
+                opts: { A: "Privilégier la valeur", B: "Commencer là où on est", C: "Optimiser et automatiser" },
+                ans: "B",
+                exp: "'Commencer là où on est' incite à évaluer ce qui existe et fonctionne déjà avant de construire du neuf."
+            },
+
+            // PRINCE2
+            {
+                q: "Que signifie le 'P' et le 'R' dans PRINCE2 ?",
+                opts: { A: "PRojects", B: "PRocesses", C: "PRogrammes" },
+                ans: "A",
+                exp: "PRINCE2 signifie : PRojects IN Controlled Environments."
+            },
+            {
+                q: "Quel principe de PRINCE2 permet au Chef de Projet de ne pas consulter le Comité de Pilotage pour chaque micro-décision ?",
+                opts: { A: "Focalisation sur le produit", B: "Management par exception", C: "Justification commerciale continue" },
+                ans: "B",
+                exp: "Le Management par exception définit des 'Tolérances'. Si le Chef de Projet reste dans ces limites, il est autonome."
+            },
+            {
+                q: "Quel document PRINCE2, justifiant la rentabilité du projet, doit être mis à jour à chaque phase ?",
+                opts: { A: "Le registre des risques", B: "Le Business Case (Cas d'Affaire)", C: "Le planning de qualité" },
+                ans: "B",
+                exp: "Le Business Case pilote le projet. Si le projet n'est plus rentable en cours de route, il doit être arrêté."
+            },
+            {
+                q: "Dans PRINCE2, qui détient l'autorité ultime pour diriger le projet ?",
+                opts: { A: "Le Chef de Projet", B: "Le Comité de Pilotage (Project Board)", C: "Le Scrum Master" },
+                ans: "B",
+                exp: "C'est le Comité de Pilotage (comprenant l'Exécutif, l'Utilisateur Principal et le Fournisseur Principal) qui dirige le projet, le Chef de Projet ne fait que le gérer au quotidien."
+            }
+        ];
+
+        let currentQuizSelection = [];
+
+        function openGlobalQuiz() {
+            const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            currentQuizSelection = shuffled.slice(0, 10);
+            
+            const container = document.getElementById('quizQuestionsContainer');
+            let html = '';
+            
+            currentQuizSelection.forEach((item, index) => {
+                const qNum = index + 1;
+                html += `
+                <div class="q-block" ${qNum === 10 ? 'style="border-bottom: none;"' : ''}>
+                    <h5>${qNum}. ${item.q}</h5>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="A" required> ${item.opts.A}</label>
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="B"> ${item.opts.B}</label>
+                        <label class="option-label"><input type="radio" name="q${qNum}" value="C"> ${item.opts.C}</label>
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+            document.getElementById('globalQuizForm').style.display = 'block';
+            document.getElementById('quizResults').style.display = 'none';
+        }
+
+        function calculateGlobalScore() {
+            const form = document.getElementById('globalQuizForm');
+            let allAnswered = true;
+            for (let i = 1; i <= 10; i++) {
+                if (!form['q'+i].value) allAnswered = false;
+            }
+            if(!allAnswered) {
+                alert("Veuillez répondre à toutes les questions avant de soumettre !");
+                return;
+            }
+
+            let score = 0;
+            let analysisHTML = '';
+
+            for (let i = 1; i <= 10; i++) {
+                const userAnswer = form['q'+i].value;
+                const data = currentQuizSelection[i-1];
+                
+                if (userAnswer === data.ans) {
+                    score++;
+                    analysisHTML += `
+                        <div class="analysis-block analysis-correct">
+                            <strong>Question ${i} : ✅ Excellente réponse !</strong>
+                            ${data.exp}
+                        </div>`;
+                } else {
+                    analysisHTML += `
+                        <div class="analysis-block analysis-incorrect">
+                            <strong>Question ${i} : ❌ Incorrect.</strong>
+                            <em>La bonne réponse était la ${data.ans} (${data.opts[data.ans]}).</em><br>
+                            ${data.exp}
+                        </div>`;
+                }
+            }
+
+            const percentage = Math.round((score / 10) * 100);
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.innerHTML = `Score : ${percentage}% (${score}/10)`;
+            scoreDisplay.style.color = percentage >= 80 ? 'var(--success-color)' : (percentage < 50 ? 'var(--error-color)' : 'var(--accent-color)');
+
+            document.getElementById('analysisContainer').innerHTML = analysisHTML;
+            form.style.display = 'none';
+            document.getElementById('quizResults').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            openGlobalQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', openGlobalQuiz);
+    </script>
+</body>
+</html>
