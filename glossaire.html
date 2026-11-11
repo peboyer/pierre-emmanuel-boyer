@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glossaire IT & Gestion de Projet - Pierre-Emmanuel Boyer</title>
-    <meta name="description" content="Lexique et définitions des termes techniques et méthodologiques IT : PMBOK, ITIL, MCO, PAM, RACI, UAT.">
+    <meta name="description" content="Lexique complet de 72 termes techniques et méthodologiques IT : Systèmes, Réseau, Cloud, DevOps, Cybersécurité, Messagerie, Stockage, PRA/PCA, ITIL et Gestion de Projet.">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,34 +53,49 @@
 
         header { background: var(--header-bg); color: white; padding: 4rem 1.5rem 5rem; text-align: center; }
         header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+        header p { color: var(--accent-color); font-weight: 500; font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
 
-        .container { max-width: 1000px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+        .container { max-width: 1150px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         
-        /* Search Bar */
-        .search-container {
+        /* Search & Filter Panel */
+        .controls-panel {
             background: var(--card-bg); padding: 1.5rem; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
+            border: 1px solid var(--border-color); margin-bottom: 2.5rem;
         }
-        .search-icon { font-size: 1.5rem; }
+        .search-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+        .search-icon { font-size: 1.4rem; }
         .search-input {
-            width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem;
-            background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif;
+            width: 100%; padding: 0.9rem 1rem; border: 1px solid var(--border-color); border-radius: 10px; font-size: 1.05rem;
+            background: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; transition: border-color 0.2s;
         }
-        .search-input:focus { outline: 2px solid var(--accent-color); }
+        .search-input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); }
+        
+        .count-badge {
+            background: rgba(14, 165, 233, 0.15); color: var(--accent-color); font-weight: 700; font-size: 0.85rem;
+            padding: 0.5rem 1rem; border-radius: 9999px; white-space: nowrap; font-family: 'Poppins', sans-serif;
+        }
+
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .filter-btn {
+            background: var(--badge-bg); color: var(--badge-text); border: 1px solid var(--border-color);
+            padding: 0.45rem 0.9rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
+        }
+        .filter-btn:hover { border-color: var(--accent-color); color: var(--primary-color); }
+        .filter-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
 
         /* Glossary Grid */
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; }
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem; }
         
         .term-card {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s;
-            border-left: 4px solid var(--accent-color);
+            border-left: 4px solid var(--accent-color); display: flex; flex-direction: column;
         }
         .term-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .term-title { color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-        .term-category { font-size: 0.72rem; background: var(--badge-bg); color: var(--badge-text); padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
-        .term-def { font-size: 0.95rem; color: var(--text-color); line-height: 1.6; }
+        .term-title { color: var(--primary-color); font-size: 1.2rem; margin-bottom: 0.6rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+        .term-category { font-size: 0.7rem; background: var(--badge-bg); color: var(--badge-text); padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; margin-top: 0.15rem; }
+        .term-def { font-size: 0.94rem; color: var(--text-color); line-height: 1.6; }
         .no-results { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--secondary-color); font-size: 1.2rem; display: none; }
 
         /* ========================================== */
@@ -108,8 +123,18 @@
             header { padding: 3rem 1rem 4rem; }
             header h1 { font-size: 2.1rem; }
             header p { font-size: 1rem; }
-            .search-container { padding: 1rem; gap: 0.75rem; margin-bottom: 2rem; }
-            .search-input { padding: 0.8rem; font-size: 1rem; }
+            .controls-panel { padding: 1.15rem; margin-bottom: 2rem; }
+            .search-row { flex-wrap: wrap; gap: 0.65rem; }
+            .count-badge { width: 100%; text-align: center; }
+            .filter-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 4px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .filter-bar::-webkit-scrollbar { display: none; }
+            .filter-btn { white-space: nowrap; flex-shrink: 0; }
         }
     </style>
 </head>
@@ -132,115 +157,446 @@
 
     <header>
         <h1>Glossaire IT & Projets</h1>
-        <p>Lexique des acronymes techniques et concepts méthodologiques clés.</p>
+        <p>Référentiel de 72 concepts clés couvrant l'ensemble des périmètres techniques et méthodologiques d'une DSI.</p>
     </header>
 
     <main class="container">
-        <!-- Barre de recherche -->
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un terme, un acronyme (ex: PMBOK, MCO...)" onkeyup="filterGlossary()">
+        <!-- Barre de recherche & Filtres par périmètre -->
+        <div class="controls-panel">
+            <div class="search-row">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un acronyme, une technologie ou un concept (ex: Active Directory, VLAN, RPO, ITIL...)" onkeyup="filterGlossary()">
+                <span class="count-badge" id="termCount">72 termes</span>
+            </div>
+            <div class="filter-bar" id="filterBar">
+                <button class="filter-btn active" onclick="setCategory('ALL', this)">Tous les périmètres</button>
+                <button class="filter-btn" onclick="setCategory('Systèmes & Virtualisation', this)">🖥️ Systèmes & Virtualisation</button>
+                <button class="filter-btn" onclick="setCategory('Réseau & Télécoms', this)">🌐 Réseau & Télécoms</button>
+                <button class="filter-btn" onclick="setCategory('Cloud & DevOps', this)">☁️ Cloud & DevOps</button>
+                <button class="filter-btn" onclick="setCategory('Cybersécurité', this)">🛡️ Cybersécurité</button>
+                <button class="filter-btn" onclick="setCategory('Workplace & Messagerie', this)">💼 Workplace & Messagerie</button>
+                <button class="filter-btn" onclick="setCategory('Stockage & PRA/PCA', this)">💾 Stockage & PRA/PCA</button>
+                <button class="filter-btn" onclick="setCategory('ITSM & Exploitation', this)">⚙️ ITSM & Exploitation</button>
+                <button class="filter-btn" onclick="setCategory('Gestion de Projet', this)">🎯 Gestion de Projet</button>
+            </div>
         </div>
 
-        <!-- Grille des termes -->
+        <!-- Grille des termes (Triés par ordre alphabétique) -->
         <div class="glossary-grid" id="glossaryGrid">
-            
-            <div class="term-card">
-                <div class="term-title">MCO <span class="term-category">Infrastructure</span></div>
-                <div class="term-def"><strong>Maintien en Condition Opérationnelle.</strong> Ensemble des mesures (préventives et curatives) prises pour garantir qu'un système informatique ou une application reste disponible et performant pour les utilisateurs.</div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">Active Directory (AD) <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>Annuaire d'entreprise Microsoft.</strong> Service centralisant l'identification, l'authentification (Kerberos/LDAP) et la gestion des droits d'accès des utilisateurs, groupes et ordinateurs sur le réseau.</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">PAM <span class="term-category">Sécurité</span></div>
-                <div class="term-def"><strong>Privileged Access Management.</strong> Solution de cybersécurité centralisant et surveillant les accès aux comptes à hauts privilèges (ex: comptes administrateurs de serveurs).</div>
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">ADKAR <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Awareness, Desire, Knowledge, Ability, Reinforcement.</strong> Modèle structuré de conduite du changement (Prosci) visant à accompagner individuellement chaque collaborateur dans l'adoption d'un nouvel outil IT.</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div>
-                <div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance définissant le rôle de chaque partie prenante pour chaque tâche d'un projet.</div>
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">API REST <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Application Programming Interface.</strong> Interface standardisée utilisant le protocole HTTP pour permettre à deux applications ou briques d'infrastructure d'échanger des données (souvent au format JSON) et d'automatiser des tâches.</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">UAT <span class="term-category">Qualité</span></div>
-                <div class="term-def"><strong>User Acceptance Testing.</strong> Phase finale de test (Recette) où les utilisateurs finaux valident que la solution répond bien à leurs besoins métiers avant la mise en production.</div>
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">Autopilot (Windows) <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Déploiement Zero-Touch.</strong> Technologie cloud Microsoft permettant de préconfigurer et déployer un poste de travail neuf directement chez l'utilisateur final sans masterisation manuelle par l'équipe support.</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">MDM <span class="term-category">Infrastructure</span></div>
-                <div class="term-def"><strong>Mobile Device Management.</strong> Logiciel permettant de sécuriser, surveiller, gérer et supporter les appareils mobiles (smartphones, tablettes) déployés dans l'entreprise (ex: Intune, AirWatch).</div>
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">BGP / OSPF <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Protocoles de routage dynamique.</strong> OSPF détermine le chemin le plus rapide à l'intérieur d'un réseau d'entreprise (LAN/WAN interne), tandis que BGP gère le routage entre grands réseaux autonomes (Internet, interconnexions Datacenters/Cloud).</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">SLA <span class="term-category">Service (ITIL)</span></div>
-                <div class="term-def"><strong>Service Level Agreement.</strong> Contrat ou accord entre un fournisseur de services IT et un client, définissant le niveau de service attendu (temps de résolution, disponibilité à 99.9%, etc.).</div>
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">CAB <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Change Advisory Board.</strong> Instance ITIL réunissant les référents techniques et métiers pour évaluer les risques, vérifier le plan de retour arrière (Rollback) et autoriser les changements en production.</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">PMBOK <span class="term-category">Méthodologie</span></div>
-                <div class="term-def"><strong>Project Management Body of Knowledge.</strong> Guide fondamental édité par le PMI (Project Management Institute) recensant les bonnes pratiques mondiales en gestion de projet prédictive et hybride.</div>
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">CAPEX vs OPEX <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Capital Expenditure vs Operational Expenditure.</strong> Le CAPEX désigne les investissements matériels amortissables (achat de serveurs physiques), tandis que l'OPEX regroupe les charges d'exploitation récurrentes (abonnements Cloud, licences M365).</div>
             </div>
 
-            <div class="term-card">
-                <div class="term-title">ITIL <span class="term-category">Méthodologie</span></div>
-                <div class="term-def"><strong>Information Technology Infrastructure Library.</strong> Référentiel mondial des meilleures pratiques pour la gestion des services informatiques (ITSM), axé sur la co-création de valeur.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">SMTPS <span class="term-category">Réseau / Sécurité</span></div>
-                <div class="term-def"><strong>Simple Mail Transfer Protocol Secure.</strong> Protocole de communication standard sécurisé (chiffré via TLS/SSL) utilisé pour le transfert de courriers électroniques entre serveurs.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">PKI <span class="term-category">Sécurité</span></div>
-                <div class="term-def"><strong>Public Key Infrastructure.</strong> Infrastructure à clés publiques. Système permettant de créer, gérer, distribuer et révoquer des certificats numériques pour sécuriser les communications.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-title">MVP <span class="term-category">Agile</span></div>
-                <div class="term-def"><strong>Minimum Viable Product.</strong> Version d'un produit avec juste assez de fonctionnalités pour être utilisable par les premiers clients, permettant de recueillir des feedbacks rapidement.</div>
-            </div>
-
-            <div class="term-card">
+            <div class="term-card" data-category="Gestion de Projet">
                 <div class="term-title">Change Management <span class="term-category">Gestion de Projet</span></div>
-                <div class="term-def">Conduite du changement. Ensemble d'actions visant à accompagner les utilisateurs finaux dans l'adoption d'un nouvel outil ou processus, garantissant ainsi le succès du projet.</div>
+                <div class="term-def"><strong>Conduite du changement.</strong> Ensemble des actions de communication, de formation et de support visant à garantir l'adhésion des utilisateurs finaux lors du déploiement d'une nouvelle solution technique.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">CI/CD <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Continuous Integration / Continuous Deployment.</strong> Chaîne d'automatisation DevOps permettant de compiler, tester et déployer du code ou des configurations d'infrastructure de manière fiable et fréquente.</div>
+            </div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">Cluster HA <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>High Availability (Haute Disponibilité).</strong> Regroupement de plusieurs serveurs physiques ou virtuels configurés en redondance active/active ou active/passive pour assurer une bascule automatique (Failover) sans coupure en cas de panne.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">CMDB <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Configuration Management Database.</strong> Base de données référençant tous les composants du SI (serveurs, équipements réseaux, applications) et leurs liens de dépendance pour analyser l'impact d'une panne ou d'une maintenance.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">Conteneurisation (Docker) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Isolation applicative légère.</strong> Technologie consistant à empaqueter une application et toutes ses dépendances dans un conteneur isolé partageant le noyau de l'OS hôte, garantissant un fonctionnement identique du poste de dev à la production.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">COPIL vs COPROJ <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Comité de Pilotage vs Comité de Projet.</strong> Le COPIL (SteerCo) réunit les décideurs pour arbitrer le budget, les délais et la stratégie ; le COPROJ rassemble l'équipe technique chaque semaine pour suivre l'avancement opérationnel.</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">Déduplication <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Optimisation volumétrique.</strong> Procédé de stockage et de sauvegarde qui élimine les blocs de données identiques en double pour ne conserver qu'une seule occurrence physique, réduisant drastiquement l'espace disque et la bande passante consommés.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">Dette Technique <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Coût implicite de maintenance.</strong> Accumulation de compromis techniques (systèmes obsolètes en fin de support, contournements rapides) qui ralentissent les évolutions futures et augmentent les risques de sécurité ou de panne.</div>
+            </div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">DFS <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>Distributed File System.</strong> Rôle Windows Server permettant d'unifier des dossiers partagés répartis sur plusieurs serveurs sous un espace de noms unique (DFS-N) et de les synchroniser entre différents sites (DFS-R).</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">DHCP <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Dynamic Host Configuration Protocol.</strong> Protocole réseau attribuant automatiquement une adresse IP, un masque de sous-réseau, une passerelle par défaut et des serveurs DNS à chaque équipement qui se connecte.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">DMZ <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Zone Démilitarisée.</strong> Sous-réseau isolé par deux pare-feux, situé entre le réseau interne de l'entreprise (LAN) et Internet (WAN), hébergeant les serveurs exposés au public (passerelles mail, reverse proxy, serveurs web).</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">DNS <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Domain Name System.</strong> Annuaire fondamental d'Internet et des réseaux d'entreprise traduisant les noms de domaine lisibles (ex: intranet.entreprise.fr) en adresses IP numériques (ex: 10.24.1.15) via des enregistrements A, CNAME, MX ou TXT.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">Durcissement (Hardening) <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Réduction de la surface d'attaque.</strong> Sécurisation méthodique d'un serveur ou d'un OS (souvent selon les référentiels ANSSI ou CIS) en désactivant les services inutiles, les ports ouverts et les comptes par défaut.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">EDR / XDR <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Endpoint / Extended Detection and Response.</strong> Évolution de l'antivirus classique analysant en temps réel le comportement des postes et serveurs par intelligence artificielle pour bloquer et isoler les menaces avancées (ransomwares, attaques sans fichier).</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">Entra ID (Azure AD) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Gestion des identités Cloud.</strong> Service d'annuaire et de contrôle d'accès cloud de Microsoft gérant l'authentification unique (SSO), le MFA et les stratégies d'accès conditionnel pour Microsoft 365 et des milliers d'applications SaaS.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">Escalade N1 / N2 / N3 <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Niveaux de support IT.</strong> Le N1 (Service Desk) traite les demandes courantes et le diagnostic initial ; le N2 regroupe les techniciens de proximité/administrateurs ; le N3 rassemble les ingénieurs experts et architectes résolvant les cas complexes.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">FinOps <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Gestion financière du Cloud.</strong> Pratique culturelle et opérationnelle réunissant les équipes IT, Finance et Métiers pour suivre, optimiser et maîtriser la facturation à l'usage des ressources Cloud.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">Firewall (Pare-feu) <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Filtrage des flux réseau.</strong> Équipement matériel ou logiciel contrôlant le trafic réseau entrant et sortant selon une matrice de flux stricte (adresses IP, ports, protocoles et inspection applicative de nouvelle génération NGFW).</div>
+            </div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">GPO <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>Group Policy Object (Stratégie de groupe).</strong> Fonctionnalité d'Active Directory permettant d'appliquer centralement des configurations systèmes, des restrictions de sécurité et des déploiements logiciels sur des milliers de postes et serveurs Windows.</div>
+            </div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">Hyperviseur <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>Socle de virtualisation (VMware ESXi, Hyper-V, Proxmox).</strong> Couche logicielle installée directement sur un serveur physique ("Bare-Metal") permettant de créer et d'exécuter simultanément plusieurs machines virtuelles (VM) indépendantes en partageant CPU, RAM et stockage.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">IaC (Infrastructure as Code) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Automatisation par le code (Terraform, Ansible).</strong> Provisionnement et configuration des serveurs, réseaux et environnements Cloud via des fichiers de code déclaratifs versionnés sous Git, évitant toute erreur de clic manuel.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">IaaS / PaaS / SaaS <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Les 3 modèles de service Cloud.</strong> IaaS fournit l'infrastructure brute (VM, stockage, réseau) ; PaaS fournit une plateforme prête à accueillir du code (bases de données managées) ; SaaS fournit un logiciel clé en main (Office 365, Salesforce).</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">Incident vs Problème <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Distinction fondamentale ITIL.</strong> L'Incident est une interruption imprévue d'un service qu'il faut rétablir au plus vite (même via un contournement) ; le Problème est la cause sous-jacente d'un ou plusieurs incidents qu'on analyse à froid pour éviter toute récidive.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">IPAM & DCIM (NetBox) <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>IP Address Management & Data Center Infrastructure Management.</strong> Outils référentiels (comme NetBox ou Device42) servant de "source de vérité" pour cartographier les baies de brassage, le câblage, les VLANs et le plan d'adressage IP.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">ITIL 4 <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Information Technology Infrastructure Library.</strong> Cadre de référence mondial pour la gestion des services IT (ITSM), structuré autour du Système de Valeur des Services (SVS), de 4 dimensions et de 34 pratiques orientées co-création de valeur.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">Kubernetes (K8s) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Orchestrateur de conteneurs.</strong> Plateforme open-source qui automatise le déploiement, la montée en charge (auto-scaling), la répartition de charge et l'auto-guérison de milliers de conteneurs applicatifs en production.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">Load Balancer <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Répartiteur de charge (F5, HAProxy, Azure LB).</strong> Dispositif distribuant intelligemment le trafic réseau ou applicatif entrant sur plusieurs serveurs en parallèle afin d'optimiser les temps de réponse et de masquer la défaillance d'un nœud.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">Masterisation / Image <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Standardisation des postes.</strong> Création d'un modèle de système d'exploitation préconfiguré (OS, pilotes, agents de sécurité, logiciels socles) déployé en masse par le réseau (PXE, SCCM/MDT) pour uniformiser le parc informatique.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">MCO <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Maintien en Condition Opérationnelle.</strong> Ensemble des activités quotidiennes d'administration, de patching, de supervision et de support visant à garantir qu'une infrastructure en production (Run) reste stable, disponible et performante.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">MDM / UEM <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Mobile Device / Unified Endpoint Management.</strong> Plateforme (Microsoft Intune, VMware Workspace ONE / AirWatch) permettant d'enrôler, configurer, sécuriser et effacer à distance les flotte de smartphones, tablettes et ordinateurs portables.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">MFA <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Multi-Factor Authentication.</strong> Mécanisme de sécurité exigeant au moins deux preuves d'identité distinctes pour se connecter : ce que l'utilisateur sait (mot de passe/PIN), ce qu'il possède (smartphone/clé FIDO2) ou ce qu'il est (biométrie).</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">Micro-segmentation <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Isolation granulaire Zero Trust.</strong> Technique de sécurité réseau consistant à cloisonner finement les serveurs et applications au sein même d'un Datacenter ou du Cloud pour empêcher tout mouvement latéral d'un attaquant.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">Microsoft 365 (M365) <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Écosystème collaboratif Cloud.</strong> Suite SaaS de Microsoft regroupant la messagerie Exchange Online, la communication unifiée Teams, l'intranet documentaire SharePoint, le stockage OneDrive et la suite bureautique Office.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">Monitoring (Supervision) <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Surveillance proactive du SI (Nagios, Zabbix, Centreon, Datadog).</strong> Collecte continue de métriques (CPU, RAM, espace disque, flux réseau, sondes applicatives) déclenchant des alertes avant que les utilisateurs ne subissent une panne.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">MVP <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Minimum Viable Product.</strong> Première version opérationnelle d'un produit ou d'un service IT intégrant uniquement les fonctionnalités essentielles afin d'apporter une valeur immédiate et d'ajuster la suite grâce aux retours utilisateurs.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">PAM <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Privileged Access Management (CyberArk, Wallix).</strong> Solution de cybersécurité protégeant les comptes à hauts privilèges (administrateurs systèmes/réseaux) via un coffre-fort de mots de passe rotatifs et l'enregistrement vidéo/audit des sessions.</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">PCA vs PRA <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Continuité vs Reprise d'Activité.</strong> Le PCA garantit le maintien du service sans interruption perceptible (via redondance active multi-sites), tandis que le PRA organise la reconstruction et le redémarrage du SI après un sinistre majeur selon un délai défini (RTO).</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">PKI & Certificats SSL/TLS <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Public Key Infrastructure.</strong> Architecture cryptographique gérant le cycle de vie des certificats numériques permettant d'authentifier les serveurs/utilisateurs et de chiffrer les flux (HTTPS, SMTPS, VPN, Wi-Fi 802.1X).</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">PMBOK (PMI) <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Project Management Body of Knowledge.</strong> Standard mondial du Project Management Institute structurant la gouvernance de projet autour de 5 groupes de processus, 10 domaines de connaissances et 12 principes orientés livraison de valeur.</div>
+            </div>
+
+            <div class="term-card" data-category="Systèmes & Virtualisation">
+                <div class="term-title">PowerShell <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-def"><strong>Automatisation et Scripting IT.</strong> Langage de script orienté objets et invite de commande de Microsoft incontournable pour industrialiser l'administration d'Active Directory, Windows Server, Exchange, Azure et Microsoft 365.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">PRINCE2 <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>PRojects IN Controlled Environments.</strong> Méthodologie de gestion de projet très structurée reposant sur 7 principes, 7 thèmes et 7 processus, axée sur le Business Case continu et le management par exception (tolérances).</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">Proxy vs Reverse Proxy <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Intermédiaires de flux HTTP/S.</strong> Le Proxy filtre et sécurise l'accès des utilisateurs internes lorsqu'ils naviguent sur Internet ; le Reverse Proxy protège les serveurs web internes en recevant les requêtes provenant d'Internet à leur place.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">QoS <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Quality of Service.</strong> Mécanisme réseau permettant de prioriser certains flux critiques sensibles à la latence (comme la téléphonie sur IP ou la visioconférence Teams) par rapport aux téléchargements volumineux.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance clarifiant qui réalise la tâche (R), qui détient l'autorité unique de validation (A), qui apporte son expertise (C) et qui est tenu informé (I).</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">Règle de sauvegarde 3-2-1 <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Standard d'or de la protection des données.</strong> Conserver au moins <strong>3</strong> copies des données, sur <strong>2</strong> supports technologiques différents, dont <strong>1</strong> copie externalisée hors site (et immuable/hors-ligne contre les ransomwares).</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">RFI vs RFP <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Request For Information vs Request For Proposal.</strong> Lors d'un appel d'offres IT, le RFI permet de sonder les solutions existantes sur le marché ; le RFP (accompagné d'un cahier des charges détaillé) engage les soumissionnaires sur un chiffrage et une architecture.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">RGPD (GDPR) <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Règlement Général sur la Protection des Données.</strong> Cadre légal européen imposant l'intégration de la sécurité et du respect de la vie privée dès la conception des projets IT ("Privacy by Design", registre des traitements, souveraineté des données).</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">Rollback (Retour arrière) <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Filet de sécurité de mise en production.</strong> Procédure documentée et testée permettant d'annuler un changement technique et de restaurer l'état fonctionnel initial dans le temps imparti si une bascule rencontre un échec critique.</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">RPO vs RTO <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Indicateurs clés de continuité.</strong> Le <strong>RPO</strong> (Recovery Point Objective) définit la perte maximale de données tolérée (ex: 1h entre deux backups) ; le <strong>RTO</strong> (Recovery Time Objective) fixe la durée maximale d'indisponibilité tolérée avant remise en service (ex: 4h).</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">SAN vs NAS <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Architectures de stockage centralisé.</strong> Le SAN fournit un stockage rapide en mode "bloc" aux serveurs via Fibre Channel ou iSCSI (idéal bases de données/VMware) ; le NAS (ex: Dell Isilon, NetApp) fournit un partage de fichiers sur réseau IP via SMB ou NFS.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">SCCM / MECM <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Microsoft Endpoint Configuration Manager.</strong> Suite d'administration système permettant de télédistribuer des applications, de déployer des systèmes d'exploitation (OSD), de gérer les correctifs Windows et d'inventorier le parc matériel/logiciel.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">Scrum <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Cadre Agile empirique.</strong> Organisation itérative en Sprints (1 à 4 semaines) articulée autour de 3 rôles (Product Owner, Scrum Master, Développeurs), 3 artefacts (Product Backlog, Sprint Backlog, Incrément) et 4 cérémonies.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">SD-WAN <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Software-Defined Wide Area Network.</strong> Architecture réseau pilotée par logiciel permettant d'interconnecter les sites distants d'une entreprise en combinant intelligemment plusieurs liens (Fibre, MPLS, 4G/5G) et en routant directement les flux Cloud.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">SIEM & SOC <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Détection centrale des cybermenaces.</strong> Le SIEM collecte et corrèle en temps réel les journaux d'événements (logs) des serveurs, pare-feux et postes ; le SOC est l'équipe d'analystes cybersécurité qui surveille ces alertes et répond aux incidents.</div>
+            </div>
+
+            <div class="term-card" data-category="ITSM & Exploitation">
+                <div class="term-title">SLA vs OLA <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-def"><strong>Engagements de niveau de service.</strong> Le SLA (Service Level Agreement) est le contrat liant la DSI à ses clients métiers (ex: disponibilité 99,9%, GTI/GTR) ; l'OLA (Operational Level Agreement) est l'accord interne entre deux équipes IT pour tenir ce SLA.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">SMTPS / SPF / DKIM / DMARC <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Sécurité et authentification des flux mail.</strong> SMTPS chiffre le transport des e-mails entre serveurs, tandis que les enregistrements DNS SPF, DKIM et DMARC empêchent l'usurpation de nom de domaine (Spoofing) et garantissent la délivrabilité.</div>
+            </div>
+
+            <div class="term-card" data-category="Stockage & PRA/PCA">
+                <div class="term-title">Snapshot <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-def"><strong>Instantané de machine virtuelle ou de volume.</strong> Photographie de l'état exact d'un serveur à un instant T avant une opération risquée (mise à jour critique). Attention : un snapshot temporaire ne remplace jamais une vraie sauvegarde externalisée.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">SSO <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>Single Sign-On (Authentification unique).</strong> Mécanisme (basé sur SAML 2.0, OIDC ou Kerberos) permettant à un collaborateur de s'authentifier une seule fois pour accéder de manière fluide à l'ensemble de ses applications d'entreprise.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">TCO <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Total Cost of Ownership (Coût total de possession).</strong> Évaluation financière complète d'une solution IT intégrant les coûts directs (achat licences/matériel, intégration) et indirects (maintenance, support, énergie, formation) sur 3 à 5 ans.</div>
+            </div>
+
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">Tenant <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Instance cliente dédiée dans le Cloud.</strong> Environnement logique isolé appartenant à une organisation au sein d'une plateforme mutualisée comme Microsoft 365 ou Azure (ex: migrations complexes "Tenant-to-Tenant" lors de fusions/acquisitions).</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">ToIP / VoIP <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Téléphonie et Voix sur IP (Mitel, Cisco, Teams Phone).</strong> Acheminement des communications vocales sur le réseau informatique IP (protocoles SIP/RTP) en remplacement des anciens autocommutateurs téléphoniques analogiques/RNIS.</div>
+            </div>
+
+            <div class="term-card" data-category="Gestion de Projet">
+                <div class="term-title">UAT / VABF / VSR <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-def"><strong>Les jalons de validation d'un projet IT.</strong> La <strong>VABF</strong> valide l'aptitude technique de l'infrastructure ; l'<strong>UAT</strong> (Recette Utilisateur) valide la conformité fonctionnelle métier ; la <strong>VSR</strong> observe la stabilité en production réelle avant clôture.</div>
+            </div>
+
+            <div class="term-card" data-category="Workplace & Messagerie">
+                <div class="term-title">VDI <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-def"><strong>Virtual Desktop Infrastructure (Citrix, RDS, Azure Virtual Desktop).</strong> Hébergement centralisé des postes de travail utilisateurs sur des serveurs en Datacenter ou dans le Cloud, permettant un accès distant sécurisé depuis n'importe quel terminal léger.</div>
+            </div>
+
+            <div class="term-card" data-category="Réseau & Télécoms">
+                <div class="term-title">VLAN <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-def"><strong>Virtual Local Area Network (Norme 802.1Q).</strong> Découpage logique d'un commutateur réseau physique (Switch) en plusieurs sous-réseaux virtuels isolés (ex: VLAN Serveurs, VLAN Utilisateurs, VLAN VoIP, VLAN Invités) pour améliorer la sécurité et les performances.</div>
+            </div>
+
+            <div class="term-card" data-category="Cybersécurité">
+                <div class="term-title">Zero Trust & Windows Hello <span class="term-category">Cybersécurité</span></div>
+                <div class="term-def"><strong>"Never trust, always verify".</strong> Paradigme de sécurité qui ne fait confiance à aucun appareil ou utilisateur par défaut (même connecté au réseau interne), s'appuyant sur une authentification forte sans mot de passe comme <strong>Windows Hello for Business</strong> (biométrie/PIN lié à la puce TPM).</div>
             </div>
 
             <!-- Message si aucun résultat -->
             <div id="noResults" class="no-results">
-                Aucun terme ne correspond à votre recherche. 🧐
+                Aucun terme ne correspond à votre recherche ou à ce filtre. 🧐
             </div>
 
         </div>
     </main>
 
     <script>
+        let currentCategory = 'ALL';
+
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('darkModeToggle');
             btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️ Clair' : '🌙 Sombre';
         }
 
+        function setCategory(category, btnElement) {
+            currentCategory = category;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            filterGlossary();
+        }
+
         function filterGlossary() {
             const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
+            const filter = input.value.toLowerCase().trim();
             const grid = document.getElementById('glossaryGrid');
             const cards = grid.getElementsByClassName('term-card');
-            let hasResults = false;
+            let visibleCount = 0;
 
             for (let i = 0; i < cards.length; i++) {
                 const title = cards[i].querySelector('.term-title').textContent || cards[i].querySelector('.term-title').innerText;
                 const def = cards[i].querySelector('.term-def').textContent || cards[i].querySelector('.term-def').innerText;
+                const cardCat = cards[i].getAttribute('data-category');
                 
-                if (title.toLowerCase().indexOf(filter) > -1 || def.toLowerCase().indexOf(filter) > -1) {
+                const matchesSearch = (title.toLowerCase().indexOf(filter) > -1 || def.toLowerCase().indexOf(filter) > -1);
+                const matchesCategory = (currentCategory === 'ALL' || cardCat === currentCategory);
+
+                if (matchesSearch && matchesCategory) {
                     cards[i].style.display = "";
-                    hasResults = true;
+                    visibleCount++;
                 } else {
                     cards[i].style.display = "none";
                 }
             }
 
+            const countBadge = document.getElementById('termCount');
+            countBadge.innerText = visibleCount + (visibleCount > 1 ? " termes" : " terme");
+
             const noResultsMsg = document.getElementById('noResults');
-            noResultsMsg.style.display = hasResults ? "none" : "block";
+            noResultsMsg.style.display = visibleCount > 0 ? "none" : "block";
         }
     </script>
 </body>
