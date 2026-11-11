@@ -71,23 +71,48 @@
             outline: 2px dashed var(--accent-color); outline-offset: 4px; border-radius: 4px;
         }
 
-        /* Navigation fixe */
+        /* Navigation fixe sur 2 niveaux */
         nav {
             position: sticky; top: 0; z-index: 1000;
             background-color: var(--nav-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            padding: 0.85rem 2rem; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         .nav-logo {
             font-weight: 700; color: white; font-family: 'Poppins', sans-serif;
             letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center;
         }
-        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav-links a {
-            color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem;
-            transition: all 0.2s ease; letter-spacing: 0.5px; white-space: nowrap;
+        .nav-center {
+            display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
         }
-        .nav-links a:hover, .nav-links a:focus { color: var(--accent-color); }
+        .nav-row {
+            display: flex; list-style: none; align-items: center; justify-content: center;
+        }
+        .nav-row-top {
+            gap: 1.75rem;
+        }
+        .nav-row-top a {
+            color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            transition: color 0.2s ease; letter-spacing: 0.4px; white-space: nowrap;
+        }
+        .nav-row-top a:hover, .nav-row-top a:focus { color: var(--accent-color); }
+
+        .nav-row-bottom {
+            gap: 0.85rem;
+            padding-top: 0.45rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .nav-row-bottom a {
+            color: #e2e8f0; text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.35);
+            padding: 0.3rem 0.9rem; border-radius: 9999px; transition: all 0.2s ease;
+            white-space: nowrap; display: inline-flex; align-items: center; gap: 0.35rem;
+        }
+        .nav-row-bottom a:hover, .nav-row-bottom a:focus {
+            background: var(--accent-color); color: #ffffff; border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
         .nav-actions { display: flex; gap: 0.75rem; align-items: center; }
 
         .header-btn {
@@ -138,7 +163,7 @@
         .kpi-label { font-size: 0.9rem; font-weight: 500; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .container { max-width: 1000px; margin: 0 auto 2rem; padding: 0 1.5rem; }
-        section { margin-bottom: 4rem; scroll-margin-top: 8rem; }
+        section { margin-bottom: 4rem; scroll-margin-top: 9rem; }
         h3 { color: var(--primary-color); font-size: 2rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
         h3::after { content: ''; flex: 1; height: 3px; background: linear-gradient(to right, var(--accent-color), transparent); border-radius: 2px; opacity: 0.5; }
 
@@ -269,40 +294,48 @@
         /* ========================================== */
         /* OPTIMISATION MOBILE & TABLETTE             */
         /* ========================================== */
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             nav {
                 padding: 0.75rem 1rem;
                 flex-wrap: wrap;
-                gap: 0.6rem;
+                gap: 0.5rem;
             }
-            /* Ligne 2 sur mobile : Barre de raccourcis scrollable au doigt */
-            .nav-links {
-                display: flex;
+            .nav-center {
                 order: 3;
                 width: 100%;
-                overflow-x: auto;
-                gap: 0.5rem;
-                padding: 0.5rem 0 0.15rem 0;
+                gap: 0.45rem;
+                padding-top: 0.5rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.12);
+            }
+            .nav-row {
+                width: 100%;
+                justify-content: flex-start;
+                overflow-x: auto;
+                gap: 0.45rem;
+                padding-bottom: 2px;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
             }
-            .nav-links::-webkit-scrollbar { display: none; }
-            .nav-links li { flex-shrink: 0; }
-            .nav-links a {
+            .nav-row::-webkit-scrollbar { display: none; }
+            .nav-row li { flex-shrink: 0; }
+            .nav-row-top a {
                 display: inline-block;
                 background: rgba(255, 255, 255, 0.08);
                 border: 1px solid rgba(255, 255, 255, 0.15);
-                padding: 0.35rem 0.85rem;
+                padding: 0.3rem 0.8rem;
                 border-radius: 9999px;
-                font-size: 0.82rem;
+                font-size: 0.8rem;
             }
-            .nav-links a:active {
-                background: var(--accent-color);
-                border-color: var(--accent-color);
-                color: white;
+            .nav-row-bottom {
+                border-top: none;
+                padding-top: 0;
+            }
+            .nav-row-bottom a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.8rem;
             }
             .header-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+            section { scroll-margin-top: 10.5rem; }
         }
 
         @media (max-width: 768px) {
@@ -353,7 +386,7 @@
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION SUR 2 LIGNES -->
     <nav>
         <a href="index.html" class="nav-logo" aria-label="Accueil">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -361,16 +394,25 @@
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
         </a>
-        <ul class="nav-links">
-            <li><a href="index.html#summary"><span class="fr">Profil</span><span class="en">Profile</span></a></li>
-            <li><a href="index.html#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
-            <li><a href="index.html#case-studies"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
-            <li><a href="index.html#experiences"><span class="fr">Expériences</span><span class="en">Experience</span></a></li>
-            <li><a href="flashcards.html">🃏 <span class="fr">Flashcards</span><span class="en">Flashcards</span></a></li>
-            <li><a href="quizz.html">🎯 <span class="fr">Quizz IT</span><span class="en">IT Quiz</span></a></li>
-            <li><a href="glossaire.html">📖 <span class="fr">Glossaire</span><span class="en">Glossary</span></a></li>
-            <li><a href="dashboard.html">📊 <span class="fr">Dashboard</span><span class="en">Dashboard</span></a></li>
-        </ul>
+
+        <div class="nav-center">
+            <!-- Ligne supérieure : Sections du Portfolio -->
+            <ul class="nav-row nav-row-top">
+                <li><a href="index.html#summary"><span class="fr">Profil</span><span class="en">Profile</span></a></li>
+                <li><a href="index.html#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
+                <li><a href="index.html#case-studies"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
+                <li><a href="index.html#experiences"><span class="fr">Expériences</span><span class="en">Experience</span></a></li>
+                <li><a href="index.html#education"><span class="fr">Formations</span><span class="en">Education</span></a></li>
+            </ul>
+            <!-- Ligne inférieure : Outils Interactifs -->
+            <ul class="nav-row nav-row-bottom">
+                <li><a href="flashcards.html">🃏 <span class="fr">Flashcards</span><span class="en">Flashcards</span></a></li>
+                <li><a href="quizz.html">🎯 <span class="fr">Quizz IT</span><span class="en">IT Quiz</span></a></li>
+                <li><a href="glossaire.html">📖 <span class="fr">Glossaire</span><span class="en">Glossary</span></a></li>
+                <li><a href="dashboard.html">📊 <span class="fr">Dashboard</span><span class="en">Dashboard</span></a></li>
+            </ul>
+        </div>
+
         <div class="nav-actions">
             <!-- Bouton Langue -->
             <button class="header-btn" onclick="toggleLanguage()" id="langToggle">🇬🇧 EN</button>
