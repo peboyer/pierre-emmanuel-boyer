@@ -10,7 +10,10 @@
     <meta property="og:title" content="Pierre-Emmanuel Boyer - Chef de Projet IT">
     <meta property="og:description" content="Fort de 25 ans d'expertise en administration des infrastructures systèmes IT, je mène avec succès depuis 7 ans des projets techniques à forte visibilité.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="photo.jpg">
+    <meta property="og:image" content="https://www.pierre-emmanuel-boyer.fr/banniere-linkedin.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <!-- Script Plausible Analytics (RGPD compliant - Sans Cookies) -->
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
@@ -301,6 +304,18 @@
         }
         .fab:hover { transform: scale(1.1) translateY(-5px); background-color: #0284c7; }
 
+        /* Bouton Retour en haut */
+        .back-to-top {
+            position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); text-decoration: none; z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none;
+            opacity: 0; visibility: hidden;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
+
         /* Pied de page */
         footer { text-align: center; padding: 3rem 1.5rem; background: var(--header-bg); color: rgba(255, 255, 255, 0.7); margin-top: 5rem; }
         .admin-link { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; cursor: pointer; margin-top: 10px; display: inline-block; }
@@ -386,11 +401,12 @@
             .experience-header .date { font-size: 0.8rem; padding: 0.3rem 0.75rem; white-space: normal; }
             .modal-content { padding: 1.5rem; width: 94%; }
             .fab { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
+            .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
 
         /* Impression */
         @media print {
-            body { background: white; color: black; } nav, .fab, .header-buttons, .kpi-banner, .admin-link, #case-studies { display: none; }
+            body { background: white; color: black; } nav, .fab, .back-to-top, .header-buttons, .kpi-banner, .admin-link, #case-studies { display: none; }
             header { background: white; color: black; padding: 2rem 0; } header h1 { color: black; } header h2 { color: #555; }
             .contact-info a { color: black; border-bottom: none; } .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
             .container { max-width: 100% !important; margin: 0; padding: 0; } .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
@@ -721,7 +737,7 @@
                         <div class="fr">
                             <p class="experience-intro">Au sein de la Direction « Enterprise Infrastructure », mon rôle consistait à orchestrer des projets transverses techniques à forte valeur ayant pour cibles plusieurs milliers d'utilisateurs.</p>
                             
-                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de Projets réalisés :</p>
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de projets réalisés :</p>
                             <ul>
                                 <li><strong>Déploiement de Windows Hello for Business sur les 22 000 postes utilisateurs</strong>
                                     <ul>
@@ -737,7 +753,7 @@
                                 </li>
                                 <li><strong>Relocalisation de l’infrastructure de sauvegarde Dell Isilon pour les Data Centers de Paris et Montréal</strong>
                                     <ul>
-                                        <li>Objectifs : Réduire les coûts d’hébergement et remise à propre des équipements</li>
+                                        <li>Objectifs : Réduire les coûts d’hébergement et remise au propre des équipements</li>
                                         <li>Résultats : Déménagements réalisés (Montréal puis Paris) en limitant les délais de coupure pour les Productions</li>
                                     </ul>
                                 </li>
@@ -839,7 +855,7 @@
                                 <li><strong>Mise en place d'une solution de gestion et de sécurisation de la flotte mobile (iOS et Android)</strong>
                                     <ul>
                                         <li>Objectifs : Centraliser et sécuriser la gestion de la flotte mobile tout en assurant la conformité interne (Durée : 1 an).</li>
-                                        <li>Résultats : Enrôlement des 800 terminaux mobiless dans AirWatch puis Microsoft Intune, sécurisation des données et des terminaux mobiless, optimisation du cycle de vie et des coûts et amélioration de l'expérience utilisateur.</li>
+                                        <li>Résultats : Enrôlement des 800 terminaux mobiles dans AirWatch puis Microsoft Intune, sécurisation des données et des terminaux mobiles, optimisation du cycle de vie et des coûts et amélioration de l'expérience utilisateur.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -917,11 +933,11 @@
                         <div class="fr">
                             <p class="experience-intro">Dans le cadre des missions confiées par une société de services, j'ai assumé la responsabilité du service « Messagerie et Mobilité ». Mon objectif principal était de dynamiser la cellule en développant un portefeuille de nouveaux clients tout en assurant la fidélisation. J'accompagnais également les équipes commerciales en jouant un rôle d'avant-vente technique, et je collaborais étroitement avec nos fournisseurs et partenaires techniques.</p>
                             
-                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de projet menés :</p>
+                            <p class="section-title" style="margin-bottom: 1rem;">Exemples de projets réalisés :</p>
                             <ul>
                                 <li>Migrations Exchange 5.5/2003/2007 vers 2010</li>
                                 <li>Migrations Lotus Domino v8.5 vers Exchange Online avec Quest Notes Migrator for Exchange</li>
-                                <li>Installations et configurations serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
+                                <li>Installations et configuration serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
                                 <li>Installations de plates-formes de gestion de terminaux mobiles (iOS/Android/Windows Phone) avec Good Technology, BlackBerry Mobile Fusion et Maas360</li>
                             </ul>
                             
@@ -1277,7 +1293,7 @@
                             <ul>
                                 <li>Installation et configuration de postes clients Windows 98/2000/XP.</li>
                                 <li>Support et formation d'utilisateurs à Windows, à la bureautique et logiciels monétiques.</li>
-                                <li>Réparation de pc et imprimante.</li>
+                                <li>Réparation de PC et d'imprimantes.</li>
                                 <li>Installation et configuration des points de vente (Caisses et périphériques) et terminaux de paiement électronique (TPE).</li>
                             </ul>
 
@@ -1516,6 +1532,11 @@
         ✉️
     </button>
 
+    <!-- Bouton Retour en haut -->
+    <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Retour en haut">
+        ↑
+    </button>
+
     <!-- ========================================== -->
     <!-- PIED DE PAGE & MODE ÉDITION                -->
     <!-- ========================================== -->
@@ -1648,6 +1669,16 @@
             });
         }
 
+        // --- BOUTON RETOUR EN HAUT ---
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
         // --- MODE ÉDITEUR ---
         function enableEditMode() {
             const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
@@ -1681,7 +1712,8 @@
             const profileImg = document.getElementById('profile-img');
             if (profileImg) profileImg.setAttribute('src', 'photo.jpg');
             
-            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const htmlContent = "<!DOCTYPE html>
+" + document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
             
