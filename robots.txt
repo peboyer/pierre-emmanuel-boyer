@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pierre-emmanuel-boyer.fr/sitemap.xml
