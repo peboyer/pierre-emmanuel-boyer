@@ -220,6 +220,21 @@
         }
         .form-control:focus { outline: 2px solid var(--accent-color); border-color: transparent; }
 
+        /* Bloc succès téléchargement CV */
+        .cv-unlock-box {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+        }
+        .cv-unlock-box p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
         /* Badges & Skills */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .skill-box {
@@ -344,7 +359,6 @@
             header h1 { font-size: 2.2rem; }
             header h2 { font-size: 1.2rem; }
             .contact-info { flex-direction: column; gap: 0.4rem; font-size: 0.95rem; }
-            .contact-info .sep { display: none; }
             .header-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 1.75rem auto 0; gap: 0.85rem; }
             .btn { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; }
             
@@ -431,16 +445,14 @@
         </h2>
         <div class="contact-info reveal">
             <span>📍 Magny-les-Hameaux, Île-de-France, France</span>
-            <span class="sep">&nbsp;|&nbsp;</span>
-            <a href="javascript:void(0)" onclick="openModal('contactModal')">✉️ pe.boyer@gmail.com</a>
         </div>
         <div class="header-buttons reveal">
             <a href="https://www.linkedin.com/in/pierre-emmanuel-boyer" target="_blank" class="btn btn-linkedin">
                 <span class="fr">Profil LinkedIn</span><span class="en">LinkedIn Profile</span>
             </a>
-            <a href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf" download class="btn btn-cv">
+            <button type="button" onclick="openModal('cvModal')" class="btn btn-cv">
                 <span class="fr">Télécharger le CV (PDF)</span><span class="en">Download Resume (PDF)</span>
-            </a>
+            </button>
         </div>
     </header>
 
@@ -1328,7 +1340,7 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- MODALES (FORMULAIRE & ETUDES DE CAS)       -->
+    <!-- MODALES (FORMULAIRES & ETUDES DE CAS)      -->
     <!-- ========================================== -->
     
     <!-- Modal Contact (Web3Forms) -->
@@ -1352,6 +1364,48 @@
                     <span class="fr">Envoyer le message</span><span class="en">Send Message</span>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Téléchargement CV (Formulaire requis avant téléchargement) -->
+    <div id="cvModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cvModal')">&times;</span>
+            <h4><span class="fr">Télécharger mon CV (PDF)</span><span class="en">Download my Resume (PDF)</span></h4>
+            
+            <form id="cvRequestForm" onsubmit="handleCvFormSubmit(event)">
+                <p style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--secondary-color);">
+                    <span class="fr">Merci de renseigner ce court formulaire pour débloquer l'accès au téléchargement de mon CV.</span>
+                    <span class="en">Please fill out this short form to unlock access to download my resume.</span>
+                </p>
+                <input type="hidden" name="access_key" value="1ebea79c-c790-458b-8089-9d2670cc134e">
+                <input type="hidden" name="subject" value="Demande de téléchargement de CV - Portfolio">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Nom / Name *" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email professionnel / Work Email *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="company" class="form-control" placeholder="Entreprise / Cabinet (optionnel) / Company (optional)">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" class="form-control" placeholder="Message ou opportunité concernée... / Message or role..." required rows="3"></textarea>
+                </div>
+                <button type="submit" id="cvSubmitBtn" class="btn btn-cv">
+                    <span class="fr">Envoyer et débloquer le CV</span><span class="en">Send & Unlock Resume</span>
+                </button>
+            </form>
+
+            <div id="cvDownloadSuccess" class="cv-unlock-box">
+                <p>
+                    <span class="fr">✅ <strong>Merci !</strong> Votre message a bien été envoyé. Vous pouvez maintenant télécharger mon CV :</span>
+                    <span class="en">✅ <strong>Thank you!</strong> Your message has been sent. You can now download my resume:</span>
+                </p>
+                <a id="cvDirectDownloadLink" href="Pierre-Emmanuel.BOYER_CHEF-DE-PROJETS-INFRASTRUCTURES-IT.pdf" download class="btn btn-cv">
+                    <span class="fr">📥 Télécharger le CV (PDF)</span><span class="en">📥 Download Resume (PDF)</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1506,6 +1560,10 @@
 
         // --- GESTION DES MODALES ---
         function openModal(modalId) {
+            if (modalId === 'cvModal' && sessionStorage.getItem('cvUnlocked') === 'true') {
+                document.getElementById('cvRequestForm').style.display = 'none';
+                document.getElementById('cvDownloadSuccess').style.display = 'block';
+            }
             document.getElementById(modalId).classList.add('show');
             document.body.style.overflow = 'hidden';
         }
@@ -1519,6 +1577,36 @@
             if (event.target.classList.contains('modal')) {
                 event.target.classList.remove('show');
                 document.body.style.overflow = 'auto';
+            }
+        }
+
+        // --- SOUMISSION FORMULAIRE CV & DÉBLOCAGE TÉLÉCHARGEMENT ---
+        async function handleCvFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('cvRequestForm');
+            const submitBtn = document.getElementById('cvSubmitBtn');
+            const isEn = document.documentElement.getAttribute('lang') === 'en';
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = isEn ? 'Sending...' : 'Envoi en cours...';
+
+            try {
+                const formData = new FormData(form);
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (error) {
+                console.warn('Web3Forms submission notice:', error);
+            } finally {
+                sessionStorage.setItem('cvUnlocked', 'true');
+                if (window.plausible) plausible('CV Downloaded');
+
+                form.style.display = 'none';
+                document.getElementById('cvDownloadSuccess').style.display = 'block';
+
+                const dlLink = document.getElementById('cvDirectDownloadLink');
+                if (dlLink) dlLink.click();
             }
         }
 
