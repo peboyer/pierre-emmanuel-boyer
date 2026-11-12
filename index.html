@@ -702,7 +702,7 @@
                                 <li><strong>Securing SMTP flows to SMTPS AUTH for internal technical platforms</strong>
                                     <ul>
                                         <li>Objectives: meet the security requirements requested by the parent company (Société Générale).</li>
-                                        <li>Results: Security upgrade of the communication protocol on SMPTS flows.</li>
+                                        <li>Results: Security upgrade of the communication protocol on SMTPS flows.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1557,7 +1557,7 @@
             if (htmlTag.getAttribute('lang') === 'fr') {
                 htmlTag.setAttribute('lang', 'en');
                 btn.innerHTML = '🇫🇷 FR';
-                if(window.plausible) plausible('Switch Language', {props: {to: 'en'}});
+                if (window.plausible) plausible('Switch Language', {props: {to: 'en'}});
             } else {
                 htmlTag.setAttribute('lang', 'fr');
                 btn.innerHTML = '🇬🇧 EN';
@@ -1599,7 +1599,7 @@
                 event.target.classList.remove('show');
                 document.body.style.overflow = 'auto';
             }
-        }
+        };
 
         // --- SOUMISSION FORMULAIRE CV & DÉBLOCAGE TÉLÉCHARGEMENT ---
         async function handleCvFormSubmit(event) {
@@ -1684,7 +1684,7 @@
             const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
             if (pin === "1234") {
                 const mainContent = document.getElementById('main-content');
-                if(mainContent) {
+                if (mainContent) {
                     mainContent.contentEditable = "true";
                     alert("Mode édition activé ! Note : Les textes cachés (autre langue) peuvent être complexes à éditer. Sauvegardez prudemment.");
                     
@@ -1704,16 +1704,15 @@
 
         function saveModifications() {
             const mainContent = document.getElementById('main-content');
-            if(mainContent) mainContent.contentEditable = "false";
+            if (mainContent) mainContent.contentEditable = "false";
             
             const saveBtn = document.querySelector('.save-fab');
-            if(saveBtn) saveBtn.remove();
+            if (saveBtn) saveBtn.remove();
             
             const profileImg = document.getElementById('profile-img');
             if (profileImg) profileImg.setAttribute('src', 'photo.jpg');
             
-            const htmlContent = "<!DOCTYPE html>
-" + document.documentElement.outerHTML;
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
             
