@@ -7,6 +7,7 @@
     
     <!-- SEO & Analytics -->
     <meta name="description" content="Portail de révision et d'évaluation en gestion de projet IT : Scrum, Cycle en V, PMP, ITIL 4, Waterfall, PRINCE2.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     
     <!-- Google Fonts -->
@@ -205,6 +206,18 @@
         .chapter li::marker { color: var(--primary-color); font-weight: bold; }
         .chapter strong { color: var(--primary-color); }
 
+        /* Bouton Retour en haut */
+        .back-to-top {
+            position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); text-decoration: none; z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none;
+            opacity: 0; visibility: hidden;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
+
         /* ========================================== */
         /* OPTIMISATION MOBILE & TABLETTE             */
         /* ========================================== */
@@ -236,6 +249,7 @@
             .command-bar { flex-direction: column; padding: 1rem; align-items: stretch; }
             .quiz-mode-wrapper { justify-content: space-between; }
             .btn-global-quiz { justify-content: center; }
+            .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -867,6 +881,11 @@
         </div>
     </main>
 
+    <!-- Bouton Retour en haut -->
+    <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Retour en haut">
+        ↑
+    </button>
+
     <!-- ========================================== -->
     <!-- MODALES DES CHAPITRES DÉTAILLÉS            -->
     <!-- ========================================== -->
@@ -1111,7 +1130,7 @@
                 event.target.classList.remove('show');
                 document.body.style.overflow = 'auto';
             }
-        }
+        };
 
         // --- GESTION DU MODE QUIZ (GAMIFICATION DES CARTES) ---
         function toggleMode() {
@@ -1148,6 +1167,16 @@
             card.classList.add(status);
             setTimeout(() => { card.classList.remove('flipped'); }, 600);
         }
+
+        // --- BOUTON RETOUR EN HAUT ---
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>

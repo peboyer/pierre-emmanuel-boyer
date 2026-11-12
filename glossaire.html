@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glossaire IT & Gestion de Projet - Pierre-Emmanuel Boyer</title>
     <meta name="description" content="Lexique complet de 72 termes techniques et méthodologiques IT : Systèmes, Réseau, Cloud, DevOps, Cybersécurité, Messagerie, Stockage, PRA/PCA, ITIL et Gestion de Projet.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +99,18 @@
         .term-def { font-size: 0.94rem; color: var(--text-color); line-height: 1.6; }
         .no-results { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--secondary-color); font-size: 1.2rem; display: none; }
 
+        /* Bouton Retour en haut */
+        .back-to-top {
+            position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); text-decoration: none; z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none;
+            opacity: 0; visibility: hidden;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
+
         /* ========================================== */
         /* OPTIMISATION MOBILE & TABLETTE             */
         /* ========================================== */
@@ -135,6 +148,7 @@
             }
             .filter-bar::-webkit-scrollbar { display: none; }
             .filter-btn { white-space: nowrap; flex-shrink: 0; }
+            .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -366,7 +380,7 @@
 
             <div class="term-card" data-category="Workplace & Messagerie">
                 <div class="term-title">MDM / UEM <span class="term-category">Workplace & Messagerie</span></div>
-                <div class="term-def"><strong>Mobile Device / Unified Endpoint Management.</strong> Plateforme (Microsoft Intune, VMware Workspace ONE / AirWatch) permettant d'enrôler, configurer, sécuriser et effacer à distance les flotte de smartphones, tablettes et ordinateurs portables.</div>
+                <div class="term-def"><strong>Mobile Device / Unified Endpoint Management.</strong> Plateforme (Microsoft Intune, VMware Workspace ONE / AirWatch) permettant d'enrôler, configurer, sécuriser et effacer à distance les flottes de smartphones, tablettes et ordinateurs portables.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
@@ -552,6 +566,11 @@
         </div>
     </main>
 
+    <!-- Bouton Retour en haut -->
+    <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Retour en haut">
+        ↑
+    </button>
+
     <script>
         let currentCategory = 'ALL';
 
@@ -598,6 +617,16 @@
             const noResultsMsg = document.getElementById('noResults');
             noResultsMsg.style.display = visibleCount > 0 ? "none" : "block";
         }
+
+        // --- BOUTON RETOUR EN HAUT ---
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>

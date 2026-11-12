@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz & Évaluation IT - Pierre-Emmanuel Boyer</title>
     <meta name="description" content="Évaluation en gestion de projet IT : 100 questions certifiantes sur Scrum, Cycle en V, PMP, ITIL 4, PRINCE2, Gouvernance et Infra.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,6 +78,18 @@
         .analysis-incorrect { background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--error-color); }
         .analysis-block strong { display: block; margin-bottom: 0.5rem; font-size: 1.05rem; }
 
+        /* Bouton Retour en haut */
+        .back-to-top {
+            position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); text-decoration: none; z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none;
+            opacity: 0; visibility: hidden;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
+
         /* ========================================== */
         /* OPTIMISATION MOBILE & TABLETTE             */
         /* ========================================== */
@@ -107,6 +120,7 @@
             .q-block h5 { font-size: 1.05rem; }
             .option-label { padding: 0.85rem; font-size: 0.95rem; }
             .score-display { font-size: 1.85rem; }
+            .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -153,6 +167,11 @@
             </div>
         </div>
     </main>
+
+    <!-- Bouton Retour en haut -->
+    <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Retour en haut">
+        ↑
+    </button>
 
     <script>
         function toggleDarkMode() {
@@ -826,7 +845,7 @@
             for (let i = 1; i <= 10; i++) {
                 if (!form['q'+i].value) allAnswered = false;
             }
-            if(!allAnswered) {
+            if (!allAnswered) {
                 alert("Veuillez répondre aux 10 questions avant de soumettre !");
                 return;
             }
@@ -872,6 +891,16 @@
             openGlobalQuiz();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // --- BOUTON RETOUR EN HAUT ---
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', openGlobalQuiz);
     </script>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Projet - Pierre-Emmanuel Boyer</title>
     <meta name="description" content="Simulateur interactif de pilotage de projet IT : Kanban, KPI, Matrice des Risques, Gantt.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +24,6 @@
             --badge-text: #475569;
             --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --nav-bg: rgba(15, 23, 42, 0.95);
-            
-            /* Status Colors */
             --danger: #ef4444;
             --warning: #f59e0b;
             --success: #22c55e;
@@ -57,20 +56,16 @@
         .header-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
         .header-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
-        /* Header */
-        header { background: var(--header-bg); color: white; padding: 3.5rem 1.5rem 4.5rem; text-align: center; }
+        header { background: var(--header-bg); color: white; padding: 3rem 1.5rem 4rem; text-align: center; }
         header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
         header p { color: var(--accent-color); font-weight: 500; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        .container { max-width: 1200px; margin: -2.5rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+        .container { max-width: 1200px; margin: -2rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         
-        /* 1. Control Tower (KPIs) */
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .kpi-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         .kpi-title { font-size: 0.85rem; font-weight: 600; color: var(--secondary-color); text-transform: uppercase; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
         .kpi-value { font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; color: var(--primary-color); line-height: 1; margin-bottom: 1rem; }
-        
-        /* Progress Bars */
         .progress-bg { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; }
         .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 4px; }
         .fill-accent { background-color: var(--accent-color); }
@@ -78,78 +73,39 @@
         .fill-success { background-color: var(--success); }
         .fill-danger { background-color: var(--danger); }
 
-        /* Section Titles */
-        .section-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; margin-top: 2rem; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; margin-top: 2rem; flex-wrap: wrap; gap: 0.5rem; }
         .section-header h2 { font-size: 1.3rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
 
-        /* 2. Interactive Kanban */
-        .kanban-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .kanban-col { background: var(--badge-bg); border-radius: 12px; padding: 1rem; min-height: 360px; display: flex; flex-direction: column; gap: 1rem; border: 2px dashed transparent; transition: border-color 0.2s, background-color 0.2s; }
+        /* Kanban */
+        .kanban-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .kanban-col { background: var(--badge-bg); border-radius: 12px; padding: 1rem; min-height: 400px; display: flex; flex-direction: column; gap: 1rem; border: 2px dashed transparent; transition: border-color 0.2s, background-color 0.2s; }
         .kanban-col.drag-over { border-color: var(--accent-color); background-color: rgba(14, 165, 233, 0.05); }
-        .col-header { font-weight: 700; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; padding: 0 0.5rem; }
+        .col-header { font-weight: 700; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; padding: 0 0.5rem; }
         .task-count { background: var(--border-color); color: var(--text-color); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 10px; }
         
-        .kanban-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: grab; transition: transform 0.15s, box-shadow 0.15s; }
+        .kanban-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: grab; transition: transform 0.1s, box-shadow 0.1s; }
         .kanban-card:active { cursor: grabbing; transform: scale(0.98); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .kanban-card.dragging { opacity: 0.5; }
-        
-        .card-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-        .task-tag { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; }
+        .task-tag { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; }
         .tag-infra { background: rgba(59, 130, 246, 0.1); color: var(--info); }
         .tag-secu { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-        
-        /* Bouton tactile de déplacement rapide (idéal mobile) */
-        .btn-move-card {
-            background: var(--badge-bg); border: 1px solid var(--border-color); color: var(--primary-color);
-            font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 6px;
-            cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
-        }
-        .btn-move-card:hover, .btn-move-card:active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
-
         .task-title { font-weight: 600; font-size: 0.95rem; color: var(--primary-color); margin-bottom: 0.5rem; line-height: 1.3; }
-        .task-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--secondary-color); margin-top: 1rem; }
-        .task-owner { display: flex; align-items: center; gap: 0.35rem; }
-        .avatar { width: 22px; height: 22px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold; }
+        .task-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--secondary-color); margin-top: 1rem; }
+        .task-owner { display: flex; align-items: center; gap: 0.3rem; }
+        .avatar { width: 20px; height: 20px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: bold; }
 
-        /* Bottom Grid: Matrix & Gantt */
-        .bottom-dashboard { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
-        @media (max-width: 900px) { .bottom-dashboard { grid-template-columns: 1fr; } }
-        
-        .dash-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        /* Bouton Retour en haut */
+        .back-to-top {
+            position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); text-decoration: none; z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none;
+            opacity: 0; visibility: hidden;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
 
-        /* 3. Risk Matrix */
-        .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 1rem; }
-        .matrix-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; color: white; border-radius: 6px; position: relative; cursor: pointer; }
-        .m-low { background-color: var(--success); opacity: 0.85; }
-        .m-med { background-color: var(--warning); opacity: 0.9; }
-        .m-high { background-color: var(--danger); }
-        
-        /* Tooltip */
-        .matrix-cell .tooltip { visibility: hidden; width: 210px; background-color: #0f172a; color: #fff; text-align: center; border-radius: 8px; padding: 0.8rem; position: absolute; z-index: 20; bottom: 112%; left: 50%; transform: translateX(-50%); font-size: 0.78rem; font-weight: normal; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.25s; pointer-events: none; box-shadow: 0 10px 20px rgba(0,0,0,0.25); }
-        .matrix-cell .tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #0f172a transparent transparent transparent; }
-        .matrix-cell:hover .tooltip, .matrix-cell:focus .tooltip, .matrix-cell:active .tooltip { visibility: visible; opacity: 1; }
-
-        .matrix-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--secondary-color); font-weight: 600; margin-top: 0.5rem; }
-        .matrix-y-label { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.75rem; color: var(--secondary-color); font-weight: 600; text-align: center; margin-right: 0.5rem; }
-
-        /* 4. CSS Gantt Chart */
-        .gantt-wrapper { margin-top: 1rem; }
-        .gantt-months { display: flex; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem; margin-left: 130px; }
-        .gantt-month { flex: 1; text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--secondary-color); }
-        
-        .gantt-row { display: flex; align-items: center; margin-bottom: 1rem; position: relative; }
-        .gantt-task-name { width: 130px; font-size: 0.85rem; font-weight: 600; color: var(--primary-color); flex-shrink: 0; padding-right: 0.75rem; }
-        .gantt-track { flex-grow: 1; height: 26px; background: var(--badge-bg); border-radius: 6px; position: relative; overflow: hidden; }
-        
-        .gantt-bar { position: absolute; height: 100%; border-radius: 6px; display: flex; align-items: center; padding: 0 0.5rem; font-size: 0.7rem; font-weight: bold; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap; }
-        .bar-cadrage { background-color: var(--info); width: 25%; left: 0%; }
-        .bar-build { background-color: var(--warning); width: 42%; left: 20%; }
-        .bar-test { background-color: var(--accent-color); width: 25%; left: 55%; }
-        .bar-uat { background-color: var(--success); width: 20%; left: 80%; }
-
-        /* ========================================== */
-        /* OPTIMISATION MOBILE & TABLETTE             */
-        /* ========================================== */
         @media (max-width: 768px) {
             nav { padding: 0.75rem 1rem; gap: 0.5rem; }
             .nav-actions {
@@ -169,16 +125,8 @@
                 font-size: 0.8rem;
                 flex-shrink: 0;
             }
-            header { padding: 2.5rem 1rem 3.5rem; }
-            header h1 { font-size: 1.85rem; }
-            header p { font-size: 0.95rem; }
-            .kpi-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-            .kpi-card { padding: 1.15rem; }
-            .kpi-value { font-size: 1.6rem; }
-            .kanban-col { min-height: auto; padding: 0.85rem; }
-            .gantt-task-name { width: 90px; font-size: 0.75rem; }
-            .gantt-months { margin-left: 90px; }
-            .gantt-bar { font-size: 0.62rem; padding: 0 0.35rem; }
+            header h1 { font-size: 2rem; }
+            .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -201,12 +149,11 @@
 
     <header>
         <h1>Control Tower : Projet WeRo</h1>
-        <p>Simulation du tableau de bord de pilotage (KPIs, Kanban, Risques, Planning).</p>
+        <p>Simulation du tableau de bord de pilotage (KPIs, Kanban).</p>
     </header>
 
     <main class="container">
         
-        <!-- 1. KPIs -->
         <div class="section-header"><h2>📊 Métriques de Pilotage</h2></div>
         <div class="kpi-grid">
             <div class="kpi-card">
@@ -231,172 +178,57 @@
             </div>
         </div>
 
-        <!-- 2. KANBAN INTERACTIF -->
         <div class="section-header">
-            <h2>📋 Sprint Board Interactif</h2>
-            <span style="font-size: 0.85rem; color: var(--secondary-color);">Glissez-déposez (PC) ou utilisez le bouton « Déplacer ➔ » (Mobile)</span>
+            <h2>📋 Sprint Board Interactif (Drag & Drop)</h2>
+            <span style="font-size: 0.85rem; color: var(--secondary-color);">Glissez-déposez les tâches</span>
         </div>
         <div class="kanban-board">
-            <!-- Colonne 1 -->
             <div class="kanban-col" id="col-todo" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="col-header">À Faire <span class="task-count">2</span></div>
-                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task1">
-                    <div class="card-top-row">
-                        <span class="task-tag tag-infra">Infra</span>
-                        <button type="button" class="btn-move-card" onclick="cycleCardColumn(this)">Déplacer ➔</button>
-                    </div>
+                    <span class="task-tag tag-infra">Infra</span>
                     <div class="task-title">Déploiement solution PAM unique (Prod)</div>
-                    <div class="task-meta">
-                        <span class="task-owner"><span class="avatar">PB</span> P-E. Boyer</span>
-                        <span>Estim: 3j</span>
-                    </div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span>Estim: 3j</span></div>
                 </div>
-
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task2">
-                    <div class="card-top-row">
-                        <span class="task-tag tag-secu">Sécurité</span>
-                        <button type="button" class="btn-move-card" onclick="cycleCardColumn(this)">Déplacer ➔</button>
-                    </div>
+                    <span class="task-tag tag-secu">Sécurité</span>
                     <div class="task-title">Audit micro-segmentation CRM Netbox</div>
-                    <div class="task-meta">
-                        <span class="task-owner"><span class="avatar">ES</span> Équipe Sécu</span>
-                        <span>Estim: 5j</span>
-                    </div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">ES</div> Équipe Sécu</span><span>Estim: 5j</span></div>
                 </div>
             </div>
 
-            <!-- Colonne 2 -->
             <div class="kanban-col" id="col-prog" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="col-header">En Cours <span class="task-count">1</span></div>
-                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task3">
-                    <div class="card-top-row">
-                        <span class="task-tag tag-infra">Migration</span>
-                        <button type="button" class="btn-move-card" onclick="cycleCardColumn(this)">Déplacer ➔</button>
-                    </div>
+                    <span class="task-tag tag-infra">Migration</span>
                     <div class="task-title">Préparation environnements techniques WeRo</div>
-                    <div class="task-meta">
-                        <span class="task-owner"><span class="avatar">PB</span> P-E. Boyer</span>
-                        <span style="color: var(--warning); font-weight: 600;">Prioritaire</span>
-                    </div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span style="color: var(--warning); font-weight: 600;">En retard</span></div>
                 </div>
             </div>
 
-            <!-- Colonne 3 -->
             <div class="kanban-col" id="col-done" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="col-header">Terminé <span class="task-count">1</span></div>
-                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task4">
-                    <div class="card-top-row">
-                        <span class="task-tag tag-secu">Sécurité</span>
-                        <button type="button" class="btn-move-card" onclick="cycleCardColumn(this)">Déplacer ➔</button>
-                    </div>
+                    <span class="task-tag tag-secu">Sécurité</span>
                     <div class="task-title">Sécurisation des flux SMTP en SMTPS AUTH</div>
-                    <div class="task-meta">
-                        <span class="task-owner"><span class="avatar">SYS</span> SysAdmin</span>
-                        <span style="color: var(--success); font-weight: 600;">Validé</span>
-                    </div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">SYS</div> SysAdmin</span><span style="color: var(--success); font-weight: 600;">Validé</span></div>
                 </div>
             </div>
         </div>
-
-        <!-- 3. MATRIX & GANTT -->
-        <div class="bottom-dashboard">
-            <!-- Heatmap -->
-            <div class="dash-card">
-                <div class="section-header" style="margin-top:0;">
-                    <h2>🔥 Matrice des Risques</h2>
-                    <span style="font-size: 0.75rem; color: var(--secondary-color);">Touchez les cases 4 & 5</span>
-                </div>
-                <div style="display: flex;">
-                    <div class="matrix-y-label">Probabilité</div>
-                    <div style="flex-grow: 1;">
-                        <div class="matrix-grid">
-                            <!-- Ligne Haut (Forte Proba) -->
-                            <div class="matrix-cell m-med" tabindex="0">3</div>
-                            <div class="matrix-cell m-high" tabindex="0">
-                                4
-                                <span class="tooltip"><strong>Risque T1 :</strong> Retard d'approvisionnement serveurs.<br><em>Mitigation : Instances Cloud temporaires (IaaS).</em></span>
-                            </div>
-                            <div class="matrix-cell m-high" tabindex="0">
-                                5
-                                <span class="tooltip"><strong>Risque S1 :</strong> Rejet UAT par le métier WeRo.<br><em>Mitigation : Implication du PO dès le Build.</em></span>
-                            </div>
-                            <!-- Ligne Milieu -->
-                            <div class="matrix-cell m-low" tabindex="0">2</div>
-                            <div class="matrix-cell m-med" tabindex="0">3</div>
-                            <div class="matrix-cell m-high" tabindex="0">
-                                4
-                                <span class="tooltip"><strong>Risque R1 :</strong> Blocage flux firewall en prod.<br><em>Mitigation : Matrice de flux auditée sous Netbox.</em></span>
-                            </div>
-                            <!-- Ligne Bas (Faible Proba) -->
-                            <div class="matrix-cell m-low" tabindex="0">1</div>
-                            <div class="matrix-cell m-low" tabindex="0">2</div>
-                            <div class="matrix-cell m-med" tabindex="0">3</div>
-                        </div>
-                        <div class="matrix-labels">
-                            <span>Faible</span>
-                            <span>Impact</span>
-                            <span>Critique</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CSS Gantt -->
-            <div class="dash-card">
-                <div class="section-header" style="margin-top:0;"><h2>📅 Macro-Planning (Gantt)</h2></div>
-                <div class="gantt-wrapper">
-                    <div class="gantt-months">
-                        <div class="gantt-month">Mois 1</div>
-                        <div class="gantt-month">Mois 2</div>
-                        <div class="gantt-month">Mois 3</div>
-                        <div class="gantt-month">Mois 4</div>
-                    </div>
-                    
-                    <div class="gantt-row">
-                        <div class="gantt-task-name">1. Cadrage & Archi</div>
-                        <div class="gantt-track">
-                            <div class="gantt-bar bar-cadrage">Validé</div>
-                        </div>
-                    </div>
-                    
-                    <div class="gantt-row">
-                        <div class="gantt-task-name">2. Build Infra</div>
-                        <div class="gantt-track">
-                            <div class="gantt-bar bar-build">En cours (WIP)</div>
-                        </div>
-                    </div>
-
-                    <div class="gantt-row">
-                        <div class="gantt-task-name">3. Tests & Sécu</div>
-                        <div class="gantt-track">
-                            <div class="gantt-bar bar-test">À venir</div>
-                        </div>
-                    </div>
-
-                    <div class="gantt-row">
-                        <div class="gantt-task-name">4. UAT & Go-Live</div>
-                        <div class="gantt-track">
-                            <div class="gantt-bar bar-uat">Jalon</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </main>
 
+    <!-- Bouton Retour en haut -->
+    <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Retour en haut">
+        ↑
+    </button>
+
     <script>
-        // --- Dark Mode ---
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('darkModeToggle');
             btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️ Clair' : '🌙 Sombre';
         }
 
-        // --- Animations KPIs ---
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 document.querySelectorAll('.progress-fill').forEach(fill => {
@@ -404,35 +236,15 @@
                 });
             }, 300);
         });
-
-        // --- KANBAN Drag & Drop (PC) + Bouton Tactile (Mobile) ---
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-            ev.target.classList.add('dragging');
-        }
-
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function dragEnter(ev) {
-            ev.preventDefault();
-            if (ev.currentTarget.classList.contains('kanban-col')) {
-                ev.currentTarget.classList.add('drag-over');
-            }
-        }
-
-        function dragLeave(ev) {
-            if (ev.currentTarget.classList.contains('kanban-col')) {
-                ev.currentTarget.classList.remove('drag-over');
-            }
-        }
-
+        
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); ev.target.classList.add('dragging'); }
+        function allowDrop(ev) { ev.preventDefault(); }
+        function dragEnter(ev) { ev.preventDefault(); if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.add('drag-over'); }
+        function dragLeave(ev) { if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.remove('drag-over'); }
         function drop(ev) {
             ev.preventDefault();
             const col = ev.currentTarget;
             col.classList.remove('drag-over');
-            
             const data = ev.dataTransfer.getData("text");
             const draggedElement = document.getElementById(data);
             if (draggedElement) {
@@ -442,27 +254,25 @@
             }
         }
 
-        // Fonction tactile pour faire avancer une carte d'une colonne à la suivante sur mobile
-        function cycleCardColumn(btnElement) {
-            const card = btnElement.closest('.kanban-card');
-            const currentCol = card.closest('.kanban-col');
-            const columns = Array.from(document.querySelectorAll('.kanban-col'));
-            const nextIndex = (columns.indexOf(currentCol) + 1) % columns.length;
-            
-            columns[nextIndex].appendChild(card);
-            updateKanbanCounters();
-        }
-
         function updateKanbanCounters() {
             document.querySelectorAll('.kanban-col').forEach(col => {
-                const countSpan = col.querySelector('.task-count');
-                countSpan.innerText = col.querySelectorAll('.kanban-card').length;
+                col.querySelector('.task-count').innerText = col.querySelectorAll('.kanban-card').length;
             });
         }
         
         document.addEventListener('dragend', (ev) => {
             if (ev.target.classList) ev.target.classList.remove('dragging');
             document.querySelectorAll('.kanban-col').forEach(c => c.classList.remove('drag-over'));
+        });
+
+        // --- BOUTON RETOUR EN HAUT ---
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
     </script>
 </body>
