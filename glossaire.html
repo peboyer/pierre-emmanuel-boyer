@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glossaire IT & Gestion de Projet - Pierre-Emmanuel Boyer</title>
-    <meta name="description" content="Lexique complet de 72 termes techniques et méthodologiques IT : Systèmes, Réseau, Cloud, DevOps, Cybersécurité, Messagerie, Stockage, PRA/PCA, ITIL et Gestion de Projet.">
+    <meta name="description" content="Lexique complet de 88 termes techniques et méthodologiques IT : Intelligence Artificielle, Systèmes, Réseau, Cloud, DevOps, Cybersécurité, Messagerie, Stockage, PRA/PCA, ITIL et Gestion de Projet.">
     <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,7 +171,7 @@
 
     <header>
         <h1>Glossaire IT & Projets</h1>
-        <p>Référentiel de 72 concepts clés couvrant l'ensemble des périmètres techniques et méthodologiques d'une DSI.</p>
+        <p>Référentiel de 88 concepts clés couvrant l'ensemble des périmètres techniques, IA et méthodologiques d'une DSI.</p>
     </header>
 
     <main class="container">
@@ -179,11 +179,12 @@
         <div class="controls-panel">
             <div class="search-row">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un acronyme, une technologie ou un concept (ex: Active Directory, VLAN, RPO, ITIL...)" onkeyup="filterGlossary()">
-                <span class="count-badge" id="termCount">72 termes</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un acronyme, une technologie ou un concept (ex: RAG, LLM, Active Directory, VLAN, ITIL...)" onkeyup="filterGlossary()">
+                <span class="count-badge" id="termCount">88 termes</span>
             </div>
             <div class="filter-bar" id="filterBar">
                 <button class="filter-btn active" onclick="setCategory('ALL', this)">Tous les périmètres</button>
+                <button class="filter-btn" onclick="setCategory('Intelligence Artificielle', this)">🤖 Intelligence Artificielle</button>
                 <button class="filter-btn" onclick="setCategory('Systèmes & Virtualisation', this)">🖥️ Systèmes & Virtualisation</button>
                 <button class="filter-btn" onclick="setCategory('Réseau & Télécoms', this)">🌐 Réseau & Télécoms</button>
                 <button class="filter-btn" onclick="setCategory('Cloud & DevOps', this)">☁️ Cloud & DevOps</button>
@@ -198,6 +199,7 @@
         <!-- Grille des termes (Triés par ordre alphabétique) -->
         <div class="glossary-grid" id="glossaryGrid">
 
+            
             <div class="term-card" data-category="Systèmes & Virtualisation">
                 <div class="term-title">Active Directory (AD) <span class="term-category">Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Annuaire d'entreprise Microsoft.</strong> Service centralisant l'identification, l'authentification (Kerberos/LDAP) et la gestion des droits d'accès des utilisateurs, groupes et ordinateurs sur le réseau.</div>
@@ -208,6 +210,21 @@
                 <div class="term-def"><strong>Awareness, Desire, Knowledge, Ability, Reinforcement.</strong> Modèle structuré de conduite du changement (Prosci) visant à accompagner individuellement chaque collaborateur dans l'adoption d'un nouvel outil IT.</div>
             </div>
 
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Agent IA (Agentic AI) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Système d'IA autonome orienté action.</strong> Programme piloté par un modèle de langage capable de décomposer un objectif complexe en étapes, d'interagir avec des outils externes (APIs, scripts, bases de données) et d'exécuter des tâches avec supervision.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">AI Act (Règlement Européen sur l'IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Cadre réglementaire européen sur l'IA.</strong> Législation classant les systèmes d'IA par niveau de risque (inacceptable, haut risque, limité, minimal) et imposant des obligations strictes de transparence, de traçabilité, de contrôle humain et de gouvernance des données.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">AIOps <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Artificial Intelligence for IT Operations.</strong> Application du Machine Learning et de l'IA à l'exploitation IT pour corréler automatiquement les alertes de supervision, détecter les anomalies, prédire les incidents et déclencher des auto-remédiations.</div>
+            </div>
+
             <div class="term-card" data-category="Cloud & DevOps">
                 <div class="term-title">API REST <span class="term-category">Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Application Programming Interface.</strong> Interface standardisée utilisant le protocole HTTP pour permettre à deux applications ou briques d'infrastructure d'échanger des données (souvent au format JSON) et d'automatiser des tâches.</div>
@@ -216,6 +233,11 @@
             <div class="term-card" data-category="Workplace & Messagerie">
                 <div class="term-title">Autopilot (Windows) <span class="term-category">Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Déploiement Zero-Touch.</strong> Technologie cloud Microsoft permettant de préconfigurer et déployer un poste de travail neuf directement chez l'utilisateur final sans masterisation manuelle par l'équipe support.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Base de données vectorielle (Vector DB) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Moteur d'indexation sémantique (pgvector, Qdrant, Pinecone, Milvus).</strong> Base de données spécialisée conçue pour stocker et interroger ultra-rapidement des <em>embeddings</em> afin de retrouver des documents pertinents par proximité de sens dans une architecture RAG.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
@@ -263,6 +285,11 @@
                 <div class="term-def"><strong>Comité de Pilotage vs Comité de Projet.</strong> Le COPIL (SteerCo) réunit les décideurs pour arbitrer le budget, les délais et la stratégie ; le COPROJ rassemble l'équipe technique chaque semaine pour suivre l'avancement opérationnel.</div>
             </div>
 
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Copilot / Assistant IA d'entreprise <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Compagnon intelligent intégré au poste de travail (Microsoft 365 Copilot, GitHub Copilot).</strong> Assistant connecté aux données internes de l'organisation dans le strict respect des droits d'accès (RBAC) pour rédiger, synthétiser des réunions ou générer du code.</div>
+            </div>
+
             <div class="term-card" data-category="Stockage & PRA/PCA">
                 <div class="term-title">Déduplication <span class="term-category">Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Optimisation volumétrique.</strong> Procédé de stockage et de sauvegarde qui élimine les blocs de données identiques en double pour ne conserver qu'une seule occurrence physique, réduisant drastiquement l'espace disque et la bande passante consommés.</div>
@@ -303,6 +330,11 @@
                 <div class="term-def"><strong>Endpoint / Extended Detection and Response.</strong> Évolution de l'antivirus classique analysant en temps réel le comportement des postes et serveurs par intelligence artificielle pour bloquer et isoler les menaces avancées (ransomwares, attaques sans fichier).</div>
             </div>
 
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Embeddings (Plongements vectoriels) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Représentation mathématique du sens.</strong> Conversion de textes, de code ou d'images en vecteurs numériques multidimensionnels permettant aux algorithmes d'IA de calculer la similarité sémantique entre plusieurs contenus.</div>
+            </div>
+
             <div class="term-card" data-category="Cloud & DevOps">
                 <div class="term-title">Entra ID (Azure AD) <span class="term-category">Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Gestion des identités Cloud.</strong> Service d'annuaire et de contrôle d'accès cloud de Microsoft gérant l'authentification unique (SSO), le MFA et les stratégies d'accès conditionnel pour Microsoft 365 et des milliers d'applications SaaS.</div>
@@ -311,6 +343,11 @@
             <div class="term-card" data-category="ITSM & Exploitation">
                 <div class="term-title">Escalade N1 / N2 / N3 <span class="term-category">ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Niveaux de support IT.</strong> Le N1 (Service Desk) traite les demandes courantes et le diagnostic initial ; le N2 regroupe les techniciens de proximité/administrateurs ; le N3 rassemble les ingénieurs experts et architectes résolvant les cas complexes.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Fine-Tuning (Affinage) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Spécialisation d'un modèle pré-entraîné.</strong> Phase d'entraînement complémentaire sur un jeu de données métier ciblé visant à adapter le style, le vocabulaire technique ou la précision d'un LLM sur une tâche spécifique.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
@@ -328,14 +365,24 @@
                 <div class="term-def"><strong>Group Policy Object (Stratégie de groupe).</strong> Fonctionnalité d'Active Directory permettant d'appliquer centralement des configurations systèmes, des restrictions de sécurité et des déploiements logiciels sur des milliers de postes et serveurs Windows.</div>
             </div>
 
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">GPU & Infrastructure HPC <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Graphics Processing Unit & High-Performance Computing.</strong> Puissance de calcul massivement parallèle (ex: NVIDIA H100/B200) et interconnexions réseau très haut débit (InfiniBand, RoCE) indispensables à l'entraînement et à l'inférence des modèles d'IA.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Guardrails (Garde-fous IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Contrôles de sécurité en entrée et sortie des modèles.</strong> Mécanismes techniques filtrant les requêtes (prévention des attaques par <em>Prompt Injection</em>) et les réponses (blocage des fuites de données confidentielles DLP et contenus non conformes).</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Hallucination (IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Génération d'informations erronées ou inventées.</strong> Phénomène où un modèle d'IA générative produit une affirmation factuellement fausse tout en la formulant avec assurance, fortement réduit par l'ancrage documentaire (RAG) et la citation des sources.</div>
+            </div>
+
             <div class="term-card" data-category="Systèmes & Virtualisation">
                 <div class="term-title">Hyperviseur <span class="term-category">Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Socle de virtualisation (VMware ESXi, Hyper-V, Proxmox).</strong> Couche logicielle installée directement sur un serveur physique ("Bare-Metal") permettant de créer et d'exécuter simultanément plusieurs machines virtuelles (VM) indépendantes en partageant CPU, RAM et stockage.</div>
-            </div>
-
-            <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">IaC (Infrastructure as Code) <span class="term-category">Cloud & DevOps</span></div>
-                <div class="term-def"><strong>Automatisation par le code (Terraform, Ansible).</strong> Provisionnement et configuration des serveurs, réseaux et environnements Cloud via des fichiers de code déclaratifs versionnés sous Git, évitant toute erreur de clic manuel.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
@@ -343,9 +390,19 @@
                 <div class="term-def"><strong>Les 3 modèles de service Cloud.</strong> IaaS fournit l'infrastructure brute (VM, stockage, réseau) ; PaaS fournit une plateforme prête à accueillir du code (bases de données managées) ; SaaS fournit un logiciel clé en main (Office 365, Salesforce).</div>
             </div>
 
+            <div class="term-card" data-category="Cloud & DevOps">
+                <div class="term-title">IaC (Infrastructure as Code) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-def"><strong>Automatisation par le code (Terraform, Ansible).</strong> Provisionnement et configuration des serveurs, réseaux et environnements Cloud via des fichiers de code déclaratifs versionnés sous Git, évitant toute erreur de clic manuel.</div>
+            </div>
+
             <div class="term-card" data-category="ITSM & Exploitation">
                 <div class="term-title">Incident vs Problème <span class="term-category">ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Distinction fondamentale ITIL.</strong> L'Incident est une interruption imprévue d'un service qu'il faut rétablir au plus vite (même via un contournement) ; le Problème est la cause sous-jacente d'un ou plusieurs incidents qu'on analyse à froid pour éviter toute récidive.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Inférence vs Entraînement <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Training vs Inference.</strong> L'<strong>entraînement</strong> est la phase intensive d'apprentissage d'un modèle sur de vastes corpus de données ; l'<strong>inférence</strong> correspond à l'exécution en production du modèle entraîné pour répondre aux requêtes des utilisateurs.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
@@ -361,6 +418,11 @@
             <div class="term-card" data-category="Cloud & DevOps">
                 <div class="term-title">Kubernetes (K8s) <span class="term-category">Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Orchestrateur de conteneurs.</strong> Plateforme open-source qui automatise le déploiement, la montée en charge (auto-scaling), la répartition de charge et l'auto-guérison de milliers de conteneurs applicatifs en production.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">LLM (Large Language Model) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Grand Modèle de Langage (Gemini, GPT, Claude, Mistral, Llama).</strong> Modèle d'apprentissage profond basé sur l'architecture Transformer, entraîné sur d'immenses volumes de textes pour comprendre, résumer, traduire et générer du langage naturel ou du code.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
@@ -396,6 +458,11 @@
             <div class="term-card" data-category="Workplace & Messagerie">
                 <div class="term-title">Microsoft 365 (M365) <span class="term-category">Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Écosystème collaboratif Cloud.</strong> Suite SaaS de Microsoft regroupant la messagerie Exchange Online, la communication unifiée Teams, l'intranet documentaire SharePoint, le stockage OneDrive et la suite bureautique Office.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">MLOps / LLMOps <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Industrialisation du cycle de vie de l'IA.</strong> Extension des pratiques DevOps aux modèles d'IA : versionnement des prompts et modèles, déploiement continu, surveillance de la dérive (<em>drift</em>), observabilité et maîtrise FinOps de la consommation de tokens.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
@@ -438,6 +505,11 @@
                 <div class="term-def"><strong>PRojects IN Controlled Environments.</strong> Méthodologie de gestion de projet très structurée reposant sur 7 principes, 7 thèmes et 7 processus, axée sur le Business Case continu et le management par exception (tolérances).</div>
             </div>
 
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Prompt Engineering <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Ingénierie des requêtes IA.</strong> Méthodologie de structuration des instructions (contexte, rôle, format attendu, exemples <em>few-shot</em>) transmises à un modèle génératif afin d'obtenir des réponses fiables, précises et reproductibles.</div>
+            </div>
+
             <div class="term-card" data-category="Réseau & Télécoms">
                 <div class="term-title">Proxy vs Reverse Proxy <span class="term-category">Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Intermédiaires de flux HTTP/S.</strong> Le Proxy filtre et sécurise l'accès des utilisateurs internes lorsqu'ils naviguent sur Internet ; le Reverse Proxy protège les serveurs web internes en recevant les requêtes provenant d'Internet à leur place.</div>
@@ -451,6 +523,11 @@
             <div class="term-card" data-category="Gestion de Projet">
                 <div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div>
                 <div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance clarifiant qui réalise la tâche (R), qui détient l'autorité unique de validation (A), qui apporte son expertise (C) et qui est tenu informé (I).</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">RAG (Retrieval-Augmented Generation) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Génération Augmentée par Récupération.</strong> Architecture connectant un LLM à une base documentaire interne (SharePoint, wikis IT, procédures) pour fournir des réponses contextualisées, à jour et sourcées sans avoir à réentraîner le modèle.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
@@ -496,6 +573,11 @@
             <div class="term-card" data-category="Réseau & Télécoms">
                 <div class="term-title">SD-WAN <span class="term-category">Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Software-Defined Wide Area Network.</strong> Architecture réseau pilotée par logiciel permettant d'interconnecter les sites distants d'une entreprise en combinant intelligemment plusieurs liens (Fibre, MPLS, 4G/5G) et en routant directement les flux Cloud.</div>
+            </div>
+
+            <div class="term-card" data-category="Intelligence Artificielle">
+                <div class="term-title">Shadow AI <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-def"><strong>Usage non contrôlé d'outils d'IA publics.</strong> Utilisation par les collaborateurs de services d'IA externes non homologués par la DSI ou la RSSI, exposant l'organisation à des risques de fuite de données sensibles ou de non-conformité RGPD.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
@@ -557,6 +639,8 @@
                 <div class="term-title">Zero Trust & Windows Hello <span class="term-category">Cybersécurité</span></div>
                 <div class="term-def"><strong>"Never trust, always verify".</strong> Paradigme de sécurité qui ne fait confiance à aucun appareil ou utilisateur par défaut (même connecté au réseau interne), s'appuyant sur une authentification forte sans mot de passe comme <strong>Windows Hello for Business</strong> (biométrie/PIN lié à la puce TPM).</div>
             </div>
+
+
 
             <!-- Message si aucun résultat -->
             <div id="noResults" class="no-results">
