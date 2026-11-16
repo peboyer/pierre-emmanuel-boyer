@@ -7,10 +7,61 @@
     
     <!-- SEO & Open Graph Tags -->
     <meta name="description" content="Portfolio de Pierre-Emmanuel Boyer, Chef de Projet Infrastructures IT. 25 ans d'expertise technique, management de projets internationaux, Azure, M365, MDM.">
+    <meta name="author" content="Pierre-Emmanuel Boyer">
+    <link rel="canonical" href="https://www.pierre-emmanuel-boyer.fr/">
     <meta property="og:title" content="Pierre-Emmanuel Boyer - Chef de Projet IT">
     <meta property="og:description" content="Fort de 25 ans d'expertise en administration des infrastructures systèmes IT, je mène avec succès depuis 7 ans des projets techniques à forte visibilité.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pierre-emmanuel-boyer.fr/">
     <meta property="og:image" content="https://www.pierre-emmanuel-boyer.fr/banniere-linkedin.png">
+    
+    <!-- Données structurées Schema.org (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pierre-Emmanuel Boyer",
+      "jobTitle": "Chef de Projet Infrastructures IT",
+      "description": "Chef de Projet Infrastructures IT avec 25 ans d'expertise en administration des infrastructures systèmes IT, support utilisateur et direction de projets techniques internationaux.",
+      "url": "https://www.pierre-emmanuel-boyer.fr/",
+      "image": "https://www.pierre-emmanuel-boyer.fr/photo.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Magny-les-Hameaux",
+        "addressRegion": "Île-de-France",
+        "addressCountry": "FR"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/pierre-emmanuel-boyer"
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Cross Institute Paris"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "ISCIO"
+        }
+      ],
+      "knowsAbout": [
+        "Gestion de projet IT",
+        "Infrastructures Systèmes",
+        "Microsoft 365",
+        "Microsoft Azure",
+        "Entra ID",
+        "Windows Server",
+        "Cybersécurité",
+        "PAM",
+        "Micro-segmentation",
+        "MDM / Intune",
+        "Agile / Scrum / Kanban",
+        "PMI / PMBOK",
+        "ITIL 4",
+        "PRINCE2"
+      ]
+    }
+    </script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -1366,13 +1417,13 @@
             <form action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="1ebea79c-c790-458b-8089-9d2670cc134e">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Nom / Name" required>
+                    <input type="text" name="name" class="form-control" placeholder="Votre nom" data-placeholder-fr="Votre nom" data-placeholder-en="Your name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    <input type="email" name="email" class="form-control" placeholder="Votre email" data-placeholder-fr="Votre email" data-placeholder-en="Your email" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Message..." required rows="5"></textarea>
+                    <textarea name="message" class="form-control" placeholder="Votre message..." data-placeholder-fr="Votre message..." data-placeholder-en="Your message..." required rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-cv">
                     <span class="fr">Envoyer le message</span><span class="en">Send Message</span>
@@ -1395,16 +1446,16 @@
                 <input type="hidden" name="access_key" value="1ebea79c-c790-458b-8089-9d2670cc134e">
                 <input type="hidden" name="subject" value="Demande de téléchargement de CV - Portfolio">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Nom / Name *" required>
+                    <input type="text" name="name" class="form-control" placeholder="Votre nom *" data-placeholder-fr="Votre nom *" data-placeholder-en="Your name *" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email professionnel / Work Email *" required>
+                    <input type="email" name="email" class="form-control" placeholder="Email professionnel *" data-placeholder-fr="Email professionnel *" data-placeholder-en="Work email *" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="company" class="form-control" placeholder="Entreprise / Cabinet (optionnel) / Company (optional)">
+                    <input type="text" name="company" class="form-control" placeholder="Entreprise / Cabinet (optionnel)" data-placeholder-fr="Entreprise / Cabinet (optionnel)" data-placeholder-en="Company / Agency (optional)">
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Message ou opportunité concernée... / Message or role..." required rows="3"></textarea>
+                    <textarea name="message" class="form-control" placeholder="Message ou opportunité concernée..." data-placeholder-fr="Message ou opportunité concernée..." data-placeholder-en="Message or role details..." required rows="3"></textarea>
                 </div>
                 <button type="submit" id="cvSubmitBtn" class="btn btn-cv">
                     <span class="fr">Envoyer et débloquer le CV</span><span class="en">Send & Unlock Resume</span>
@@ -1546,41 +1597,64 @@
     <!-- SCRIPTS JAVASCRIPT                         -->
     <!-- ========================================== -->
     <script>
-        // --- GESTION DU MULTILINGUISME ---
-        function toggleLanguage() {
-            const htmlTag = document.documentElement;
-            const btn = document.getElementById('langToggle');
-            
-            if (htmlTag.getAttribute('lang') === 'fr') {
-                htmlTag.setAttribute('lang', 'en');
-                btn.innerHTML = '🇫🇷 FR';
-                if (window.plausible) plausible('Switch Language', {props: {to: 'en'}});
-            } else {
-                htmlTag.setAttribute('lang', 'fr');
-                btn.innerHTML = '🇬🇧 EN';
-            }
-        }
-
-        // --- GESTION DU MODE SOMBRE ---
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+        // --- GESTION DU MULTILINGUISME (AVEC MÉMORISATION) ---
+        function updateDarkModeButtonLabel() {
             const btn = document.getElementById('darkModeToggle');
+            if (!btn) return;
             const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
             const isEn = document.documentElement.getAttribute('lang') === 'en';
             if (isDark) {
                 btn.innerHTML = isEn ? '☀️ Light' : '☀️ Clair';
+                btn.setAttribute('aria-label', isEn ? 'Disable dark mode' : 'Désactiver le mode sombre');
             } else {
                 btn.innerHTML = isEn ? '🌙 Dark' : '🌙 Sombre';
+                btn.setAttribute('aria-label', isEn ? 'Enable dark mode' : 'Activer le mode sombre');
             }
-            btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
         }
 
+        function applyLanguage(lang) {
+            const targetLang = (lang === 'en') ? 'en' : 'fr';
+            document.documentElement.setAttribute('lang', targetLang);
+            localStorage.setItem('lang', targetLang);
+
+            const langBtn = document.getElementById('langToggle');
+            if (langBtn) {
+                langBtn.innerHTML = targetLang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN';
+                langBtn.setAttribute('aria-label', targetLang === 'en' ? 'Passer en français' : 'Switch to English');
+            }
+
+            document.querySelectorAll('[data-placeholder-fr]').forEach(el => {
+                const ph = el.getAttribute(targetLang === 'en' ? 'data-placeholder-en' : 'data-placeholder-fr');
+                if (ph) el.setAttribute('placeholder', ph);
+            });
+
+            updateDarkModeButtonLabel();
+        }
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute('lang');
+            const nextLang = currentLang === 'fr' ? 'en' : 'fr';
+            applyLanguage(nextLang);
+            if (window.plausible) plausible('Switch Language', {props: {to: nextLang}});
+        }
+
+        // --- GESTION DU MODE SOMBRE (AVEC MÉMORISATION) ---
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateDarkModeButtonLabel();
+        }
+
+        // Restauration des préférences (Thème & Langue) au chargement
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            const darkBtn = document.getElementById('darkModeToggle');
-            if (darkBtn) darkBtn.innerHTML = '☀️ Clair';
+        }
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang === 'en' || savedLang === 'fr') {
+            applyLanguage(savedLang);
+        } else {
+            updateDarkModeButtonLabel();
         }
 
         // --- GESTION DES MODALES ---
