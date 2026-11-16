@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz & Évaluation IT - Pierre-Emmanuel Boyer</title>
-    <meta name="description" content="Évaluation en gestion de projet IT : 100 questions certifiantes sur Scrum, Cycle en V, PMP, ITIL 4, PRINCE2, Gouvernance et Infra.">
+    <meta name="description" content="Évaluation en gestion de projet IT : 120 questions certifiantes sur Scrum, Cycle en V, PMP, ITIL 4, PRINCE2, Gouvernance, Infra et Intelligence Artificielle / AIOps.">
     <link rel="icon" type="image/png" href="favicon.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,14 +143,14 @@
 
     <header>
         <h1>Évaluation Globale IT</h1>
-        <p>Simulateur d'examen aléatoire : 100 questions certifiantes (Scrum, PMP, ITIL 4, PRINCE2, Cycle en V, Infra).</p>
+        <p>Simulateur d'examen aléatoire : 120 questions certifiantes (Scrum, PMP, ITIL 4, PRINCE2, Cycle en V, Infra & IA).</p>
     </header>
 
     <main class="container">
         <div class="quiz-box">
             <div class="quiz-header-bar">
                 <h2>Testez vos connaissances</h2>
-                <span class="bank-badge" id="bankCounter">Banque : 100 questions</span>
+                <span class="bank-badge" id="bankCounter">Banque : 120 questions</span>
             </div>
             <p style="color: var(--secondary-color); margin-bottom: 2rem; font-size: 1.05rem;">Tirage aléatoire intelligent de 10 questions avec système anti-répétition entre deux sessions consécutives.</p>
             
@@ -791,6 +791,127 @@
                 opts: { A: "Awareness (Conscience), Desire (Désir), Knowledge (Savoir), Ability (Capacité), Reinforcement (Ancrage)", B: "Audit, Design, Kanban, Agile, Release", C: "Acheter, Déployer, Klaxonner, Archiver, Recommencer" },
                 ans: "A",
                 exp: "Le modèle ADKAR guide l'adoption individuelle : compréhension, adhésion, apprentissage, mise en œuvre et ancrage des habitudes."
+            },
+            // --- INTELLIGENCE ARTIFICIELLE & AIOPS (101 à 120) ---
+            {
+                q: "Quelle architecture permet de connecter un LLM aux bases documentaires internes d'une DSI (SharePoint, wikis) sans réentraîner le modèle ?",
+                opts: { A: "Le RAG (Retrieval-Augmented Generation)", B: "Le Overclocking GPU", C: "La virtualisation VDI" },
+                ans: "A",
+                exp: "Le RAG injecte des extraits pertinents issus d'une base documentaire interne dans le contexte du prompt afin d'ancrer les réponses et citer les sources."
+            },
+            {
+                q: "Quel est le rôle principal d'une base de données vectorielle (Vector DB) dans une architecture d'IA générative ?",
+                opts: { A: "Stocker les machines virtuelles VMware", B: "Indexer et rechercher rapidement des embeddings par proximité sémantique", C: "Remplacer le pare-feu périmétrique de la DMZ" },
+                ans: "B",
+                exp: "Une base vectorielle (pgvector, Qdrant, Pinecone) compare les vecteurs numériques (embeddings) pour retrouver les passages les plus proches du sens de la question."
+            },
+            {
+                q: "En exploitation IT, quel est l'objectif principal d'une plateforme AIOps ?",
+                opts: { A: "Remplacer tous les câbles fibre optique par du Wi-Fi", B: "Corréler automatiquement les alertes de supervision, détecter les anomalies et déclencher des auto-remédiations", C: "Rédiger les fiches de paie de la DSI" },
+                ans: "B",
+                exp: "L'AIOps applique le Machine Learning aux logs et métriques pour réduire le bruit des alertes, anticiper les incidents et accélérer le diagnostic de cause racine."
+            },
+            {
+                q: "Dans un projet d'IA générative, comment appelle-t-on le risque qu'un LLM affirme avec assurance une information fausse ou inventée ?",
+                opts: { A: "L'Effet Tunnel", B: "Une Hallucination", C: "Un Deadlock SQL" },
+                ans: "B",
+                exp: "Les hallucinations surviennent lorsqu'un modèle génère un texte statistiquement plausible mais factuellement erroné ; le RAG et les garde-fous limitent ce phénomène."
+            },
+            {
+                q: "Quelle est la différence entre la phase d'Entraînement (Training) et la phase d'Inférence d'un modèle d'IA ?",
+                opts: { A: "Entraînement = apprentissage sur de vastes corpus ; Inférence = exécution du modèle en production pour répondre aux requêtes", B: "Inférence nécessite des milliers de GPU pendant plusieurs mois ; Entraînement se fait sur un smartphone", C: "Il n'y a aucune différence technique" },
+                ans: "A",
+                exp: "L'entraînement construit les poids du modèle, tandis que l'inférence sollicite le modèle déjà entraîné en production avec une forte exigence de faible latence."
+            },
+            {
+                q: "Quel risque de sécurité désigne le 'Shadow AI' au sein d'une entreprise ?",
+                opts: { A: "Une panne électrique dans la salle serveur", B: "L'utilisation par les collaborateurs d'outils d'IA publics non homologués, exposant des données confidentielles", C: "Un mode d'affichage sombre sur l'intranet" },
+                ans: "B",
+                exp: "Le Shadow AI expose l'organisation à des fuites de propriété intellectuelle ou de données personnelles (RGPD) vers des services tiers non maîtrisés."
+            },
+            {
+                q: "À quoi servent les 'Guardrails' (garde-fous) déployés autour d'un assistant IA d'entreprise ?",
+                opts: { A: "À filtrer les attaques par Prompt Injection en entrée et bloquer les fuites de données sensibles (DLP) en sortie", B: "À refroidir physiquement les baies de serveurs GPU", C: "À augmenter la fréquence du processeur" },
+                ans: "A",
+                exp: "Les Guardrails sécurisent les échanges avec le LLM en détectant les tentatives de détournement d'instructions et en masquant les données sensibles."
+            },
+            {
+                q: "Comment le règlement européen 'AI Act' classe-t-il les systèmes d'intelligence artificielle ?",
+                opts: { A: "Selon la marque du processeur utilisé", B: "Selon une approche par niveau de risque (inacceptable, haut risque, risque limité, risque minimal)", C: "Uniquement selon le chiffre d'affaires de l'éditeur" },
+                ans: "B",
+                exp: "L'AI Act gradue les obligations légales (transparence, traçabilité, contrôle humain, audit) en fonction de l'impact du système d'IA sur les droits et la sécurité."
+            },
+            {
+                q: "Dans une architecture Microsoft 365 Copilot, comment est gérée la confidentialité des documents accessibles par l'assistant ?",
+                opts: { A: "Tous les collaborateurs voient l'intégralité des fichiers de l'entreprise", B: "Copilot hérite strictement des permissions existantes de l'utilisateur (RBAC, SharePoint, OneDrive, étiquettes Purview)", C: "L'administrateur doit copier manuellement les fichiers sur clé USB" },
+                ans: "B",
+                exp: "Copilot n'affiche que les données auxquelles l'utilisateur a déjà accès, d'où l'importance cruciale d'un audit préalable des droits SharePoint/Teams avant déploiement."
+            },
+            {
+                q: "En infrastructure HPC / IA, pourquoi privilégie-t-on des réseaux InfiniBand ou RoCEv2 entre serveurs GPU ?",
+                opts: { A: "Pour assurer une très faible latence et une bande passante massive lors de la synchronisation des calculs distribués", B: "Pour remplacer les prises électriques triphasées", C: "Parce que le protocole TCP/IP est interdit sur Linux" },
+                ans: "A",
+                exp: "Les échanges de gradients et de tenseurs entre nœuds GPU requièrent un accès direct mémoire (RDMA) à très haut débit et latence ultra-faible."
+            },
+            {
+                q: "Que recouvre la démarche 'LLMOps / MLOps' pour un Chef de Projet IT ?",
+                opts: { A: "Le versionnement des prompts et modèles, la surveillance de la dérive (drift), les tests de non-régression et le suivi FinOps des tokens", B: "L'installation physique des onduleurs du Datacenter", C: "La gestion des congés de l'équipe support" },
+                ans: "A",
+                exp: "Le LLMOps transpose la rigueur DevOps aux applications d'IA générative afin de garantir leur qualité, leur observabilité et leur coût en production."
+            },
+            {
+                q: "Quelle est la différence fondamentale entre le Fine-Tuning et le Prompt Engineering ?",
+                opts: { A: "Prompt Engineering = structurer les instructions en entrée sans modifier le modèle ; Fine-Tuning = réentraîner partiellement le modèle sur un jeu de données ciblé", B: "Fine-Tuning ne fonctionne que sur les images", C: "Prompt Engineering nécessite d'acheter de nouveaux serveurs" },
+                ans: "A",
+                exp: "On commence toujours par le Prompt Engineering et le RAG (rapides et peu coûteux) avant d'envisager un Fine-Tuning plus lourd à maintenir."
+            },
+            {
+                q: "Qu'est-ce qu'un 'Agent IA' (Agentic AI) par rapport à un chatbot classique ?",
+                opts: { A: "Un système capable de planifier plusieurs étapes et d'appeler des outils externes (APIs, scripts, tickets ITSM) pour exécuter une action", B: "Un logiciel antivirus installé sur le navigateur", C: "Un écran de supervision passif" },
+                ans: "A",
+                exp: "Contrairement à un chatbot qui se limite à générer du texte, un Agent IA interagit avec le SI via des connecteurs encadrés par des règles d'habilitation."
+            },
+            {
+                q: "En architecture IA, à quoi sert la 'Quantization' (quantification, ex: passage de FP16 à INT8 ou INT4) d'un modèle ?",
+                opts: { A: "À réduire l'empreinte mémoire VRAM GPU et accélérer l'inférence tout en préservant l'essentiel de la précision", B: "À traduire automatiquement le code en anglais", C: "À chiffrer les disques durs avec BitLocker" },
+                ans: "A",
+                exp: "La quantification réduit la précision numérique des poids du modèle, permettant d'héberger des LLM performants sur des infrastructures GPU plus compactes."
+            },
+            {
+                q: "Lors de la préparation d'une base documentaire pour un RAG, pourquoi le découpage ('Chunking') et la gestion des métadonnées sont-ils critiques ?",
+                opts: { A: "Pour améliorer la pertinence des passages retrouvés et filtrer les résultats selon les droits d'accès (ACL) de l'utilisateur", B: "Pour compresser les fichiers audio MP3", C: "Pour augmenter la taille des disques SAN" },
+                ans: "A",
+                exp: "Un chunking adapté préserve le contexte sémantique et les métadonnées garantissent que le moteur vectoriel respecte le cloisonnement des habilitations."
+            },
+            {
+                q: "Quel indicateur LLMOps mesure le délai ressenti par l'utilisateur avant l'apparition du tout premier mot généré par un LLM ?",
+                opts: { A: "Le TTFT (Time To First Token)", B: "Le MTBF (Mean Time Between Failures)", C: "Le RPO (Recovery Point Objective)" },
+                ans: "A",
+                exp: "Le TTFT mesure la réactivité initiale en streaming, critère clé d'expérience utilisateur pour les assistants conversationnels."
+            },
+            {
+                q: "Quelle attaque de sécurité consiste à dissimuler des instructions malveillantes dans un document ou un e-mail analysé par un LLM ?",
+                opts: { A: "L'Injection de Prompt indirecte (Indirect Prompt Injection)", B: "Le DDoS volumétrique", C: "L'usurpation ARP" },
+                ans: "A",
+                exp: "L'injection indirecte tente de détourner le comportement de l'IA via des données externes non fiables qu'elle ingère lors d'une recherche ou synthèse."
+            },
+            {
+                q: "Quel arbitrage d'infrastructure conduit souvent une entreprise à privilégier un LLM hébergé en interne (On-Premise / Cloud souverain) plutôt qu'une API publique ?",
+                opts: { A: "La souveraineté des données sensibles, la conformité réglementaire et la prévisibilité des coûts à très fort volume", B: "L'impossibilité d'utiliser le protocole HTTPS", C: "La suppression de toute maintenance matérielle" },
+                ans: "A",
+                exp: "L'hébergement souverain ou dédié garantit qu'aucune donnée critique ne transite hors du périmètre maîtrisé par l'organisation."
+            },
+            {
+                q: "Comment l'AIOps contribue-t-il à la gestion proactive de la capacité (Capacity Management) d'une infrastructure ?",
+                opts: { A: "En modélisant les tendances saisonnières de charge (CPU, stockage, réseau) pour anticiper les saturations avant qu'elles n'impactent la production", B: "En éteignant aléatoirement les serveurs la nuit", C: "En supprimant les journaux d'événements" },
+                ans: "A",
+                exp: "Les modèles prédictifs détectent les dérives lentes de consommation et recommandent les extensions de ressources au bon moment."
+            },
+            {
+                q: "Quelle bonne pratique de gouvernance permet d'éviter qu'un projet d'IA reste bloqué au stade de prototype ('PoC graveyard') ?",
+                opts: { A: "Définir dès le cadrage un cas d'usage métier mesurable (ROI), associer la Sécurité/DSI dès le début et prévoir le budget Run/LLMOps", B: "Développer le modèle sans jamais consulter les utilisateurs finaux", C: "Ignorer les coûts d'inférence jusqu'à la première facture" },
+                ans: "A",
+                exp: "L'industrialisation d'un projet IA exige d'intégrer dès la phase Build la qualité des données, la sécurité, la conduite du changement et le coût d'exploitation."
             }
         ];
 
