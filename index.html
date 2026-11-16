@@ -318,8 +318,6 @@
 
         /* Pied de page */
         footer { text-align: center; padding: 3rem 1.5rem; background: var(--header-bg); color: rgba(255, 255, 255, 0.7); margin-top: 5rem; }
-        .admin-link { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; cursor: pointer; margin-top: 10px; display: inline-block; }
-        [contenteditable="true"] { outline: 2px dashed var(--accent-color); outline-offset: 10px; background-color: rgba(14, 165, 233, 0.05); border-radius: 8px; padding: 10px; }
 
         /* ========================================== */
         /* OPTIMISATION MOBILE & TABLETTE             */
@@ -406,7 +404,7 @@
 
         /* Impression */
         @media print {
-            body { background: white; color: black; } nav, .fab, .back-to-top, .header-buttons, .kpi-banner, .admin-link, #case-studies { display: none; }
+            body { background: white; color: black; } nav, .fab, .back-to-top, .header-buttons, .kpi-banner, #case-studies { display: none; }
             header { background: white; color: black; padding: 2rem 0; } header h1 { color: black; } header h2 { color: #555; }
             .contact-info a { color: black; border-bottom: none; } .profile-photo { border: 2px solid #ccc; box-shadow: none; width: 120px; height: 120px; }
             .container { max-width: 100% !important; margin: 0; padding: 0; } .experience-card { border: none; padding: 0; box-shadow: none; margin-bottom: 2rem; page-break-inside: avoid; }
@@ -1538,11 +1536,10 @@
     </button>
 
     <!-- ========================================== -->
-    <!-- PIED DE PAGE & MODE ÉDITION                -->
+    <!-- PIED DE PAGE                               -->
     <!-- ========================================== -->
     <footer>
         <p>&copy; 2026 Pierre-Emmanuel Boyer. <span class="fr">Fait avec Gemini Pro.</span><span class="en">Made with Gemini Pro.</span></p>
-        <a onclick="enableEditMode()" class="admin-link" aria-label="Activer le mode d'édition de page">⚙️ Mode Édition</a>
     </footer>
 
     <!-- ========================================== -->
@@ -1686,49 +1683,6 @@
             }
         });
 
-        // --- MODE ÉDITEUR ---
-        function enableEditMode() {
-            const pin = prompt("Entrez le code PIN pour activer le mode édition (Code: 1234) :");
-            if (pin === "1234") {
-                const mainContent = document.getElementById('main-content');
-                if (mainContent) {
-                    mainContent.contentEditable = "true";
-                    alert("Mode édition activé ! Note : Les textes cachés (autre langue) peuvent être complexes à éditer. Sauvegardez prudemment.");
-                    
-                    const saveBtn = document.createElement('button');
-                    saveBtn.innerText = "💾 Télécharger index.html";
-                    saveBtn.className = "fab save-fab";
-                    saveBtn.style.width = "auto"; saveBtn.style.padding = "0 1.5rem";
-                    saveBtn.style.borderRadius = "30px"; saveBtn.style.bottom = "100px"; 
-                    saveBtn.style.fontSize = "1rem"; saveBtn.style.fontFamily = "Inter, sans-serif"; saveBtn.style.fontWeight = "600";
-                    saveBtn.onclick = saveModifications;
-                    document.body.appendChild(saveBtn);
-                }
-            } else {
-                alert("Code PIN incorrect.");
-            }
-        }
-
-        function saveModifications() {
-            const mainContent = document.getElementById('main-content');
-            if (mainContent) mainContent.contentEditable = "false";
-            
-            const saveBtn = document.querySelector('.save-fab');
-            if (saveBtn) saveBtn.remove();
-            
-            const profileImg = document.getElementById('profile-img');
-            if (profileImg) profileImg.setAttribute('src', 'photo.jpg');
-            
-            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url; a.download = "index.html"; document.body.appendChild(a); a.click();
-            document.body.removeChild(a); URL.revokeObjectURL(url);
-            
-            alert("Fichier téléchargé avec succès !");
-        }
     </script>
 </body>
 </html>

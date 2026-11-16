@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Projet - Pierre-Emmanuel Boyer</title>
-    <meta name="description" content="Simulateur interactif de pilotage de projet IT : Kanban, KPI, Matrice des Risques, Gantt.">
+    <meta name="description" content="Simulateur interactif de pilotage de projet IT : KPIs dynamiques, Kanban tactile & Drag-and-Drop, diagramme de Gantt avec jalons (VABF, UAT, Go/No-Go, VSR) et matrice des risques 3x3.">
     <link rel="icon" type="image/png" href="favicon.png">
     <meta property="og:title" content="Dashboard Projet Control Tower - Pierre-Emmanuel Boyer">
-    <meta property="og:description" content="Simulateur interactif de pilotage de projet IT : KPIs de suivi et tableau Kanban Drag & Drop.">
+    <meta property="og:description" content="Simulateur interactif de pilotage de projet IT : KPIs, Kanban tactile, Diagramme de Gantt et Matrice des Risques 3x3.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.pierre-emmanuel-boyer.fr/banniere-linkedin.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
@@ -53,6 +53,10 @@
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
 
+        a:focus-visible, button:focus-visible {
+            outline: 2px dashed var(--accent-color); outline-offset: 4px; border-radius: 4px;
+        }
+
         /* Navigation */
         nav { position: sticky; top: 0; z-index: 1000; background-color: var(--nav-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
         .nav-logo { font-weight: 700; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center; }
@@ -62,41 +66,160 @@
 
         header { background: var(--header-bg); color: white; padding: 3rem 1.5rem 4rem; text-align: center; }
         header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        header p { color: var(--accent-color); font-weight: 500; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        header p { color: var(--accent-color); font-weight: 500; font-size: 1.1rem; max-width: 680px; margin: 0 auto; }
 
         .container { max-width: 1200px; margin: -2rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
         
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        /* KPIs */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
         .kpi-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         .kpi-title { font-size: 0.85rem; font-weight: 600; color: var(--secondary-color); text-transform: uppercase; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
-        .kpi-value { font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; color: var(--primary-color); line-height: 1; margin-bottom: 1rem; }
+        .kpi-value { font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; color: var(--primary-color); line-height: 1; margin-bottom: 0.4rem; }
+        .kpi-sub { font-size: 0.8rem; color: var(--secondary-color); opacity: 0.85; margin-bottom: 0.85rem; }
         .progress-bg { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 4px; }
+        .progress-fill { height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 4px; }
         .fill-accent { background-color: var(--accent-color); }
         .fill-warning { background-color: var(--warning); }
         .fill-success { background-color: var(--success); }
         .fill-danger { background-color: var(--danger); }
 
-        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; margin-top: 2rem; flex-wrap: wrap; gap: 0.5rem; }
-        .section-header h2 { font-size: 1.3rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; margin-top: 2.5rem; flex-wrap: wrap; gap: 0.5rem; }
+        .section-header h2 { font-size: 1.35rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .section-hint { font-size: 0.85rem; color: var(--secondary-color); }
 
         /* Kanban */
         .kanban-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .kanban-col { background: var(--badge-bg); border-radius: 12px; padding: 1rem; min-height: 400px; display: flex; flex-direction: column; gap: 1rem; border: 2px dashed transparent; transition: border-color 0.2s, background-color 0.2s; }
+        .kanban-col { background: var(--badge-bg); border-radius: 12px; padding: 1rem; min-height: 360px; display: flex; flex-direction: column; gap: 1rem; border: 2px dashed transparent; transition: border-color 0.2s, background-color 0.2s; }
         .kanban-col.drag-over { border-color: var(--accent-color); background-color: rgba(14, 165, 233, 0.05); }
-        .col-header { font-weight: 700; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; padding: 0 0.5rem; }
-        .task-count { background: var(--border-color); color: var(--text-color); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 10px; }
+        .col-header { font-weight: 700; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; padding: 0 0.5rem; }
+        .task-count { background: var(--border-color); color: var(--text-color); font-size: 0.75rem; padding: 0.2rem 0.65rem; border-radius: 10px; font-weight: 700; }
         
-        .kanban-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: grab; transition: transform 0.1s, box-shadow 0.1s; }
-        .kanban-card:active { cursor: grabbing; transform: scale(0.98); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .kanban-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: grab; transition: transform 0.15s, box-shadow 0.15s; }
+        .kanban-card:active { cursor: grabbing; transform: scale(0.99); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .kanban-card.dragging { opacity: 0.5; }
-        .task-tag { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; }
-        .tag-infra { background: rgba(59, 130, 246, 0.1); color: var(--info); }
-        .tag-secu { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-        .task-title { font-weight: 600; font-size: 0.95rem; color: var(--primary-color); margin-bottom: 0.5rem; line-height: 1.3; }
-        .task-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--secondary-color); margin-top: 1rem; }
-        .task-owner { display: flex; align-items: center; gap: 0.3rem; }
-        .avatar { width: 20px; height: 20px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: bold; }
+        .task-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; }
+        .task-tag { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 4px; display: inline-block; }
+        .tag-infra { background: rgba(59, 130, 246, 0.12); color: var(--info); }
+        .tag-secu { background: rgba(239, 68, 68, 0.12); color: var(--danger); }
+        .tag-pra { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .task-title { font-weight: 600; font-size: 0.95rem; color: var(--primary-color); margin-bottom: 0.5rem; line-height: 1.35; }
+        .task-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--secondary-color); margin-top: 0.85rem; }
+        .task-owner { display: flex; align-items: center; gap: 0.35rem; }
+        .avatar { width: 22px; height: 22px; background: var(--accent-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: bold; }
+
+        /* Contrôles tactiles Kanban (Mobile & Accessibilité clavier) */
+        .task-move-controls {
+            display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+            margin-top: 0.85rem; padding-top: 0.65rem; border-top: 1px dashed var(--border-color);
+        }
+        .move-btn {
+            background: var(--badge-bg); color: var(--primary-color); border: 1px solid var(--border-color);
+            border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+            display: inline-flex; align-items: center; gap: 0.25rem;
+        }
+        .move-btn:hover:not(:disabled) { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .move-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+        /* Diagramme de Gantt */
+        .panel-card {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
+            padding: 1.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 3rem;
+        }
+        .gantt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
+        .gantt-table { min-width: 720px; width: 100%; border-collapse: collapse; }
+        .gantt-table th {
+            text-align: center; font-size: 0.8rem; font-weight: 700; color: var(--secondary-color);
+            padding: 0.65rem 0.4rem; border-bottom: 2px solid var(--border-color); text-transform: uppercase;
+        }
+        .gantt-table th:first-child { text-align: left; width: 32%; padding-left: 0.5rem; }
+        .gantt-row { cursor: pointer; transition: background-color 0.2s; border-bottom: 1px solid var(--border-color); }
+        .gantt-row:hover, .gantt-row.selected { background-color: rgba(14, 165, 233, 0.06); }
+        .gantt-task-cell { padding: 0.95rem 0.5rem; }
+        .gantt-task-name { font-weight: 600; font-size: 0.92rem; color: var(--primary-color); display: block; }
+        .gantt-task-owner { font-size: 0.78rem; color: var(--secondary-color); }
+        .gantt-timeline-cell { position: relative; padding: 0.95rem 0.25rem; }
+        .gantt-track {
+            position: relative; height: 26px; background: var(--badge-bg); border-radius: 9999px;
+            border: 1px solid var(--border-color); overflow: hidden;
+        }
+        .gantt-bar {
+            position: absolute; top: 0; height: 100%; border-radius: 9999px;
+            display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem;
+            font-size: 0.72rem; font-weight: 700; color: white; transition: filter 0.2s;
+        }
+        .gantt-bar.bar-done { background: var(--success); }
+        .gantt-bar.bar-prog { background: var(--accent-color); }
+        .gantt-bar.bar-plan { background: var(--warning); }
+        .gantt-bar.bar-crit { background: var(--info); }
+
+        .milestone-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; align-items: center; }
+        .milestone-chip {
+            background: var(--badge-bg); color: var(--primary-color); border: 1px solid var(--border-color);
+            padding: 0.45rem 0.9rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+            display: inline-flex; align-items: center; gap: 0.35rem;
+        }
+        .milestone-chip:hover, .milestone-chip.active {
+            background: var(--accent-color); color: white; border-color: var(--accent-color);
+        }
+
+        .milestone-detail-box {
+            margin-top: 1.25rem; padding: 1.25rem; border-radius: 12px; background: var(--bg-color);
+            border-left: 4px solid var(--accent-color); border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+        }
+        .milestone-detail-box h4 { color: var(--primary-color); font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .milestone-detail-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--accent-color); font-weight: 600; margin-bottom: 0.5rem; }
+        .milestone-detail-box p { font-size: 0.92rem; color: var(--text-color); }
+
+        /* Matrice des Risques 3x3 & Registre */
+        .risk-layout { display: grid; grid-template-columns: 340px 1fr; gap: 1.75rem; align-items: start; }
+        .matrix-wrapper { display: flex; flex-direction: column; align-items: center; }
+        .matrix-axis-top { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--secondary-color); margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+        .matrix-body { display: flex; align-items: center; gap: 0.6rem; width: 100%; }
+        .matrix-axis-left {
+            writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.78rem; font-weight: 700;
+            text-transform: uppercase; color: var(--secondary-color); letter-spacing: 0.5px; text-align: center;
+        }
+        .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; flex: 1; }
+        .matrix-cell {
+            aspect-ratio: 1 / 1; border-radius: 10px; border: 2px solid transparent; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 0.5rem; text-align: center; transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+            color: #0f172a; font-family: 'Poppins', sans-serif;
+        }
+        .matrix-cell:hover { transform: scale(1.04); }
+        .matrix-cell.active-cell { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.35); transform: scale(1.04); }
+        .cell-low { background-color: rgba(34, 197, 94, 0.25); color: var(--primary-color); }
+        .cell-med { background-color: rgba(245, 158, 11, 0.28); color: var(--primary-color); }
+        .cell-high { background-color: rgba(239, 68, 68, 0.28); color: var(--primary-color); }
+        .cell-count { font-size: 1.4rem; font-weight: 800; line-height: 1.1; }
+        .cell-label { font-size: 0.68rem; font-weight: 600; margin-top: 0.2rem; line-height: 1.2; }
+
+        .risk-register-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        .risk-filter-status { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); }
+        .btn-reset-risk {
+            background: var(--badge-bg); color: var(--primary-color); border: 1px solid var(--border-color);
+            padding: 0.35rem 0.8rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+        }
+        .btn-reset-risk:hover { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+
+        .risk-list { display: flex; flex-direction: column; gap: 0.9rem; }
+        .risk-item {
+            background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px;
+            padding: 1rem 1.25rem; border-left: 4px solid var(--accent-color);
+        }
+        .risk-item.sev-high { border-left-color: var(--danger); }
+        .risk-item.sev-med { border-left-color: var(--warning); }
+        .risk-item.sev-low { border-left-color: var(--success); }
+        .risk-item-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+        .risk-id-title { font-weight: 700; font-size: 0.95rem; color: var(--primary-color); }
+        .risk-badge { font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 9999px; white-space: nowrap; }
+        .badge-high { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .badge-med { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .badge-low { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .risk-mitigation { font-size: 0.88rem; color: var(--text-color); }
 
         /* Bouton Retour en haut */
         .back-to-top {
@@ -109,6 +232,11 @@
         }
         .back-to-top.visible { opacity: 1; visibility: visible; }
         .back-to-top:hover { transform: translateY(-5px); background-color: var(--primary-color); }
+
+        @media (max-width: 900px) {
+            .risk-layout { grid-template-columns: 1fr; }
+            .matrix-wrapper { max-width: 340px; margin: 0 auto; width: 100%; }
+        }
 
         @media (max-width: 768px) {
             nav { padding: 0.75rem 1rem; gap: 0.5rem; }
@@ -130,6 +258,8 @@
                 flex-shrink: 0;
             }
             header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            .panel-card { padding: 1.25rem; }
             .back-to-top { bottom: 1.25rem; left: 1.25rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
     </style>
@@ -153,72 +283,335 @@
 
     <header>
         <h1>Control Tower : Projet WeRo</h1>
-        <p>Simulation du tableau de bord de pilotage (KPIs, Kanban).</p>
+        <p>Simulateur interactif de pilotage de projet IT : KPIs temps réel, Kanban tactile, Planning Gantt &amp; Matrice des Risques.</p>
     </header>
 
     <main class="container">
         
+        <!-- SECTION 1 : MÉTRIQUES DE PILOTAGE -->
         <div class="section-header"><h2>📊 Métriques de Pilotage</h2></div>
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-title"><span>Taux d'Avancement</span><span>🎯</span></div>
-                <div class="kpi-value">85%</div>
-                <div class="progress-bg"><div class="progress-fill fill-accent" data-width="85%"></div></div>
+                <div class="kpi-value" id="kpiProgressValue">30%</div>
+                <div class="kpi-sub" id="kpiProgressSub">1 terminée, 1 en cours sur 5 lots</div>
+                <div class="progress-bg"><div class="progress-fill fill-accent" id="kpiProgressBar" data-width="30%"></div></div>
             </div>
             <div class="kpi-card">
                 <div class="kpi-title"><span>Consommation Budget</span><span>💰</span></div>
                 <div class="kpi-value">74%</div>
+                <div class="kpi-sub">148 k€ engagés / 200 k€ (CAPEX/OPEX)</div>
                 <div class="progress-bg"><div class="progress-fill fill-success" data-width="74%"></div></div>
             </div>
             <div class="kpi-card">
                 <div class="kpi-title"><span>Jours Restants (Sprint)</span><span>⏱️</span></div>
                 <div class="kpi-value">12 J</div>
+                <div class="kpi-sub">Avant jalon recette technique VABF</div>
                 <div class="progress-bg"><div class="progress-fill fill-warning" data-width="60%"></div></div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-title"><span>Risques Majeurs Actifs</span><span>⚠️</span></div>
-                <div class="kpi-value" style="color: var(--danger);">3</div>
-                <div class="progress-bg"><div class="progress-fill fill-danger" data-width="25%"></div></div>
+                <div class="kpi-title"><span>Risques Critiques</span><span>⚠️</span></div>
+                <div class="kpi-value" style="color: var(--danger);">2 / 6</div>
+                <div class="kpi-sub">Plans de mitigation actifs suivis</div>
+                <div class="progress-bg"><div class="progress-fill fill-danger" data-width="33%"></div></div>
             </div>
         </div>
 
+        <!-- SECTION 2 : KANBAN INTERACTIF (DRAG & DROP + TACTILE MOBILE) -->
         <div class="section-header">
-            <h2>📋 Sprint Board Interactif (Drag & Drop)</h2>
-            <span style="font-size: 0.85rem; color: var(--secondary-color);">Glissez-déposez les tâches</span>
+            <h2>📋 Sprint Board Interactif</h2>
+            <span class="section-hint">Glissez-déposez sur ordinateur ou utilisez les flèches ⬅️ ➡️ sur mobile</span>
         </div>
         <div class="kanban-board">
             <div class="kanban-col" id="col-todo" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-                <div class="col-header">À Faire <span class="task-count">2</span></div>
+                <div class="col-header">À Faire <span class="task-count">3</span></div>
+                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task1">
-                    <span class="task-tag tag-infra">Infra</span>
-                    <div class="task-title">Déploiement solution PAM unique (Prod)</div>
-                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span>Estim: 3j</span></div>
+                    <div class="task-top">
+                        <span class="task-tag tag-infra">Infra</span>
+                        <span class="task-status-label" style="font-size: 0.75rem; color: var(--secondary-color);">Planifié</span>
+                    </div>
+                    <div class="task-title">Déploiement solution PAM unique (Production)</div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span>Estim : 3j</span></div>
+                    <div class="task-move-controls">
+                        <button type="button" class="move-btn btn-prev" onclick="moveCardStep('task1', -1)" disabled aria-label="Reculer la tâche">⬅️ Reculer</button>
+                        <button type="button" class="move-btn btn-next" onclick="moveCardStep('task1', 1)" aria-label="Avancer la tâche">Avancer ➡️</button>
+                    </div>
                 </div>
+
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task2">
-                    <span class="task-tag tag-secu">Sécurité</span>
-                    <div class="task-title">Audit micro-segmentation CRM Netbox</div>
-                    <div class="task-meta"><span class="task-owner"><div class="avatar">ES</div> Équipe Sécu</span><span>Estim: 5j</span></div>
+                    <div class="task-top">
+                        <span class="task-tag tag-secu">Sécurité</span>
+                        <span class="task-status-label" style="font-size: 0.75rem; color: var(--secondary-color);">Planifié</span>
+                    </div>
+                    <div class="task-title">Audit micro-segmentation CRM via NetBox</div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">ES</div> Équipe Sécu</span><span>Estim : 5j</span></div>
+                    <div class="task-move-controls">
+                        <button type="button" class="move-btn btn-prev" onclick="moveCardStep('task2', -1)" disabled aria-label="Reculer la tâche">⬅️ Reculer</button>
+                        <button type="button" class="move-btn btn-next" onclick="moveCardStep('task2', 1)" aria-label="Avancer la tâche">Avancer ➡️</button>
+                    </div>
+                </div>
+
+                <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task5">
+                    <div class="task-top">
+                        <span class="task-tag tag-pra">PRA / PCA</span>
+                        <span class="task-status-label" style="font-size: 0.75rem; color: var(--secondary-color);">Planifié</span>
+                    </div>
+                    <div class="task-title">Test de bascule PRA &amp; validation RPO / RTO</div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">OPS</div> Run Ops</span><span>Estim : 4j</span></div>
+                    <div class="task-move-controls">
+                        <button type="button" class="move-btn btn-prev" onclick="moveCardStep('task5', -1)" disabled aria-label="Reculer la tâche">⬅️ Reculer</button>
+                        <button type="button" class="move-btn btn-next" onclick="moveCardStep('task5', 1)" aria-label="Avancer la tâche">Avancer ➡️</button>
+                    </div>
                 </div>
             </div>
 
             <div class="kanban-col" id="col-prog" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="col-header">En Cours <span class="task-count">1</span></div>
+                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task3">
-                    <span class="task-tag tag-infra">Migration</span>
+                    <div class="task-top">
+                        <span class="task-tag tag-infra">Migration</span>
+                        <span class="task-status-label" style="font-size: 0.75rem; color: var(--warning); font-weight: 600;">En cours</span>
+                    </div>
                     <div class="task-title">Préparation environnements techniques WeRo</div>
-                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span style="color: var(--warning); font-weight: 600;">En retard</span></div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">PB</div> P-E. Boyer</span><span>Estim : 5j</span></div>
+                    <div class="task-move-controls">
+                        <button type="button" class="move-btn btn-prev" onclick="moveCardStep('task3', -1)" aria-label="Reculer la tâche">⬅️ Reculer</button>
+                        <button type="button" class="move-btn btn-next" onclick="moveCardStep('task3', 1)" aria-label="Avancer la tâche">Avancer ➡️</button>
+                    </div>
                 </div>
             </div>
 
             <div class="kanban-col" id="col-done" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="col-header">Terminé <span class="task-count">1</span></div>
+                
                 <div class="kanban-card" draggable="true" ondragstart="drag(event)" id="task4">
-                    <span class="task-tag tag-secu">Sécurité</span>
+                    <div class="task-top">
+                        <span class="task-tag tag-secu">Sécurité</span>
+                        <span class="task-status-label" style="font-size: 0.75rem; color: var(--success); font-weight: 600;">Validé ✅</span>
+                    </div>
                     <div class="task-title">Sécurisation des flux SMTP en SMTPS AUTH</div>
-                    <div class="task-meta"><span class="task-owner"><div class="avatar">SYS</div> SysAdmin</span><span style="color: var(--success); font-weight: 600;">Validé</span></div>
+                    <div class="task-meta"><span class="task-owner"><div class="avatar">SYS</div> SysAdmin</span><span>Estim : 2j</span></div>
+                    <div class="task-move-controls">
+                        <button type="button" class="move-btn btn-prev" onclick="moveCardStep('task4', -1)" aria-label="Reculer la tâche">⬅️ Reculer</button>
+                        <button type="button" class="move-btn btn-next" onclick="moveCardStep('task4', 1)" disabled aria-label="Avancer la tâche">Avancer ➡️</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- SECTION 3 : DIAGRAMME DE GANTT & JALONS -->
+        <div class="section-header">
+            <h2>📅 Diagramme de Gantt &amp; Jalons Clés</h2>
+            <span class="section-hint">Cliquez sur un jalon pour afficher ses critères de validation</span>
+        </div>
+        <div class="panel-card">
+            <div class="gantt-scroll">
+                <table class="gantt-table">
+                    <thead>
+                        <tr>
+                            <th>Phase / Lot Technique</th>
+                            <th>Mois 1</th>
+                            <th>Mois 2</th>
+                            <th>Mois 3</th>
+                            <th>Mois 4</th>
+                            <th>Mois 5</th>
+                            <th>Mois 6</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gantt-row" onclick="selectMilestone('m-build')">
+                            <td class="gantt-task-cell">
+                                <span class="gantt-task-name">1. Cadrage, Architecture &amp; Matrices de Flux</span>
+                                <span class="gantt-task-owner">CP Infra + Architectes • Terminé</span>
+                            </td>
+                            <td colspan="6" class="gantt-timeline-cell">
+                                <div class="gantt-track">
+                                    <div class="gantt-bar bar-done" style="left: 0%; width: 25%;">100%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gantt-row" onclick="selectMilestone('m-vabf')">
+                            <td class="gantt-task-cell">
+                                <span class="gantt-task-name">2. Provisioning Serveurs, BDD &amp; Réseaux</span>
+                                <span class="gantt-task-owner">Équipe Production IT • Jalon VABF</span>
+                            </td>
+                            <td colspan="6" class="gantt-timeline-cell">
+                                <div class="gantt-track">
+                                    <div class="gantt-bar bar-prog" style="left: 16.6%; width: 33.4%;">90%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gantt-row" onclick="selectMilestone('m-secu')">
+                            <td class="gantt-task-cell">
+                                <span class="gantt-task-name">3. Durcissement, PKI, PAM &amp; Micro-segmentation</span>
+                                <span class="gantt-task-owner">Cybersécurité &amp; NetBox • En cours</span>
+                            </td>
+                            <td colspan="6" class="gantt-timeline-cell">
+                                <div class="gantt-track">
+                                    <div class="gantt-bar bar-crit" style="left: 33.3%; width: 33.4%;">65%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gantt-row" onclick="selectMilestone('m-uat')">
+                            <td class="gantt-task-cell">
+                                <span class="gantt-task-name">4. Recette Métier (UAT) &amp; Tests de Charge</span>
+                                <span class="gantt-task-owner">Métiers &amp; QA • Jalon UAT</span>
+                            </td>
+                            <td colspan="6" class="gantt-timeline-cell">
+                                <div class="gantt-track">
+                                    <div class="gantt-bar bar-plan" style="left: 55%; width: 28%;">25%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gantt-row" onclick="selectMilestone('m-vsr')">
+                            <td class="gantt-task-cell">
+                                <span class="gantt-task-name">5. Bascule Production &amp; Observation VSR</span>
+                                <span class="gantt-task-owner">COPIL / Run • Jalons Go/No-Go &amp; VSR</span>
+                            </td>
+                            <td colspan="6" class="gantt-timeline-cell">
+                                <div class="gantt-track">
+                                    <div class="gantt-bar bar-plan" style="left: 78%; width: 22%;">Planifié</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="milestone-chips" id="milestoneChips">
+                <button type="button" class="milestone-chip active" data-ms="m-build" onclick="selectMilestone('m-build')">🏁 J1 : Build &amp; Architecture</button>
+                <button type="button" class="milestone-chip" data-ms="m-vabf" onclick="selectMilestone('m-vabf')">🛠️ J2 : Recette Technique (VABF)</button>
+                <button type="button" class="milestone-chip" data-ms="m-secu" onclick="selectMilestone('m-secu')">🛡️ J3 : Homologation Sécurité</button>
+                <button type="button" class="milestone-chip" data-ms="m-uat" onclick="selectMilestone('m-uat')">✅ J4 : Recette Utilisateur (UAT)</button>
+                <button type="button" class="milestone-chip" data-ms="m-vsr" onclick="selectMilestone('m-vsr')">🚀 J5 : Go / No-Go &amp; VSR</button>
+            </div>
+
+            <div class="milestone-detail-box" id="milestoneDetailBox">
+                <h4 id="msTitle">🏁 J1 : Build &amp; Architecture Validée (Fin Mois 2)</h4>
+                <div class="milestone-detail-meta" id="msMeta">Statut : Validé ✅ • Approbateur (A) : Comité d'Architecture &amp; CP Infra</div>
+                <p id="msDesc">Validation du Dossier d'Architecture Technique (DAT), du plan d'adressage IPAM/NetBox, des matrices de flux pare-feu et du dimensionnement des environnements de pré-production et production.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4 : MATRICE DES RISQUES 3x3 & PLAN DE MITIGATION -->
+        <div class="section-header">
+            <h2>🛡️ Matrice des Risques (3×3) &amp; Plans de Mitigation</h2>
+            <span class="section-hint">Sélectionnez une cellule de la matrice pour filtrer les risques associés</span>
+        </div>
+        <div class="panel-card">
+            <div class="risk-layout">
+                <!-- Grille 3x3 -->
+                <div class="matrix-wrapper">
+                    <div class="matrix-axis-top">Impact Métier / Production ➔</div>
+                    <div class="matrix-body">
+                        <div class="matrix-axis-left">Probabilité ➔</div>
+                        <div class="matrix-grid" id="riskMatrixGrid">
+                            <!-- Ligne 1 : Probabilité Élevée -->
+                            <button type="button" class="matrix-cell cell-med" data-cell="high-low" onclick="filterRisks('high-low', this)">
+                                <span class="cell-count">0</span>
+                                <span class="cell-label">Prob. Élevée<br>Impact Modéré</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-high" data-cell="high-med" onclick="filterRisks('high-med', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Élevée<br>Impact Majeur</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-high" data-cell="high-high" onclick="filterRisks('high-high', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Élevée<br>Impact Critique</span>
+                            </button>
+
+                            <!-- Ligne 2 : Probabilité Moyenne -->
+                            <button type="button" class="matrix-cell cell-low" data-cell="med-low" onclick="filterRisks('med-low', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Moyenne<br>Impact Modéré</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-med" data-cell="med-med" onclick="filterRisks('med-med', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Moyenne<br>Impact Majeur</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-high" data-cell="med-high" onclick="filterRisks('med-high', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Moyenne<br>Impact Critique</span>
+                            </button>
+
+                            <!-- Ligne 3 : Probabilité Faible -->
+                            <button type="button" class="matrix-cell cell-low" data-cell="low-low" onclick="filterRisks('low-low', this)">
+                                <span class="cell-count">0</span>
+                                <span class="cell-label">Prob. Faible<br>Impact Modéré</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-low" data-cell="low-med" onclick="filterRisks('low-med', this)">
+                                <span class="cell-count">1</span>
+                                <span class="cell-label">Prob. Faible<br>Impact Majeur</span>
+                            </button>
+                            <button type="button" class="matrix-cell cell-med" data-cell="low-high" onclick="filterRisks('low-high', this)">
+                                <span class="cell-count">0</span>
+                                <span class="cell-label">Prob. Faible<br>Impact Critique</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registre des risques filtrable -->
+                <div>
+                    <div class="risk-register-header">
+                        <span class="risk-filter-status" id="riskFilterTitle">Tous les risques actifs (6)</span>
+                        <button type="button" class="btn-reset-risk" onclick="filterRisks('ALL', null)">Afficher les 6 risques</button>
+                    </div>
+                    <div class="risk-list" id="riskList">
+                        <div class="risk-item sev-high" data-cell="high-high">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-01 • Délai d'ouverture des flux pare-feu inter-zones</span>
+                                <span class="risk-badge badge-high">Critique (Élevée × Critique)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Pré-validation des matrices de flux en atelier hebdomadaire avec l'équipe Réseau/Sécurité et passage prioritaire en CAB hebdomadaire.</p>
+                        </div>
+
+                        <div class="risk-item sev-high" data-cell="high-med">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-02 • Indisponibilité ponctuelle de l'environnement partenaire</span>
+                                <span class="risk-badge badge-high">Élevé (Élevée × Majeur)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Mise en place d'un bouchon applicatif (mock API) pour permettre aux équipes de développement de poursuivre les tests d'intégration sans blocage.</p>
+                        </div>
+
+                        <div class="risk-item sev-high" data-cell="med-high">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-03 • Défaillance lors de la bascule en production</span>
+                                <span class="risk-badge badge-high">Élevé (Moyenne × Critique)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Déploiement par lots progressifs, répétition générale en pré-production et rédaction d'un plan de Rollback chronométré validé en jalon Go/No-Go.</p>
+                        </div>
+
+                        <div class="risk-item sev-med" data-cell="med-med">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-04 • Dérive de périmètre (Scope Creep) sur les droits PAM</span>
+                                <span class="risk-badge badge-med">Modéré (Moyenne × Majeur)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Gel du périmètre MVP sur les serveurs critiques (Tier-0/Tier-1) et arbitrage formel de toute demande additionnelle en Comité de Pilotage.</p>
+                        </div>
+
+                        <div class="risk-item sev-low" data-cell="med-low">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-05 • Saturation des tickets support N1 lors du démarrage</span>
+                                <span class="risk-badge badge-low">Maîtrisé (Moyenne × Modéré)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Transfert de compétences anticipé vers le Service Desk, mise à disposition de fiches réflexes et cellule d'hypercare dédiée durant 2 semaines.</p>
+                        </div>
+
+                        <div class="risk-item sev-low" data-cell="low-med">
+                            <div class="risk-item-top">
+                                <span class="risk-id-title">R-06 • Expiration d'un certificat SSL/TLS interne en recette</span>
+                                <span class="risk-badge badge-low">Maîtrisé (Faible × Majeur)</span>
+                            </div>
+                            <p class="risk-mitigation"><strong>Mitigation :</strong> Enrôlement automatisé via la PKI interne et ajout de sondes d'alerte J-30 dans l'outil de supervision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Bouton Retour en haut -->
@@ -246,13 +639,25 @@
                 document.querySelectorAll('.progress-fill').forEach(fill => {
                     fill.style.width = fill.getAttribute('data-width');
                 });
-            }, 300);
+            }, 250);
+            updateKanbanState();
         });
-        
-        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); ev.target.classList.add('dragging'); }
+
+        // --- KANBAN : DRAG & DROP + BOUTONS TACTILES MOBILES ---
+        const colOrder = ['col-todo', 'col-prog', 'col-done'];
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+            ev.target.classList.add('dragging');
+        }
         function allowDrop(ev) { ev.preventDefault(); }
-        function dragEnter(ev) { ev.preventDefault(); if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.add('drag-over'); }
-        function dragLeave(ev) { if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.remove('drag-over'); }
+        function dragEnter(ev) {
+            ev.preventDefault();
+            if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.add('drag-over');
+        }
+        function dragLeave(ev) {
+            if (ev.currentTarget.classList.contains('kanban-col')) ev.currentTarget.classList.remove('drag-over');
+        }
         function drop(ev) {
             ev.preventDefault();
             const col = ev.currentTarget;
@@ -262,20 +667,135 @@
             if (draggedElement) {
                 draggedElement.classList.remove('dragging');
                 col.appendChild(draggedElement);
-                updateKanbanCounters();
+                updateKanbanState();
             }
         }
 
-        function updateKanbanCounters() {
-            document.querySelectorAll('.kanban-col').forEach(col => {
-                col.querySelector('.task-count').innerText = col.querySelectorAll('.kanban-card').length;
-            });
+        function moveCardStep(cardId, direction) {
+            const card = document.getElementById(cardId);
+            if (!card) return;
+            const currentCol = card.closest('.kanban-col');
+            const currentIndex = colOrder.indexOf(currentCol.id);
+            const nextIndex = currentIndex + direction;
+            if (nextIndex >= 0 && nextIndex < colOrder.length) {
+                const targetCol = document.getElementById(colOrder[nextIndex]);
+                targetCol.appendChild(card);
+                updateKanbanState();
+            }
         }
-        
+
+        function updateKanbanState() {
+            const todoCount = document.getElementById('col-todo').querySelectorAll('.kanban-card').length;
+            const progCount = document.getElementById('col-prog').querySelectorAll('.kanban-card').length;
+            const doneCount = document.getElementById('col-done').querySelectorAll('.kanban-card').length;
+            const total = todoCount + progCount + doneCount;
+
+            document.querySelectorAll('.kanban-col').forEach((col, colIdx) => {
+                const cards = col.querySelectorAll('.kanban-card');
+                col.querySelector('.task-count').innerText = cards.length;
+                cards.forEach(card => {
+                    const prevBtn = card.querySelector('.btn-prev');
+                    const nextBtn = card.querySelector('.btn-next');
+                    const statusLabel = card.querySelector('.task-status-label');
+                    if (prevBtn) prevBtn.disabled = (colIdx === 0);
+                    if (nextBtn) nextBtn.disabled = (colIdx === colOrder.length - 1);
+                    if (statusLabel) {
+                        if (colIdx === 0) {
+                            statusLabel.innerText = 'Planifié';
+                            statusLabel.style.color = 'var(--secondary-color)';
+                            statusLabel.style.fontWeight = '400';
+                        } else if (colIdx === 1) {
+                            statusLabel.innerText = 'En cours';
+                            statusLabel.style.color = 'var(--warning)';
+                            statusLabel.style.fontWeight = '600';
+                        } else {
+                            statusLabel.innerText = 'Validé ✅';
+                            statusLabel.style.color = 'var(--success)';
+                            statusLabel.style.fontWeight = '600';
+                        }
+                    }
+                });
+            });
+
+            // Calcul pondéré de l'avancement global (Terminé = 100%, En cours = 50%)
+            const progressPct = total > 0 ? Math.round(((doneCount + progCount * 0.5) / total) * 100) : 0;
+            const valEl = document.getElementById('kpiProgressValue');
+            const subEl = document.getElementById('kpiProgressSub');
+            const barEl = document.getElementById('kpiProgressBar');
+            if (valEl) valEl.innerText = progressPct + '%';
+            if (subEl) subEl.innerText = `${doneCount} terminée${doneCount > 1 ? 's' : ''}, ${progCount} en cours sur ${total} lots`;
+            if (barEl) {
+                barEl.setAttribute('data-width', progressPct + '%');
+                barEl.style.width = progressPct + '%';
+            }
+        }
+
         document.addEventListener('dragend', (ev) => {
             if (ev.target.classList) ev.target.classList.remove('dragging');
             document.querySelectorAll('.kanban-col').forEach(c => c.classList.remove('drag-over'));
         });
+
+        // --- INTERACTIVITÉ GANTT & JALONS ---
+        const milestoneData = {
+            'm-build': {
+                title: '🏁 J1 : Build & Architecture Validée (Fin Mois 2)',
+                meta: 'Statut : Validé ✅ • Approbateur (A) : Comité d\'Architecture & CP Infra',
+                desc: 'Validation du Dossier d\'Architecture Technique (DAT), du plan d\'adressage IPAM/NetBox, des matrices de flux pare-feu et du dimensionnement des environnements de pré-production et production.'
+            },
+            'm-vabf': {
+                title: '🛠️ J2 : Recette Technique — VABF (Fin Mois 3)',
+                meta: 'Statut : En cours (90%) • Approbateur (A) : Responsable Production IT',
+                desc: 'Vérification d\'Aptitude au Bon Fonctionnement : contrôle de la haute disponibilité (Cluster HA), des sauvegardes automatisées, de la supervision active et des performances réseau.'
+            },
+            'm-secu': {
+                title: '🛡️ J3 : Homologation Cybersécurité (Fin Mois 4)',
+                meta: 'Statut : En cours (65%) • Approbateur (A) : RSSI & Équipe Sécurité',
+                desc: 'Audit de conformité durcissement (ANSSI/CIS), validation de la micro-segmentation NetBox, intégration des comptes privilégiés dans le coffre PAM et chiffrement SMTPS/TLS.'
+            },
+            'm-uat': {
+                title: '✅ J4 : Recette Utilisateur — UAT (Fin Mois 5)',
+                meta: 'Statut : Planifié (25%) • Approbateur (A) : Product Owner & Direction Métier',
+                desc: 'Exécution des cahiers de recette fonctionnelle avec les utilisateurs pilotes, validation des temps de réponse sous charge nominale et levée des réserves bloquantes.'
+            },
+            'm-vsr': {
+                title: '🚀 J5 : Go / No-Go & Vérification de Service Régulier — VSR (Mois 6)',
+                meta: 'Statut : Planifié • Approbateur (A) : Comité de Pilotage (COPIL)',
+                desc: 'Instance décisionnelle Go/No-Go avant bascule définitive (avec plan de Rollback éprouvé), suivie de 30 jours d\'observation en production réelle (VSR) avant transfert complet au Run MCO.'
+            }
+        };
+
+        function selectMilestone(msKey) {
+            const info = milestoneData[msKey];
+            if (!info) return;
+            document.getElementById('msTitle').innerText = info.title;
+            document.getElementById('msMeta').innerText = info.meta;
+            document.getElementById('msDesc').innerText = info.desc;
+
+            document.querySelectorAll('.milestone-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.getAttribute('data-ms') === msKey);
+            });
+        }
+
+        // --- INTERACTIVITÉ MATRICE DES RISQUES 3x3 ---
+        function filterRisks(cellKey, btnElement) {
+            document.querySelectorAll('.matrix-cell').forEach(c => c.classList.remove('active-cell'));
+            if (btnElement) btnElement.classList.add('active-cell');
+
+            const items = document.querySelectorAll('#riskList .risk-item');
+            let visibleCount = 0;
+            items.forEach(item => {
+                const match = (cellKey === 'ALL' || item.getAttribute('data-cell') === cellKey);
+                item.style.display = match ? '' : 'none';
+                if (match) visibleCount++;
+            });
+
+            const titleEl = document.getElementById('riskFilterTitle');
+            if (cellKey === 'ALL') {
+                titleEl.innerText = `Tous les risques actifs (${visibleCount})`;
+            } else {
+                titleEl.innerText = `Risques filtrés sur la cellule sélectionnée (${visibleCount})`;
+            }
+        }
 
         // --- BOUTON RETOUR EN HAUT ---
         window.addEventListener('scroll', () => {
