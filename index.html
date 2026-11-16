@@ -767,8 +767,8 @@
                             
                             <p class="section-title">Actions récurrentes :</p>
                             <ul>
-                                <li>Encadrement du projet de la phase d'étude (Build) jusqu'à sa mise en production (Run) : Collecte des besoins et élaboration du cahier des charges, Analyse des risques et des responsabilités (RACI), Élaboration et suivi du budget, Gestion du product Backlog et de la roadmap selon les priorités et retours des équipes / clients.</li>
-                                <li>Encadrement des équipes projets (équipes multiculturelles : internes et externes) : Animation des réunions et ateliers d'équipes pluridisciplinaires, Présentation et suivi des projets lors des réunions de cycle de vie (Kick-off, SteerCo, Arbitrage, Weekly, Plan d'Achat). Gestion des espaces de communication et de documentation. Création et suivi de KPIs via PowerBI et Excel. Conduite du changement auprès des équipes informatiques sur sites.</li>
+                                <li>Encadrement du projet de la phase d'étude (Build) jusqu'à sa mise en production (Run) : Collecte des besoins et élaboration du cahier des charges, Analyse des risques et des responsabilités (RACI), Élaboration et suivi du budget, Gestion du Product Backlog et de la roadmap selon les priorités et retours des équipes / clients.</li>
+                                <li>Encadrement des équipes projets (équipes multiculturelles : internes et externes) : Animation des réunions et ateliers d'équipes pluridisciplinaires, Présentation et suivi des projets lors des réunions de cycle de vie (Kick-off, SteerCo, Arbitrage, Weekly, Plan d'Achat). Gestion des espaces de communication et de documentation. Création et suivi de KPIs via PowerBI et Excel. Conduite du changement auprès des équipes informatiques sur site.</li>
                             </ul>
 
                             <div class="env-box">
@@ -937,7 +937,7 @@
                             <ul>
                                 <li>Migrations Exchange 5.5/2003/2007 vers 2010</li>
                                 <li>Migrations Lotus Domino v8.5 vers Exchange Online avec Quest Notes Migrator for Exchange</li>
-                                <li>Installations et configuration serveur BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
+                                <li>Installation et configuration de serveurs BES/BES Express sur environnement Exchange 2003-2010, Lotus Domino v8.5, Zimbra et Google Apps</li>
                                 <li>Installations de plates-formes de gestion de terminaux mobiles (iOS/Android/Windows Phone) avec Good Technology, BlackBerry Mobile Fusion et Maas360</li>
                             </ul>
                             
@@ -1185,7 +1185,7 @@
                         <div class="fr">
                             <p class="section-title">Missions :</p>
                             <ul>
-                                <li>Hotline N1 et N2 de la société Manpower (env. 500 appels/jours).</li>
+                                <li>Hotline N1 et N2 de la société Manpower (env. 500 appels/jour).</li>
                                 <li>Réception et relance des appels clients, prise en main à distance (recherche et réparation de pannes, déploiement et installation de logiciels).</li>
                             </ul>
 
@@ -1569,6 +1569,7 @@
             document.body.classList.toggle('dark-mode');
             const btn = document.getElementById('darkModeToggle');
             const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
             
             const isEn = document.documentElement.getAttribute('lang') === 'en';
             if (isDark) {
@@ -1577,6 +1578,12 @@
                 btn.innerHTML = isEn ? '🌙 Dark' : '🌙 Sombre';
             }
             btn.setAttribute('aria-label', isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre');
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            const darkBtn = document.getElementById('darkModeToggle');
+            if (darkBtn) darkBtn.innerHTML = '☀️ Clair';
         }
 
         // --- GESTION DES MODALES ---

@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erreur 404 - Page introuvable</title>
+    <title>Erreur 404 - Page introuvable | Pierre-Emmanuel Boyer</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -34,8 +38,7 @@
         <a href="index.html" class="btn">⬅️ Revenir au Portfolio</a>
     </header>
     <script>
-        // Applique le mode sombre si configuré dans le localStorage
-        if(localStorage.getItem('theme') === 'dark' || document.body.classList.contains('dark-mode')) {
+        if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
     </script>

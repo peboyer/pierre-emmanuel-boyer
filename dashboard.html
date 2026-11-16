@@ -6,6 +6,10 @@
     <title>Dashboard Projet - Pierre-Emmanuel Boyer</title>
     <meta name="description" content="Simulateur interactif de pilotage de projet IT : Kanban, KPI, Matrice des Risques, Gantt.">
     <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="Dashboard Projet Control Tower - Pierre-Emmanuel Boyer">
+    <meta property="og:description" content="Simulateur interactif de pilotage de projet IT : KPIs de suivi et tableau Kanban Drag & Drop.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.pierre-emmanuel-boyer.fr/banniere-linkedin.png">
     <script defer data-domain="pierre-emmanuel-boyer.fr" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,8 +229,16 @@
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
             const btn = document.getElementById('darkModeToggle');
-            btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️ Clair' : '🌙 Sombre';
+            btn.innerHTML = isDark ? '☀️ Clair' : '🌙 Sombre';
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            const darkBtn = document.getElementById('darkModeToggle');
+            if (darkBtn) darkBtn.innerHTML = '☀️ Clair';
         }
 
         document.addEventListener("DOMContentLoaded", () => {
