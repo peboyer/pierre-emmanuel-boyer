@@ -210,6 +210,31 @@
         .chapter li::marker { color: var(--primary-color); font-weight: bold; }
         .chapter strong { color: var(--primary-color); }
 
+        .schema-box {
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .schema-box svg {
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .schema-caption {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
         /* Bouton Retour en haut */
         .back-to-top {
             position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
@@ -899,6 +924,62 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-scrum')">&times;</span>
             <h4>Cours Détaillé : Agile Scrum</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du cycle itératif Agile Scrum">
+                    <defs>
+                        <marker id="arrow-scrum" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Product Backlog -->
+                    <rect x="20" y="55" width="135" height="150" rx="12" fill="rgba(14,165,233,0.12)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="87" y="85" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#0ea5e9" text-anchor="middle">Product Backlog</text>
+                    <rect x="36" y="102" width="102" height="18" rx="4" fill="#0ea5e9" opacity="0.85"/>
+                    <rect x="36" y="128" width="102" height="18" rx="4" fill="#0ea5e9" opacity="0.6"/>
+                    <rect x="36" y="154" width="102" height="18" rx="4" fill="#0ea5e9" opacity="0.35"/>
+                    <text x="87" y="192" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Priorisé par le PO</text>
+
+                    <!-- Flèche 1 -->
+                    <line x1="158" y1="130" x2="195" y2="130" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-scrum)"/>
+
+                    <!-- Sprint Planning & Sprint Backlog -->
+                    <rect x="202" y="75" width="130" height="110" rx="12" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="267" y="103" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#3b82f6" text-anchor="middle">Sprint Planning</text>
+                    <line x1="218" y1="115" x2="316" y2="115" stroke="#3b82f6" stroke-opacity="0.3"/>
+                    <text x="267" y="138" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Sprint Backlog</text>
+                    <text x="267" y="162" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Sprint Goal fixé</text>
+
+                    <!-- Flèche 2 -->
+                    <line x1="335" y1="130" x2="375" y2="130" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-scrum)"/>
+
+                    <!-- Boucle Sprint (1 à 4 semaines) -->
+                    <circle cx="455" cy="135" r="68" fill="rgba(14,165,233,0.08)" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="8 4"/>
+                    <text x="455" y="128" font-family="Poppins, sans-serif" font-size="15" font-weight="800" fill="#0ea5e9" text-anchor="middle">SPRINT</text>
+                    <text x="455" y="148" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">1 à 4 semaines</text>
+
+                    <!-- Daily Scrum (boucle 24h en haut) -->
+                    <path d="M 432 67 C 432 22, 478 22, 478 67" fill="none" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow-scrum)"/>
+                    <rect x="392" y="10" width="126" height="24" rx="12" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="1.5"/>
+                    <text x="455" y="26" font-family="Poppins, sans-serif" font-size="11" font-weight="700" fill="#f59e0b" text-anchor="middle">Daily Scrum (15m)</text>
+
+                    <!-- Flèche 3 -->
+                    <line x1="528" y1="130" x2="572" y2="130" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-scrum)"/>
+
+                    <!-- Incrément & Review / Retro -->
+                    <rect x="580" y="45" width="160" height="72" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="660" y="73" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#22c55e" text-anchor="middle">Incrément (DoD)</text>
+                    <text x="660" y="96" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Sprint Review (Démo)</text>
+
+                    <rect x="580" y="140" width="160" height="65" rx="12" fill="rgba(168,85,247,0.14)" stroke="#a855f7" stroke-width="2"/>
+                    <text x="660" y="168" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#a855f7" text-anchor="middle">Sprint Retrospective</text>
+                    <text x="660" y="188" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Inspection &amp; Adaptation</text>
+
+                    <!-- Flèche retour rétrospective -->
+                    <path d="M 580 185 Q 455 248 300 188" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow-scrum)"/>
+                </svg>
+                <div class="schema-caption">Schéma : Boucle empirique Agile Scrum — des besoins priorisés jusqu'à l'incrément validé</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : Philosophie, Piliers et Valeurs</h5>
@@ -940,6 +1021,60 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-vmodel')">&times;</span>
             <h4>Cours Détaillé : Le Cycle en V</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du Cycle en V et correspondance des tests">
+                    <defs>
+                        <marker id="arrow-v" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Titres colonnes -->
+                    <text x="150" y="24" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#0ea5e9" text-anchor="middle">BRANCHE DESCENDANTE (CONCEPTION)</text>
+                    <text x="610" y="24" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#22c55e" text-anchor="middle">BRANCHE ASCENDANTE (VALIDATION)</text>
+
+                    <!-- Niveau 1 : Besoins <-> Recette UAT -->
+                    <rect x="25" y="42" width="210" height="40" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="130" y="66" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">1. Expression des Besoins</text>
+
+                    <line x1="238" y1="62" x2="522" y2="62" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-v)"/>
+                    <text x="380" y="55" font-family="Inter, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Valide le besoin métier</text>
+
+                    <rect x="525" y="42" width="210" height="40" rx="8" fill="rgba(34,197,94,0.14)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="630" y="66" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Recette Utilisateur (UAT)</text>
+
+                    <!-- Niveau 2 : Spécifications <-> Tests Système -->
+                    <rect x="75" y="102" width="210" height="40" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="180" y="126" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">2. Spécifications Fonctionnelles</text>
+
+                    <line x1="288" y1="122" x2="472" y2="122" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-v)"/>
+                    <text x="380" y="115" font-family="Inter, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Vérifie les exigences</text>
+
+                    <rect x="475" y="102" width="210" height="40" rx="8" fill="rgba(34,197,94,0.14)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="580" y="126" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Tests de Validation (VABF)</text>
+
+                    <!-- Niveau 3 : Architecture <-> Tests d'Intégration -->
+                    <rect x="125" y="162" width="210" height="40" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="230" y="186" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">3. Conception Architecturale</text>
+
+                    <line x1="338" y1="182" x2="422" y2="182" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow-v)"/>
+
+                    <rect x="425" y="162" width="210" height="40" rx="8" fill="rgba(34,197,94,0.14)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="530" y="186" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Tests d'Intégration</text>
+
+                    <!-- Niveau 4 : Conception Détaillée <-> Tests Unitaires -->
+                    <rect x="175" y="222" width="185" height="38" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="267" y="245" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">4. Conception Détaillée</text>
+
+                    <rect x="400" y="222" width="185" height="38" rx="8" fill="rgba(34,197,94,0.14)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="492" y="245" font-family="Poppins, sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Tests Unitaires</text>
+
+                    <!-- Pointe du V : Réalisation / Implémentation -->
+                    <rect x="285" y="272" width="190" height="32" rx="16" fill="#0ea5e9"/>
+                    <text x="380" y="292" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">5. Réalisation / Build</text>
+                </svg>
+                <div class="schema-caption">Schéma : Symétrie du Cycle en V — chaque niveau de conception prépare sa phase de test dédiée</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : Origines et Fondements</h5>
@@ -976,6 +1111,47 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-pmp')">&times;</span>
             <h4>Cours Détaillé : Méthodologie PMI (PMBOK)</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 265" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du Triangle de Fer PMI et des 5 groupes de processus">
+                    <defs>
+                        <marker id="arrow-pmp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Bandeau haut : Les 5 groupes de processus PMI -->
+                    <text x="380" y="22" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#0ea5e9" text-anchor="middle">LES 5 GROUPES DE PROCESSUS PMBOK</text>
+                    
+                    <rect x="20" y="35" width="122" height="42" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="81" y="60" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">1. Démarrage</text>
+                    <line x1="144" y1="56" x2="166" y2="56" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-pmp)"/>
+
+                    <rect x="170" y="35" width="128" height="42" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="234" y="60" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">2. Planification</text>
+                    <line x1="300" y1="56" x2="322" y2="56" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-pmp)"/>
+
+                    <rect x="326" y="35" width="122" height="42" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="387" y="60" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">3. Exécution</text>
+                    <line x1="450" y1="56" x2="472" y2="56" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-pmp)"/>
+
+                    <rect x="476" y="35" width="142" height="42" rx="8" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="547" y="60" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">4. Maîtrise &amp; Suivi</text>
+                    <line x1="620" y1="56" x2="642" y2="56" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-pmp)"/>
+
+                    <rect x="646" y="35" width="96" height="42" rx="8" fill="rgba(34,197,94,0.16)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="694" y="60" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">5. Clôture</text>
+
+                    <!-- Bas : Triangle de Fer (Triple Contrainte) -->
+                    <polygon points="380,108 265,242 495,242" fill="rgba(14,165,233,0.10)" stroke="#0ea5e9" stroke-width="3"/>
+                    <circle cx="380" cy="195" r="34" fill="#0ea5e9"/>
+                    <text x="380" y="199" font-family="Poppins, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">QUALITÉ</text>
+
+                    <text x="380" y="100" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#0ea5e9" text-anchor="middle">PÉRIMÈTRE (Scope)</text>
+                    <text x="200" y="246" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#f59e0b" text-anchor="middle">COÛT (Budget)</text>
+                    <text x="560" y="246" font-family="Poppins, sans-serif" font-size="13" font-weight="700" fill="#22c55e" text-anchor="middle">DÉLAI (Temps)</text>
+                </svg>
+                <div class="schema-caption">Schéma : Les 5 groupes de processus PMBOK et l'équilibre du Triangle de Fer (Triple Contrainte)</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : Philosophie du PMI et Évolution</h5>
@@ -1011,6 +1187,42 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-waterfall')">&times;</span>
             <h4>Cours Détaillé : Waterfall (Cascade)</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 275" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma séquentiel de la méthode Waterfall en Cascade">
+                    <defs>
+                        <marker id="arrow-wf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Escalier Cascade -->
+                    <rect x="25" y="20" width="190" height="40" rx="8" fill="rgba(14,165,233,0.16)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="120" y="44" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">1. Exigences (Requirements)</text>
+                    <path d="M 215 40 L 245 40 L 245 68" fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-wf)"/>
+
+                    <rect x="150" y="72" width="190" height="40" rx="8" fill="rgba(59,130,246,0.16)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="245" y="96" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">2. Conception (Design)</text>
+                    <path d="M 340 92 L 370 92 L 370 120" fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-wf)"/>
+
+                    <rect x="275" y="124" width="190" height="40" rx="8" fill="rgba(168,85,247,0.16)" stroke="#a855f7" stroke-width="2"/>
+                    <text x="370" y="148" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">3. Réalisation (Build)</text>
+                    <path d="M 465 144 L 495 144 L 495 172" fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-wf)"/>
+
+                    <rect x="400" y="176" width="190" height="40" rx="8" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="495" y="200" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">4. Vérification (Tests)</text>
+                    <path d="M 590 196 L 620 196 L 620 222" fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-wf)"/>
+
+                    <rect x="525" y="226" width="210" height="40" rx="8" fill="rgba(34,197,94,0.18)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="630" y="250" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">5. Déploiement &amp; Maintenance</text>
+
+                    <!-- Alerte Effet Tunnel -->
+                    <rect x="25" y="176" width="320" height="78" rx="10" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 3"/>
+                    <text x="185" y="201" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#ef4444" text-anchor="middle">⚠️ Risque d'Effet Tunnel</text>
+                    <text x="185" y="222" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Jalon de validation (Sign-off) requis à chaque marche.</text>
+                    <text x="185" y="240" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Visibilité client tardive lors de la phase de tests.</text>
+                </svg>
+                <div class="schema-caption">Schéma : Enchaînement séquentiel en Cascade (Waterfall) avec jalons de validation</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : Les Origines de la Cascade</h5>
@@ -1043,6 +1255,60 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-itil')">&times;</span>
             <h4>Cours Détaillé : ITIL 4</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du Système de Valeur des Services ITIL 4 (SVS)">
+                    <defs>
+                        <marker id="arrow-itil" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Entrée : Opportunité / Demande -->
+                    <rect x="18" y="95" width="130" height="80" rx="12" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="83" y="130" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#f59e0b" text-anchor="middle">Opportunité</text>
+                    <text x="83" y="150" font-family="Poppins, sans-serif" font-size="12" font-weight="700" fill="#f59e0b" text-anchor="middle">&amp; Demande</text>
+
+                    <line x1="150" y1="135" x2="184" y2="135" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arrow-itil)"/>
+
+                    <!-- Cadre SVS -->
+                    <rect x="190" y="16" width="380" height="238" rx="16" fill="rgba(14,165,233,0.06)" stroke="#0ea5e9" stroke-width="2.5"/>
+                    <text x="380" y="38" font-family="Poppins, sans-serif" font-size="12" font-weight="800" fill="#0ea5e9" text-anchor="middle">SYSTÈME DE VALEUR DES SERVICES (SVS)</text>
+
+                    <!-- Principes directeurs & Gouvernance -->
+                    <rect x="210" y="48" width="340" height="28" rx="6" fill="rgba(14,165,233,0.15)"/>
+                    <text x="380" y="66" font-family="Poppins, sans-serif" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">7 Principes Directeurs &amp; Gouvernance</text>
+
+                    <!-- Service Value Chain (Centre) -->
+                    <rect x="210" y="86" width="340" height="96" rx="10" fill="var(--card-bg)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="380" y="106" font-family="Poppins, sans-serif" font-size="11" font-weight="700" fill="#3b82f6" text-anchor="middle">SERVICE VALUE CHAIN (Chaîne de Valeur)</text>
+                    <rect x="224" y="116" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="272" y="132" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Planifier</text>
+                    <rect x="332" y="116" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="380" y="132" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Engager</text>
+                    <rect x="440" y="116" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="488" y="132" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Design &amp; Trans.</text>
+
+                    <rect x="224" y="148" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="272" y="164" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Obtenir/Build</text>
+                    <rect x="332" y="148" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="380" y="164" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Livrer &amp; Support</text>
+                    <rect x="440" y="148" width="96" height="24" rx="5" fill="rgba(59,130,246,0.15)"/>
+                    <text x="488" y="164" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="currentColor" text-anchor="middle">Améliorer</text>
+
+                    <!-- Pratiques & Amélioration Continue -->
+                    <rect x="210" y="192" width="340" height="48" rx="6" fill="rgba(14,165,233,0.15)"/>
+                    <text x="380" y="212" font-family="Poppins, sans-serif" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">34 Pratiques de Gestion &amp; Amélioration Continue</text>
+                    <text x="380" y="230" font-family="Inter, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">(Équilibrées par les 4 Dimensions ITIL 4)</text>
+
+                    <line x1="572" y1="135" x2="606" y2="135" stroke="#22c55e" stroke-width="2.5" marker-end="url(#arrow-itil)"/>
+
+                    <!-- Sortie : Valeur -->
+                    <rect x="612" y="95" width="130" height="80" rx="12" fill="rgba(34,197,94,0.18)" stroke="#22c55e" stroke-width="2.5"/>
+                    <text x="677" y="132" font-family="Poppins, sans-serif" font-size="14" font-weight="800" fill="#22c55e" text-anchor="middle">VALEUR</text>
+                    <text x="677" y="152" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Co-créée</text>
+                </svg>
+                <div class="schema-caption">Schéma : Le Système de Valeur des Services (SVS) et la Chaîne de Valeur ITIL 4</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : Philosophie ITIL 4 et Valeur</h5>
@@ -1080,6 +1346,58 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('details-prince2')">&times;</span>
             <h4>Cours Détaillé : Méthodologie PRINCE2</h4>
+
+            <div class="schema-box">
+                <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de la gouvernance et des séquences PRINCE2">
+                    <defs>
+                        <marker id="arrow-p2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                        </marker>
+                    </defs>
+                    <!-- Niveau Direction : Project Board -->
+                    <rect x="165" y="16" width="430" height="68" rx="12" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="2.5"/>
+                    <text x="380" y="38" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#0ea5e9" text-anchor="middle">COMITÉ DE PILOTAGE (Project Board) — Diriger</text>
+                    <text x="380" y="60" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="currentColor" text-anchor="middle">Exécutif (Business)  •  Utilisateur Principal  •  Fournisseur Principal</text>
+
+                    <!-- Flèches Tolérances / Exceptions -->
+                    <line x1="310" y1="84" x2="310" y2="124" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-p2)"/>
+                    <text x="220" y="108" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="#22c55e" text-anchor="middle">Délégation &amp; Tolérances</text>
+
+                    <line x1="450" y1="124" x2="450" y2="84" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow-p2)"/>
+                    <text x="545" y="108" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="#ef4444" text-anchor="middle">Rapport d'Exception</text>
+
+                    <!-- Niveau Management : Chef de Projet -->
+                    <rect x="195" y="128" width="370" height="44" rx="10" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="380" y="155" font-family="Poppins, sans-serif" font-size="12.5" font-weight="700" fill="currentColor" text-anchor="middle">CHEF DE PROJET — Contrôler les Séquences</text>
+
+                    <!-- Flèche vers séquences -->
+                    <line x1="380" y1="172" x2="380" y2="198" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-p2)"/>
+
+                    <!-- Séquences de Management (Bas) -->
+                    <rect x="25" y="202" width="155" height="58" rx="10" fill="var(--badge-bg)" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="102" y="226" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="currentColor" text-anchor="middle">Pré-projet</text>
+                    <text x="102" y="245" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Élaborer (Mandat)</text>
+
+                    <line x1="182" y1="231" x2="206" y2="231" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-p2)"/>
+
+                    <rect x="210" y="202" width="160" height="58" rx="10" fill="rgba(14,165,233,0.12)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="290" y="226" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="#0ea5e9" text-anchor="middle">Séquence 1 : Init.</text>
+                    <text x="290" y="245" font-family="Inter, sans-serif" font-size="10.5" fill="currentColor" text-anchor="middle">PID &amp; Business Case</text>
+
+                    <line x1="372" y1="231" x2="396" y2="231" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-p2)"/>
+
+                    <rect x="400" y="202" width="175" height="58" rx="10" fill="rgba(14,165,233,0.12)" stroke="#0ea5e9" stroke-width="2"/>
+                    <text x="487" y="226" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="#0ea5e9" text-anchor="middle">Séquences de Livraison</text>
+                    <text x="487" y="245" font-family="Inter, sans-serif" font-size="10.5" fill="currentColor" text-anchor="middle">Produits &amp; Limites</text>
+
+                    <line x1="577" y1="231" x2="601" y2="231" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-p2)"/>
+
+                    <rect x="605" y="202" width="135" height="58" rx="10" fill="rgba(34,197,94,0.16)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="672" y="226" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="#22c55e" text-anchor="middle">Clôture</text>
+                    <text x="672" y="245" font-family="Inter, sans-serif" font-size="10.5" fill="currentColor" text-anchor="middle">Bilan &amp; Bénéfices</text>
+                </svg>
+                <div class="schema-caption">Schéma : Gouvernance PRINCE2 — Management par exception, tolérances et séquences de livraison</div>
+            </div>
             
             <div class="chapter">
                 <h5>Chapitre 1 : L'approche Produit et le Business Case</h5>
