@@ -235,6 +235,50 @@
             font-style: italic;
         }
 
+        .command-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .quiz-progress-pill {
+            background: var(--badge-bg);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.55rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .quiz-progress-pill.visible {
+            display: inline-flex;
+        }
+        .btn-reset-cards {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--border-color);
+            padding: 0.72rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            white-space: nowrap;
+        }
+        .btn-reset-cards:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(14, 165, 233, 0.08);
+            transform: translateY(-2px);
+        }
+
         /* Bouton Retour en haut */
         .back-to-top {
             position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
@@ -320,7 +364,11 @@
                 <span class="mode-label">🎯 Flash Quiz</span>
             </div>
             
-            <a href="quizz.html" class="btn-global-quiz">🧠 Lancer l'Évaluation Globale</a>
+            <div class="command-actions">
+                <span class="quiz-progress-pill" id="quizProgressPill">✅ <span id="knownCounter">0</span> su • ❌ <span id="reviewCounter">0</span> à revoir</span>
+                <button type="button" class="btn-reset-cards" id="resetCardsBtn" onclick="resetAllFlashcards()" title="Replier toutes les cartes et effacer les marquages">↩️ Tout replier / Réinitialiser</button>
+                <a href="quizz.html" class="btn-global-quiz">🧠 Lancer l'Évaluation Globale</a>
+            </div>
         </div>
 
         <div class="flashcard-grid">
@@ -1179,6 +1227,63 @@
                 </ul>
                 <p>Le rôle du Chef de Projet est de maintenir cet équilibre. <em>Exemple :</em> Si le client demande d'ajouter une fonctionnalité (hausse du périmètre), le chef de projet doit obligatoirement demander une hausse du budget ou un allongement du délai. On ne peut pas modifier un côté du triangle sans impacter les autres.</p>
             </div>
+
+            <div class="chapter">
+                <h5>Notions Transverses : Matrice RACI &amp; Maîtrise des Risques</h5>
+                <p>En complément des référentiels complets, deux repères transverses structurent au quotidien le pilotage d'infrastructures IT : la clarté des responsabilités (<strong>RACI</strong>) et l'anticipation des aléas (<strong>Probabilité × Impact</strong>).</p>
+                <div class="schema-box">
+                    <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma de synthèse de la matrice RACI et de la maîtrise des risques">
+                        <defs>
+                            <marker id="arrow-raci" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+                            </marker>
+                        </defs>
+                        <!-- Gauche : RACI -->
+                        <rect x="20" y="16" width="345" height="218" rx="14" fill="rgba(14,165,233,0.06)" stroke="#0ea5e9" stroke-width="2"/>
+                        <text x="192" y="42" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#0ea5e9" text-anchor="middle">MATRICE RACI (GOUVERNANCE)</text>
+
+                        <rect x="38" y="56" width="148" height="72" rx="8" fill="rgba(14,165,233,0.14)" stroke="#0ea5e9" stroke-width="1.5"/>
+                        <text x="112" y="79" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#0ea5e9" text-anchor="middle">R — Responsible</text>
+                        <text x="112" y="100" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Exécute la tâche</text>
+                        <text x="112" y="116" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">(1 ou plusieurs)</text>
+
+                        <rect x="198" y="56" width="148" height="72" rx="8" fill="rgba(239,68,68,0.14)" stroke="#ef4444" stroke-width="1.5"/>
+                        <text x="272" y="79" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#ef4444" text-anchor="middle">A — Accountable</text>
+                        <text x="272" y="100" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Décide &amp; valide</text>
+                        <text x="272" y="116" font-family="Inter, sans-serif" font-size="10.5" fill="#ef4444" font-weight="600" text-anchor="middle">(1 seul par activité !)</text>
+
+                        <rect x="38" y="142" width="148" height="72" rx="8" fill="rgba(245,158,11,0.14)" stroke="#f59e0b" stroke-width="1.5"/>
+                        <text x="112" y="165" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#f59e0b" text-anchor="middle">C — Consulted</text>
+                        <text x="112" y="186" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Apporte son avis</text>
+                        <text x="112" y="202" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">(Échange bidirectionnel)</text>
+
+                        <rect x="198" y="142" width="148" height="72" rx="8" fill="rgba(34,197,94,0.14)" stroke="#22c55e" stroke-width="1.5"/>
+                        <text x="272" y="165" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#22c55e" text-anchor="middle">I — Informed</text>
+                        <text x="272" y="186" font-family="Inter, sans-serif" font-size="11" fill="currentColor" text-anchor="middle">Est tenu informé</text>
+                        <text x="272" y="202" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">(Communication descendante)</text>
+
+                        <!-- Droite : Gestion des Risques -->
+                        <rect x="395" y="16" width="345" height="218" rx="14" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="2"/>
+                        <text x="567" y="42" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#f59e0b" text-anchor="middle">PILOTAGE DES RISQUES (P × I)</text>
+
+                        <rect x="415" y="58" width="305" height="44" rx="8" fill="rgba(59,130,246,0.14)" stroke="#3b82f6" stroke-width="1.5"/>
+                        <text x="567" y="77" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="currentColor" text-anchor="middle">1. Identifier &amp; Évaluer (Probabilité × Impact)</text>
+                        <text x="567" y="94" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Registre des risques &amp; criticité (Chemin critique)</text>
+
+                        <line x1="567" y1="104" x2="567" y2="118" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-raci)"/>
+
+                        <rect x="415" y="122" width="305" height="44" rx="8" fill="rgba(245,158,11,0.16)" stroke="#f59e0b" stroke-width="1.5"/>
+                        <text x="567" y="141" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="currentColor" text-anchor="middle">2. Répondre (Éviter, Réduire, Transférer, Accepter)</text>
+                        <text x="567" y="158" font-family="Inter, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Plans de mitigation, Rollback &amp; réserves pour aléas</text>
+
+                        <line x1="567" y1="168" x2="567" y2="182" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-raci)"/>
+
+                        <rect x="415" y="186" width="305" height="36" rx="8" fill="rgba(34,197,94,0.16)" stroke="#22c55e" stroke-width="1.5"/>
+                        <text x="567" y="209" font-family="Poppins, sans-serif" font-size="11.5" font-weight="700" fill="#22c55e" text-anchor="middle">3. Surveiller &amp; Réévaluer à chaque jalon</text>
+                    </svg>
+                    <div class="schema-caption">Schéma : Règles clés de gouvernance RACI et boucle de maîtrise des risques projet</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1462,6 +1567,24 @@
         };
 
         // --- GESTION DU MODE QUIZ (GAMIFICATION DES CARTES) ---
+        function updateQuizCounters() {
+            const isQuizMode = document.getElementById('quizToggle').checked;
+            const pill = document.getElementById('quizProgressPill');
+            const knownEl = document.getElementById('knownCounter');
+            const reviewEl = document.getElementById('reviewCounter');
+            if (!pill || !knownEl || !reviewEl) return;
+
+            if (!isQuizMode) {
+                pill.classList.remove('visible');
+                return;
+            }
+            const knownCount = document.querySelectorAll('.flashcard.known').length;
+            const reviewCount = document.querySelectorAll('.flashcard.review').length;
+            knownEl.innerText = knownCount;
+            reviewEl.innerText = reviewCount;
+            pill.classList.add('visible');
+        }
+
         function toggleMode() {
             const isQuizMode = document.getElementById('quizToggle').checked;
             const cards = document.querySelectorAll('.flashcard');
@@ -1487,6 +1610,7 @@
                 }
                 card.classList.remove('flipped');
             });
+            updateQuizCounters();
         }
 
         function markCard(event, button, status) {
@@ -1494,7 +1618,15 @@
             const card = button.closest('.flashcard');
             card.classList.remove('known', 'review');
             card.classList.add(status);
+            updateQuizCounters();
             setTimeout(() => { card.classList.remove('flipped'); }, 600);
+        }
+
+        function resetAllFlashcards() {
+            document.querySelectorAll('.flashcard').forEach(card => {
+                card.classList.remove('flipped', 'known', 'review');
+            });
+            updateQuizCounters();
         }
 
         // --- BOUTON RETOUR EN HAUT ---

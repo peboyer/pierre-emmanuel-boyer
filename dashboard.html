@@ -221,6 +221,82 @@
         .badge-low { background: rgba(34, 197, 94, 0.15); color: var(--success); }
         .risk-mitigation { font-size: 0.88rem; color: var(--text-color); }
 
+        /* Bandeau exécutif des jalons J1 -> J5 (Control Tower) */
+        .milestone-stepper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .stepper-node {
+            background: var(--bg-color);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.85rem 0.75rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .stepper-node:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .stepper-node.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.22);
+            background: rgba(14, 165, 233, 0.06);
+        }
+        .stepper-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.35rem;
+        }
+        .stepper-code {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+        .stepper-status {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .st-done { background: rgba(34, 197, 94, 0.16); color: var(--success); }
+        .st-prog { background: rgba(14, 165, 233, 0.16); color: var(--accent-color); }
+        .st-plan { background: rgba(245, 158, 11, 0.16); color: var(--warning); }
+        .stepper-title {
+            font-weight: 700;
+            font-size: 0.84rem;
+            color: var(--primary-color);
+            line-height: 1.25;
+        }
+        .stepper-date {
+            font-size: 0.74rem;
+            color: var(--secondary-color);
+        }
+        @media (max-width: 900px) {
+            .milestone-stepper {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 520px) {
+            .milestone-stepper {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Bouton Retour en haut */
         .back-to-top {
             position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
@@ -407,6 +483,35 @@
             <span class="section-hint">Cliquez sur un jalon pour afficher ses critères de validation</span>
         </div>
         <div class="panel-card">
+            <!-- Bandeau visuel exécutif J1 -> J5 -->
+            <div class="milestone-stepper" id="milestoneStepper">
+                <button type="button" class="stepper-node active" data-ms="m-build" onclick="selectMilestone('m-build')">
+                    <div class="stepper-top"><span class="stepper-code">🏁 J1</span><span class="stepper-status st-done">Validé ✅</span></div>
+                    <span class="stepper-title">Build &amp; Architecture</span>
+                    <span class="stepper-date">Fin Mois 2 • 100%</span>
+                </button>
+                <button type="button" class="stepper-node" data-ms="m-vabf" onclick="selectMilestone('m-vabf')">
+                    <div class="stepper-top"><span class="stepper-code">🛠️ J2</span><span class="stepper-status st-prog">En cours</span></div>
+                    <span class="stepper-title">Recette Tech. (VABF)</span>
+                    <span class="stepper-date">Fin Mois 3 • 90%</span>
+                </button>
+                <button type="button" class="stepper-node" data-ms="m-secu" onclick="selectMilestone('m-secu')">
+                    <div class="stepper-top"><span class="stepper-code">🛡️ J3</span><span class="stepper-status st-prog">En cours</span></div>
+                    <span class="stepper-title">Homologation Sécu</span>
+                    <span class="stepper-date">Fin Mois 4 • 65%</span>
+                </button>
+                <button type="button" class="stepper-node" data-ms="m-uat" onclick="selectMilestone('m-uat')">
+                    <div class="stepper-top"><span class="stepper-code">✅ J4</span><span class="stepper-status st-plan">Planifié</span></div>
+                    <span class="stepper-title">Recette Métier (UAT)</span>
+                    <span class="stepper-date">Fin Mois 5 • 25%</span>
+                </button>
+                <button type="button" class="stepper-node" data-ms="m-vsr" onclick="selectMilestone('m-vsr')">
+                    <div class="stepper-top"><span class="stepper-code">🚀 J5</span><span class="stepper-status st-plan">Planifié</span></div>
+                    <span class="stepper-title">Go / No-Go &amp; VSR</span>
+                    <span class="stepper-date">Mois 6 • Jalon COPIL</span>
+                </button>
+            </div>
+
             <div class="gantt-scroll">
                 <table class="gantt-table">
                     <thead>
@@ -771,8 +876,8 @@
             document.getElementById('msMeta').innerText = info.meta;
             document.getElementById('msDesc').innerText = info.desc;
 
-            document.querySelectorAll('.milestone-chip').forEach(chip => {
-                chip.classList.toggle('active', chip.getAttribute('data-ms') === msKey);
+            document.querySelectorAll('.milestone-chip, .stepper-node').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-ms') === msKey);
             });
         }
 

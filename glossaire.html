@@ -103,6 +103,134 @@
         .term-def { font-size: 0.94rem; color: var(--text-color); line-height: 1.6; }
         .no-results { grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--secondary-color); font-size: 1.2rem; display: none; }
 
+        .search-input-wrap {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding-right: 2.5rem;
+        }
+        .clear-search-btn {
+            position: absolute;
+            right: 0.65rem;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--border-color);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+        .clear-search-btn.visible {
+            display: inline-flex;
+        }
+        .clear-search-btn:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        /* Repères visuels (couleur + icône) par périmètre */
+        .term-card[data-category="Intelligence Artificielle"] {
+            border-left-color: #8b5cf6;
+        }
+        .term-card[data-category="Intelligence Artificielle"] .term-category {
+            background: rgba(139, 92, 246, 0.14);
+            color: #7c3aed;
+            border: 1px solid rgba(139, 92, 246, 0.28);
+        }
+
+        .term-card[data-category="Systèmes & Virtualisation"] {
+            border-left-color: #0ea5e9;
+        }
+        .term-card[data-category="Systèmes & Virtualisation"] .term-category {
+            background: rgba(14, 165, 233, 0.14);
+            color: #0284c7;
+            border: 1px solid rgba(14, 165, 233, 0.28);
+        }
+
+        .term-card[data-category="Réseau & Télécoms"] {
+            border-left-color: #06b6d4;
+        }
+        .term-card[data-category="Réseau & Télécoms"] .term-category {
+            background: rgba(6, 182, 212, 0.14);
+            color: #0891b2;
+            border: 1px solid rgba(6, 182, 212, 0.28);
+        }
+
+        .term-card[data-category="Cloud & DevOps"] {
+            border-left-color: #3b82f6;
+        }
+        .term-card[data-category="Cloud & DevOps"] .term-category {
+            background: rgba(59, 130, 246, 0.14);
+            color: #2563eb;
+            border: 1px solid rgba(59, 130, 246, 0.28);
+        }
+
+        .term-card[data-category="Cybersécurité"] {
+            border-left-color: #ef4444;
+        }
+        .term-card[data-category="Cybersécurité"] .term-category {
+            background: rgba(239, 68, 68, 0.14);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.28);
+        }
+
+        .term-card[data-category="Workplace & Messagerie"] {
+            border-left-color: #ec4899;
+        }
+        .term-card[data-category="Workplace & Messagerie"] .term-category {
+            background: rgba(236, 72, 153, 0.14);
+            color: #db2777;
+            border: 1px solid rgba(236, 72, 153, 0.28);
+        }
+
+        .term-card[data-category="Stockage & PRA/PCA"] {
+            border-left-color: #14b8a6;
+        }
+        .term-card[data-category="Stockage & PRA/PCA"] .term-category {
+            background: rgba(20, 184, 166, 0.14);
+            color: #0d9488;
+            border: 1px solid rgba(20, 184, 166, 0.28);
+        }
+
+        .term-card[data-category="ITSM & Exploitation"] {
+            border-left-color: #f59e0b;
+        }
+        .term-card[data-category="ITSM & Exploitation"] .term-category {
+            background: rgba(245, 158, 11, 0.16);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .term-card[data-category="Gestion de Projet"] {
+            border-left-color: #22c55e;
+        }
+        .term-card[data-category="Gestion de Projet"] .term-category {
+            background: rgba(34, 197, 94, 0.14);
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.28);
+        }
+
+        body.dark-mode .term-card[data-category="Intelligence Artificielle"] .term-category { color: #c4b5fd; }
+        body.dark-mode .term-card[data-category="Systèmes & Virtualisation"] .term-category { color: #7dd3fc; }
+        body.dark-mode .term-card[data-category="Réseau & Télécoms"] .term-category { color: #67e8f9; }
+        body.dark-mode .term-card[data-category="Cloud & DevOps"] .term-category { color: #93c5fd; }
+        body.dark-mode .term-card[data-category="Cybersécurité"] .term-category { color: #fca5a5; }
+        body.dark-mode .term-card[data-category="Workplace & Messagerie"] .term-category { color: #f9a8d4; }
+        body.dark-mode .term-card[data-category="Stockage & PRA/PCA"] .term-category { color: #5eead4; }
+        body.dark-mode .term-card[data-category="ITSM & Exploitation"] .term-category { color: #fcd34d; }
+        body.dark-mode .term-card[data-category="Gestion de Projet"] .term-category { color: #86efac; }
+
         /* Bouton Retour en haut */
         .back-to-top {
             position: fixed; bottom: 2rem; left: 2rem; width: 65px; height: 65px;
@@ -183,7 +311,10 @@
         <div class="controls-panel">
             <div class="search-row">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un acronyme, une technologie ou un concept (ex: RAG, LLM, Active Directory, VLAN, ITIL...)" onkeyup="filterGlossary()">
+                <div class="search-input-wrap">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Rechercher un acronyme, une technologie ou un concept (ex: RAG, LLM, Active Directory, VLAN, ITIL...)" oninput="filterGlossary()" onkeyup="filterGlossary()">
+                    <button type="button" class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" title="Effacer la recherche" aria-label="Effacer la recherche">✕</button>
+                </div>
                 <span class="count-badge" id="termCount">88 termes</span>
             </div>
             <div class="filter-bar" id="filterBar">
@@ -205,442 +336,442 @@
 
             
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">Active Directory (AD) <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">Active Directory (AD) <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Annuaire d'entreprise Microsoft.</strong> Service centralisant l'identification, l'authentification (Kerberos/LDAP) et la gestion des droits d'accès des utilisateurs, groupes et ordinateurs sur le réseau.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">ADKAR <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">ADKAR <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Awareness, Desire, Knowledge, Ability, Reinforcement.</strong> Modèle structuré de conduite du changement (Prosci) visant à accompagner individuellement chaque collaborateur dans l'adoption d'un nouvel outil IT.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Agent IA (Agentic AI) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Agent IA (Agentic AI) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Système d'IA autonome orienté action.</strong> Programme piloté par un modèle de langage capable de décomposer un objectif complexe en étapes, d'interagir avec des outils externes (APIs, scripts, bases de données) et d'exécuter des tâches avec supervision.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">AI Act (Règlement Européen sur l'IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">AI Act (Règlement Européen sur l'IA) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Cadre réglementaire européen sur l'IA.</strong> Législation classant les systèmes d'IA par niveau de risque (inacceptable, haut risque, limité, minimal) et imposant des obligations strictes de transparence, de traçabilité, de contrôle humain et de gouvernance des données.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">AIOps <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">AIOps <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Artificial Intelligence for IT Operations.</strong> Application du Machine Learning et de l'IA à l'exploitation IT pour corréler automatiquement les alertes de supervision, détecter les anomalies, prédire les incidents et déclencher des auto-remédiations.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">API REST <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">API REST <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Application Programming Interface.</strong> Interface standardisée utilisant le protocole HTTP pour permettre à deux applications ou briques d'infrastructure d'échanger des données (souvent au format JSON) et d'automatiser des tâches.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">Autopilot (Windows) <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">Autopilot (Windows) <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Déploiement Zero-Touch.</strong> Technologie cloud Microsoft permettant de préconfigurer et déployer un poste de travail neuf directement chez l'utilisateur final sans masterisation manuelle par l'équipe support.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Base de données vectorielle (Vector DB) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Base de données vectorielle (Vector DB) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Moteur d'indexation sémantique (pgvector, Qdrant, Pinecone, Milvus).</strong> Base de données spécialisée conçue pour stocker et interroger ultra-rapidement des <em>embeddings</em> afin de retrouver des documents pertinents par proximité de sens dans une architecture RAG.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">BGP / OSPF <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">BGP / OSPF <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Protocoles de routage dynamique.</strong> OSPF détermine le chemin le plus rapide à l'intérieur d'un réseau d'entreprise (LAN/WAN interne), tandis que BGP gère le routage entre grands réseaux autonomes (Internet, interconnexions Datacenters/Cloud).</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">CAB <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">CAB <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Change Advisory Board.</strong> Instance ITIL réunissant les référents techniques et métiers pour évaluer les risques, vérifier le plan de retour arrière (Rollback) et autoriser les changements en production.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">CAPEX vs OPEX <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">CAPEX vs OPEX <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Capital Expenditure vs Operational Expenditure.</strong> Le CAPEX désigne les investissements matériels amortissables (achat de serveurs physiques), tandis que l'OPEX regroupe les charges d'exploitation récurrentes (abonnements Cloud, licences M365).</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">Change Management <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">Change Management <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Conduite du changement.</strong> Ensemble des actions de communication, de formation et de support visant à garantir l'adhésion des utilisateurs finaux lors du déploiement d'une nouvelle solution technique.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">CI/CD <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">CI/CD <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Continuous Integration / Continuous Deployment.</strong> Chaîne d'automatisation DevOps permettant de compiler, tester et déployer du code ou des configurations d'infrastructure de manière fiable et fréquente.</div>
             </div>
 
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">Cluster HA <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">Cluster HA <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>High Availability (Haute Disponibilité).</strong> Regroupement de plusieurs serveurs physiques ou virtuels configurés en redondance active/active ou active/passive pour assurer une bascule automatique (Failover) sans coupure en cas de panne.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">CMDB <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">CMDB <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Configuration Management Database.</strong> Base de données référençant tous les composants du SI (serveurs, équipements réseaux, applications) et leurs liens de dépendance pour analyser l'impact d'une panne ou d'une maintenance.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">Conteneurisation (Docker) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">Conteneurisation (Docker) <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Isolation applicative légère.</strong> Technologie consistant à empaqueter une application et toutes ses dépendances dans un conteneur isolé partageant le noyau de l'OS hôte, garantissant un fonctionnement identique du poste de dev à la production.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">COPIL vs COPROJ <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">COPIL vs COPROJ <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Comité de Pilotage vs Comité de Projet.</strong> Le COPIL (SteerCo) réunit les décideurs pour arbitrer le budget, les délais et la stratégie ; le COPROJ rassemble l'équipe technique chaque semaine pour suivre l'avancement opérationnel.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Copilot / Assistant IA d'entreprise <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Copilot / Assistant IA d'entreprise <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Compagnon intelligent intégré au poste de travail (Microsoft 365 Copilot, GitHub Copilot).</strong> Assistant connecté aux données internes de l'organisation dans le strict respect des droits d'accès (RBAC) pour rédiger, synthétiser des réunions ou générer du code.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">Déduplication <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">Déduplication <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Optimisation volumétrique.</strong> Procédé de stockage et de sauvegarde qui élimine les blocs de données identiques en double pour ne conserver qu'une seule occurrence physique, réduisant drastiquement l'espace disque et la bande passante consommés.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">Dette Technique <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">Dette Technique <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Coût implicite de maintenance.</strong> Accumulation de compromis techniques (systèmes obsolètes en fin de support, contournements rapides) qui ralentissent les évolutions futures et augmentent les risques de sécurité ou de panne.</div>
             </div>
 
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">DFS <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">DFS <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Distributed File System.</strong> Rôle Windows Server permettant d'unifier des dossiers partagés répartis sur plusieurs serveurs sous un espace de noms unique (DFS-N) et de les synchroniser entre différents sites (DFS-R).</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">DHCP <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">DHCP <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Dynamic Host Configuration Protocol.</strong> Protocole réseau attribuant automatiquement une adresse IP, un masque de sous-réseau, une passerelle par défaut et des serveurs DNS à chaque équipement qui se connecte.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">DMZ <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">DMZ <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Zone Démilitarisée.</strong> Sous-réseau isolé par deux pare-feux, situé entre le réseau interne de l'entreprise (LAN) et Internet (WAN), hébergeant les serveurs exposés au public (passerelles mail, reverse proxy, serveurs web).</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">DNS <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">DNS <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Domain Name System.</strong> Annuaire fondamental d'Internet et des réseaux d'entreprise traduisant les noms de domaine lisibles (ex: intranet.entreprise.fr) en adresses IP numériques (ex: 10.24.1.15) via des enregistrements A, CNAME, MX ou TXT.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">Durcissement (Hardening) <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">Durcissement (Hardening) <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Réduction de la surface d'attaque.</strong> Sécurisation méthodique d'un serveur ou d'un OS (souvent selon les référentiels ANSSI ou CIS) en désactivant les services inutiles, les ports ouverts et les comptes par défaut.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">EDR / XDR <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">EDR / XDR <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Endpoint / Extended Detection and Response.</strong> Évolution de l'antivirus classique analysant en temps réel le comportement des postes et serveurs par intelligence artificielle pour bloquer et isoler les menaces avancées (ransomwares, attaques sans fichier).</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Embeddings (Plongements vectoriels) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Embeddings (Plongements vectoriels) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Représentation mathématique du sens.</strong> Conversion de textes, de code ou d'images en vecteurs numériques multidimensionnels permettant aux algorithmes d'IA de calculer la similarité sémantique entre plusieurs contenus.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">Entra ID (Azure AD) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">Entra ID (Azure AD) <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Gestion des identités Cloud.</strong> Service d'annuaire et de contrôle d'accès cloud de Microsoft gérant l'authentification unique (SSO), le MFA et les stratégies d'accès conditionnel pour Microsoft 365 et des milliers d'applications SaaS.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">Escalade N1 / N2 / N3 <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">Escalade N1 / N2 / N3 <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Niveaux de support IT.</strong> Le N1 (Service Desk) traite les demandes courantes et le diagnostic initial ; le N2 regroupe les techniciens de proximité/administrateurs ; le N3 rassemble les ingénieurs experts et architectes résolvant les cas complexes.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Fine-Tuning (Affinage) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Fine-Tuning (Affinage) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Spécialisation d'un modèle pré-entraîné.</strong> Phase d'entraînement complémentaire sur un jeu de données métier ciblé visant à adapter le style, le vocabulaire technique ou la précision d'un LLM sur une tâche spécifique.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">FinOps <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">FinOps <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Gestion financière du Cloud.</strong> Pratique culturelle et opérationnelle réunissant les équipes IT, Finance et Métiers pour suivre, optimiser et maîtriser la facturation à l'usage des ressources Cloud.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">Firewall (Pare-feu) <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">Firewall (Pare-feu) <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Filtrage des flux réseau.</strong> Équipement matériel ou logiciel contrôlant le trafic réseau entrant et sortant selon une matrice de flux stricte (adresses IP, ports, protocoles et inspection applicative de nouvelle génération NGFW).</div>
             </div>
 
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">GPO <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">GPO <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Group Policy Object (Stratégie de groupe).</strong> Fonctionnalité d'Active Directory permettant d'appliquer centralement des configurations systèmes, des restrictions de sécurité et des déploiements logiciels sur des milliers de postes et serveurs Windows.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">GPU & Infrastructure HPC <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">GPU & Infrastructure HPC <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Graphics Processing Unit & High-Performance Computing.</strong> Puissance de calcul massivement parallèle (ex: NVIDIA H100/B200) et interconnexions réseau très haut débit (InfiniBand, RoCE) indispensables à l'entraînement et à l'inférence des modèles d'IA.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Guardrails (Garde-fous IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Guardrails (Garde-fous IA) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Contrôles de sécurité en entrée et sortie des modèles.</strong> Mécanismes techniques filtrant les requêtes (prévention des attaques par <em>Prompt Injection</em>) et les réponses (blocage des fuites de données confidentielles DLP et contenus non conformes).</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Hallucination (IA) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Hallucination (IA) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Génération d'informations erronées ou inventées.</strong> Phénomène où un modèle d'IA générative produit une affirmation factuellement fausse tout en la formulant avec assurance, fortement réduit par l'ancrage documentaire (RAG) et la citation des sources.</div>
             </div>
 
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">Hyperviseur <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">Hyperviseur <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Socle de virtualisation (VMware ESXi, Hyper-V, Proxmox).</strong> Couche logicielle installée directement sur un serveur physique ("Bare-Metal") permettant de créer et d'exécuter simultanément plusieurs machines virtuelles (VM) indépendantes en partageant CPU, RAM et stockage.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">IaaS / PaaS / SaaS <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">IaaS / PaaS / SaaS <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Les 3 modèles de service Cloud.</strong> IaaS fournit l'infrastructure brute (VM, stockage, réseau) ; PaaS fournit une plateforme prête à accueillir du code (bases de données managées) ; SaaS fournit un logiciel clé en main (Office 365, Salesforce).</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">IaC (Infrastructure as Code) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">IaC (Infrastructure as Code) <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Automatisation par le code (Terraform, Ansible).</strong> Provisionnement et configuration des serveurs, réseaux et environnements Cloud via des fichiers de code déclaratifs versionnés sous Git, évitant toute erreur de clic manuel.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">Incident vs Problème <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">Incident vs Problème <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Distinction fondamentale ITIL.</strong> L'Incident est une interruption imprévue d'un service qu'il faut rétablir au plus vite (même via un contournement) ; le Problème est la cause sous-jacente d'un ou plusieurs incidents qu'on analyse à froid pour éviter toute récidive.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Inférence vs Entraînement <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Inférence vs Entraînement <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Training vs Inference.</strong> L'<strong>entraînement</strong> est la phase intensive d'apprentissage d'un modèle sur de vastes corpus de données ; l'<strong>inférence</strong> correspond à l'exécution en production du modèle entraîné pour répondre aux requêtes des utilisateurs.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">IPAM & DCIM (NetBox) <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">IPAM & DCIM (NetBox) <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>IP Address Management & Data Center Infrastructure Management.</strong> Outils référentiels (comme NetBox ou Device42) servant de "source de vérité" pour cartographier les baies de brassage, le câblage, les VLANs et le plan d'adressage IP.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">ITIL 4 <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">ITIL 4 <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Information Technology Infrastructure Library.</strong> Cadre de référence mondial pour la gestion des services IT (ITSM), structuré autour du Système de Valeur des Services (SVS), de 4 dimensions et de 34 pratiques orientées co-création de valeur.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">Kubernetes (K8s) <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">Kubernetes (K8s) <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Orchestrateur de conteneurs.</strong> Plateforme open-source qui automatise le déploiement, la montée en charge (auto-scaling), la répartition de charge et l'auto-guérison de milliers de conteneurs applicatifs en production.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">LLM (Large Language Model) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">LLM (Large Language Model) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Grand Modèle de Langage (Gemini, GPT, Claude, Mistral, Llama).</strong> Modèle d'apprentissage profond basé sur l'architecture Transformer, entraîné sur d'immenses volumes de textes pour comprendre, résumer, traduire et générer du langage naturel ou du code.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">Load Balancer <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">Load Balancer <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Répartiteur de charge (F5, HAProxy, Azure LB).</strong> Dispositif distribuant intelligemment le trafic réseau ou applicatif entrant sur plusieurs serveurs en parallèle afin d'optimiser les temps de réponse et de masquer la défaillance d'un nœud.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">Masterisation / Image <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">Masterisation / Image <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Standardisation des postes.</strong> Création d'un modèle de système d'exploitation préconfiguré (OS, pilotes, agents de sécurité, logiciels socles) déployé en masse par le réseau (PXE, SCCM/MDT) pour uniformiser le parc informatique.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">MCO <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">MCO <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Maintien en Condition Opérationnelle.</strong> Ensemble des activités quotidiennes d'administration, de patching, de supervision et de support visant à garantir qu'une infrastructure en production (Run) reste stable, disponible et performante.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">MDM / UEM <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">MDM / UEM <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Mobile Device / Unified Endpoint Management.</strong> Plateforme (Microsoft Intune, VMware Workspace ONE / AirWatch) permettant d'enrôler, configurer, sécuriser et effacer à distance les flottes de smartphones, tablettes et ordinateurs portables.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">MFA <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">MFA <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Multi-Factor Authentication.</strong> Mécanisme de sécurité exigeant au moins deux preuves d'identité distinctes pour se connecter : ce que l'utilisateur sait (mot de passe/PIN), ce qu'il possède (smartphone/clé FIDO2) ou ce qu'il est (biométrie).</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">Micro-segmentation <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">Micro-segmentation <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Isolation granulaire Zero Trust.</strong> Technique de sécurité réseau consistant à cloisonner finement les serveurs et applications au sein même d'un Datacenter ou du Cloud pour empêcher tout mouvement latéral d'un attaquant.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">Microsoft 365 (M365) <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">Microsoft 365 (M365) <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Écosystème collaboratif Cloud.</strong> Suite SaaS de Microsoft regroupant la messagerie Exchange Online, la communication unifiée Teams, l'intranet documentaire SharePoint, le stockage OneDrive et la suite bureautique Office.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">MLOps / LLMOps <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">MLOps / LLMOps <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Industrialisation du cycle de vie de l'IA.</strong> Extension des pratiques DevOps aux modèles d'IA : versionnement des prompts et modèles, déploiement continu, surveillance de la dérive (<em>drift</em>), observabilité et maîtrise FinOps de la consommation de tokens.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">Monitoring (Supervision) <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">Monitoring (Supervision) <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Surveillance proactive du SI (Nagios, Zabbix, Centreon, Datadog).</strong> Collecte continue de métriques (CPU, RAM, espace disque, flux réseau, sondes applicatives) déclenchant des alertes avant que les utilisateurs ne subissent une panne.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">MVP <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">MVP <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Minimum Viable Product.</strong> Première version opérationnelle d'un produit ou d'un service IT intégrant uniquement les fonctionnalités essentielles afin d'apporter une valeur immédiate et d'ajuster la suite grâce aux retours utilisateurs.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">PAM <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">PAM <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Privileged Access Management (CyberArk, Wallix).</strong> Solution de cybersécurité protégeant les comptes à hauts privilèges (administrateurs systèmes/réseaux) via un coffre-fort de mots de passe rotatifs et l'enregistrement vidéo/audit des sessions.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">PCA vs PRA <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">PCA vs PRA <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Continuité vs Reprise d'Activité.</strong> Le PCA garantit le maintien du service sans interruption perceptible (via redondance active multi-sites), tandis que le PRA organise la reconstruction et le redémarrage du SI après un sinistre majeur selon un délai défini (RTO).</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">PKI & Certificats SSL/TLS <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">PKI & Certificats SSL/TLS <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Public Key Infrastructure.</strong> Architecture cryptographique gérant le cycle de vie des certificats numériques permettant d'authentifier les serveurs/utilisateurs et de chiffrer les flux (HTTPS, SMTPS, VPN, Wi-Fi 802.1X).</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">PMBOK (PMI) <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">PMBOK (PMI) <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Project Management Body of Knowledge.</strong> Standard mondial du Project Management Institute structurant la gouvernance de projet autour de 5 groupes de processus, 10 domaines de connaissances et 12 principes orientés livraison de valeur.</div>
             </div>
 
             <div class="term-card" data-category="Systèmes & Virtualisation">
-                <div class="term-title">PowerShell <span class="term-category">Systèmes & Virtualisation</span></div>
+                <div class="term-title">PowerShell <span class="term-category">🖥️ Systèmes & Virtualisation</span></div>
                 <div class="term-def"><strong>Automatisation et Scripting IT.</strong> Langage de script orienté objets et invite de commande de Microsoft incontournable pour industrialiser l'administration d'Active Directory, Windows Server, Exchange, Azure et Microsoft 365.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">PRINCE2 <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">PRINCE2 <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>PRojects IN Controlled Environments.</strong> Méthodologie de gestion de projet très structurée reposant sur 7 principes, 7 thèmes et 7 processus, axée sur le Business Case continu et le management par exception (tolérances).</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Prompt Engineering <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Prompt Engineering <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Ingénierie des requêtes IA.</strong> Méthodologie de structuration des instructions (contexte, rôle, format attendu, exemples <em>few-shot</em>) transmises à un modèle génératif afin d'obtenir des réponses fiables, précises et reproductibles.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">Proxy vs Reverse Proxy <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">Proxy vs Reverse Proxy <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Intermédiaires de flux HTTP/S.</strong> Le Proxy filtre et sécurise l'accès des utilisateurs internes lorsqu'ils naviguent sur Internet ; le Reverse Proxy protège les serveurs web internes en recevant les requêtes provenant d'Internet à leur place.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">QoS <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">QoS <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Quality of Service.</strong> Mécanisme réseau permettant de prioriser certains flux critiques sensibles à la latence (comme la téléphonie sur IP ou la visioconférence Teams) par rapport aux téléchargements volumineux.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">RACI <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">RACI <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Responsible, Accountable, Consulted, Informed.</strong> Matrice de gouvernance clarifiant qui réalise la tâche (R), qui détient l'autorité unique de validation (A), qui apporte son expertise (C) et qui est tenu informé (I).</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">RAG (Retrieval-Augmented Generation) <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">RAG (Retrieval-Augmented Generation) <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Génération Augmentée par Récupération.</strong> Architecture connectant un LLM à une base documentaire interne (SharePoint, wikis IT, procédures) pour fournir des réponses contextualisées, à jour et sourcées sans avoir à réentraîner le modèle.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">Règle de sauvegarde 3-2-1 <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">Règle de sauvegarde 3-2-1 <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Standard d'or de la protection des données.</strong> Conserver au moins <strong>3</strong> copies des données, sur <strong>2</strong> supports technologiques différents, dont <strong>1</strong> copie externalisée hors site (et immuable/hors-ligne contre les ransomwares).</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">RFI vs RFP <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">RFI vs RFP <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Request For Information vs Request For Proposal.</strong> Lors d'un appel d'offres IT, le RFI permet de sonder les solutions existantes sur le marché ; le RFP (accompagné d'un cahier des charges détaillé) engage les soumissionnaires sur un chiffrage et une architecture.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">RGPD (GDPR) <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">RGPD (GDPR) <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Règlement Général sur la Protection des Données.</strong> Cadre légal européen imposant l'intégration de la sécurité et du respect de la vie privée dès la conception des projets IT ("Privacy by Design", registre des traitements, souveraineté des données).</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">Rollback (Retour arrière) <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">Rollback (Retour arrière) <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Filet de sécurité de mise en production.</strong> Procédure documentée et testée permettant d'annuler un changement technique et de restaurer l'état fonctionnel initial dans le temps imparti si une bascule rencontre un échec critique.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">RPO vs RTO <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">RPO vs RTO <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Indicateurs clés de continuité.</strong> Le <strong>RPO</strong> (Recovery Point Objective) définit la perte maximale de données tolérée (ex: 1h entre deux backups) ; le <strong>RTO</strong> (Recovery Time Objective) fixe la durée maximale d'indisponibilité tolérée avant remise en service (ex: 4h).</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">SAN vs NAS <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">SAN vs NAS <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Architectures de stockage centralisé.</strong> Le SAN fournit un stockage rapide en mode "bloc" aux serveurs via Fibre Channel ou iSCSI (idéal bases de données/VMware) ; le NAS (ex: Dell Isilon, NetApp) fournit un partage de fichiers sur réseau IP via SMB ou NFS.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">SCCM / MECM <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">SCCM / MECM <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Microsoft Endpoint Configuration Manager.</strong> Suite d'administration système permettant de télédistribuer des applications, de déployer des systèmes d'exploitation (OSD), de gérer les correctifs Windows et d'inventorier le parc matériel/logiciel.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">Scrum <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">Scrum <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Cadre Agile empirique.</strong> Organisation itérative en Sprints (1 à 4 semaines) articulée autour de 3 rôles (Product Owner, Scrum Master, Développeurs), 3 artefacts (Product Backlog, Sprint Backlog, Incrément) et 4 cérémonies.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">SD-WAN <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">SD-WAN <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Software-Defined Wide Area Network.</strong> Architecture réseau pilotée par logiciel permettant d'interconnecter les sites distants d'une entreprise en combinant intelligemment plusieurs liens (Fibre, MPLS, 4G/5G) et en routant directement les flux Cloud.</div>
             </div>
 
             <div class="term-card" data-category="Intelligence Artificielle">
-                <div class="term-title">Shadow AI <span class="term-category">Intelligence Artificielle</span></div>
+                <div class="term-title">Shadow AI <span class="term-category">🤖 Intelligence Artificielle</span></div>
                 <div class="term-def"><strong>Usage non contrôlé d'outils d'IA publics.</strong> Utilisation par les collaborateurs de services d'IA externes non homologués par la DSI ou la RSSI, exposant l'organisation à des risques de fuite de données sensibles ou de non-conformité RGPD.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">SIEM & SOC <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">SIEM & SOC <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Détection centrale des cybermenaces.</strong> Le SIEM collecte et corrèle en temps réel les journaux d'événements (logs) des serveurs, pare-feux et postes ; le SOC est l'équipe d'analystes cybersécurité qui surveille ces alertes et répond aux incidents.</div>
             </div>
 
             <div class="term-card" data-category="ITSM & Exploitation">
-                <div class="term-title">SLA vs OLA <span class="term-category">ITSM & Exploitation</span></div>
+                <div class="term-title">SLA vs OLA <span class="term-category">⚙️ ITSM & Exploitation</span></div>
                 <div class="term-def"><strong>Engagements de niveau de service.</strong> Le SLA (Service Level Agreement) est le contrat liant la DSI à ses clients métiers (ex: disponibilité 99,9%, GTI/GTR) ; l'OLA (Operational Level Agreement) est l'accord interne entre deux équipes IT pour tenir ce SLA.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">SMTPS / SPF / DKIM / DMARC <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">SMTPS / SPF / DKIM / DMARC <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Sécurité et authentification des flux mail.</strong> SMTPS chiffre le transport des e-mails entre serveurs, tandis que les enregistrements DNS SPF, DKIM et DMARC empêchent l'usurpation de nom de domaine (Spoofing) et garantissent la délivrabilité.</div>
             </div>
 
             <div class="term-card" data-category="Stockage & PRA/PCA">
-                <div class="term-title">Snapshot <span class="term-category">Stockage & PRA/PCA</span></div>
+                <div class="term-title">Snapshot <span class="term-category">💾 Stockage & PRA/PCA</span></div>
                 <div class="term-def"><strong>Instantané de machine virtuelle ou de volume.</strong> Photographie de l'état exact d'un serveur à un instant T avant une opération risquée (mise à jour critique). Attention : un snapshot temporaire ne remplace jamais une vraie sauvegarde externalisée.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">SSO <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">SSO <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>Single Sign-On (Authentification unique).</strong> Mécanisme (basé sur SAML 2.0, OIDC ou Kerberos) permettant à un collaborateur de s'authentifier une seule fois pour accéder de manière fluide à l'ensemble de ses applications d'entreprise.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">TCO <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">TCO <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Total Cost of Ownership (Coût total de possession).</strong> Évaluation financière complète d'une solution IT intégrant les coûts directs (achat licences/matériel, intégration) et indirects (maintenance, support, énergie, formation) sur 3 à 5 ans.</div>
             </div>
 
             <div class="term-card" data-category="Cloud & DevOps">
-                <div class="term-title">Tenant <span class="term-category">Cloud & DevOps</span></div>
+                <div class="term-title">Tenant <span class="term-category">☁️ Cloud & DevOps</span></div>
                 <div class="term-def"><strong>Instance cliente dédiée dans le Cloud.</strong> Environnement logique isolé appartenant à une organisation au sein d'une plateforme mutualisée comme Microsoft 365 ou Azure (ex: migrations complexes "Tenant-to-Tenant" lors de fusions/acquisitions).</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">ToIP / VoIP <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">ToIP / VoIP <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Téléphonie et Voix sur IP (Mitel, Cisco, Teams Phone).</strong> Acheminement des communications vocales sur le réseau informatique IP (protocoles SIP/RTP) en remplacement des anciens autocommutateurs téléphoniques analogiques/RNIS.</div>
             </div>
 
             <div class="term-card" data-category="Gestion de Projet">
-                <div class="term-title">UAT / VABF / VSR <span class="term-category">Gestion de Projet</span></div>
+                <div class="term-title">UAT / VABF / VSR <span class="term-category">🎯 Gestion de Projet</span></div>
                 <div class="term-def"><strong>Les jalons de validation d'un projet IT.</strong> La <strong>VABF</strong> valide l'aptitude technique de l'infrastructure ; l'<strong>UAT</strong> (Recette Utilisateur) valide la conformité fonctionnelle métier ; la <strong>VSR</strong> observe la stabilité en production réelle avant clôture.</div>
             </div>
 
             <div class="term-card" data-category="Workplace & Messagerie">
-                <div class="term-title">VDI <span class="term-category">Workplace & Messagerie</span></div>
+                <div class="term-title">VDI <span class="term-category">💼 Workplace & Messagerie</span></div>
                 <div class="term-def"><strong>Virtual Desktop Infrastructure (Citrix, RDS, Azure Virtual Desktop).</strong> Hébergement centralisé des postes de travail utilisateurs sur des serveurs en Datacenter ou dans le Cloud, permettant un accès distant sécurisé depuis n'importe quel terminal léger.</div>
             </div>
 
             <div class="term-card" data-category="Réseau & Télécoms">
-                <div class="term-title">VLAN <span class="term-category">Réseau & Télécoms</span></div>
+                <div class="term-title">VLAN <span class="term-category">🌐 Réseau & Télécoms</span></div>
                 <div class="term-def"><strong>Virtual Local Area Network (Norme 802.1Q).</strong> Découpage logique d'un commutateur réseau physique (Switch) en plusieurs sous-réseaux virtuels isolés (ex: VLAN Serveurs, VLAN Utilisateurs, VLAN VoIP, VLAN Invités) pour améliorer la sécurité et les performances.</div>
             </div>
 
             <div class="term-card" data-category="Cybersécurité">
-                <div class="term-title">Zero Trust & Windows Hello <span class="term-category">Cybersécurité</span></div>
+                <div class="term-title">Zero Trust & Windows Hello <span class="term-category">🛡️ Cybersécurité</span></div>
                 <div class="term-def"><strong>"Never trust, always verify".</strong> Paradigme de sécurité qui ne fait confiance à aucun appareil ou utilisateur par défaut (même connecté au réseau interne), s'appuyant sur une authentification forte sans mot de passe comme <strong>Windows Hello for Business</strong> (biométrie/PIN lié à la puce TPM).</div>
             </div>
 
@@ -684,8 +815,25 @@
             filterGlossary();
         }
 
+        function updateClearButton() {
+            const input = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (!input || !clearBtn) return;
+            clearBtn.classList.toggle('visible', input.value.length > 0);
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+            input.value = '';
+            updateClearButton();
+            filterGlossary();
+            input.focus();
+        }
+
         function filterGlossary() {
             const input = document.getElementById('searchInput');
+            updateClearButton();
             const filter = input.value.toLowerCase().trim();
             const grid = document.getElementById('glossaryGrid');
             const cards = grid.getElementsByClassName('term-card');
